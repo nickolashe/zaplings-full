@@ -1,0 +1,153 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Grow.</title>
+    <link rel="stylesheet" href="style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="{% static "./js/vendor/modernizr.js" %}"></script>
+	<script src="{% static "./js/vendor/jquery.js" %}"></script>
+  </head>
+  <body>
+	  
+	<div class="wrapper">
+	  <header class="row header full-width">
+		  <div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
+			  <a href="./index.html"><img class="headerLogo" src="./images/header-logo.png" alt="Zaplings logo" width="90px" height="44px"/></a>
+			  <a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>
+		  </div>		
+
+		  <div class="header-left small-10 show-for-small-only columns">
+			  <a href="./index.html"><img class="headerLogo" src="./images/header-logo.png" width="90px" height="44px"/></a>
+			  <a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>
+		  </div>
+		  
+		  <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
+			  <a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a><br>
+			  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="./howitworks.html">How it works</a></li>
+				    <li><a href="./faq.html">FAQ</a></li>
+				    <li><a href="./about.html">About</a></li>
+					<li><a href="./getinvolved">Get involved</a></li>
+				  </ul>
+		  </div>
+	  
+		  <div class="header-learn show-for-small-only small-2 columns">
+			  <a href="#" data-dropdown="drop1" class="menu-button"><img src="./images/three-lines.png" alt="Menu" width="30px" height="30px"></a><br>
+				  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="./howitworks.html">How it works</a></li>
+				    <li><a href="./faq.html">FAQ</a></li>
+				    <li><a href="./about.html">About us</a></li>
+					<li><a href="./getinvolved.html">Get involved</a></li>
+				  </ul>
+		  </div>
+		  
+		    
+	  </header>
+	  
+		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you offer?</h2>
+		<form id="offer-tags">
+	  		<div class="row">
+				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
+					<input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="large-8 medium-8 small-12 columns medium-offset-2">
+					<div class="suggestion-box">
+						<input id="offer-suggest-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="collaboration">
+							<label class="tag button small light round" for="offer-suggest-1">collaboration</label>
+						<input id="offer-suggest-2" class="vis-hidden" type="checkbox" name="offer-tag[]" value="mentorship">
+							<label class="tag button small light round" for="offer-suggest-2">mentorship</label>
+						<input id="offer-suggest-3" class="vis-hidden" type="checkbox" name="offer-tag[]" value="co-learning">
+							<label class="tag button small light round" for="offer-suggest-3">co-learning</label>
+						<input id="offer-suggest-4" class="vis-hidden" type="checkbox" name="offer-tag[]" value="inspiration">
+							<label class="tag button small light round" for="offer-suggest-4">inspiration</label>
+						<input id="offer-suggest-5" class="vis-hidden" type="checkbox" name="offer-tag[]" value="idea validation">
+							<label class="tag button small light round" for="offer-suggest-5">idea validation</label>
+						<input id="offer-suggest-6" class="vis-hidden" type="checkbox" name="offer-tag[]" value="strategy">
+							<label class="tag button small light round" for="offer-suggest-6">strategy</label>
+						<input id="offer-suggest-7" class="vis-hidden" type="checkbox" name="offer-tag[]" value="accountability">
+							<label class="tag button small light round" for="offer-suggest-7">accountability</label>
+						<input id="offer-suggest-8" class="vis-hidden" type="checkbox" name="offer-tag[]" value="stress relief">
+							<label class="tag button small light round" for="offer-suggest-8">stress relief</label>
+						<input id="offer-suggest-9" class="vis-hidden" type="checkbox" name="offer-tag[]" value="encouragement">
+							<label class="tag button small light round" for="offer-suggest-9">encouragement</label>
+						<input id="offer-suggest-10" class="vis-hidden" type="checkbox" name="offer-tag[]" value="marketing">
+							<label class="tag button small light round" for="offer-suggest-10">marketing</label>
+						<input id="offer-suggest-11" class="vis-hidden" type="checkbox" name="offer-tag[]" value="funding">
+							<label class="tag button small light round" for="offer-suggest-11">funding</label>
+						<input id="offer-suggest-12" class="vis-hidden" type="checkbox" name="offer-tag[]" value="friendship">
+							<label class="tag button small light round" for="offer-suggest-12">friendship</label>
+					</div>
+				</div>
+			</div>
+		</form>	
+
+		<div class="push"></div>
+		</div>
+		<div class="footer row full-width">
+			<div class="social-media">
+				<a href="#"><img class="social-button" src="./images/facebook-icon.png" alt="Facebook"></a>
+				<a href="#"><img class="social-button" src="./images/twitter-icon.png" alt="Twitter"></a>
+				<a href="#"><img class="social-button" src="./images/linkedin-icon.png" alt="LinkedIn"></a>
+			</div>	
+		</div>	
+			
+			
+
+    
+
+    <script src="{% static "./js/foundation.min.js" %}"></script>			
+	<script type="text/javascript">
+  		$(document).foundation();
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$('body').one('click',function(){
+			
+			var count=30;
+			var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+			function timer()
+			{
+			  count=count-1;
+			  $('#timer').attr("style", "color: #70bf4f");
+			  if (count < 0)
+			  {
+			     clearInterval(counter);
+				 $('.input-tags').after('<div class="continue-delay">Take as much time as you need!</div><div class="continue-tags"><a href="./needs.html"><button type="submit" class="button success round small">Next: What do you need?</button></a></div>');
+			     return;
+			  };
+
+			  document.getElementById("timer").innerHTML=count; // watch for spelling
+			};
+		});
+				
+			var num = 12;		
+			
+			$('.input-tags').keypress(function (e) {
+				var text = $(this).val();
+					if (e.which == 13 && text != '') {
+						num = num+1;
+						$('.input-tags').val('');						
+				  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag[]" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
+						return false;	
+						$(this).focus().select().attr("placeholder", "");
+					}
+
+			});	
+			$('.suggestion-box').on('click', 'label', (function(){
+				$(this).toggleClass('selected').blur();
+			}));
+		});
+		
+
+	</script>
+	
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+{% load staticfiles %}
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Grow.</title>
+    <link rel="stylesheet" href="{% static "style.css" %}"/>
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+  </head>
+  <body id="home">
+    
+	  <header id="home-header" class="row">
+		  <div class="medium-4 medium-offset-1 small-4 columns">
+			  <img id="homeLogo" src="{% static "./images/logo150.png" %}" width="113px" height="48px">
+		  </div>		
+		  <div id="home-learn" class="medium-6 small-8 columns end">
+			  <a href="#" data-dropdown="drop1" class="button round dropdown small">Learn more</a><br>
+				  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="#">How it works</a></li>
+				    <li><a href="#">FAQ</a></li>
+				    <li><a href="#">About us</a></li>
+					<li><a href="#">Get involved</a></li>
+				  </ul>
+		  </div>
+		    
+	  </header>
+	  		<div class="row">
+				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns">
+					<h2 id="homeTitle">Ideas grow here.</h2>
+					<p class="lead">Test concepts, build a team, and spread the word. Zaplings will introduce you to creations you'll love and people you're looking for.</p>
+					<h4 id="create-something">Let's help each other create.</h4>
+					<div id="start-options">
+                                        <form id="form-join" action="{% url 'zaplings:signup' %}" method="get">
+                                                <!--{% csrf_token %}-->
+						<button id="join" class="button round success">Join Zaplings</button>
+                                        </form>
+<!--						<button class="button round success">Share an idea</button>		-->
+					</div>
+				</div>
+	
+				<div class="titleMargin large-4 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns end">
+					<div class="flex-video">
+						<iframe src="http://www.youtube.com/embed/OFzXaFbxDcM" frameborder="0" allowfullscreen></iframe>
+					</div>	
+					<div class="row">
+						<div id="featured-ideas" class="large-6 small-6 columns"><h6>Great ideas</h6>
+						</div>
+					<div class="row">
+						<ul class="featured-orbit" data-orbit>
+{% for featured_idea in featured_ideas %}
+  						  	<li>
+   							 	<div class="large-4 small-4 columns">
+									<img src="{% static "./images/loveatx.png" %}" width="100" alt="slide 1" />
+								</div>
+								<div id="outer" class="large-8 small-8 columns">
+	 								<div id="middle">
+	   									<div id="inner">
+											<p id="featured-description" class="aside">{{ featured_idea.idea.title }}</p>
+	    								</div>
+	  								</div>
+								</div>
+  						  	</li>
+{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+						
+    <script src="{% static "js/vendor/jquery.js" %}">	</script>
+    <script src="{% static "js/foundation.min.js" %}"></script>
+	<script src="{% static "js/foundation/foundation.orbit.js" %}"></script>  
+ 
+    <script>
+	$(document).foundation({
+	  orbit: {
+	    animation: 'slide',
+	    timer_speed: 5000,
+	    pause_on_hover: true,
+		resume_on_mouseout: true,
+	    navigation_arrows: false,
+		slide_number: false,
+		slide_number_text: '',
+		timer_show_progress_bar: false,
+	    bullets: true
+	  }
+	});
+    </script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#join').click(function(){
+			$('#start-options').remove();
+			$('#intro-email').append('<button id="email-submit" type="submit" class="button round success">Enter</button><div id="home-email"><input type="email" placeholder="Email"/></div>').hide().fadeIn();
+		});
+		
+		$('#share-idea').click(function(){
+			$(this).fadeOut(400, function(){
+				$(this).replaceWith('<span id="launch-date">Ideas grow July 15!</span>').fadeIn(1000);
+			});
+		});
+	});
+	</script>
+  </body>
+</html>
+

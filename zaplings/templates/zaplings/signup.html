@@ -1,0 +1,84 @@
+<!doctype html>
+{% load staticfiles %}
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Grow.</title>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+  </head>
+  <body>
+	  
+	 <div class="wrapper">
+	  <header class="row header fullWidth">
+		  
+		  <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
+			  <a href="#" data-dropdown="drop1" class="learn-dropdown button round small dropdown">Learn more</a><br>
+			  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="#">How it works</a></li>
+				    <li><a href="#">FAQ</a></li>
+				    <li><a href="#">About us</a></li>
+					<li><a href="#">Get involved</a></li>
+				  </ul>
+		  </div>
+	  
+		  <div class="header-learn show-for-small-only small-2 columns">
+			  <a href="#" data-dropdown="drop1" class="learn-dropdown button round small"><img class="menu-button" src="{% static "./images/three-lines.png" %}" alt="Menu"></a><br>
+				  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="#">How it works</a></li>
+				    <li><a href="#">FAQ</a></li>
+				    <li><a href="#">About us</a></li>
+					<li><a href="#">Get involved</a></li>
+				  </ul>
+		  </div>
+		  <div class="header-left large-8 medium-7 small-10 columns">
+			  <img class="headerLogo" src="{% static "./images/logo150.png" %}" />
+			  <button class="new-idea button small radius">What's your great idea?</button>
+		  </div>		
+		  
+		    
+	  </header>
+	  		<div class="row">
+				<div class="large-6 medium-6 small-10 large-centered small-centered columns">
+					<h2 class="titleCenter">Sign up</h2>
+                                        <form id="form-signup" action="{% url 'zaplings:login' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <input id="email" type="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"/>
+							<input id="password" type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"/>
+                                                        <input type="submit" value="Go" class="button success round" />
+                                        </form>
+			        </div>
+                        </div>
+                        <div id="authenticate" class="row">
+				<div class="large-6 medium-8 small-10 large-centered small-centered columns">
+                                        {% if error_message %}<div><strong><color=red>{{ error_message }}</color></strong></div>{% endif %}
+				</div>
+					
+			<div id="authenticate" class="row">
+				<div class="large-6 medium-8 small-10 large-centered small-centered columns">
+					<div>or connect with another account</div>
+					<button class="auth-button button round small">Google</button>
+					<button class="auth-button button round small">Facebook</button>
+					<button class="auth-button button round small">LinkedIn</button>
+					
+				</div>
+			</div>
+
+			<div class="push"></div>
+		</div>
+		<div class="footer">
+			
+		</div>	
+			
+			
+
+    
+    <script src="{% static "js/vendor/jquery.js" %}"></script>
+    <script src="{% static "js/foundation.min.js" %}"></script>
+	<script src="{% static "js/foundation/foundation.orbit.js" %}"></script>
+  </body>
+</html>
+
+
