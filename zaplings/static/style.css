@@ -6972,7 +6972,8 @@ th.hide-for-touch {
   margin-bottom: 1rem; }
 
 #start-options {
-  padding: 0.25rem 0 0.1rem 0; }
+  padding: 0.25rem 0 0.1rem 0;
+  margin-bottom: 1rem; }
 
 #intro-email {
   margin-top: 1.5rem; }

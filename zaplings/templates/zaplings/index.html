@@ -30,14 +30,15 @@
 				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns">
 					<h2 id="homeTitle">Ideas grow here.</h2>
 					<p class="lead">Test concepts, build a team, and spread the word. Zaplings will introduce you to creations you'll love and people you're looking for.</p>
-					<h4 id="create-something">Let's help each other create.</h4>
-					<div id="start-options">
-                                        <form id="form-join" action="{% url 'zaplings:signup' %}" method="get">
-                                                <!--{% csrf_token %}-->
-						<button id="join" class="button round success">Join Zaplings</button>
-                                        </form>
-<!--						<button class="button round success">Share an idea</button>		-->
-					</div>
+					<h4 id="create-something">Let's create together.</h4>
+					<!-- Form moved to jQuery -->
+
+						<div id="start-options">
+	                                                <!--{% csrf_token %}-->
+								<button id="join" class="button round success">Sign me up</button>
+								<button id="share-idea" class="button round success">Share an idea</button>
+						</div>
+				
 				</div>
 	
 				<div class="titleMargin large-4 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns end">
@@ -91,8 +92,10 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#join').click(function(){
-			$('#start-options').remove();
-			$('#intro-email').append('<button id="email-submit" type="submit" class="button round success">Enter</button><div id="home-email"><input type="email" placeholder="Email"/></div>').hide().fadeIn();
+			$('#start-options').fadeOut(400, function(){
+				$(this).replaceWith('<div id="start-options"><form id="form-join"><button id="email-submit" type="submit" class="button round success">Go</button><div id="home-email"><input type="email" placeholder="Email"/></div></form></div>');
+				$('#start-options').hide().fadeIn();
+			});
 		});
 		
 		$('#share-idea').click(function(){
