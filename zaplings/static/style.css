@@ -6962,6 +6962,9 @@ th.hide-for-touch {
 #drop1 {
   width: 162px; }
 
+#drop1 li a {
+  text-decoration: none; }
+
 #homeTitle {
   margin-bottom: 2rem; }
 
@@ -6972,7 +6975,8 @@ th.hide-for-touch {
   margin-bottom: 1rem; }
 
 #start-options {
-  padding: 0.25rem 0 0.1rem 0; }
+  padding: 0.25rem 0 0.1rem 0;
+  margin-bottom: 1.5rem; }
 
 #intro-email {
   margin-top: 1.5rem; }
@@ -6984,6 +6988,9 @@ th.hide-for-touch {
 #email-submit {
   float: right;
   margin-top: 0px; }
+
+#form-join {
+  margin-bottom: 0; }
 
 #home-login {
   margin-top: 0.75rem;
@@ -6998,6 +7005,9 @@ th.hide-for-touch {
 
 #featured-ideas {
   margin: 1rem 0 0 0; }
+
+#video-caption {
+  margin-bottom: 0.5rem; }
 
 .homeVideo {
   max-width: 200px;

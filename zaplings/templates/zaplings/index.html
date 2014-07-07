@@ -18,10 +18,10 @@
 		  <div id="home-learn" class="medium-6 small-8 columns end">
 			  <a href="#" data-dropdown="drop1" class="button round dropdown small">Learn more</a><br>
 				  <ul id="drop1" data-dropdown-content class="f-dropdown">
-				    <li><a href="#">How it works</a></li>
-				    <li><a href="#">FAQ</a></li>
-				    <li><a href="#">About us</a></li>
-					<li><a href="#">Get involved</a></li>
+<!--				    <li><a href="#">How it works</a></li>
+				    <li><a href="#">FAQ</a></li>				-->
+				    <li><a href="#">10 reasons to join</a></li>
+<!--					<li><a href="#">Get involved</a></li>		-->
 				  </ul>
 		  </div>
 		    
@@ -29,26 +29,28 @@
 	  		<div class="row">
 				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns">
 					<h2 id="homeTitle">Ideas grow here.</h2>
-					<p class="lead">Test concepts, build a team, and spread the word. Zaplings will introduce you to creations you'll love and people you're looking for.</p>
-					<h4 id="create-something">Let's help each other create.</h4>
-					<div id="start-options">
-                                        <form id="form-join" action="{% url 'zaplings:signup' %}" method="get">
-                                                <!--{% csrf_token %}-->
-						<button id="join" class="button round success">Join Zaplings</button>
-                                        </form>
-<!--						<button class="button round success">Share an idea</button>		-->
-					</div>
+					<p class="lead">Test concepts, build a team, and spread the word. Zaplings will introduce you to creations you'll love and to people you're looking for.</p>
+					<h4 id="create-something">Let's create together.</h4>
+					<!-- Form moved to jQuery -->
+
+						<div id="start-options">
+	                                                <!--{% csrf_token %}-->
+								<button id="join" class="button round success">Sign me up</button>
+								<button id="share-idea" class="button round success">Share an idea</button>
+						</div>
+				
 				</div>
 	
 				<div class="titleMargin large-4 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns end">
+					<p id="video-caption">They can do it, so can you:</p>
 					<div class="flex-video">
-						<iframe src="http://www.youtube.com/embed/OFzXaFbxDcM" frameborder="0" allowfullscreen></iframe>
+						<iframe src="http://www.youtube.com/embed/DT5eFdDDFPI?showinfo=0" frameborder="0" allowfullscreen></iframe>
 					</div>	
 					<div class="row">
 						<div id="featured-ideas" class="large-6 small-6 columns"><h6>Great ideas</h6>
 						</div>
 					<div class="row">
-						<ul class="featured-orbit" data-orbit>
+						<ul class="featured-orbit" title="Details coming soon!" data-orbit>
 {% for featured_idea in featured_ideas %}
   						  	<li>
    							 	<div class="large-4 small-4 columns">
@@ -91,13 +93,16 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#join').click(function(){
-			$('#start-options').remove();
-			$('#intro-email').append('<button id="email-submit" type="submit" class="button round success">Enter</button><div id="home-email"><input type="email" placeholder="Email"/></div>').hide().fadeIn();
+			$('#start-options').fadeOut(400, function(){
+				$(this).replaceWith('<div id="start-options"><form id="form-join"><button id="email-submit" type="submit" class="button round success">Go</button><div id="home-email"><input type="email" placeholder="Email"/></div></form></div>');
+				$('#start-options').hide().fadeIn();
+			});
 		});
 		
 		$('#share-idea').click(function(){
 			$(this).fadeOut(400, function(){
-				$(this).replaceWith('<span id="launch-date">Ideas grow July 15!</span>').fadeIn(1000);
+				$(this).replaceWith('<span id="launch-date">Ideas grow July 15!</span>');
+				$('#launch-date').hide().fadeIn();
 			});
 		});
 	});
