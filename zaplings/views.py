@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import Choice, Poll, FeaturedIdea, Love, Offer, Need
+from zaplings.models import Choice, Poll, FeaturedIdea, Love, Offer, Need, UserLove
 from django.template import RequestContext, loader
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -106,6 +106,9 @@ def vote(request, poll_id):
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
     #return HttpResponse("You're voting on poll %s." % poll_id)
+
+def record_loves(request):
+    selected_loves = request.POST.getList("love_tag")
 
 def login(request):
     error_message = None

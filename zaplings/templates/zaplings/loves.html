@@ -51,7 +51,7 @@
 	  </header>
 	  		
 		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you love?</h2>
-		<form id="love-tags">
+		<form id="love-tags" action="{% url 'zaplings:record_loves' %}" method="post">
 	  		<div class="row">
 				<div class="large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I love... (press return to add)"/>
@@ -88,7 +88,6 @@
 	<script type="text/javascript">
   		$(document).foundation();
 	</script>
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 			
@@ -130,6 +129,7 @@
 		
 
 	</script>
-  </body>
+ 
+ </body>
 </html>
 
