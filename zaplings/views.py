@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import Choice, Poll, FeaturedIdea, Love, Offer, Need, UserLove
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove
 from django.template import RequestContext, loader
 from django.views import generic
 from django.contrib.auth.decorators import login_required
