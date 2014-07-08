@@ -18,16 +18,16 @@
 		<div class="wrapper">
 			<header class="row header full-width">
 		  		<div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
-					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" alt="Zaplings logo" width="90px" height="44px"/></a>
-					<a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>
+					<a href="{% url "index" %}"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" alt="Zaplings logo" width="90px" height="44px"/></a>
+<!--					<a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>	-->
 				</div>		
 
 				<div class="header-left small-10 show-for-small-only columns">
 					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" width="90px" height="44px"/></a>
-					<a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>
+<!--					<a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>	-->
 		  	  	</div>
 		  
-				<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
+<!--				<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
 					<a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a><br>
 					<ul id="drop1" data-dropdown-content class="f-dropdown">
 						<li><a href="./howitworks.html">How it works</a></li>
@@ -46,6 +46,7 @@
 						<li><a href="./getinvolved.html">Get involved</a></li>
 				  	</ul>
 		  	  	</div>
+-->
 		  	</header>
 	  		
 			<h2 class="titleCenter">10 reasons to join Zaplings</h2>
@@ -63,7 +64,17 @@
 					<p><strong>It's good to join early.</strong> Experience the "first mover advantage" by signing up in the beta phase. Your ideas will have less competition, you will have a head start on becoming a Gold Connector, and you will have direct input into what Zaplings becomes. Not to mention that it will make you cooler, smarter, and better looking.</p>
 					<p><strong>Zaplings is completely free.</strong> Had we not mentioned this yet? Do you really need the other 9 reasons? You've got nothing to lose. Start now!</p>
 				</div>
-			</div>	
+			</div>
+			<div class="row">
+				<div class="medium-6 medium-offset-2 small-10 small-offset-1 columns">
+					<div id="start-options" class="add-margin-top">
+						<form id="form-join">
+							<button id="email-submit" type="submit" class="button round success">Join Zaplings</button>
+							<div id="home-email"><input type="email" placeholder="Email"/></div>
+						</form>
+					</div>
+				</div>
+			</div>
 		
 			<div class="push"></div>
 		</div>
