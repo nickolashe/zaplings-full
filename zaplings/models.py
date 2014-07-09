@@ -47,6 +47,9 @@ class UserOffer(models.Model):
     user = models.ForeignKey(User)
     offer = models.ForeignKey(Offer)
 
+class NewUserEmail(models.Model):
+    email = models.EmailField(max_length=60, unique=True)
+
       #def was_published_recently(self):
     #    return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
