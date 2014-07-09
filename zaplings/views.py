@@ -3,10 +3,9 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import Choice, Poll, FeaturedIdea, Love, Offer, Need
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, NewUserEmail
 from django.template import RequestContext, loader
 from django.views import generic
-from django.contrib.auth.decorators import login_required
 import time
 #def index(request):
     #latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
@@ -111,6 +110,25 @@ def vote(request, poll_id):
 
     #return HttpResponse("You're voting on poll %s." % poll_id)
 
+def record_loves(request):
+    selected_loves = request.POST.getList("love_tag")
+
+def record_new_email(request):
+    email = request.POST['email']
+    status_message = None
+    if not email or email == "" or not '@' in email:
+        status_message = "Please make double-check the email field"
+    elif NewUserEmail.objects.filter(email=email):
+        status_message = "This email has already been submitted!"
+    else:
+        NewUserEmail.objects.create(email=email)
+        status_message = "Thanks, your email has been saved!"
+    
+    return render(request, 'zaplings/index.html', {
+        'status_message': status_message,
+        'featured_ideas': FeaturedIdea.objects.all()
+    })
+
 def login(request):
     error_message = None
     try:
@@ -153,3 +171,5 @@ def login(request):
         })
 
         #return HttpResponseRedirect(reverse('polls:profile', args=(user.id,)))
+
+

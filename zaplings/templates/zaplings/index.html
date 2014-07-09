@@ -34,11 +34,18 @@
 					<!-- Form moved to jQuery -->
 
 						<div id="start-options">
-	                                                <!--{% csrf_token %}-->
-								<button id="join" class="button round success">Sign me up</button>
-								<button id="share-idea" class="button round success">Share an idea</button>
+	                                            <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
+                                                        {% csrf_token %}  
+                                                        <button id="email-submit" type="submit" class="button round success">Sign up</button>
+                                                            <div id="home-email">
+                                                                <input type="email" name="email" placeholder="Email"/>
+                                                            </div>
+                                                    </form>
+			  			    <button id="share-idea" class="button round success">Share an idea</button>
 						</div>
-				
+                                        {% if status_message %}
+                                            <p id="status_message"> {{ status_message }}</p>
+                                        {% endif %}
 				</div>
 	
 				<div class="titleMargin large-4 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns end">
@@ -51,10 +58,11 @@
 						</div>
 					<div class="row">
 						<ul class="featured-orbit" title="Details coming soon!" data-orbit>
+{% static "images/" as images %}
 {% for featured_idea in featured_ideas %}
   						  	<li>
    							 	<div class="large-4 small-4 columns">
-									<img src="{% static "./images/loveatx.png" %}" width="100" alt="slide 1" />
+									<img src="{{images}}featured-idea-{{featured_idea.id}}.png" width="100" alt="slide 1" />
 								</div>
 								<div id="outer" class="large-8 small-8 columns">
 	 								<div id="middle">
@@ -92,13 +100,6 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('#join').click(function(){
-			$('#start-options').fadeOut(400, function(){
-				$(this).replaceWith('<div id="start-options"><form id="form-join"><button id="email-submit" type="submit" class="button round success">Go</button><div id="home-email"><input type="email" placeholder="Email"/></div></form></div>');
-				$('#start-options').hide().fadeIn();
-			});
-		});
-		
 		$('#share-idea').click(function(){
 			$(this).fadeOut(400, function(){
 				$(this).replaceWith('<span id="launch-date">Ideas grow July 15!</span>');
