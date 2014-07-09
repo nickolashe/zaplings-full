@@ -1,0 +1,106 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Grow.</title>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+    <script src="{% static "js/vendor/jquery.js" %}"></script>
+
+  </head>
+  <body>
+	  
+	 <div class="wrapper">
+	 	<header class="row header full-width">
+		  
+
+		  <div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
+			  <a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" alt="Zaplings logo" width="90px" height="44px"/></a>
+			  <a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>
+		  </div>		
+
+		  <div class="header-left small-10 show-for-small-only columns">
+			  <a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" width="90px" height="44px"/></a>
+			  <a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>
+		  </div>
+		  
+		  <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
+			  <a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a><br>
+			  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="./howitworks.html">How it works</a></li>
+				    <li><a href="./faq.html">FAQ</a></li>
+				    <li><a href="./about.html">About</a></li>
+					<li><a href="./getinvolved">Get involved</a></li>
+				  </ul>
+		  </div>
+	  
+		  <div class="header-learn show-for-small-only small-2 columns">
+			  <a href="#" data-dropdown="drop1" class="menu-button"><img src="{% static "./images/three-lines.png" %}" alt="Menu" width="30px" height="30px"></a><br>
+				  <ul id="drop1" data-dropdown-content class="f-dropdown">
+				    <li><a href="./howitworks.html">How it works</a></li>
+				    <li><a href="./faq.html">FAQ</a></li>
+				    <li><a href="./about.html">About us</a></li>
+					<li><a href="./getinvolved.html">Get involved</a></li>
+				  </ul>
+		  </div>		    
+		</header>
+		<h2 class="centerText three-margin-top">Are you a Connector?</h2>
+		<div class="medium-8 medium-offset-2 small-12 columns">
+			<div class="centerText">
+				<a href="#" data-reveal-id="learn-connector" title="Learn more about badges"><img src="{% static "./images/connector-gold.png" %}" height="70px" width="70px"/></a>
+			</div>
+			<h4 class="centerText add-margin-top">Introduce us.</h4>
+			<p class="add-margin-top">Connectors enjoy meeting new people and making introductions. Earn credit by inviting friends to Zaplings with your unique link below. Later, improve your standing by introducing friends to each other.</p>
+		
+			<div class="centerText medium-10 medium-offset-1 small-12 columns end">
+				<button id="copy-link" class="button round success">Copy</button>
+				<div class="overflow-div"><input id="user-link" type="text" value="http://www.zaplings.com/{{ user.username }}"/></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
+				<p>
+					Share with your social networks:
+		  		</p>
+					<a href="http://www.facebook.com" target="_blank"><button class="button small round">Facebook</button></a>
+					<a href="http://www.twitter.com" target="_blank"><button class="button small round">Twitter</button></a>
+					<a href="http://www.linkedin.com" target="_blank"><button class="button small round">LinkedIn</button></a>
+					<a href="http://plus.google.com" target="_blank"><button class="button small round">Google+</button></a>
+			</div>
+		</div>
+			<div id="learn-connector-reveal" class="reveal-modal" data-reveal>
+			<h3>Connector badges</h3>
+		</div>	
+	  
+		<div class="push"></div>
+	</div>
+	<div class="footer row full-width">
+		<div class="social-media">
+			<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
+			<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
+			<a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
+		</div>	
+	</div>
+	  
+    <script src="{% static "js/foundation.min.js" %}"></script>	
+  	<script type="text/javascript">
+    		$(document).foundation();
+  	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#copy-link').click(function(){
+				$(this).select();
+			});
+			
+			$('user-link').click(function(){
+				
+			});
+		});
+	</script>
+	</body>
+</html>

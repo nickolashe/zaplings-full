@@ -66,6 +66,10 @@ class EditProfileView(generic.ListView):
 class NewIdeaView(generic.ListView):
     model = User
     template_name = 'zaplings/zapling-new.html'
+
+class ShareView(generic.ListView):
+    model = User
+    template_name = 'zaplings/share.html'
     
 class IndexView(generic.ListView):
     #model = FeaturedIdea
