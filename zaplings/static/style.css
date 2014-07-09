@@ -6933,6 +6933,9 @@ th.hide-for-touch {
 .add-margin-top {
   margin-top: 1rem; }
 
+.three-margin-top {
+  margin-top: 3rem; }
+
 .half-margin-right {
   margin-right: 0.5rem; }
 
@@ -7321,7 +7324,7 @@ input:hover:checked + label {
 #change-name {
   margin-top: .25rem; }
 
-#overflow-div {
+.overflow-div {
   overflow: hidden; }
 
 #last-name {
@@ -7391,3 +7394,8 @@ input:hover:checked + label {
 
 #idea-type {
   width: 100%; }
+
+#copy-link {
+  float: right;
+  margin-top: 0;
+  margin-left: 0.5rem; }
