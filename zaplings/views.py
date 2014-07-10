@@ -59,6 +59,10 @@ class LovesView(generic.ListView):
         """Return the all suggested loves."""
         return Love.objects.all()
     
+class RecordLovesView(generic.ListView):
+    template_name = 'zaplings/record_loves.html'
+    context_object_name = 'suggested_loves'
+
 class EditProfileView(generic.ListView):
     model = User
     template_name = 'zaplings/editprofile.html'
