@@ -37,7 +37,7 @@ class ProfileView(generic.ListView):
 
 class AboutView(generic.ListView):
     model = User
-    template_name = 'zaplings/10reasons.html'
+    template_name = 'zaplings/10-reasons.html'
     
 class HowItWorksView(generic.ListView):
     model = User
