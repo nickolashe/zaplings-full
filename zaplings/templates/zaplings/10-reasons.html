@@ -14,16 +14,15 @@
 
 	</head>
 	<body>
-	  
 		<div class="wrapper">
 			<header class="row header full-width">
 		  		<div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
-					<a href="{% url "zaplings:index" %}"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" alt="Zaplings logo" width="90px" height="44px"/></a>
+					<a href="{% url "zaplings:index" %}"><img class="headerLogo" src="{% static "./images/header-logo.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/header-logo.png" %}'" alt="Zaplings logo" width="111px" height="50px"/></a>
 <!--					<a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>	-->
 				</div>		
 
 				<div class="header-left small-10 show-for-small-only columns">
-					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" width="90px" height="44px"/></a>
+					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo-small.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/header-logo-small.png" %}'" width="96px" height="44px"/></a>
 <!--					<a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>	-->
 		  	  	</div>
 		  
@@ -66,7 +65,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="medium-6 medium-offset-2 small-10 small-offset-1 columns">
+				<div class="medium-7 medium-offset-2 small-10 small-offset-1 columns">
 					<div id="start-options" class="add-margin-top">
 						<form id="form-join">
 							<button id="email-submit" type="submit" class="button round success">Join Zaplings</button>

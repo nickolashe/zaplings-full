@@ -17,7 +17,7 @@
 		</div>
 		  
 		<div id="home-learn" class="large-5 medium-4 small-8 columns end">
-			 <a href="{% url "zaplings:10-reasons" %}"><button class="button round ">10 reasons to join</button></a> 
+			 <a href="{% url "zaplings:10-reasons" %}"><button class="button round small light">10 reasons to join</button></a> 
 		</div>
 <!--		
 		  <div id="home-learn" class="large-5 medium-4 small-8 columns end">
@@ -36,17 +36,15 @@
 					<h2 id="homeTitle">Ideas grow here.</h2>
 					<p class="lead">Test concepts, build a team, and spread the word. Zaplings will introduce you to creations you'll love and to people you're looking for.</p>
 					<h4 id="create-something">Let's create together.</h4>
-					<!-- Form moved to jQuery -->
-
-						<div id="start-options">
-	                                            <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
-                                                        {% csrf_token %}  
-                                                        <button id="email-submit" type="submit" class="button round success">Sign up</button>
-                                                            <div id="home-email">
-                                                                <input type="email" name="email" placeholder="Email"/>
-                                                            </div>
-                                                    </form>
-			  			    <button id="share-idea" class="button round success">Share an idea</button>
+                        <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
+                                {% csrf_token %}
+							<div id="start-options">	
+								<button id="join" class="button round success">Join Zaplings</button>
+								<button id="share-idea" class="button round success">Share an idea</button>
+						
+							</div>
+                        </form>
+			  			    
 						</div>
                                         {% if status_message %}
                                             <p id="status_message"> {{ status_message }}</p>
@@ -104,14 +102,24 @@
     </script>
 	
 	<script type="text/javascript">
-	$(document).ready(function(){
-		$('#share-idea').click(function(){
-			$(this).fadeOut(400, function(){
-				$(this).replaceWith('<span id="launch-date">Ideas grow July 15!</span>');
-				$('#launch-date').hide().fadeIn();
+		$(document).ready(function(){
+			$('#join').click(function(){
+				$('#start-options').fadeOut(400, function(){
+					$('#form-join').append('<button id="email-submit" type="submit" class="button round success">Sign up</button><div id="home-email"><input type="email" name="email" placeholder="Email"/></div>').hide().fadeIn();
+				});
+			});
+			
+			{fadeOut
+                                
+	                                        
+		
+			$('#share-idea').click(function(){
+				$(this).fadeOut(400, function(){
+					$(this).replaceWith('<span id="launch-date">Ideas grow July 15!</span>');
+					$('#launch-date').hide().fadeIn();
+				});
 			});
 		});
-	});
 	</script>
   </body>
 </html>

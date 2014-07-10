@@ -7020,8 +7020,7 @@ th.hide-for-touch {
   margin: 0; }
 
 .header {
-  background-color: #05325b;
-  height: 50px; }
+  background-color: #05325b; }
 
 .row.full-width {
   width: 100% !important;
@@ -7030,8 +7029,7 @@ th.hide-for-touch {
   max-width: 100%; }
 
 .headerLogo {
-  display: inline-block;
-  margin-top: 0.25rem; }
+  display: inline-block; }
 
 .header-learn {
   display: inline-block;
@@ -7076,7 +7074,7 @@ th.hide-for-touch {
   color: #05325b;
   font-weight: 300;
   position: absolute;
-  top: 0.875rem; }
+  top: 0.5rem; }
 
 .new-idea:hover, .small-new-idea:hover {
   background-color: #70bf4f;
