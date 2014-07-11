@@ -66,6 +66,10 @@ class RecordLovesView(generic.ListView):
 class RecordNewEmailView(generic.ListView):
     model = User    
     template_name = 'zaplings/index.html'
+    
+class IdeaFeedView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/idea-feed.html'
 
 class EditProfileView(generic.ListView):
     model = User

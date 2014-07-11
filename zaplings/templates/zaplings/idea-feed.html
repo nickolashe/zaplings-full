@@ -1,0 +1,93 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Grow.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<script src="{% static "js/vendor/modernizr.js" %}"></script>
+		<script src="{% static "js/vendor/jquery.js" %}"></script>
+
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+			<header class="row header full-width">
+		  		<div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
+					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" alt="Zaplings logo" width="90px" height="44px"/></a>
+					<a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>
+				</div>		
+
+				<div class="header-left small-10 show-for-small-only columns">
+					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo.png" %}" width="90px" height="44px"/></a>
+					<a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>
+		  	  	</div>
+		  
+				<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
+					<a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a><br>
+					<ul id="drop1" data-dropdown-content class="f-dropdown">
+						<li><a href="./howitworks.html">How it works</a></li>
+						<li><a href="./faq.html">FAQ</a></li>
+						<li><a href="./about.html">About</a></li>
+						<li><a href="./getinvolved">Get involved</a></li>
+					</ul>
+				</div>
+	  
+				<div class="header-learn show-for-small-only small-2 columns">
+					<a href="#" data-dropdown="drop1" class="menu-button"><img src="{% static "./images/three-lines.png" %}" alt="Menu" width="30px" height="30px"></a><br>
+					<ul id="drop1" data-dropdown-content class="f-dropdown">
+				    	<li><a href="./howitworks.html">How it works</a></li>
+				    	<li><a href="./faq.html">FAQ</a></li>
+				    	<li><a href="./about.html">About us</a></li>
+						<li><a href="./getinvolved.html">Get involved</a></li>
+				  	</ul>
+		  	  	</div>
+		  	</header>
+            <div class="row idea">
+				<div class="medium-8 medium-offset-2 small-12 columns">
+				<!-- Needs idea variables and link to idea page -->
+					<a href="#">
+						<div class="medium-2 columns">
+							<img src="images/leaf-circle-1.png" height="75px" width="75px" alt="">
+						</div>
+						<div class="medium-9 columns end idea-text">
+	              			<h4>Bam's Brussel Sprouts</h4>
+	             			<label>A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</label>
+	            		</div>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				
+					<h4>Idea feed</h4>
+					<div class="idea-feed">
+						<div class="idea-public">
+							
+							<a href="#"><img src="{% static "./images/leaf-circle-1.png" %}" height="75px" width="50px"></a>
+							
+						</div>	
+					</div>	
+				</div>
+			</div>
+		
+			<div class="push"></div>
+		</div>
+		
+		<div class="footer row full-width">
+			<div class="social-media">
+				<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
+				<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
+				<a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
+			</div>	
+		</div>	
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+	</body>
+</html>
