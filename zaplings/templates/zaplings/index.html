@@ -17,7 +17,7 @@
 		</div>
 		  
 		<div id="home-learn" class="large-5 medium-4 small-8 columns end">
-			 <a href="{% url "zaplings:10-reasons" %}"><button class="button round ">10 reasons to join</button></a> 
+			 <a href="{% url "zaplings:10-reasons" %}"><button class="button round small light">10 reasons to join</button></a> 
 		</div>
 <!--		
 		  <div id="home-learn" class="large-5 medium-4 small-8 columns end">
@@ -41,12 +41,12 @@
 						<div id="start-options">
 	                                            <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
                                                         {% csrf_token %}  
-                                                        <button id="email-submit" type="submit" class="button round success">Sign up</button>
+                                                        <button id="email-submit" type="submit" class="button round success">Let's do it</button>
                                                             <div id="home-email">
                                                                 <input type="email" name="email" placeholder="Email"/>
                                                             </div>
                                                     </form>
-			  			    <button id="share-idea" class="button round success">Share an idea</button>
+<!--			  			    <button id="share-idea" class="button round success">Share an idea</button>		-->
 						</div>
                                         {% if status_message %}
                                             <p id="status_message"> {{ status_message }}</p>
@@ -103,7 +103,7 @@
 	});
     </script>
 	
-	<script type="text/javascript">
+<!--	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#share-idea').click(function(){
 			$(this).fadeOut(400, function(){
@@ -113,6 +113,7 @@
 		});
 	});
 	</script>
+-->
   </body>
 </html>
 
