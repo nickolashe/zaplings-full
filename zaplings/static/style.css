@@ -7060,7 +7060,7 @@ th.hide-for-touch {
 
 .new-idea {
   padding: 0.4rem 0.75rem 0.3rem 0.75rem !important;
-  margin-left: 1.5rem !important;
+  margin-left: 1.25rem !important;
   background-color: #c2d1df;
   color: #05325b;
   font-weight: 300;
@@ -7069,7 +7069,7 @@ th.hide-for-touch {
 
 .small-new-idea {
   padding: 0.4rem 0.25rem 0.3rem 0.25rem !important;
-  margin-left: 0.75rem !important;
+  margin-left: 0.5rem !important;
   background-color: #c2d1df;
   color: #05325b;
   font-weight: 300;
