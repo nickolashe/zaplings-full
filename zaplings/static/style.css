@@ -2162,6 +2162,9 @@ button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert
 .dropdown.button.tiny:before, button.dropdown.tiny:before {
   border-color: white transparent transparent transparent; }
 
+.dropdown.button.tiny.light:before, button.dropdown.tiny.light:before {
+  border-color: #05325b transparent transparent transparent; }
+
 .dropdown.button.small, button.dropdown.small {
   padding-right: 3.0625rem; }
 
@@ -3140,12 +3143,12 @@ td {
 
 /* Default Link Styles */
 a {
-  color: #70bf4f;
+  color: #05325b;
   text-decoration: underline;
   line-height: inherit; }
 
 a:hover, a:focus {
-  color: #579e3a; }
+  color: #3a579e; }
 
 a img {
   border: none; }
@@ -7397,3 +7400,44 @@ input:hover:checked + label {
   float: right;
   margin-top: 0;
   margin-left: 0.5rem; }
+
+.list-heading {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem; }
+
+.idea-feed {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0; }
+
+.idea-feed-item {
+  margin-bottom: 2rem; }
+
+.idea-feed-img {
+  display: inline-block;
+  float: left;
+  margin-right: 2.5rem; }
+
+#idea-feed-content {
+  padding-left: 0;
+  margin-bottom: 2rem; }
+
+.idea-feed-text {
+  text-decoration: none; }
+
+.idea-feed-title {
+  margin-bottom: 0;
+  margin-top: 0; }
+
+.idea-feed-tagline {
+  font-size: 0.875rem;
+  color: #4d4d4d;
+  margin-bottom: 0; }
+
+.idea-feed-title:hover {
+  color: #3a579e;
+  transition: all 300ms ease-out; }
+
+.idea-feed-user {
+  white-space: nowrap;
+  color: #05325b; }
