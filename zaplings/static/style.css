@@ -6936,11 +6936,17 @@ th.hide-for-touch {
 .add-margin-top {
   margin-top: 1rem; }
 
+.add-margin-bottom {
+  margin-bottom: 1rem; }
+
 .three-margin-top {
   margin-top: 3rem; }
 
 .half-margin-right {
   margin-right: 0.5rem; }
+
+.hidden {
+  display: none; }
 
 #home {
   background: #05325b; }
@@ -6979,6 +6985,9 @@ th.hide-for-touch {
 
 #create-something {
   margin-bottom: 1rem; }
+
+#home-link {
+  color: #fff; }
 
 #start-options {
   padding: 0.25rem 0 0.1rem 0;

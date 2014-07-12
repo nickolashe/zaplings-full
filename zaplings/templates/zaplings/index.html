@@ -13,15 +13,11 @@
   <body id="home">
     
 	<header id="home-header" class="row">
-		<div class="large-5 large-offset-1 medium-4 medium-offset-2 small-4 columns">
+		<div class="large-5 large-offset-1 medium-4 medium-offset-2 small-6 columns">
 			<img id="homeLogo" src="{% static "./images/home-logo.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/home-logo.png" %}'" alt="Zaplings logo" width="130px" height="60px">
 		</div>
-		  
-		<div id="home-learn" class="large-5 medium-4 small-8 columns end">
-			 <a href="{% url "zaplings:10-reasons" %}"><button class="button round small light">10 reasons to join</button></a> 
-		</div>
 <!--		
-		  <div id="home-learn" class="large-5 medium-4 small-8 columns end">
+		  <div id="home-learn" class="large-5 medium-4 small-6 columns end">
 			  <a href="#" data-dropdown="drop1" class="button round dropdown small">Learn more</a><br>
 				  <ul id="drop1" data-dropdown-content class="f-dropdown">
 				    <li><a href="#">How it works</a></li>
@@ -33,20 +29,25 @@
 -->
 	  </header>
 	  		<div class="row">
-				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-10 small-offset-1 columns">
-					<h2 id="homeTitle">Ideas grow here.</h2>
-					<p class="lead">Test concepts, build a team, and spread the word. Zaplings will introduce you to creations you'll love and to people you're looking for.</p>
-					<h4 id="create-something">Let's create together.</h4>
+				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-12 columns">
+					<h2 id="homeTitle">Create something.</h2>
+					<p class="lead">Share ideas, build a team, and learn what you need to know. Zaplings makes introductions to help move forward.</p>
+					<h3 id="create-something">Let's grow together.</h3>
 					<!-- Form moved to jQuery -->
 
 						<div id="start-options">
+							<button id="join" class="button large round success">I'm in!</button>
 	                                            <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
                                                         {% csrf_token %}  
-                                                        <button id="email-submit" type="submit" class="button round success">Let's do it</button>
+														<div id="email-div" class="hidden"><button id="email-submit" type="submit" class="button round success">Join Zaplings</button>
                                                             <div id="home-email">
                                                                 <input type="email" name="email" placeholder="Email"/>
                                                             </div>
-                                                    </form>
+														</div>
+                                                </form>
+								<div class="add-margin-top add-margin-bottom">
+									<a id="home-link" href="{% url "zaplings:10-reasons" %}">Give me 10 reasons</a> 
+								</div>
 <!--			  			    <button id="share-idea" class="button round success">Share an idea</button>		-->
 						</div>
                                         {% if status_message %}
@@ -89,6 +90,9 @@
 	<script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script> 
  
 	<script src="{% static "./js/single-slider.js" %}"></script>
+	
+	<script src="{% static "./js/im-in.js" %}" type="text/javascript"></script>
+	
 	
 <!--	<script type="text/javascript">
 	$(document).ready(function(){
