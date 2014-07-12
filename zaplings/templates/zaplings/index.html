@@ -7,13 +7,14 @@
     <title>Zaplings | Grow.</title>
     <link rel="stylesheet" href="{% static "style.css" %}"/>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="{% static "./slick/slick.css" %}"/>
     <script src="{% static "js/vendor/modernizr.js" %}"></script>
   </head>
   <body id="home">
     
 	<header id="home-header" class="row">
 		<div class="large-5 large-offset-1 medium-4 medium-offset-2 small-4 columns">
-			<img id="homeLogo" src="{% static "./images/logo150.png" %}" width="113px" height="48px">
+			<img id="homeLogo" src="{% static "./images/home-logo.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/home-logo.png" %}'" alt="Zaplings logo" width="130px" height="60px">
 		</div>
 		  
 		<div id="home-learn" class="large-5 medium-4 small-8 columns end">
@@ -59,49 +60,35 @@
 						<iframe src="http://www.youtube.com/embed/DT5eFdDDFPI?showinfo=0" frameborder="0" allowfullscreen></iframe>
 					</div>	
 					<div class="row">
-						<div id="featured-ideas" class="large-6 small-6 columns"><h6>Great ideas</h6>
-						</div>
+						<div id="featured-ideas" class="small-12 columns"><h6>Great ideas</h6></div>
+					</div>
 					<div class="row">
-						<ul class="featured-orbit" title="Details coming soon!" data-orbit>
+						<div class="single-item">
 {% static "images/" as images %}
 {% for featured_idea in featured_ideas %}
-  						  	<li>
-   							 	<div class="large-4 small-4 columns">
-									<img src="{{images}}featured-idea-{{featured_idea.id}}.png" width="100" alt="slide 1" />
+  						  	<div>
+   							 	<div class="medium-4 columns">
+									<img src="{{images}}featured-idea-{{featured_idea.id}}.png" width="88px" alt="slide 1" />
 								</div>
-								<div id="outer" class="large-8 small-8 columns">
-	 								<div id="middle">
-	   									<div id="inner">
-											<p id="featured-description" class="aside">{{ featured_idea.idea.title }}</p>
-	    								</div>
-	  								</div>
-								</div>
-  						  	</li>
+								<div class="medium-8 columns">
+									<p class="featured-title large">Idea title</p>
+									<p class="featured-description aside">{{ featured_idea.idea.title }}</p>
+	    						</div>
+  						  	</div>
 {% endfor %}
-						</ul>
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 						
-    <script src="{% static "js/vendor/jquery.js" %}">	</script>
-    <script src="{% static "js/foundation.min.js" %}"></script>
-	<script src="{% static "js/foundation/foundation.orbit.js" %}"></script>  
+    <script src="{% static "./js/vendor/jquery.js" %}"></script>
+    <script src="{% static "./js/foundation.min.js" %}"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script> 
  
-    <script>
-	$(document).foundation({
-	  orbit: {
-	    animation: 'slide',
-	    timer_speed: 5000,
-	    pause_on_hover: true,
-		resume_on_mouseout: true,
-	    navigation_arrows: false,
-		slide_number: false,
-		slide_number_text: '',
-		timer_show_progress_bar: false,
-	    bullets: true
-	  }
-	});
-    </script>
+	<script src="{% static "./js/single-slider.js" %}"></script>
 	
 <!--	<script type="text/javascript">
 	$(document).ready(function(){
