@@ -134,69 +134,81 @@
 					</div>
 				</form>
 			</div>
-		
+			
+			<div id="crowdtilt-reveal" class="reveal-modal" data-reveal>
+				<h3>Fund with Crowdtilt, share with Zaplings</h3>
+				<p>Crowdtilt makes it easy to raise money for a project. Unlike other crowdfunding platforms, they don't have a public platform to promote your idea. That's where we can help. Create a project, and paste the link below.</p>
+				<button class="button round small">Crowdtilt.com</button>
+				
+			</div>
 			<form>
 				<div class="row">
 					<div class="centerText"><button type="submit" class="button small success round">Save and view</button></div>
+				</div>
+				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">Introduce {{ idea.title }}</h4>
-						<textarea id="idea-intro" rows="2" placeholder="What makes this idea great?" value="(VariableIntroContent)"/></textarea>
+						<textarea id="idea-intro" rows="3" placeholder="" value="(VariableIntroContent)"/></textarea>
 					</div>
-						<div class="row">
-							<div class="medium-8 small-12 medium-offset-2 columns">
-								<h4 class="section-header">What {{ idea.title }} offers</h4>
-								<textarea id="offer-text" rows="2" placeholder="What value does this idea provide?"/></textarea>
-							</div>
-						</div>
-						<div class="row">
-							<div class="medium-8 small-12 medium-offset-2 columns">
-								<span class="half-margin-right">Select relevant tags:</span>
-								
-				<!-- Suggested tags for ideas = user's selected tags -->
-				
-								<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
-									<label class="tag button small light round" for="offer-1">offer tag 1</label>
-								<input id="offer-2" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-2">
-									<label class="tag button small light round" for="offer-2">offer tag 2</label>
-								<input id="offer-3" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-3">
-									<label class="tag button small light round" for="offer-3">offer tag 3</label>
-								<input id="offer-4" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-4">
-									<label class="tag button small light round" for="offer-4">offer tag 4</label>
-								<a class="add-more" href="offers.html"><button class="button small round light">Add more...</button></a>
-							</div>		
-						</div>
+				</div>
+				<div class="row">
+					Ready for funding? <a href="#" data-reveal-id="crowdtilt-reveal"><div class="medium-8 small-12 medium-offset-2 columns"><button class="button small round">Try Crowdtilt</button></div></a>
+				</div>	
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">What {{ idea.title }} offers</h4>
+						<textarea id="offer-text" rows="3" placeholder="What value does this idea provide?"/></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<span class="half-margin-right">Select relevant tags:</span>
 						
-						<div class="row">
-							<div class="medium-8 small-12 medium-offset-2 columns">
-								<h4 class="section-header">Who we are</h4>
+		<!-- Suggested tags for ideas = user's selected tags -->
+		
+						<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
+							<label class="tag button small light round" for="offer-1">offer tag 1</label>
+						<input id="offer-2" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-2">
+							<label class="tag button small light round" for="offer-2">offer tag 2</label>
+						<input id="offer-3" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-3">
+							<label class="tag button small light round" for="offer-3">offer tag 3</label>
+						<input id="offer-4" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-4">
+							<label class="tag button small light round" for="offer-4">offer tag 4</label>
+						<a class="add-more" href="offers.html"><button class="button small round light">Add more...</button></a>
+					</div>		
+				</div>
+				
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">Who we are</h4>
 <!--								<p>(VariableIdeaname) currently has 
-									<span>
-										<select name="team-number" id="team-number">
-											<option value="1" selected>1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-											<option value="5">5</option>
-											<option value="6">6</option>
-											<option value="7">7</option>
-											<option value="8">8</option>
-											<option value="9">9</option>
-											<option value="10">10+</option>
-										</select>
-									</span> member(s) on its team.</p>
+							<span>
+								<select name="team-number" id="team-number">
+									<option value="1" selected>1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10+</option>
+								</select>
+							</span> member(s) on its team.</p>
 -->								
 
-								<div id="team-details">	
-									<em><a href="http://www.zaplings.com/{{user.username}}">{{ user.firstname }}{{ user.lastname }}</a></em>
-									<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
-								</div>
-									<a href="#" id="add-team-member">Add team member</a>	
-							</div>
+						<div id="team-details">	
+							<em><a href="http://www.zaplings.com/{{user.username}}">{{ user.firstname }}{{ user.lastname }}</a></em>
+							<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
 						</div>
+							<a href="#" id="add-team-member">Add team member</a>	
+					</div>
+				</div>
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">		
 						<h4 class="section-header">What we love</h4>
-						<textarea id="love-text" rows="2" placeholder="Share to your heart's content"/></textarea>
+						<textarea id="love-text" rows="3" placeholder="Share to your heart's content"/></textarea>
 				</div>
 				
 				<!-- Suggested tags for ideas = user's selected tags -->
@@ -220,7 +232,7 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">What we need</h4>
-						<textarea id="need-text" rows="2" placeholder="How can others help you create?"/></textarea>
+						<textarea id="need-text" rows="3" placeholder="How can others help you create?"/></textarea>
 					</div>
 				</div>
 				
