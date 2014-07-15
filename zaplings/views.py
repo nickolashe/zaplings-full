@@ -61,7 +61,7 @@ class LovesView(generic.ListView):
     
 class RecordLovesView(generic.ListView):
     template_name = 'zaplings/record_loves.html'
-    context_object_name = 'suggested_loves'
+    context_object_name = 'selected_loves'
     
 class RecordNewEmailView(generic.ListView):
     model = User    
@@ -75,14 +75,22 @@ class EditProfileView(generic.ListView):
     model = User
     template_name = 'zaplings/editprofile.html'
     
-class NewIdeaView(generic.ListView):
+class NewIdeaPageView(generic.ListView):
     model = User
-    template_name = 'zaplings/zapling-new.html'
+    template_name = 'zaplings/new-idea-page.html'
+
+class ViewIdeaPageView(generic.ListView):
+    model = User
+    template_name = 'zaplings/view-idea-page.html'
 
 class ShareView(generic.ListView):
     model = User
     template_name = 'zaplings/share.html'
-    
+ 
+class ProfileTextView(generic.ListView):
+    model = Love
+    template_name = 'zaplings/profile-text.html'
+
 class IndexView(generic.ListView):
     #model = FeaturedIdea
     template_name = 'zaplings/index.html'
@@ -123,18 +131,28 @@ def vote(request, poll_id):
     #return HttpResponse("You're voting on poll %s." % poll_id)
 
 def record_loves(request):
-    selected_loves = request.POST.getList("love_tag")
+    if request.method == "POST":
+        print "request is POST"
+        selected_loves = request.POST.getlist("love_tag")
+    else:
+        print "request is not POST"
+        selected_loves = ["NOT POST"]
+    print selected_loves
+
+    return render(request, 'zaplings/profile-text.html', {
+    'selected_loves': selected_loves
+    })
 
 def record_new_email(request):
     email = request.POST['email']
     status_message = None
     if not email or email == "" or not '@' in email:
-        status_message = "Please make double-check the email field"
+        status_message = "Please double-check the email field."
     elif NewUserEmail.objects.filter(email=email):
-        status_message = "This email has already been submitted!"
+        status_message = "This email has already been submitted."
     else:
         NewUserEmail.objects.create(email=email)
-        status_message = "Thanks, your email has been saved!"
+        status_message = "Thanks, your email has been recorded!"
     
     return render(request, 'zaplings/index.html', {
         'status_message': status_message,
@@ -160,7 +178,7 @@ def login(request):
 
     except (KeyError, User.DoesNotExist):
         # Redisplay the poll voting form.
-        error_message = "Hey, would not hurt to have both email and password, right?"
+        error_message = "Please include both email and password."
 
     if '@' not in email or len(email.split('.')) == 1:
         error_message = "Are you serious? What kind of email is this: %s?" % email

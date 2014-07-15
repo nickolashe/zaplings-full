@@ -1,0 +1,216 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Grow.</title>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="{% static "./js/vendor/modernizr.js" %}"></script>
+	<script src="{% static "./js/vendor/jquery.js" %}"></script>
+	
+  </head>
+  	<body>
+	  
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+
+			<div class="row full-width hide-for-small-only">
+
+			<!-- When image is added, idea-cover needs to be replaced with an image 250px tall and full screen width. (For mobile version - 1st "show-for-small-only" class below - image will be smaller.) I'd like to use imagedrag to move the visible portion of the image (just like Facebook's "Reposition cover image"). -->
+
+				<div class="idea-cover light">
+					<img class="idea-image" src="{% static "./images/leaf-circle.png" %}" alt="Idea image" width="75px" height="75px"/>
+					<div class="centerText medium-6 small-centered columns">
+						<a href="#" data-reveal-id="change-cover-reveal"><button id="change-cover" class="button small round">Optional image and video</button></a>
+					</div>
+				</div>	
+			</div>
+		
+			<div class="row hide-for-small-only">
+				<div class="medium-6 medium-offset-3 columns">
+					<h3 class="idea-name">Test</h3>
+				</div>
+				<div class="rightText medium-3 columns end">
+					<a href="#" data-reveal-id="change-icon-reveal"><button id="change-idea-image" class="button small round light">Change icon</button>
+					<a href="#" data-reveal-id="edit-details-reveal"><button id="edit-details" class="button small round light">Edit details</button></a>
+				</div>
+				<div class="medium-10 medium-offset-1 columns end">
+					<h5 class="tagline">{{ idea.tagline }}</h5>
+				</div>
+			</div>
+
+			<div class="row full-width show-for-small-only">
+				<div class="idea-cover-small light">
+					<img class="idea-image" src="{% static "./images/leaf-circle.png" %}" alt="Idea image" width="75px" height="75px"/>
+					<div class="centerText medium-6 small-centered columns">
+						<a href="#" data-reveal-id="change-cover-reveal"><button id="change-cover-small" class="button tiny round">Optional image and video</button></a>
+					</div>
+				</div>
+			</div>
+		
+			<div class="row show-for-small-only">
+				<h3 class="idea-name">Test</h3>		
+				<div class="small-12 centerText columns">
+					<a href="#" data-reveal-id="change-icon-reveal"><button class="button tiny round light">Change icon</button></a>
+					<a href="#" data-reveal-id="edit-details-reveal"><button class="button tiny round light">Edit details</button></a>
+				</div>	
+			</div>
+
+			
+			
+			<form>
+				<div class="row">
+					<div class="medium-6 medium-offset-3 small-12 columns">
+						<input id="website-link" type="text" placeholder="www.yourwebsite.com (Optional)"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">Introduce {{ idea.title }}</h4>
+						<textarea id="idea-intro" rows="3" placeholder="" value="(VariableIntroContent)"/></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+					<!-- If crowdtilt = yes,
+						We're fundraising! <a href="#" data-reveal-id="funding-info-reveal"><button class="button round success>Check out our campaign</button></a>"
+					-->
+				</div>
+
+				<!-- Show only if Idea type = Music -->
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<a href="#" data-reveal-id="music-reveal"><button class="button tiny round">Add music</button></a>
+					</div>
+				</div>	
+
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">What {{ idea.title }} offers</h4>
+						<!-- Offer text from input here -->
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<label class="half-margin-right">Select relevant tags:</label>
+						
+					<!-- Selected and added tags displayed here -->
+		
+						<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
+							<label class="tag button tiny light round" for="offer-1">offer tag 1</label>
+						<input id="offer-2" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-2">
+							<label class="tag button tiny light round" for="offer-2">offer tag 2</label>
+						<input id="offer-3" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-3">
+							<label class="tag button tiny light round" for="offer-3">offer tag 3</label>
+						<input id="offer-4" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-4">
+							<label class="tag button tiny light round" for="offer-4">offer tag 4</label>
+					</div>		
+				</div>
+				
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">Who we are</h4>
+<!--								<p>(VariableIdeaname) currently has 
+							<span>
+								<select name="team-number" id="team-number">
+									<option value="1" selected>1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10+</option>
+								</select>
+							</span> member(s) on its team.</p>
+-->								
+
+						<div id="team-details">	
+							<em><a href="http://www.zaplings.com/{{user.username}}">{{ user.firstname }}{{ user.lastname }}</a></em>
+							<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
+						</div>
+							<a href="#" id="add-team-member">Add team member</a>	
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">		
+						<h4 class="section-header">What we love</h4>
+						<!-- Love text from input here -->
+				</div>
+								
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">	
+
+					<!-- Selected and added tags displayed here -->
+						<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1">
+							<label class="tag button tiny light round" for="love-1">love tag 1</label>
+						<input id="love-2" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-2">
+							<label class="tag button tiny light round" for="love-2">love tag 2</label>
+						<input id="love-3" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-3">
+							<label class="tag button tiny light round" for="love-3">love tag 3</label>
+						<input id="love-4" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-4">
+							<label class="tag button tiny light round" for="love-4">love tag 4</label>
+					</div>
+				</div>
+			
+				
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">What we need</h4>
+						<!-- Need text from input here -->
+					</div>
+				</div>
+				
+					<!-- Selected and added tags displayed here -->
+											
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">	
+						<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
+							<label class="tag button tiny round light" for="need-1">need tag 1</label>
+						<input id="need-2" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-2">
+							<label class="tag button tiny round light" for="need-2">need tag 2</label>
+						<input id="need-3" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-3">
+							<label class="tag button tiny round light" for="need-3">need tag 3</label>
+						<input id="need-4" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-4">
+							<label class="tag button tiny round light" for="need-4">need tag 4</label>
+					</div>		
+				</div>
+
+			<div id="funding-info-reveal" class="reveal-modal" data-reveal>
+				<h3>You are leaving zaplings.com</h3>
+				<p>This funding campaign is hosted by crowdtilt.com. Zaplings is not affiliated with Crowdtilt and does not earn money from the campaign.</p>
+				<button class="button round success">Continue to Crowdtilt</button>
+				<button class="close-reveal-modal button round light">Cancel</button>
+			</div>
+			<div class="push"></div>
+		</div>
+		
+		<script src="{% static "js/foundation.min.js" %}"></script>		
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		
+		<script type="text/javascript">
+		$(document).ready(function(){
+			var num = 1;
+			$('#add-team-member').click(function(){
+				num++;
+				$('#team-details').append('<label>Team member '+num+'</label><input type="text" id="team-user-'+num+'" placeholder="Email or Zaplings username"/><textarea id="team-intro-'+num+'" placeholder="Describe his or her role in the team" rows="3"></textarea>');
+				return false;
+			});
+		
+			
+		//	$('.idea-cover').imagedrag();
+			
+			
+		});	
+		
+		</script>
+	</body>
