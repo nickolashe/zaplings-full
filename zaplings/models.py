@@ -6,8 +6,9 @@ import datetime
 # Create your models here.
 class Idea(models.Model):
     creator = models.ForeignKey(User)
-    title = models.CharField(max_length=200)
-    tagline = models.CharField(max_length=400)
+    title = models.CharField(max_length=100)
+    tagline = models.CharField(max_length=200)
+    description = models.CharField(max_length=1000)
 
     def __unicode__(self):
         return self.title
