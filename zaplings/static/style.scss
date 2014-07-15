@@ -6965,6 +6965,14 @@ th.hide-for-touch {
 	margin-bottom: 1rem;
 }
 
+.no-margin-top {
+  margin-top:0;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
 .three-margin-top {
 	margin-top: 3rem;
 }
@@ -7524,6 +7532,14 @@ input:hover:checked + label {
 }
 
 .idea-image {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin-left: -44px;
+  margin-bottom: -44px;
+}
+
+.idea-image-small {
 	position: absolute;
 	left: 50%;
 	bottom: 0;
@@ -7560,12 +7576,16 @@ input:hover:checked + label {
 	text-align: center;
 }
 
-#edit-details {
-	margin-top: 1.25rem;
+#idea-intro {
+  text-align: center;
 }
 
-#idea-intro {
-	margin-top: 1rem;
+#website-link {
+  text-align: center;
+}
+
+#edit-details {
+	margin-top: 1.25rem;
 }
 
 #team-number {

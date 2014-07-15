@@ -82,9 +82,9 @@ class EditProfileView(generic.ListView):
     model = User
     template_name = 'zaplings/editprofile.html'
     
-class NewIdeaPageView(generic.ListView):
+class ViewIdeaPageView(generic.ListView):
     model = User
-    template_name = 'zaplings/new-idea-page.html'
+    template_name = 'zaplings/view-idea-page.html'
 
 class EditIdeaPageView(generic.ListView):
     model = User
