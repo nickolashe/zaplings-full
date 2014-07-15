@@ -62,11 +62,8 @@
 			<div class="row">
 				<div class="large-8 medium-8 small-12 columns medium-offset-2">
 					<div class="suggestion-box">
-			<!--<input type="checkbox" name="love-tag" value="test checkbox1"/>
-                        <input type="checkbox" name="love-tag" value="test checkbox2"/>-->
-
 					{% for suggested_love in suggested_loves %} 
-						<input id="love-suggest-{{ suggested_love.id }} " class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }} ">
+						<input id="love-suggest-{{ suggested_love.id }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }}">
 							<label class="tag button small light round" for="love-suggest-{{ suggested_love.id }}"> {{ suggested_love.tagname }} </label>
 {% endfor %}
 					</div>
