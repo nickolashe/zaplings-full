@@ -7,6 +7,13 @@ from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, NewUserEm
 from django.template import RequestContext, loader
 from django.views import generic
 import time
+import logging
+
+logging.basicConfig(level=logging.DEBUG, filename="/tmp/views.log")
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 #def index(request):
     #latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
     #template = loader.get_template('polls/index.html')
@@ -133,11 +140,17 @@ def vote(request, poll_id):
 def record_loves(request):
     if request.method == "POST":
         print "request is POST"
-        selected_loves = request.POST.getlist("love_tag")
+        logger.info("request is POST")
+        print request.POST
+        logger.info(request.POST)
+        logger.info(request.POST.getlist(u'love-tag'))
+        selected_loves = request.POST.getlist(u'love-tag')
     else:
         print "request is not POST"
+        logger.info("request is not POST")
         selected_loves = ["NOT POST"]
     print selected_loves
+    logger.info(selected_loves)
 
     return render(request, 'zaplings/profile-text.html', {
     'selected_loves': selected_loves
