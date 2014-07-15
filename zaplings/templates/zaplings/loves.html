@@ -56,21 +56,21 @@
 	  		<div class="row">
 				<div class="large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I love... (press return to add)"/>
-					<div class="continue-delay hidden">Take as much time as you need!
-					<div class="continue-tags"><button type="submit" class="button success round small">Next: What do you offer?</button></div></div>
+					<div class="continue-delay hidden">Take as much time as you need! </div> 
 				</div>
 			</div>
 			<div class="row">
 				<div class="large-8 medium-8 small-12 columns medium-offset-2">
 					<div class="suggestion-box">
-					<input type="checkbox" name="love-tag" value="test checkbox1"/>
-                    <input type="checkbox" name="love-tag" value="test checkbox2"/>
+			<!--<input type="checkbox" name="love-tag" value="test checkbox1"/>
+                        <input type="checkbox" name="love-tag" value="test checkbox2"/>-->
 
-					<!--{% for suggested_love in suggested_loves %} 
-						<input id="love-suggest-{{ suggested_love.id }} " class="vis-hidden" type="checkbox" name="love-tags" value="{{ suggested_love.id }} ">
+					{% for suggested_love in suggested_loves %} 
+						<input id="love-suggest-{{ suggested_love.id }} " class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }} ">
 							<label class="tag button small light round" for="love-suggest-{{ suggested_love.id }}"> {{ suggested_love.tagname }} </label>
-{% endfor %}-->
+{% endfor %}
 					</div>
+					<div class="continue-tags"><button type="submit" class="button success round small">Next: What do you offer?</button></div>
 				</div>
 			</div>	
 		</form>
