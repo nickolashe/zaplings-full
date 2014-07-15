@@ -7,7 +7,6 @@ import datetime
 class Idea(models.Model):
     creator = models.ForeignKey(User)
     title = models.CharField(max_length=200)
-    tagline = models.CharField(max_length=400)
 
     def __unicode__(self):
         return self.title
