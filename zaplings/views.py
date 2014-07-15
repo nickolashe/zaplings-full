@@ -79,9 +79,9 @@ class NewIdeaPageView(generic.ListView):
     model = User
     template_name = 'zaplings/new-idea-page.html'
 
-class ViewIdeaPageView(generic.ListView):
+class EditIdeaPageView(generic.ListView):
     model = User
-    template_name = 'zaplings/view-idea-page.html'
+    template_name = 'zaplings/edit-idea-page.html'
 
 class ShareView(generic.ListView):
     model = User

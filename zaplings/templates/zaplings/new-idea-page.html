@@ -66,13 +66,14 @@
 			<form>
 				<div class="row">
 					<div class="medium-6 medium-offset-3 small-12 columns">
+					<!-- Add description variable into value -->
+						<textarea id="idea-intro" rows="2" placeholder="Introduce {{ idea.title }} (100 character maximum)" value="(VariableIntroContent)"/></textarea>
 						<input id="website-link" type="text" placeholder="www.yourwebsite.com (Optional)"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">Introduce {{ idea.title }}</h4>
-						<textarea id="idea-intro" rows="3" placeholder="" value="(VariableIntroContent)"/></textarea>
 					</div>
 				</div>
 				<div class="row">
