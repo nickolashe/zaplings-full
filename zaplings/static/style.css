@@ -6942,6 +6942,12 @@ th.hide-for-touch {
 .add-margin-bottom {
   margin-bottom: 1rem; }
 
+.no-margin-top {
+  margin-top: 0; }
+
+.no-margin-bottom {
+  margin-bottom: 0; }
+
 .three-margin-top {
   margin-top: 3rem; }
 
@@ -7387,6 +7393,13 @@ input:hover:checked + label {
   position: absolute;
   left: 50%;
   bottom: 0;
+  margin-left: -44px;
+  margin-bottom: -44px; }
+
+.idea-image-small {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
   margin-left: -38px;
   margin-bottom: -38px; }
 
@@ -7413,11 +7426,14 @@ input:hover:checked + label {
   margin-bottom: 1rem;
   text-align: center; }
 
+#idea-intro {
+  text-align: center; }
+
+#website-link {
+  text-align: center; }
+
 #edit-details {
   margin-top: 1.25rem; }
-
-#idea-intro {
-  margin-top: 1rem; }
 
 #team-number {
   display: inline-block; }
