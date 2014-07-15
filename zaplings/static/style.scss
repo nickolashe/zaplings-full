@@ -4960,7 +4960,6 @@ form .row textarea.columns {
 label {
   font-size: 0.875rem;
   color: #4d4d4d;
-  cursor: pointer;
   display: block;
   font-weight: normal;
   line-height: 1.5;
@@ -7083,9 +7082,8 @@ th.hide-for-touch {
 	margin-bottom: 0.25rem;
 }
 
-  // Change margin to 0
 .featured-description {
-    margin-top: 2rem; }
+    margin-top: 0; }
 	
 
 // General page styles
