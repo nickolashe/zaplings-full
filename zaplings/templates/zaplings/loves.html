@@ -1,5 +1,5 @@
 <!doctype html>
-{% load static %}
+{% load staticfiles %}
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -51,19 +51,25 @@
 	  </header>
 	  		
 		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you love?</h2>
-		<form id="love-tags" action="{% url 'zaplings:record_loves' %}" method="post">
+		<form id="love-tags" action="{% url "zaplings:record_loves" %}" method="post">
+		    {% csrf_token %}
 	  		<div class="row">
 				<div class="large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I love... (press return to add)"/>
+					<div class="continue-delay hidden">Take as much time as you need!
+					<div class="continue-tags"><button type="submit" class="button success round small">Next: What do you offer?</button></div></div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="large-8 medium-8 small-12 columns medium-offset-2">
 					<div class="suggestion-box">
-{% for suggested_love in suggested_loves %} 
-						<input id="love-suggest-{{ suggested_love.id }} " class="vis-hidden" type="checkbox" name="love-tag[]" value="{{ suggested_love.id }} ">
+					<input type="checkbox" name="love-tag" value="test checkbox1"/>
+                    <input type="checkbox" name="love-tag" value="test checkbox2"/>
+
+					<!--{% for suggested_love in suggested_loves %} 
+						<input id="love-suggest-{{ suggested_love.id }} " class="vis-hidden" type="checkbox" name="love-tags" value="{{ suggested_love.id }} ">
 							<label class="tag button small light round" for="love-suggest-{{ suggested_love.id }}"> {{ suggested_love.tagname }} </label>
-{% endfor %}
+{% endfor %}-->
 					</div>
 				</div>
 			</div>	
@@ -100,10 +106,10 @@
 			{
 			  count=count-1;
 			  $('#timer').attr("style", "color: #70bf4f");
-			  if (count < 0)
+			  if (count < 29)
 			  {
 			     clearInterval(counter);
-				 $('.input-tags').after('<div class="continue-delay">Take as much time as you need!</div><div class="continue-tags"><a href="./offers.html"><button type="submit" class="button success round small">Next: What do you offer?</button></a></div>');
+				 $('.continue-delay').removeClass('hidden');
 			     return;
 			  };
 

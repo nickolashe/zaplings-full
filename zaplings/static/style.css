@@ -4958,7 +4958,6 @@ form .row textarea.columns {
 label {
   font-size: 0.875rem;
   color: #4d4d4d;
-  cursor: pointer;
   display: block;
   font-weight: normal;
   line-height: 1.5;
@@ -7037,7 +7036,7 @@ th.hide-for-touch {
   margin-bottom: 0.25rem; }
 
 .featured-description {
-  margin: 0; }
+  margin-top: 0; }
 
 .header {
   background-color: #05325b; }
@@ -7085,7 +7084,7 @@ th.hide-for-touch {
   color: #05325b;
   font-weight: 300;
   position: absolute;
-  top: 0.875rem; }
+  top: 0.75rem; }
 
 .small-new-idea {
   padding: 0.4rem 0.25rem 0.3rem 0.25rem !important;
@@ -7094,7 +7093,7 @@ th.hide-for-touch {
   color: #05325b;
   font-weight: 300;
   position: absolute;
-  top: 0.5rem; }
+  top: 0.4rem; }
 
 .new-idea:hover, .small-new-idea:hover {
   background-color: #70bf4f;
@@ -7233,7 +7232,7 @@ th.hide-for-touch {
   height: 250px;
   margin-top: 5rem; }
 
-#username-link {
+.fit-left {
   float: left;
   display: inline-block;
   margin-top: 0.75rem; }
@@ -7379,6 +7378,11 @@ input:hover:checked + label {
   width: 100%;
   height: 250px; }
 
+.idea-cover-small {
+  position: relative;
+  width: 100%;
+  height: 125px; }
+
 .idea-image {
   position: absolute;
   left: 50%;
@@ -7392,7 +7396,15 @@ input:hover:checked + label {
 #change-cover {
   margin-top: 5rem; }
 
+#change-cover-small {
+  margin-top: 2rem; }
+
 .idea-name {
+  margin-bottom: 0.5rem;
+  margin-top: 4rem;
+  text-align: center; }
+
+.idea-name-small {
   margin-bottom: 0.5rem;
   margin-top: 4rem;
   text-align: center; }
@@ -7412,6 +7424,9 @@ input:hover:checked + label {
 
 #idea-type {
   width: 100%; }
+
+#crowdtilt-reveal {
+  top: 3rem; }
 
 #copy-link {
   float: right;

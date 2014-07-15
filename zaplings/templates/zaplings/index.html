@@ -31,23 +31,22 @@
 	  		<div class="row">
 				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-12 columns">
 					<h2 id="homeTitle">Create something.</h2>
-					<p class="lead">Share ideas, build a team, and learn what you need to know. Zaplings makes introductions to help move forward.</p>
+					<p class="lead">Share ideas, get feedback, and build your team. Zaplings introduces you to ideas you'll love and people you're looking for.</p>
 					<h3 id="create-something">Let's grow together.</h3>
 					<!-- Form moved to jQuery -->
 
 						<div id="start-options">
-							<button id="join" class="button large round success">I'm in!</button>
-	                                            <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
-                                                        {% csrf_token %}  
-														<div id="email-div" class="hidden"><button id="email-submit" type="submit" class="button round success">Join Zaplings</button>
-                                                            <div id="home-email">
-                                                                <input type="email" name="email" placeholder="Email"/>
-                                                            </div>
-														</div>
-                                                </form>
-								<div class="add-margin-top add-margin-bottom">
-									<a id="home-link" href="{% url "zaplings:10-reasons" %}">Give me 10 reasons</a> 
+                            <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
+                                {% csrf_token %}  
+								<div id="email-div"><button id="email-submit" type="submit" class="button round success">I'm in!</button>
+                                    <div id="home-email">
+                                        <input type="email" name="email" placeholder="Email"/>
+                                    </div>
 								</div>
+                            </form>
+							<div class="add-margin-top add-margin-bottom">
+								<a id="home-link" href="{% url "zaplings:10-reasons" %}">10 reasons to join</a> 
+							</div>
 <!--			  			    <button id="share-idea" class="button round success">Share an idea</button>		-->
 						</div>
                                         {% if status_message %}
@@ -90,8 +89,6 @@
 	<script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script> 
  
 	<script src="{% static "./js/single-slider.js" %}"></script>
-	
-	<script src="{% static "./js/im-in.js" %}" type="text/javascript"></script>
 	
 	
 <!--	<script type="text/javascript">
