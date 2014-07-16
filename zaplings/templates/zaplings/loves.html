@@ -89,7 +89,7 @@
 						loveNum++;
 						$('.input-tags').val('');						
 				  		$('.suggestion-box').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag" value="'+loveNum+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
-						return false;	
+						e.preventDefault();	
 						$(this).focus().select().attr("placeholder", "");
 					}
 			});
@@ -102,7 +102,7 @@
 			    //prevent the default submithandling
 			    e.preventDefault();
 			    //send the data of 'this' (the matched form) to yourURL
-			    $.post('{% url "zaplings:record_loves" %}', $(this).serialize());
+			    $(this).post('{% url "zaplings:record_loves" %}', $(this).serialize());
 			});
 		});
 		
