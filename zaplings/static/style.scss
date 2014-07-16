@@ -7634,7 +7634,7 @@ input:hover:checked + label {
 	margin-right: 2.5rem;
 }
 
-#idea-feed-content {
+.idea-feed-content {
 	padding-left: 0;
 	margin-bottom: 2rem;
 }
@@ -7646,16 +7646,18 @@ input:hover:checked + label {
 .idea-feed-title {
 	margin-bottom: 0;
 	margin-top: 0;
+  text-decoration: none;
 }
 
 .idea-feed-tagline {
     font-size: 0.875rem;
     color: #4d4d4d;
-	margin-bottom: 0;
+	  margin-bottom: 0;
+    text-decoration: none;
 }
 
-.idea-feed-title:hover {
-	color: #3a579e;
+.idea-feed-text:hover a {
+	color: #a4c3dd;
 	transition: all 300ms ease-out;
 }
 

@@ -24,11 +24,11 @@
 						<ul class="idea-feed">
 							<li>
 						<!-- Needs idea variables and link to idea page -->
-								<div id="idea-feed-content" class="medium-8 columns">
+								<div class="idea-feed-content" class="medium-8 columns">
 									<a href="#"><img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px"></a>
 									<div class="overflow-div">
-			              				<a class="idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5></a>
-			             				<p class="idea-feed-tagline">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p><em><a class="idea-feed-user" href="#">username</a></em>
+			              				<div class="idea-feed-text"><a href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5></a>
+			             				<p class="idea-feed-tagline">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></div><em><a class="idea-feed-user" href="#">username</a></em>
 									</div>
 								</div>
 								<div class="rightText large-2 medium-3 columns end">
@@ -77,11 +77,6 @@
 						</ul>
 					</div>	
 				</div>
-			</div>
-
-			<a href="#" class="signup-reveal"><button class="button round small">Save</button></a>
-			<div data-reveal-id="signup-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/signup-reveal.html" %}
 			</div>
 		
 			<div class="push"></div>
