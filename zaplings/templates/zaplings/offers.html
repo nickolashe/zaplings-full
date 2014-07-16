@@ -114,6 +114,10 @@
 			$('.suggestion-box').on('click', 'label', (function(){
 				$(this).toggleClass('selected').blur();
 			}));
+
+			$('#offer-tags').submit(function() {
+				var values = $('#offer-tags').serialize();
+			});
 		});
 		
 
