@@ -54,6 +54,11 @@
 	  		<div class="row">
 				<div class="large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I need... (press return to add)"/>
+					<div class="continue-delay hidden">Take as much time as you need!
+						<div class="continue-tags">
+							<a href="#" data-reveal-id="signup-reveal"><button class="button round">Save profile</button></a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -105,7 +110,7 @@
 			  if (count < 0)
 			  {
 			     clearInterval(counter);
-				 $('.input-tags').after('<div class="continue-delay">Take as much time as you need!</div><div class="continue-tags"><button type="submit" class="button success round small">Complete profile</button></div>');
+				 $('.continue-delay').removeClass('hidden');
 			     return;
 			  };
 
