@@ -168,7 +168,8 @@ def record_loves(request):
         print request.POST
         logger.info(request.POST)
         logger.info(request.POST.getlist(u'love-tag'))
-        selected_loves = request.POST.getlist(u'love-tag')
+        selected_loves = [ Love.objects.get(id=love_id).tagname \
+                           for love_id in request.POST.getlist(u'love-tag') ]
     else:
         print "request is not POST"
         logger.info("request is not POST")

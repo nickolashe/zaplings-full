@@ -76,16 +76,9 @@
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
 {% for tag in selected_loves %} 
-                    <p> {{tag}} </p>
+                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
+		<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 {% endfor %}				
-					<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1">
-						<label class="tag button small round" for="love-1">love tag 1</label>
-					<input id="love-2" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-2">
-						<label class="tag button small round" for="love-2">love tag 2</label>
-					<input id="love-3" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-3">
-						<label class="tag button small round" for="love-3">love tag 3</label>
-					<input id="love-4" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-4">
-						<label class="tag button small round" for="love-4">love tag 4</label>
 					<a class="add-more" href="loves.html"><button class="button small light round">Add more...</button></a>
 				</div>
 			</div>
