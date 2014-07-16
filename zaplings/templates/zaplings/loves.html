@@ -97,6 +97,13 @@
 			$('.suggestion-box').on('click', 'label', (function(){
 				$(this).toggleClass('selected').blur();
 			}));
+
+			$('#love-tags').on('submit', function(e) {
+			    //prevent the default submithandling
+			    e.preventDefault();
+			    //send the data of 'this' (the matched form) to yourURL
+			    $.post('{% url "zaplings:record_loves" %}', $(this).serialize());
+			});
 		});
 		
 
