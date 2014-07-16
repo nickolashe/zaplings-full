@@ -98,11 +98,8 @@
 				$(this).toggleClass('selected').blur();
 			}));
 
-			$('#love-tags').on('submit', function(e) {
-			    //prevent the default submithandling
-			    e.preventDefault();
-			    //send the data of 'this' (the matched form) to yourURL
-			    $(this).post('{% url "zaplings:record_loves" %}', $(this).serialize());
+			$('#love-tags').submit(function() {
+				var values = $('#love-tags').serialize();
 			});
 		});
 		
