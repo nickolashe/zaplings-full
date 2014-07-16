@@ -1,4 +1,5 @@
 <!doctype html>
+{% load staticfiles %}
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -12,45 +13,19 @@
   <body>
 	  
 	<div class="wrapper">
-	  <header class="row header full-width">
-		  <div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
-			  <a href="./index.html"><img class="headerLogo" src="./images/header-logo.png" alt="Zaplings logo" width="90px" height="44px"/></a>
-			  <a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>
-		  </div>		
-
-		  <div class="header-left small-10 show-for-small-only columns">
-			  <a href="./index.html"><img class="headerLogo" src="./images/header-logo.png" width="90px" height="44px"/></a>
-			  <a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>
-		  </div>
-		  
-		  <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
-			  <a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a><br>
-			  <ul id="drop1" data-dropdown-content class="f-dropdown">
-				    <li><a href="./howitworks.html">How it works</a></li>
-				    <li><a href="./faq.html">FAQ</a></li>
-				    <li><a href="./about.html">About</a></li>
-					<li><a href="./getinvolved">Get involved</a></li>
-				  </ul>
-		  </div>
-	  
-		  <div class="header-learn show-for-small-only small-2 columns">
-			  <a href="#" data-dropdown="drop1" class="menu-button"><img src="./images/three-lines.png" alt="Menu" width="30px" height="30px"></a><br>
-				  <ul id="drop1" data-dropdown-content class="f-dropdown">
-				    <li><a href="./howitworks.html">How it works</a></li>
-				    <li><a href="./faq.html">FAQ</a></li>
-				    <li><a href="./about.html">About us</a></li>
-					<li><a href="./getinvolved.html">Get involved</a></li>
-				  </ul>
-		  </div>
-		  
-		    
-	  </header>
+	  {% include "./zaplings/header.html" %}
 	  
 		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you offer?</h2>
 		<form id="offer-tags">
 	  		<div class="row">
 				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
+					<div class="continue-delay hidden">Take as much time as you need!
+						<div class="continue-tags">
+							<a href="#" data-reveal-id="signup-reveal"><button class="button round small light">Save</button></a>
+							<button type="submit" class="button success round small">Next: What do you need?</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		
@@ -88,15 +63,11 @@
 
 		<div class="push"></div>
 		</div>
-		<div class="footer row full-width">
-			<div class="social-media">
-				<a href="#"><img class="social-button" src="./images/facebook-icon.png" alt="Facebook"></a>
-				<a href="#"><img class="social-button" src="./images/twitter-icon.png" alt="Twitter"></a>
-				<a href="#"><img class="social-button" src="./images/linkedin-icon.png" alt="LinkedIn"></a>
-			</div>	
-		</div>	
+		{% include "./zaplings/footer.html" %}	
 			
-			
+		<div id="signup-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/signup-reveal.html" %}
+		</div>		
 
     
 
@@ -120,7 +91,7 @@
 			  if (count < 0)
 			  {
 			     clearInterval(counter);
-				 $('.input-tags').after('<div class="continue-delay">Take as much time as you need!</div><div class="continue-tags"><a href="./needs.html"><button type="submit" class="button success round small">Next: What do you need?</button></a></div>');
+				 $('.continue-delay').removeClass('hidden');
 			     return;
 			  };
 
