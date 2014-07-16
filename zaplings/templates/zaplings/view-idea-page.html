@@ -169,33 +169,10 @@
 			</div>
 			<div class="push"></div>
 		</div>
-		<div class="footer row full-width">
-			<div class="social-media">
-				<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
-				<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
-				<a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
-			</div>	
-		</div>	
+		{% include "./zaplings/footer.html"}
 		
 		<script src="{% static "js/foundation.min.js" %}"></script>		
 		<script type="text/javascript">
 	  		$(document).foundation();
-		</script>
-		
-		<script type="text/javascript">
-		$(document).ready(function(){
-			var num = 1;
-			$('#add-team-member').click(function(){
-				num++;
-				$('#team-details').append('<label>Team member '+num+'</label><input type="text" id="team-user-'+num+'" placeholder="Email or Zaplings username"/><textarea id="team-intro-'+num+'" placeholder="Describe his or her role in the team" rows="3"></textarea>');
-				return false;
-			});
-		
-			
-		//	$('.idea-cover').imagedrag();
-			
-			
-		});	
-		
 		</script>
 	</body>
