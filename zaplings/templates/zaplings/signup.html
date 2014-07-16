@@ -14,32 +14,8 @@
 	 <div class="wrapper">
 	  <header class="row header fullWidth">
 		  
-		  <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
-			  <a href="#" data-dropdown="drop1" class="learn-dropdown button round small dropdown">Learn more</a><br>
-			  <ul id="drop1" data-dropdown-content class="f-dropdown">
-				    <li><a href="#">How it works</a></li>
-				    <li><a href="#">FAQ</a></li>
-				    <li><a href="#">About us</a></li>
-					<li><a href="#">Get involved</a></li>
-				  </ul>
-		  </div>
-	  
-		  <div class="header-learn show-for-small-only small-2 columns">
-			  <a href="#" data-dropdown="drop1" class="learn-dropdown button round small"><img class="menu-button" src="{% static "./images/three-lines.png" %}" alt="Menu"></a><br>
-				  <ul id="drop1" data-dropdown-content class="f-dropdown">
-				    <li><a href="#">How it works</a></li>
-				    <li><a href="#">FAQ</a></li>
-				    <li><a href="#">About us</a></li>
-					<li><a href="#">Get involved</a></li>
-				  </ul>
-		  </div>
-		  <div class="header-left large-8 medium-7 small-10 columns">
-			  <img class="headerLogo" src="{% static "./images/logo150.png" %}" />
-			  <button class="new-idea button small radius">What's your great idea?</button>
-		  </div>		
-		  
-		    
-	  </header>
+		  {% include "./zaplings/header.html" %}
+
 	  		<div class="row">
 				<div class="large-6 medium-6 small-10 large-centered small-centered columns">
 					<h2 class="titleCenter">Sign up</h2>
@@ -68,13 +44,8 @@
 
 			<div class="push"></div>
 		</div>
-		<div class="footer row full-width">
-			<div class="social-media">
-				<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
-				<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
-				<a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
-			</div>	
-		</div>	
+		
+		{% include "./zaplings/footer.html" %}	
 			
 			
 

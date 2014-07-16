@@ -12,38 +12,8 @@
   <body>
 	  
 	<div class="wrapper">
-	  	<header class="row header full-width">
-		  
-			<div class="header-left medium-6 medium-offset-1 hide-for-small-only columns">
-				<img class="headerLogo" src="{% static "./images/logo150.png" %}" width="90px" height="44px"/>
-				<button class="new-idea button small radius">What's your great idea?</button>
-		 	</div>		
 
-		  	<div class="header-left small-10 show-for-small-only columns">
-				<img class="headerLogo" src="{% static "./images/header-logo.png" %}" width="90px" height="44px"/>
-			  	<button class="small-new-idea button small radius">What's your great idea?</button>
-		  	</div>
-		  
-			<div class="header-learn large-4 medium-5 columns hide-for-small-only end">
-				<a href="#" data-dropdown="drop1" class="button round dropdown small">Learn more</a><br>
-					<ul id="drop1" data-dropdown-content class="f-dropdown">
-				    	<li><a href="#">How it works</a></li>
-				    	<li><a href="#">FAQ</a></li>
-				    	<li><a href="#">About us</a></li>
-						<li><a href="#">Get involved</a></li>
-				  	</ul>
-		  	</div>
-	  
-		  	<div class="header-learn show-for-small-only small-2 columns">
-				<a href="#" data-dropdown="drop1" class="menu-button"><img src="{% static "./images/three-lines.png" %}" alt="Menu" width="30px" height="30px"></a><br>
-					<ul id="drop1" data-dropdown-content class="f-dropdown">
-				    	<li><a href="#">How it works</a></li>
-				    	<li><a href="#">FAQ</a></li>
-				    	<li><a href="#">About us</a></li>
-						<li><a href="#">Get involved</a></li>
-				  	</ul>
-		  	  </div>
-	 	</header>
+		{% include "./zaplings/header.html" %}
 	 
 		<div class="row hide-for-small-only">
 			<div class="medium-4 medium-offset-4 columns">
@@ -83,14 +53,10 @@
 				<button class="intro-questions button round small disabled">What do you need?</button>
 			</div>	
 		</div>	
-				<div class="push"></div>
-			</div>
-			<div class="footer row full-width">
-				<div class="social-media">
-					<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
-					<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
-					<a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
-				</div>	
-		</div>			
+		<div class="push"></div>
+	</div>
+
+	{% include "./zaplings/footer.html" %}		
+		
   </body>
 			

@@ -69,6 +69,30 @@ class LovesView(generic.ListView):
 class RecordLovesView(generic.ListView):
     template_name = 'zaplings/record_loves.html'
     context_object_name = 'selected_loves'
+
+class OffersView(generic.ListView):
+    template_name = 'zaplings/offers.html'
+    context_object_name = 'suggested_offers'
+
+    def get_queryset(self):
+        """Return the all suggested offers."""
+        return Offer.objects.all()
+    
+class RecordOffersView(generic.ListView):
+    template_name = 'zaplings/record_offers.html'
+    context_object_name = 'selected_offers'
+
+class NeedsView(generic.ListView):
+    template_name = 'zaplings/needs.html'
+    context_object_name = 'suggested_needs'
+
+    def get_queryset(self):
+        """Return the all suggested needs."""
+        return Need.objects.all()
+
+class RecordNeedsView(generic.ListView):
+    template_name = 'zaplings/record_needs.html'
+    context_object_name = 'selected_needs'
     
 class RecordNewEmailView(generic.ListView):
     model = User    

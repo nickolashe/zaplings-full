@@ -91,6 +91,10 @@
 				$(this).toggleClass('selected').blur();
 				$('.input-tags').focus().select();
 			}));
+
+			$('#need-tags').submit(function() {
+				var values = $('#need-tags').serialize();
+			});
 		});
 		
 
