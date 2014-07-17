@@ -1,0 +1,98 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Grow.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<script src="{% static "js/vendor/modernizr.js" %}"></script>
+		<script src="{% static "js/vendor/jquery.js" %}"></script>
+		<script src="{% static "./js/jquery.selectric.min.js" %}"></script>	
+
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+		
+			{% include "./zaplings/header.html" %}
+
+			<div class="row full-width">
+				<div class="list-heading medium-6 medium-offset-2 small-9 columns">
+					<h3>Discussion for {{ idea.title }}</h3>
+				</div>
+				<div class="list-filter medium-2 small-3 columns end">
+						<select>
+							<option>Newest first</option>
+							<option>Earliest first</option>
+							<option>Most popular</option>
+							<option>Most unpopular</option>
+						</select>
+				</div>
+			</div>
+
+				<!-- for comment in idea.comment, display in order of net plus (plus - minus). Also only allow user to vote once (up or down) on any comment. -->
+
+			<form id="form-comments">
+				<div class="row full-width">
+					<div class="medium-8 medium-offset-2 columns">
+						<h6 class="no-margin-bottom">username</h6>
+						<button id="comment-submit" type="submit" class="button success small round">Share</button>
+						<div class="overflow-div"><textarea id="new-comment" placeholder="New question, comment, or suggestion"></textarea></div>
+					</div>
+				</div>
+				<div class="row full-width">
+					<div class="comment medium-8 medium-offset-2 columns">
+						<a class="no-decoration" href="http://www.zaplings.com/{{ user.username }}"><h6 class="no-margin-bottom">username</h6></a>
+						<p class="comment-content">This is a comment. It's not a very good comment. It doesn't say much but it says something. It's not relevant to this idea, except for the fact that this isn't actually an idea's comment page in the first place, so I guess it's just as relevant as this page itself.</p>
+						<strong><a class="plus" href="#">+</a>&nbsp;|&nbsp;<a class="minus">&#8211;</a></strong>&nbsp;&nbsp;<span class="count">(
+
+						<!-- replace "45" below with upvote variable and "7" with downvote variable. I need to figure out how to increment the count with jQuery-->
+
+						<span class="upvotes">45</span>&nbsp;|&nbsp;<span class="downvotes">7</span>)</span>&nbsp;&nbsp;<a class="reply" href="#">reply</a>
+					</div>
+				</div>
+				<div class="row full-width">
+					<div class="comment medium-8 medium-offset-2 columns">
+						<a class="no-decoration" href="http://www.zaplings.com/{{ user.username }}"><h6 class="no-margin-bottom">username</h6></a>
+						<p class="comment-content">This is a comment. It's not a very good comment. It doesn't say much but it says something. It's not relevant to this idea, except for the fact that this isn't actually an idea's comment page in the first place, so I guess it's just as relevant as this page itself.</p>
+						<strong><a class="plus" href="#">+</a>&nbsp;|&nbsp;<a class="minus">&#8211;</a></strong>&nbsp;&nbsp;<span class="count">(<span class="upvotes">45</span>&nbsp;|&nbsp;<span class="downvotes">7</span>)</span>&nbsp;&nbsp;<a class="reply" href="#">reply</a>
+					</div>
+				</div>
+				<div class="row full-width">
+					<div class="comment medium-7 medium-offset-3 small-11 small-offset-1 columns">
+						<a class="no-decoration" href="http://www.zaplings.com/{{ user.username }}"><h6 class="no-margin-bottom">username</h6></a>
+						<p class="comment-content">This is a comment. It's not a very good comment. It doesn't say much but it says something. It's not relevant to this idea, except for the fact that this isn't actually an idea's comment page in the first place, so I guess it's just as relevant as this page itself.</p>
+						<strong><a class="plus" href="#">+</a>&nbsp;|&nbsp;<a class="minus">&#8211;</a></strong>&nbsp;&nbsp;<span class="count">(<span class="upvotes">45</span>&nbsp;|&nbsp;<span class="downvotes">7</span>)</span>&nbsp;&nbsp;<a class="reply" href="#">reply</a>
+					</div>
+				</div>
+			</form>
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('select').selectric();
+
+				$('#form-comments').submit(function() {
+				var values = $('#form-comments').serialize();
+				});
+
+				$('.reply').click(function() {
+					$('.reply-div').remove();
+					$(this).parent().parent().after('<div class="reply-div row full-width"><div class="medium-7 medium-offset-3 small-offset-1 columns"><h6 class="no-margin-bottom">username</h6><button id="comment-submit" type="submit" class="button success small round">Share</button><div class="overflow-div"><textarea id="new-comment" placeholder="Reply with a question, comment, or suggestion"></textarea></div></div></div>');
+					return false;
+				});
+			});
+		</script>
+	</body>
+</html>
