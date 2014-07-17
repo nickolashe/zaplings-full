@@ -11,6 +11,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<script src="{% static "js/vendor/modernizr.js" %}"></script>
 		<script src="{% static "js/vendor/jquery.js" %}"></script>
+		<script src="{% static "./js/jquery.selectric.min.js" %}"></script>	
 
 	</head>
 	<body>
@@ -20,74 +21,61 @@
 			{% include "./zaplings/header.html" %}
 
 			<div class="row full-width">
-				<div class="medium-offset-1 small-12 columns">
-					<h3 class="list-heading">Ideas</h3>
-						<ul class="idea-feed">
-							<li>
-						<!-- Needs idea variables and link to idea page -->
-								<div class="idea-feed-content" class="medium-8 columns">
-									<a href="#"><img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px"></a>
-									<div class="overflow-div">
-			              				<div class="idea-feed-text"><a href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5></a>
-			             				<p class="idea-feed-tagline">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></div><em><a class="idea-feed-user" href="#">username</a></em>
-									</div>
-								</div>
-								<div class="rightText large-2 medium-3 columns end">
-									<button class="button tiny round light dropdown">Actions</button>
-								</div>
-							</li>
-								<li>
-							<!-- Needs idea variables and link to idea page -->
-									<div id="idea-feed-content" class="medium-8 columns">
-										<a href="#"><img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px"></a>
-										<div class="overflow-div">
-				              				<a class="idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5></a>
-				             				<p class="idea-feed-tagline">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p><em><a class="idea-feed-user" href="#">username</a></em>
-										</div>
-									</div>
-									<div class="rightText large-2 medium-3 columns end">
-										<button class="button tiny round light dropdown">Actions</button>
-									</div>
-								</li>
-									<li>
-								<!-- Needs idea variables and link to idea page -->
-										<div id="idea-feed-content" class="medium-8 columns">
-											<a href="#"><img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px"></a>
-											<div class="overflow-div">
-					              				<a class="idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5></a>
-					             				<p class="idea-feed-tagline">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p><em><a class="idea-feed-user" href="#">username</a></em>
-											</div>
-										</div>
-										<div class="rightText large-2 medium-3 columns end">
-											<button class="button tiny round light dropdown">Actions</button>
-										</div>
-									</li>
-										<li>
-									<!-- Needs idea variables and link to idea page -->
-											<div id="idea-feed-content" class="medium-8 columns">
-												<a href="#"><img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px"></a>
-												<div class="overflow-div">
-						              				<a class="idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5></a>
-						             				<p class="idea-feed-tagline">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p><em><a class="idea-feed-user" href="#">username</a></em>
-												</div>
-											</div>
-											<div class="rightText large-2 medium-3 columns end">
-												<button class="dropdown button tiny round light">Actions</button>
-											</div>
-										</li>
-						</ul>
-					</div>	
+				<div class="list-heading large-2 large-offset-2 medium-3 medium-offset-1 small-2 columns">
+					<h3>Ideas</h3>
+				</div>
+				<div class="small-4 columns">
+				<p></p>
+				</div>
+				<div id="idea-filter" class="medium-2 small-3 columns end">
+						<select>
+							<option>All</option>
+							<option>zapling</option>
+							<option>whoswithme</option>
+							<option>takeitandrun</option>
+						</select>
 				</div>
 			</div>
-		
+			<div class="row full-width">
+				<div class="large-8 large-offset-2 medium-10 medium-offset-1 columns end">
+					<ul class="idea-feed">
+						<li>
+					<!-- Needs idea variables and link to idea page -->
+							<div class="idea-feed-content">
+								<a href="#">
+									<img class="hide-for-small-only idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
+									<img class="show-for-small-only idea-feed-img-small" src="{% static "./images/leaf-circle.png" %}" height="60px" width="60px">
+								</a>
+								<div class="overflow-div">
+	              					<a class="no-decoration idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
+	             					<p class="idea-feed-description">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></a>
+		             				<a href="#">username</a>
+		             				<span>&nbsp;&nbsp;<a href="#">discussion</a></span>
+								</div>
+							</div>
+<!--								<div class="rightText large-2 medium-3 columns end">
+								<button class="button tiny round light dropdown">Actions</button>
+							</div>
+-->
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+
 			<div class="push"></div>
 		</div>
 		
 		{% include "./zaplings/footer.html" %}
 			
-	    <script src="{% static "js/foundation.min.js" %}"></script>	
+	    <script src="{% static "js/foundation.min.js" %}"></script>
 		<script type="text/javascript">
 	  		$(document).foundation();
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('select').selectric()
+			});
 		</script>
 	</body>
 </html>

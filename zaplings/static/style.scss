@@ -3147,7 +3147,9 @@ a {
   line-height: inherit; }
 
 a:hover, a:focus {
-  color: #3a579e; }
+  color: #a4c3dd;
+  transition: all 300ms ease-out;
+}
 
 a img {
   border: none; }
@@ -4978,7 +4980,7 @@ label small {
   text-transform: capitalize;
   color: #676767; }
 
-select {
+/*select {
   -webkit-appearance: none !important;
   background-color: #fafafa;
   background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==");
@@ -4988,7 +4990,7 @@ select {
   padding: 0.5rem;
   font-size: 0.875rem;
   -webkit-border-radius: 0;
-  border-radius: 0; }
+  border-radius: 0; }*/
 
 select.radius {
   -webkit-border-radius: 4px;
@@ -6926,13 +6928,189 @@ th.hide-for-touch {
   
   
   
-  
-
-
-
 
 
 // Custom selectors
+
+/*=====================================================================
+  Selectric (IS AWESOMME) http://lcdsantos.github.io/jQuery-Selectric/demo.html
+======================================================================*/
+
+.selectricWrapper {
+  position: relative;
+  margin: 0 0 10px;
+  cursor: pointer;
+}
+
+.selectricDisabled {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.selectricOpen {
+  z-index: 9998;
+}
+
+.selectricOpen .selectricItems {
+  display: block;
+}
+
+.selectricHideSelect {
+  position: relative;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
+
+.selectricHideSelect select {
+  position: absolute;
+  left: -100%;
+  display: none;
+}
+
+.selectricInput {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  outline: none !important;
+  border: none !important;
+  _font: 0/0 a;
+  background: none !important;
+}
+
+.selectricTempShow {
+  position: absolute !important;
+  visibility: hidden !important;
+  display: block !important;
+}
+
+.selectricOpen .selectric {
+  border-color: #001942;
+  background: #a9b8c6;
+  z-index: 9999;
+}
+.selectric {
+  border: 0px solid #05325B;
+  background: #C2D1DF;
+  position: relative;
+  border-radius: 100px;
+  text-decoration: none;
+}
+.selectric .labelSelect {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0 34px 0 0;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  line-height: 22px;
+  color: #05325B;
+  min-height: 22px;
+  text-decoration: none;
+}
+.selectric .button {
+  background: none;
+  border-radius: 0px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  color: #05325B;
+  text-align: center;
+  font: 0/0 a;
+  /* IE Fix */
+  *font: 12px/34px Lucida Sans Unicode, Arial Unicode MS, Arial;
+}
+.selectric .button:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-top-color: #05325B;
+  border-bottom: none;
+}
+.selectricHover .selectric {
+  border-color: #001942;
+}
+.selectricHover .selectric .button {
+  color: #001942;
+}
+.selectricHover .selectric .button:after {
+  border-top-color: #001942;
+}
+/* Items box */
+
+.selectricItems {
+  display: none;
+  position: absolute;
+  overflow: auto;
+  top: 100%;
+  margin-top: -28px;
+  left: 0;
+  background: #F9F9F9;
+  border: 1px solid #CCC;
+  z-index: 9999;
+  -webkit-box-shadow: 0 0 10px -6px;
+  box-shadow: 0 0 10px -6px;
+}
+
+.selectricItems ul,
+.selectricItems li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-height: 20px;
+  line-height: 20px;
+  font-size: 0.875rem;
+}
+
+.selectricItems li {
+  padding: 5px;
+  cursor: pointer;
+  display: block;
+  border-bottom: 1px solid #EEE;
+  color: #666;
+  border-top: 1px solid #FFF;
+}
+
+.selectricItems li.selected {
+  background: #EFEFEF;
+  color: #444;
+  border-top-color: #E0E0E0;
+}
+
+.selectricItems li:hover {
+  background: #F0F0F0;
+  color: #444;
+}
+
+.selectricItems li.disabled {
+  background: #F5F5F5;
+  color: #BBB;
+  border-top-color: #FAFAFA;
+  cursor: default;
+}
+
 
 
 // Scandalous classes
@@ -6983,6 +7161,10 @@ th.hide-for-touch {
 
 .hidden {
 	display: none;
+}
+
+.no-decoration {
+    text-decoration: none;
 }
 
 // Home
@@ -7624,6 +7806,18 @@ input:hover:checked + label {
 	margin-left: 0;
 }
 
+.list-filter {
+  margin-top: 2.25rem;
+  margin-bottom: 1.25rem;
+  width: 180px;
+}
+
+#idea-filter {
+  margin-top: 2.25rem;
+  margin-bottom: 1.25rem;
+  width: 160px;
+}
+
 .idea-feed-item {
 	margin-bottom: 2rem;
 }
@@ -7632,6 +7826,13 @@ input:hover:checked + label {
 	display: inline-block;
 	float: left;
 	margin-right: 2.5rem;
+}
+
+.idea-feed-img-small {
+  display: inline-block;
+  float: left;
+  margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .idea-feed-content {
@@ -7649,19 +7850,55 @@ input:hover:checked + label {
   text-decoration: none;
 }
 
-.idea-feed-tagline {
+.idea-feed-description {
     font-size: 0.875rem;
     color: #4d4d4d;
 	  margin-bottom: 0;
     text-decoration: none;
 }
 
-.idea-feed-text:hover a {
+.idea-feed-text:hover h5 {
 	color: #a4c3dd;
 	transition: all 300ms ease-out;
 }
 
-.idea-feed-user {
-	white-space: nowrap;
-	color: #05325b;
+// Comments page
+
+.comment {
+  margin-bottom: 1.5rem;
 }
+
+.plus {
+  color: #70bf4f;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.minus {
+  color: #cc6600;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.upvotes {
+  color: #70bf4f;
+}
+
+.downvotes {
+  color: #cc6600;
+}
+
+.comment-content {
+    font-size: 0.875rem;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+#comment-submit {
+  float: right;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+
+

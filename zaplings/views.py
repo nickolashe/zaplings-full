@@ -102,6 +102,10 @@ class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
 
+class CommentsView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/comments.html'
+
 class EditProfileView(generic.ListView):
     model = User
     template_name = 'zaplings/editprofile.html'
