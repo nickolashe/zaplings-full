@@ -19,13 +19,13 @@
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 			</div>
 			<div class="rightText medium-3 columns end">
-				<button id="change-image" class="button small round light">Change image</button>		
+				<button id="change-image" data-reveal-id="change-image-reveal" class="button small round light">Change image</button>		
 			</div>
 		</div>
 		
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
-				<h3 class="centerText">{{ firstName }} {{ lastName }}</h3>
+				<h3 class="centerText">Danny Pernik</h3>
 			</div>
 			<div class="rightText medium-3 columns end">
 				<a href="#" data-reveal-id="edit-name-reveal"><button id="edit-name" class="button small round light">Edit name</button></a>
@@ -35,20 +35,36 @@
 		<div class="row show-for-small-only">
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">{{ firstName }} {{ lastName }}</h3>		
+				<h3 class="centerText">Danny Pernik</h3>		
 			</div>
 		</div>	
 		
 		<div class="row show-for-small-only">
-			<div class="small-12 centerText columns">
+			<div class="add-margin-bottom small-12 centerText columns">
 				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
 				<a href="#" data-reveal-id="edit-name-reveal"><button class="button tiny round light">Edit name</button></a>
 			</div>	
-		</div>	
+		</div>
+
+		<div class="centerText row">
+			<div class="medium-6 medium-offset-3 columns">
+				<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
+				<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
+			</div>
+			<div class="hide-for-small-only rightText medium-3 columns end">
+				<a href="#" data-reveal-id="badges-reveal"><button id="earn-badges" class="button small round light">Earn badges</button></a>
+			</div>
+		</div>
+		<div class="row centerText show-for-small-only">
+				<a href="#" data-reveal-id="badges-reveal"><button id="earn-badges" class="button tiny round light">Earn badges</button></a>
+		</div>
+		
 		
 		<div id="change-image-reveal" class="reveal-modal" data-reveal>
 			<h3>Change profile image</h3>
 			<input id="profile-image-upload" type="file"/>
+			<button type="submit" class="button round small success">Save</button>
+			<button class="close-reveal-modal button round small light">Cancel</button>
 		</div>
 		
 		<div id="edit-name-reveal" class="reveal-modal" data-reveal>
@@ -58,17 +74,27 @@
 					<input id="last-name" type="text" placeholder="Last name" value="{{ lastName }}"/>
 					<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstName }}"/></div>
 					<div>
-						<button type="submit" class="button round success">Save</button>
-						<button class="button round light">Cancel</button>
+						<button type="submit" class="button round small success">Save</button>
+						<button class="close-reveal-modal button small round light">Cancel</button>
 					</div>	
 				</div>
 			</form>
+		</div>
+
+		<div id="badges-reveal" class="reveal-modal" data-reveal>
+			<h3>Earn badges</h3>
+			<p></p>
+			<img id="connector-large" src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold-large.png" %}'" alt="Connector badge" title="Connector badge" width="100px" height="100px"/>
+			<h5>Connector</h5>
+			<p></p>
+			<img id="creator-large" src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver-large.png" %}'" alt="Connector badge" title="Connector badge" width="100px" height="100px"/>
+			<h5>Creator</h5>
+			<p></p>
 		</div>
 		
 		<form>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
-					<div class="centerText"><button type="submit" class="button small success round">Save and view</button></div>
 					<h4 class="section-header">What I love</h4>
 					<textarea id="love-text" rows="2" placeholder="Share to your heart's content"/></textarea>
 				</div>

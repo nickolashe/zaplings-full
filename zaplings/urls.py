@@ -27,5 +27,7 @@ urlpatterns = patterns('',
     #url(r'^(?P<user_id>\d+)/login/$', views.login, name='login'),
     url(r'^record_new_email/$', views.record_new_email, name='record_new_email'),
     url(r'^profile-text/$', views.ProfileTextView.as_view(), name='profile-text'),
+    url(r'^profile-view/$', views.ViewProfileView.as_view(), name='profile-view'),
+    url(r'^profile-view-html-only/$', views.ViewProfileHtmlView.as_view(), name='profile-view-html-only'),
     url(r'^login/$', views.login, name='login')  
 )
