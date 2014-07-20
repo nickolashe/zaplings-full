@@ -7659,12 +7659,24 @@ input:hover:checked + label {
   margin-top: 0.75rem;
 }
 
+#badges-reveal {
+  top: 3.5rem;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+
+}
+
 #connector-large {
   float: left;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 #creator-large {
   float: left;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .small-username {
@@ -7715,6 +7727,27 @@ input:hover:checked + label {
 
 #edit-profile {
 	margin-top: 4.5rem;
+}
+
+#idea-sort-box {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+#idea-sort-box li {
+  float: left;
+  width:90px;
+  height:90px;
+  margin-right: 5px;
+  margin-bottom: 1rem;
+
+}
+
+.sort-title {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 // Idea page
