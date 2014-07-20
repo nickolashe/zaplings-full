@@ -30,14 +30,14 @@
 		
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
-				<h3 class="centerText">{{ firstName }} {{ lastName }}</h3>
+				<h3 class="centerText">Danny Pernik</h3>
 			</div>
 		</div>
 		
 		<div class="row show-for-small-only">
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">{{ firstName }} {{ lastName }}</h3>		
+				<h3 class="centerText">Danny Pernik</h3>		
 			</div>
 		</div>	
 		
@@ -46,7 +46,15 @@
 			<div class="small-12 centerText columns">
 				<div><button class="button small light round">Edit profile</button></div>
 			</div>	
-		</div>	
+		</div>
+		<div class="centerText row">
+			<img src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold-small.png" %}'" alt="Gold Connector" title="Gold Connector" width="40px" height="40px"/>
+			<img src="{% static "./images/connector-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver-small.png" %}'" alt="Silver Connector" title="Silver Connector" width="40px" height="40px"/>
+			<img src="{% static "./images/connector-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-bronze-small.png" %}'" alt="Bronze Connector" title="Bronze Connector" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-gold-small.png" %}'" alt="Gold Creator" title="Gold Creator" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-silver-small.png" %}'" alt="Silver Creator" title="Silver Creator" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-bronze-small.png" %}'" alt="Bronze Creator" title="Bronze Creator" width="40px" height="40px"/>
+		</div>
 		<form>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
@@ -87,13 +95,12 @@
 			</div>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
-					
-				{% for love in user.loves %}	
+		
 				
-					<input id="love-{{ user.love-id }}" class="vis-hidden" type="checkbox" name="love-tag[]" value="{{ love }}">
-						<label class="tag button small round" for="love-{{ user.love-id }}">{{ love }}</label>
+					<input id="love-" class="vis-hidden" type="checkbox" name="love-tag[]" value="{{ love }}">
+						<label class="tag button small round" for="love-">{{ love }}</label>
 						
-				{% endfor %}		
+	
 				
 				</div>
 			</div>
@@ -107,12 +114,12 @@
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
 					
- 				{% for offer in user.offers %}	
+ 		
 				
- 					<input id="offer-{{ offer-id }}" class="vis-hidden" type="checkbox" name="offer-tag[]" value="{{ offer }}">
- 						<label class="tag button small round" for="offer-{{ offer.id }}">{{ offer }}</label>
+ 					<input id="offer-" class="vis-hidden" type="checkbox" name="offer-tag[]" value="{{ offer }}">
+ 						<label class="tag button small round" for="offer-">{{ offer }}</label>
 						
- 				{% endfor %}	
+
 
 				</div>		
 			</div>
@@ -125,12 +132,12 @@
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
 					
-					{% for need in user.needs %}	
+			
 				
-						<input id="need-{{ need-id }}" class="vis-hidden" type="checkbox" name="need-tag[]" value="{{ need }}">
-							<label class="tag button small round" for="need-{{ need-id }}">{{ need }}</label>
+						<input id="need-" class="vis-hidden" type="checkbox" name="need-tag[]" value="{{ need }}">
+							<label class="tag button small round" for="need-">{{ need }}</label>
 						
-					{% endfor %}
+
 					
 				</div>		
 			</div>

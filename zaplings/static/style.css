@@ -7211,7 +7211,8 @@ th.hide-for-touch {
   margin-top: 0; }
 
 .header {
-  background-color: #05325b; }
+  background-color: #05325b;
+  position: relative; }
 
 .row.full-width {
   width: 100% !important;
@@ -7251,21 +7252,23 @@ th.hide-for-touch {
 
 .new-idea {
   padding: 0.4rem 0.75rem 0.3rem 0.75rem !important;
-  margin-left: 1.25rem !important;
+  position: absolute;
+  left: 8rem;
+  top: 0.75rem;
   background-color: #c2d1df;
   color: #05325b;
   font-weight: 300;
-  position: absolute;
-  top: 0.75rem; }
+  transition: all 300ms ease-out; }
 
 .small-new-idea {
   padding: 0.4rem 0.25rem 0.3rem 0.25rem !important;
-  margin-left: 0.5rem !important;
+  position: absolute;
+  left: 6.5rem;
+  top: 0.4rem;
   background-color: #c2d1df;
   color: #05325b;
   font-weight: 300;
-  position: absolute;
-  top: 0.4rem; }
+  transition: all 300ms ease-out; }
 
 .new-idea:hover, .small-new-idea:hover {
   background-color: #70bf4f;
@@ -7504,8 +7507,20 @@ input:hover:checked + label {
   margin: 2rem auto 1rem auto;
   text-align: center; }
 
+#profile-image-upload {
+  margin-bottom: 1rem; }
+
 #change-image {
   margin-top: 4.5rem; }
+
+#earn-badges {
+  margin-top: 0.75rem; }
+
+#connector-large {
+  float: left; }
+
+#creator-large {
+  float: left; }
 
 .small-username {
   display: inline-block; }
@@ -7540,7 +7555,7 @@ input:hover:checked + label {
 
 .section-header {
   width: 100%;
-  margin: 2rem 0.5rem 0 0; }
+  margin: 2rem 0.5rem 1rem 0; }
 
 #edit-profile {
   margin-top: 4.5rem; }

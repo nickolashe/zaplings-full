@@ -126,6 +126,14 @@ class ProfileTextView(generic.ListView):
     model = Love
     template_name = 'zaplings/profile-text.html'
 
+class ViewProfileView(generic.ListView):
+    model = User
+    template_name = 'zaplings/profile-view.html'
+
+class ViewProfileHtmlView(generic.ListView):
+    model = User
+    template_name = 'zaplings/profile-view-html-only.html'
+
 class IndexView(generic.ListView):
     #model = FeaturedIdea
     template_name = 'zaplings/index.html'
