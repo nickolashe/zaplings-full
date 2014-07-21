@@ -20,16 +20,19 @@
 	 	{% include "./zaplings/header.html" %}
 
 		<h2 class="centerText three-margin-top">Are you a Connector?</h2>
-		<div class="medium-8 medium-offset-2 small-12 columns">
-			<div class="centerText">
-				<a href="#" data-reveal-id="learn-connector" title="Learn more about badges"><img src="{% static "./images/connector-gold.png" %}" height="70px" width="70px"/></a>
+		<div class="row">
+			<div class="medium-8 medium-offset-2 small-12 columns">
+				<div class="centerText">
+					<a href="#" data-reveal-id="learn-connector" title="Learn more about badges"><img src="{% static "./images/connector-gold.png" %}" height="70px" width="70px"/></a>
+				</div>
+				<h4 class="centerText add-margin-top">Introduce us.</h4>
+				<p class="add-margin-top">Connectors enjoy meeting new people and making introductions. Earn credit by inviting friends to Zaplings with your unique link below. Later, improve your standing by introducing friends to each other.</p>
 			</div>
-			<h4 class="centerText add-margin-top">Introduce us.</h4>
-			<p class="add-margin-top">Connectors enjoy meeting new people and making introductions. Earn credit by inviting friends to Zaplings with your unique link below. Later, improve your standing by introducing friends to each other.</p>
-		
-			<div class="centerText medium-10 medium-offset-1 small-12 columns end">
-				<button id="copy-link" class="button round success">Copy</button>
-				<div class="overflow-div"><input id="user-link" type="text" value="http://www.zaplings.com/{{ user.username }}"/></div>
+		</div>
+		<div class="row">
+			<div class="centerText medium-8 medium-offset-2 small-12 columns end">
+				<button id="copy-link" data-text-swap="Copied!" data-clipboard-target="user-link" class="button round success">Copy</button>
+				<div class="overflow-div"><input id="user-link" type="text" value="http://www.zaplings.com/{{ user.username }}" readonly/></div>
 			</div>
 		</div>
 		<div class="row">
@@ -56,6 +59,8 @@
   	<script type="text/javascript">
     		$(document).foundation();
   	</script>
+    <script src="{% static "./zeroclipboard-master/dist/ZeroClipboard.min.js" %}"></script>
+    <script src="{% static "./js/copy.js" %}"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#copy-link').click(function(){
