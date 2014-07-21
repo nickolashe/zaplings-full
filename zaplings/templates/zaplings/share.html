@@ -14,8 +14,22 @@
 
   </head>
   <body>
-	  
-	 <div class="wrapper">
+	<script>
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+		// async init once loading is done
+		window.fbAsyncInit = function() {
+		  FB.init({appId: 179150165472010, status: false});
+		};
+	</script>
+	
+	<div class="wrapper">
 	 	
 	 	{% include "./zaplings/header.html" %}
 
@@ -32,7 +46,7 @@
 		<div class="row">
 			<div class="centerText medium-8 medium-offset-2 small-12 columns end">
 				<button id="copy-link" data-text-swap="Copied!" data-clipboard-target="user-link" class="button round success">Copy</button>
-				<div class="overflow-div"><input id="user-link" type="text" value="http://www.zaplings.com/{{ user.username }}" readonly/></div>
+				<div class="overflow-div"><input id="user-link" type="text" onClick="this.setSelectionRange(0, this.value.length)" value="http://www.zaplings.com/{{ user.username }}" readonly/></div>
 			</div>
 		</div>
 		<div class="row">
@@ -40,7 +54,7 @@
 				<p>
 					Share with your social networks:
 		  		</p>
-					<a href="http://www.facebook.com" target="_blank"><button class="button small round">Facebook</button></a>
+		  			<a ><button class="button small round" onclick="shareFB()">Facebook</button></a>
 					<a href="http://www.twitter.com" target="_blank"><button class="button small round">Twitter</button></a>
 					<a href="http://www.linkedin.com" target="_blank"><button class="button small round">LinkedIn</button></a>
 					<a href="http://plus.google.com" target="_blank"><button class="button small round">Google+</button></a>
@@ -61,16 +75,14 @@
   	</script>
     <script src="{% static "./zeroclipboard-master/dist/ZeroClipboard.min.js" %}"></script>
     <script src="{% static "./js/copy.js" %}"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#copy-link').click(function(){
-				$(this).select();
-			});
-			
-			$('user-link').click(function(){
-				
-			});
-		});
-	</script>
+
+    <script type="text/javascript">
+		function shareFB() {
+			FB.ui({
+			  method: 'share',
+			  href: 'http://www.zaplings.com',
+			}, function(response){});
+		};
+    </script>
 	</body>
 </html>
