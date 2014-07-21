@@ -68,7 +68,7 @@
 {% for featured_idea in featured_ideas %}
   						  	<div>
    							 	<div class="small-4 columns">
-									<img src="{{images}}featured-idea-{{featured_idea.id}}.svg" onerror="this.onerror=null; this.src={{images}}featured-idea-{{featured_idea.id}}.png" width="88px" alt="slide 1" />
+									<img src="{{images}}featured-idea-{{featured_idea.id}}.png" onerror="this.onerror=null; this.src={{images}}featured-idea-{{featured_idea.id}}.png" width="88px" alt="slide {{featured_idea.id}}" />
 								</div>
 								<div class="small-8 columns">
 									<p class="featured-title large">{{ featured_idea.idea.title }}</p>
