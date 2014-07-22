@@ -33,14 +33,13 @@
 	 	
 	 	{% include "./zaplings/header.html" %}
 
-		<h2 class="centerText three-margin-top">Are you a Connector?</h2>
+		<h2 class="centerText three-margin-top">Be the Connector.</h2>
 		<div class="row">
 			<div class="medium-8 medium-offset-2 small-12 columns">
 				<div class="centerText">
 					<a href="#" data-reveal-id="learn-connector" title="Learn more about badges"><img src="{% static "./images/connector-gold.png" %}" height="70px" width="70px"/></a>
 				</div>
-				<h4 class="centerText add-margin-top">Introduce us.</h4>
-				<p class="add-margin-top">Connectors enjoy meeting new people and making introductions. Earn credit by inviting friends to Zaplings with your unique link below. Later, improve your standing by introducing friends to each other.</p>
+				<p class="add-margin-top">Earn this badge by inviting others to the community and making meaningful introductions for friends on Zaplings. You will be rewarded with introductions to other top Connectors to build your network further.</p>
 			</div>
 		</div>
 		<div class="row">
@@ -50,14 +49,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
+			<div id="share-buttons" class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
 				<p>
 					Share with your social networks:
 		  		</p>
 		  			<a ><button class="button small round" onclick="shareFB()">Facebook</button></a>
-					<a href="http://www.twitter.com" target="_blank"><button class="button small round">Twitter</button></a>
-					<a href="http://www.linkedin.com" target="_blank"><button class="button small round">LinkedIn</button></a>
-					<a href="http://plus.google.com" target="_blank"><button class="button small round">Google+</button></a>
+					<a href="https://twitter.com/share?url=http%3A//www.zaplings.com&text=Check%20out%20Zaplings,%20a%20place%20to%20share%20new%20ideas%20and%20find%20help%20to%20make%20them%20happen." target="_blank"><button class="button small round">Twitter</button></a>
+					<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.zaplings.com&title=Create%20something%20with%20Zaplings.&summary=Share%20ideas,%20get%20feedback,%20and%20build%20a%20team.%20Zaplings%20introduces%20you%20to%20ideas%20you%27ll%20love%20and%20people%20you%27re%20looking%20for.&source=Zaplings" target="_blank"><button class="button small round">LinkedIn</button></a>
+					<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=https://www.zaplings.com', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><button class="button small round">Google+</button></a>
 			</div>
 		</div>
 			<div id="learn-connector-reveal" class="reveal-modal" data-reveal>
@@ -80,9 +79,16 @@
 		function shareFB() {
 			FB.ui({
 			  method: 'share',
-			  href: 'http://www.zaplings.com',
+			  href: 'http://https://www.zaplings.com',
 			}, function(response){});
 		};
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	$('#share-buttons').on('click', 'button', (function(){
+				$(this).blur();
+			}));
+    });
     </script>
 	</body>
 </html>
