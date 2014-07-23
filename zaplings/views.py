@@ -176,22 +176,26 @@ def vote(request, poll_id):
 
 def record_loves(request):
     if request.method == "POST":
-        print "request is POST"
-        logger.info("request is POST")
-        print request.POST
         logger.info(request.POST)
-        logger.info(request.POST.getlist(u'love-tag'))
+        love_ids = request.POST.getlist(u'love-tag')
+        logger.info("Selected love ids:", love_ids)
         selected_loves = [ Love.objects.get(id=love_id).tagname \
-                           for love_id in request.POST.getlist(u'love-tag') ]
+                           for love_id in love_ids ]
     else:
-        print "request is not POST"
-        logger.info("request is not POST")
-        selected_loves = ["NOT POST"]
-    print selected_loves
-    logger.info(selected_loves)
+        selected_loves = []
+    logger.info("Selected love tags:", selected_loves)
+    
+    userid = request.user.pk
+    logger.info("Current session userid: [%s]", request.user.username) 
 
+    for love_id in love_ids:
+        if not UserLove.objects.filter(user_id=request.user.pk, love_id=love_id):
+            UserLove.objects.create(user_id=request.user.pk, love_id=love_id)
+    # user loves
+    user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+    user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
     return render(request, 'zaplings/profile-text.html', {
-    'selected_loves': selected_loves
+        'user_lovetags': user_lovetags
     })
 
 def record_new_email(request):
@@ -232,7 +236,7 @@ def login_email(request, email):
     # extra check enforces for active users
     if user is not None and user.is_active:
         login(request, user)
-        logger.info('Logged in [%s]')
+        logger.info('Logged in [%s]', email)
 
 def login_email_password(request):
     error_message = None
