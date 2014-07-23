@@ -100,7 +100,7 @@
 			</div>
 			<button class="close-reveal-modal button success round">Got it!</button>
 		</div>
-		<form>
+		<form id="form-profile">
 
 			<!-- if user has idea, display "My public ideas" -->
 			<div class="row">
@@ -201,6 +201,9 @@
 			$(document).ready(function(){
 				$('#idea-sort-box').sortable();
 				$('#idea-sort-box').disableSelection();
+				$('#form-profile').submit(function(){
+					var sorted = $( "#idea-sort-box" ).sortable( "serialize", { key: "sort" } );
+				});
 			});
 		</script>
 				
