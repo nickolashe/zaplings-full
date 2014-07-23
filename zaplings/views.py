@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, NewUserEmail
 from django.template import RequestContext, loader
 from django.views import generic
+from django.db import IntegrityError
 import time
 import logging
 
@@ -195,19 +196,43 @@ def record_loves(request):
 
 def record_new_email(request):
     email = request.POST['email']
-    status_message = None
+    status_message = {'REENTER': 'Please enter your email.',
+                      'EXISTS': 'You are already part of Zaplings! Thanks!',
+                      'SUCCESS': 'Thank you for joining Zaplings!'}
+
     if not email or email == "" or not '@' in email:
-        status_message = "Please double-check the email field."
+        status = 'REENTER'
+        logger.info('Empty email submitted')
     elif NewUserEmail.objects.filter(email=email):
-        status_message = "This email has already been submitted."
+        logger.info('User [%s] already exists.', email)
+        login_email(request, email)
+        status = 'EXISTS'
     else:
+        # create new user (email, '')
         NewUserEmail.objects.create(email=email)
-        status_message = "Thanks, your email has been recorded!"
-    
+        newuser = None
+        try:
+            newuser = User.objects.create_user(email)
+            newuser.set_password('')
+            newuser.save()
+            status= 'SUCCESS'
+            logger.info('Create user [%s]', email)
+        except IntegrityError:
+            logger.info('User [%s] already exists.', email)
+            status = 'EXISTS'
+        login_email(request, email)
+              
     return render(request, 'zaplings/index.html', {
-        'status_message': status_message,
+        'status_message': status_message[status],
         'featured_ideas': FeaturedIdea.objects.all()
     })
+
+def login_email(request, email):
+    user = authenticate(username=email, password='')
+    # extra check enforces for active users
+    if user is not None and user.is_active:
+        login(request, user)
+        logger.info('Logged in [%s]')
 
 def login(request):
     error_message = None
