@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Create something with Zaplings"/>
+	<meta property="og:image" content="{% static "logo-large.png" %}"/>
+	<meta property="og:description" content="Share ideas, get feedback, and build your team. Zaplings introduces you to ideas you&#39;ll love and people you&#39;re looking for."/>
     <title>Zaplings | Grow.</title>
     <link rel="stylesheet" href="{% static "style.css" %}"/>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
@@ -68,7 +71,7 @@
 {% for featured_idea in featured_ideas %}
   						  	<div>
    							 	<div class="small-4 columns">
-									<img src="{{images}}featured-idea-{{featured_idea.id}}.png" onerror="this.onerror=null; this.src={{images}}featured-idea-{{featured_idea.id}}.png" width="88px" alt="slide {{featured_idea.id}}" />
+									<img src="{{images}}featured-idea-{{featured_idea.id}}.png" width="88px" alt="slide {{featured_idea.id}}" />
 								</div>
 								<div class="small-8 columns">
 									<p class="featured-title large">{{ featured_idea.idea.title }}</p>

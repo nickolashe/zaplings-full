@@ -46,7 +46,16 @@
 			<div class="small-12 centerText columns">
 				<div><button class="button small light round">Edit profile</button></div>
 			</div>	
-		</div>	
+		</div>
+		<!-- Only displayed if user has Connector and/or Creator badge -->
+		<div class="centerText row">
+			<img src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold-small.png" %}'" alt="Gold Connector" title="Gold Connector" width="40px" height="40px"/>
+			<img src="{% static "./images/connector-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver-small.png" %}'" alt="Silver Connector" title="Silver Connector" width="40px" height="40px"/>
+			<img src="{% static "./images/connector-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-bronze-small.png" %}'" alt="Bronze Connector" title="Bronze Connector" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-gold-small.png" %}'" alt="Gold Creator" title="Gold Creator" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-silver-small.png" %}'" alt="Silver Creator" title="Silver Creator" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-bronze-small.png" %}'" alt="Bronze Creator" title="Bronze Creator" width="40px" height="40px"/>
+		</div>
 		<form>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
@@ -55,7 +64,7 @@
 			</div>
 			<div class="row">
 				<div class="medium-8 medium-offset-2 small-10 small-offset-1 columns">
-					<div class="single-item">
+					<div id="idea-slider" class="single-item">
 							<div>
 								<a class="hide-for-small-only" href="#">
 									<img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
@@ -79,7 +88,7 @@
 				</div>
 			</div>
 
-						<div class="row">
+			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I love</h4>
 					<!-- user.love-text -->
