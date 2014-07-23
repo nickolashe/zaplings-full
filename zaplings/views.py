@@ -234,7 +234,7 @@ def login_email(request, email):
         login(request, user)
         logger.info('Logged in [%s]')
 
-def login(request):
+def login_email_password(request):
     error_message = None
     try:
         email = request.POST['email']
