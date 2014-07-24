@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static "style.css" %}" />
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "./js/vendor/modernizr.js" %}"></script>
 	<script src="{% static "./js/vendor/jquery.js" %}"></script>
@@ -16,7 +16,8 @@
 	  {% include "./zaplings/header.html" %}
 	  
 		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you offer?</h2>
-		<form id="offer-tags">
+		<form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
+		    {% csrf_token %}
 	  		<div class="row">
 				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
@@ -32,30 +33,10 @@
 			<div class="row">
 				<div class="large-8 medium-8 small-12 columns medium-offset-2">
 					<div class="suggestion-box">
-						<input id="offer-suggest-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="collaboration">
-							<label class="tag button small light round" for="offer-suggest-1">collaboration</label>
-						<input id="offer-suggest-2" class="vis-hidden" type="checkbox" name="offer-tag[]" value="mentorship">
-							<label class="tag button small light round" for="offer-suggest-2">mentorship</label>
-						<input id="offer-suggest-3" class="vis-hidden" type="checkbox" name="offer-tag[]" value="co-learning">
-							<label class="tag button small light round" for="offer-suggest-3">co-learning</label>
-						<input id="offer-suggest-4" class="vis-hidden" type="checkbox" name="offer-tag[]" value="inspiration">
-							<label class="tag button small light round" for="offer-suggest-4">inspiration</label>
-						<input id="offer-suggest-5" class="vis-hidden" type="checkbox" name="offer-tag[]" value="idea validation">
-							<label class="tag button small light round" for="offer-suggest-5">idea validation</label>
-						<input id="offer-suggest-6" class="vis-hidden" type="checkbox" name="offer-tag[]" value="strategy">
-							<label class="tag button small light round" for="offer-suggest-6">strategy</label>
-						<input id="offer-suggest-7" class="vis-hidden" type="checkbox" name="offer-tag[]" value="accountability">
-							<label class="tag button small light round" for="offer-suggest-7">accountability</label>
-						<input id="offer-suggest-8" class="vis-hidden" type="checkbox" name="offer-tag[]" value="stress relief">
-							<label class="tag button small light round" for="offer-suggest-8">stress relief</label>
-						<input id="offer-suggest-9" class="vis-hidden" type="checkbox" name="offer-tag[]" value="encouragement">
-							<label class="tag button small light round" for="offer-suggest-9">encouragement</label>
-						<input id="offer-suggest-10" class="vis-hidden" type="checkbox" name="offer-tag[]" value="marketing">
-							<label class="tag button small light round" for="offer-suggest-10">marketing</label>
-						<input id="offer-suggest-11" class="vis-hidden" type="checkbox" name="offer-tag[]" value="funding">
-							<label class="tag button small light round" for="offer-suggest-11">funding</label>
-						<input id="offer-suggest-12" class="vis-hidden" type="checkbox" name="offer-tag[]" value="friendship">
-							<label class="tag button small light round" for="offer-suggest-12">friendship</label>
+					{% for suggested_offer in suggested_offers %} 
+						<input id="offer-suggest-{{ suggested_offer.id }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ suggested_offer.id }}">
+							<label class="tag button small light round" for="offer-suggest-{{ suggested_offer.id }}"> {{ suggested_offer.tagname }} </label>
+                                        {% endfor %}
 					</div>
 				</div>
 			</div>
@@ -87,7 +68,7 @@
 			{
 			  count=count-1;
 			  $('#timer').attr("style", "color: #70bf4f");
-			  if (count < 0)
+			  if (count < 29)
 			  {
 			     clearInterval(counter);
 				 $('.continue-delay').removeClass('hidden');
@@ -105,7 +86,7 @@
 					if (e.which == 13 && text != '') {
 						num = num+1;
 						$('.input-tags').val('');						
-				  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag[]" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
+				  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
 						return false;	
 						$(this).focus().select().attr("placeholder", "");
 					}

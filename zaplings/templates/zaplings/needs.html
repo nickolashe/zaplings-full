@@ -5,50 +5,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="{% "style.css" %}" />
-	<link href="{% static "http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300" %}" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "./js/vendor/modernizr.js" %}"></script>
-    <script src="{% static "js/vendor/jquery.js" %}"></script>
+	<script src="{% static "./js/vendor/jquery.js" %}"></script>
   </head>
   <body>
 	  
-	 <div class="wrapper">
+	<div class="wrapper">
 	  {% include "./zaplings/header.html" %}
-	  		
+	  
 		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you need?</h2>
-		<form id="need-tags">
+		<form id="need-tags" action="{% url "zaplings:record_needs" %}" method="post" >
+		    {% csrf_token %}
 	  		<div class="row">
-				<div class="large-6 medium-6 small-12 medium-offset-3 columns">
+				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I need... (press return to add)"/>
 					<div class="continue-delay hidden">Take as much time as you need!
 						<div class="continue-tags">
-							<a href="#" data-reveal-id="signup-reveal"><button class="button round">Save profile</button></a>
+							<a href="#" data-reveal-id="signup-reveal"><button class="button round small light">Save</button></a>
+							<button type="submit" class="button success round small">Next: Go to profile!</button>
 						</div>
 					</div>
 				</div>
 			</div>
+		
 			<div class="row">
 				<div class="large-8 medium-8 small-12 columns medium-offset-2">
 					<div class="suggestion-box">
-					
-						{% for need in needs %}
-					
-						<input id="need-suggest-{{ need-id }}" class="vis-hidden" type="checkbox" name="need-tag[]" value="{{ need }}">
-							<label class="tag button small light round" for="need-suggest-{{ need-id }}">{{ need }}</label>
-						
-						{% end for %}
+					{% for suggested_need in suggested_needs %} 
+						<input id="need-suggest-{{ suggested_need.id }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ suggested_need.id }}">
+							<label class="tag button small light round" for="need-suggest-{{ suggested_need.id }}"> {{ suggested_need.tagname }} </label>
+                                        {% endfor %}
 					</div>
 				</div>
-			</div>	
-		</form>
+			</div>
+		</form>	
+
+		<div id="signup-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/signup-reveal.html" %}
+		</div>
 
 		<div class="push"></div>
 		</div>
-		
-		{% include "./zaplings/footer.html" %}
-    
 
-    <script src="{% static "js/foundation.min.js" %}"></script>		
+		{% include "./zaplings/footer.html" %}	   
+
+    <script src="{% static "./js/foundation.min.js" %}"></script>			
 	<script type="text/javascript">
   		$(document).foundation();
 	</script>
@@ -65,7 +68,7 @@
 			{
 			  count=count-1;
 			  $('#timer').attr("style", "color: #70bf4f");
-			  if (count < 0)
+			  if (count < 29)
 			  {
 			     clearInterval(counter);
 				 $('.continue-delay').removeClass('hidden');
@@ -76,20 +79,21 @@
 			};
 		});
 				
-				
+			var num = 12;		
+			
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
 					if (e.which == 13 && text != '') {
+						num = num+1;
 						$('.input-tags').val('');						
-				  		$('.suggestion-box').prepend('<button class="button round small tag-suggested selected">'+text+'</button>');
+				  		$('.suggestion-box').prepend('<input id="need-suggest-'+num+'" class="vis-hidden" type="checkbox" name="need-tag" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+num+'">'+text+'</label>');
 						return false;	
 						$(this).focus().select().attr("placeholder", "");
 					}
 
 			});	
-			$('.suggestion-box').on('click', 'button', (function(){
+			$('.suggestion-box').on('click', 'label', (function(){
 				$(this).toggleClass('selected').blur();
-				$('.input-tags').focus().select();
 			}));
 
 			$('#need-tags').submit(function() {
@@ -99,6 +103,6 @@
 		
 
 	</script>
+	
   </body>
 </html>
-

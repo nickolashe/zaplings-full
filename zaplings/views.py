@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, NewUserEmail
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, NewUserEmail
 from django.template import RequestContext, loader
 from django.views import generic
 from django.db import IntegrityError
@@ -67,10 +67,6 @@ class LovesView(generic.ListView):
         """Return the all suggested loves."""
         return Love.objects.all()
     
-class RecordLovesView(generic.ListView):
-    template_name = 'zaplings/record_loves.html'
-    context_object_name = 'selected_loves'
-
 class OffersView(generic.ListView):
     template_name = 'zaplings/offers.html'
     context_object_name = 'suggested_offers'
@@ -79,10 +75,6 @@ class OffersView(generic.ListView):
         """Return the all suggested offers."""
         return Offer.objects.all()
     
-class RecordOffersView(generic.ListView):
-    template_name = 'zaplings/record_offers.html'
-    context_object_name = 'selected_offers'
-
 class NeedsView(generic.ListView):
     template_name = 'zaplings/needs.html'
     context_object_name = 'suggested_needs'
@@ -91,14 +83,6 @@ class NeedsView(generic.ListView):
         """Return the all suggested needs."""
         return Need.objects.all()
 
-class RecordNeedsView(generic.ListView):
-    template_name = 'zaplings/record_needs.html'
-    context_object_name = 'selected_needs'
-    
-class RecordNewEmailView(generic.ListView):
-    model = User    
-    template_name = 'zaplings/index.html'
-    
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
@@ -178,25 +162,93 @@ def record_loves(request):
     if request.method == "POST":
         logger.info(request.POST)
         love_ids = request.POST.getlist(u'love-tag')
-        logger.info("Selected love ids:", love_ids)
+        logger.info("Selected love ids: %s", str(love_ids))
         selected_loves = [ Love.objects.get(id=love_id).tagname \
                            for love_id in love_ids ]
-    else:
-        selected_loves = []
-    logger.info("Selected love tags:", selected_loves)
+        logger.info("Selected love tags: %s", str(selected_loves))
+        
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username) 
     
-    userid = request.user.pk
-    logger.info("Current session userid: [%s]", request.user.username) 
+        for love_id in love_ids:
+            if not UserLove.objects.filter(user_id=request.user.pk, love_id=love_id):
+                UserLove.objects.create(user_id=request.user.pk, love_id=love_id)
+        # user loves
+        #user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+        #user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
+        #return render(request, 'zaplings/profile-text.html', {
+        #    'user_lovetags': user_lovetags
+        #})
+        suggested_offers = Offer.objects.all()
+        return render(request, 'zaplings/offers.html', {
+            'suggested_offers': suggested_offers
+        })
+    else:
+        return redirect('/loves/')
 
-    for love_id in love_ids:
-        if not UserLove.objects.filter(user_id=request.user.pk, love_id=love_id):
-            UserLove.objects.create(user_id=request.user.pk, love_id=love_id)
-    # user loves
-    user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
-    user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
-    return render(request, 'zaplings/profile-text.html', {
-        'user_lovetags': user_lovetags
-    })
+def record_offers(request):
+    if request.method == "POST":
+        logger.info(request.POST)
+        offer_ids = request.POST.getlist(u'offer-tag')
+        logger.info("Selected offer ids: %s", str(offer_ids))
+        selected_offers = [ Offer.objects.get(id=offer_id).tagname \
+                           for offer_id in offer_ids ]
+        logger.info("Selected offer tags: %s", str(selected_offers))
+        
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username) 
+    
+        for offer_id in offer_ids:
+            if not UserOffer.objects.filter(user_id=request.user.pk, offer_id=offer_id):
+                UserOffer.objects.create(user_id=request.user.pk, offer_id=offer_id)
+        # user loves
+        #user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+        #user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
+        # user offers
+        #user_offers = [offer.offer_id for offer in UserOffer.objects.filter(user_id=userid)]
+        #user_offertags = [Offer.objects.get(id=offer_id).tagname for offer_id in user_offers]
+        #return render(request, 'zaplings/profile-text.html', {
+        #    'user_lovetags': user_lovetags,
+        #    'user_offertags': user_offertags
+        #})
+        suggested_needs = Need.objects.all()
+        return render(request, 'zaplings/needs.html', {
+            'suggested_needs': suggested_needs
+        })
+    else:
+        return redirect('/offers/')
+
+def record_needs(request):
+    if request.method == "POST":
+        logger.info(request.POST)
+        need_ids = request.POST.getlist(u'need-tag')
+        logger.info("Selected need ids: %s", str(need_ids))
+        selected_needs = [ Need.objects.get(id=need_id).tagname \
+                           for need_id in need_ids ]
+        logger.info("Selected need tags: %s", str(selected_needs))
+        
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username) 
+    
+        for need_id in need_ids:
+            if not UserNeed.objects.filter(user_id=request.user.pk, need_id=need_id):
+                UserNeed.objects.create(user_id=request.user.pk, need_id=need_id)
+        # user loves
+        user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+        user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
+         # user offers
+        user_offers = [offer.offer_id for offer in UserOffer.objects.filter(user_id=userid)]
+        user_offertags = [Offer.objects.get(id=offer_id).tagname for offer_id in user_offers]
+        # user needs
+        user_needs = [need.need_id for need in UserNeed.objects.filter(user_id=userid)]
+        user_needtags = [Need.objects.get(id=need_id).tagname for need_id in user_needs]
+        return render(request, 'zaplings/profile-text.html', {
+            'user_lovetags': user_lovetags,
+            'user_offertags': user_offertags,
+            'user_needtags': user_needtags
+        })
+    else:
+        return redirect('/needs/')
 
 def record_new_email(request):
     email = request.POST['email']
