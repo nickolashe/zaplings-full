@@ -26,7 +26,7 @@ logger.setLevel(logging.DEBUG)
     #output = ', '.join([p.question for p in latest_poll_list])
 class SignupView(generic.ListView):
     model = User
-    template_name = 'zaplings/signup.html'
+    template_name = 'zaplings/signup-reveal.html'
 
     #def get_queryset(self):
     #    """Return the last five published polls."""
@@ -290,6 +290,92 @@ def record_new_email(request):
     return render(request, 'zaplings/index.html', request_obj) 
            #if status == 'REENTER' else \
            #redirect('/loves/')
+
+def signup_user(request):
+    status_message = { 'PASSWORD_VERIFY': 'Passwords do not match!',
+                       'PASSWORD_EMPTY': 'Please type in your password',
+                       'NAME_EMPTY': 'Please enter your name',
+                       'EMAIL_EMPTY': 'Please enter your email',
+                       'EMAIL_EXISTS': 'User is already registered with this email',
+                       'USERNAME_EMPTY': 'Please pick a username',
+                       'USERNAME_EXISTS': 'This username already exists',
+                       'USER_UPDATED': 'Thank you for joining Zaplings!',
+                       'USER_CREATED': 'Thank you for joining Zaplings!' }
+    try:
+        email = request.POST['user-email']
+        firstname = request.POST['user-firstname']
+        lastname = request.POST['user-lastname']
+        username = request.POST['user-username']
+        password = request.POST['user-password']
+        password_verify = request.POST['user-password-verify']
+
+        status = ''
+        if password == password_verify:
+            if password:
+                password_valid = password
+            else:
+                status = 'PASSWORD_EMPTY'
+        else:
+            status = 'PASSWORD_VERIFY'
+   
+        if not email:
+            status = 'EMAIL_EMPTY'
+        if not firstname or not lastname:
+            status = 'NAME_EMPTY'
+        if not username:
+            status = 'USERNAME_EMPTY'
+        if User.objects.filter(username=username):
+            status = 'USERNAME_EXISTS'
+        if User.objects.filter(email=email):
+            status = 'EMAIL_EXISTS'
+
+        failure_keys = [key for key in status_message.keys() if 'USER_' not in key]
+        if not status in failure_keys:
+            if User.objects.filter(username=email):
+                user = User.objects.get(username=email)
+                user.username = username
+                user.email = email
+                status = 'USER_UPDATED'
+            else:
+                user = User.objects.create_user(username=username, 
+                                                email=email)
+                status = 'USER_CREATED'
+            user.first_name = firstname
+            user.last_name = lastname
+            user.set_password(password_valid)
+            user.save()
+            user = authenticate(username=username, password=password_valid)
+            if user is not None and user.is_active:
+                login(request, user)
+                logger.info('Logged in [%s]', user.username)
+            # user loves
+            user_loves = [ love.love_id \
+                           for love in UserLove.objects.filter(user_id=user.pk) ]
+            user_lovetags = [ Love.objects.get(id=love_id).tagname \
+                              for love_id in user_loves ]
+             # user offers
+            user_offers = [ offer.offer_id \
+                            for offer in UserOffer.objects.filter(user_id=user.pk) ]
+            user_offertags = [ Offer.objects.get(id=offer_id).tagname \
+                               for offer_id in user_offers ]
+            # user needs
+            user_needs = [ need.need_id \
+                           for need in UserNeed.objects.filter(user_id=user.pk) ]
+            user_needtags = [ Need.objects.get(id=need_id).tagname \
+                              for need_id in user_needs ]
+            return render(request, 'zaplings/profile-text.html', {
+                'user_lovetags': user_lovetags,
+                'user_offertags': user_offertags,
+                'user_needtags': user_needtags
+            })
+        else:
+            request_obj = { 'status_message': status_message[status] }
+            # return back to index for the time-being
+            return render(request, 'zaplings/signup-reveal.html', request_obj) 
+    except Exception as e:
+        request_obj = { 'status_message': e.message }
+        # return back to index for the time-being
+        return render(request, 'zaplings/signup-reveal.html', request_obj) 
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
