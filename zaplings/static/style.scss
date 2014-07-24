@@ -7297,7 +7297,7 @@ th.hide-for-touch {
 .header-learn {
 	display: inline-block;
 	text-align: right;
-	margin: 0.875rem 0 0;
+	margin: 0.75rem 0 0;
 	font-size: 1rem !important;
 
 }
@@ -7759,13 +7759,13 @@ input:hover:checked + label {
 .idea-cover {
 	position: relative;
 	width: 100%;
-	height: 250px;
+	height: 350px;
 }
 
 .idea-cover-small {
   position: relative;
   width: 100%;
-  height: 125px;
+  height: 225px;
 }
 
 .idea-image {
@@ -7835,6 +7835,15 @@ input:hover:checked + label {
 
 #crowdtilt-reveal {
   top: 3rem;
+}
+
+#galleria {
+  width: 100px;
+  height: 200px;
+  position: absolute;
+  top: 50px;
+  left:0;
+  z-index: -1;
 }
 
 // Share page

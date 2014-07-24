@@ -18,46 +18,39 @@
 	  	{% include "./zaplings/header.html" %}
 	 
 		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
+			<div class="medium-6 medium-offset-3 columns end">
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-			</div>
-			<div class="rightText medium-3 columns end">
-				<a href="#" data-reveal-id="change-image-reveal"><button id="change-image" class="button small round light">Change image</button></a>		
 			</div>
 		</div>
 		
+		<!-- If username is added, display <h3>firstName lastName</h3> in place of button -->
 		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
-			</div>
-			<div class="rightText medium-3 columns end">
-				<a href="#" data-reveal-id="edit-name-reveal"><button id="change-name" class="button small round light">Edit name</button></a>
+			<div class="centerText medium-6 medium-offset-3 columns end">
+				<a href="#" data-reveal-id="signup-reveal"><button class="button round">Create username</button></a>
 			</div>
 		</div>
 		
 		<div class="row show-for-small-only">
 			<div class="small-12 columns">
-				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>		
+				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>		
 			</div>
 		</div>	
 		
+		<!-- If username is added, display username in place of button -->
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
-				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-				<a href="#" data-reveal-id="edit-name-reveal"><button class="button tiny round light">Edit name</button></a>
+				<a href="#" data-reveal-id="signup-reveal"><button class="button round">Create username</button></a>
 			</div>	
 		</div>	
-		
-		<div id="change-image-reveal" class="reveal-modal" data-reveal>
-			<h3>Change profile image</h3>
-			
+
+		<div id="signup-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/signup-reveal.html" %}
 		</div>
 		
 		
 		<div class="row full-width">
 			<div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
-				<div class="intro-questions"><a href="{% url 'zaplings:loves' %}"><button class="button success large round">What do you love?</button></a></div>
+				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<button class="intro-questions button round small disabled">What do you offer?</button>
 				<button class="intro-questions button round small disabled">What do you need?</button>
 			</div>	
