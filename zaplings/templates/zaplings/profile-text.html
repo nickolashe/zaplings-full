@@ -29,7 +29,7 @@
 				<h3 class="centerText"> {{user.username}}</h3>
 			</div>
 			<div class="rightText medium-3 columns end">
-				<a href="#" data-reveal-id="edit-name-reveal"><button id="edit-name" class="button small round light">Edit name</button></a>
+				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="edit-name" class="button small round light">Edit details</button></a>
 			</div>
 		</div>
 		
@@ -43,7 +43,7 @@
 		<div class="row show-for-small-only">
 			<div class="add-margin-bottom small-12 centerText columns">
 				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-				<a href="#" data-reveal-id="edit-name-reveal"><button class="button tiny round light">Edit name</button></a>
+				<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
 			</div>	
 		</div>
 
@@ -68,18 +68,8 @@
 			<button class="close-reveal-modal button round small light">Cancel</button>
 		</div>
 		
-		<div id="edit-name-reveal" class="reveal-modal" data-reveal>
-			<form id="full-name">
-				<div class="medium-8 small-12 columns end">
-					<h3>Edit name</h3>
-					<input id="last-name" type="text" placeholder="Last name" value="{{ lastName }}"/>
-					<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstName }}"/></div>
-					<div>
-						<button type="submit" class="button round small success">Save</button>
-						<button class="close-reveal-modal button small round light">Cancel</button>
-					</div>	
-				</div>
-			</form>
+		<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/user-details-reveal" }
 		</div>
 
 		<div id="badges-reveal" class="reveal-modal" data-reveal>

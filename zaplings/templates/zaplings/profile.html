@@ -60,14 +60,17 @@
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
 				<!-- if username has not been created -->
-				<a href="#" data-reveal-id="signup-reveal"><button class="intro-questions button round small disabled">Save profile</button>
+				<a href="#" data-reveal-id="signup-reveal"><button class="intro-questions button round small disabled">Save profile</button></a>
 			</div>
 		</div>
+	<form id="form-profile">
 
 		<!-- if loves is answered -->
 		<div class="row">
 			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
-				<h4 class="section-header">I love...</h4>
+				<h4 class="section-header">What I love</h4>
+				<!-- add textbox if all questions answered -->
+				<textarea id="love-text" rows="2" placeholder="How can you help others create?"/></textarea>
 			</div>
 		</div>
 		<div class="row">
@@ -75,14 +78,16 @@
 				<!-- selected love tags -->
 				<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1"/>
 					<label class="tag button small light round" for="love-1">love tag 1</label>
-				<a class="add-more" href="#"><button class="button small round">Add more</button></a>
+				<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 			</div>
 		</div>
 			
 		<!-- if offers answered -->
 		<div class="row">
 			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
-				<h4 class="section-header">I offer...</h4>
+				<h4 class="section-header">What I offer</h4>
+				<!-- add textbox if all questions answered -->
+				<textarea id="offer-text" rows="2" placeholder="How can you help others create?"/></textarea>
 			</div>
 		</div>
 		<div class="row">
@@ -91,29 +96,35 @@
 				<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
 					<label class="tag button small light round" for="offer-1">offer tag 1</label>
 				
-				<a class="add-more" href="#"><button class="button small round">Add more</button></a>
+				<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 			</div>
 		</div>
 
 		<!-- if needs answered -->
 		<div class="row">
-			<div class="medium-8 small-12 medium-offset-2 columns">
+			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
 				<h4 class="section-header">What I need</h4>
-				<textarea id="need-text" rows="2" placeholder="How can others help you create?"/></textarea>
+				<!-- add textbox if all questions answered -->
+				<textarea id="need-text" rows="2" placeholder="How can you help others create?"/></textarea>
 			</div>
 		</div>
 		<div class="row">
-			<div class="medium-8 small-12 medium-offset-2 columns">	
-				<!-- selected need tags -->
+			<div class="centerText medium-8 small-12 medium-offset-2 columns">
+				<!-- selected offer tags -->	
 				<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
-					<label class="tag button small round" for="need-1">need tag 1</label>
-
-				<a class="add-more" href="#"><button class="button small round">Add more</button></a>
+					<label class="tag button small light round" for="need-1">need tag 1</label>
+				
+				<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 			</div>
-		</div>	
+		</div>
+
+		<!-- if all questions answered -->
+		<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+
 
 
 <!-- included for all -->
+	</form>
 
 	<div id="change-image-reveal" class="reveal-modal" data-reveal>
 		<h3>Change profile image</h3>
