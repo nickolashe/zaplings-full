@@ -5,58 +5,146 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}"/>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+    <script src="{% static "./js/vendor/modernizr.js" %}"></script>
+	<script src="{% static "./js/vendor/jquery.js" %}"></script>
+	
   </head>
   <body>
 	  
 	<div class="wrapper">
-
-		{% include "./zaplings/header.html" %}
+	
+	  	{% include "./zaplings/header.html" %}
 	 
 		<div class="row hide-for-small-only">
-			<div class="medium-4 medium-offset-4 columns">
+			<div class="medium-6 medium-offset-3 columns">
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 			</div>
-			<div class="medium-4 columns">
-				<button id="change-image" class="button small round light">Change profile image</button>		
+			<div class="rightText medium-3 columns end">
+				<a href="#" data-reveal-id="change-image-reveal"><button id="change-image" class="button small round light">Change image</button></a>		
 			</div>
 		</div>
 		
 		<div class="row hide-for-small-only">
-			<div class="medium-4 medium-offset-4 columns">
-				<h3 class="centerText">{{ username }}</h3>
+			<div class="medium-6 medium-offset-3 columns">
+				<!-- if user has created username -->
+				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
 			</div>
-			<div class="medium-3 columns end">
-				<button id="change-name" class="button small round light">Use your real name</button>		
+			<div class="rightText medium-3 columns end">
+				<a href="#" data-reveal-id="edit-name-reveal"><button id="change-name" class="button small round light">Edit name</button></a>
 			</div>
 		</div>
 		
 		<div class="row show-for-small-only">
-			<div class="small-10 small-offset-1 columns">
+			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">{{ username }}</h3>		
+				<!-- if user has created username -->
+				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>		
+			</div>
 		</div>	
 		
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
-				<button class="button tiny round light">Change image</button>
-				<button class="button tiny round light">Use your real name</button>
+				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
+				<a href="#" data-reveal-id="edit-name-reveal"><button class="button tiny round light">Edit name</button></a>
 			</div>	
 		</div>	
 		
-		<div class="row full-width">
+
+		
+		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
+		<div class="row">
 			<div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
-				<button class="intro-questions button success large round">What do you love?</button>
-				<button class="intro-questions button round small disabled">What do you offer?</button>
-				<button class="intro-questions button round small disabled">What do you need?</button>
-			</div>	
+				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a></div>
+				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
+				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
+				<!-- if username has not been created -->
+				<a href="#" data-reveal-id="signup-reveal"><button class="intro-questions button round small disabled">Save profile</button>
+			</div>
+		</div>
+
+		<!-- if loves is answered -->
+		<div class="row">
+			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
+				<h4 class="section-header">I love...</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="centerText medium-8 small-12 medium-offset-2 columns">
+				<!-- selected love tags -->
+				<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1"/>
+					<label class="tag button small light round" for="love-1">love tag 1</label>
+				<a class="add-more" href="#"><button class="button small round">Add more</button></a>
+			</div>
+		</div>
+			
+		<!-- if offers answered -->
+		<div class="row">
+			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
+				<h4 class="section-header">I offer...</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="centerText medium-8 small-12 medium-offset-2 columns">
+				<!-- selected offer tags -->	
+				<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
+					<label class="tag button small light round" for="offer-1">offer tag 1</label>
+				
+				<a class="add-more" href="#"><button class="button small round">Add more</button></a>
+			</div>
+		</div>
+
+		<!-- if needs answered -->
+		<div class="row">
+			<div class="medium-8 small-12 medium-offset-2 columns">
+				<h4 class="section-header">What I need</h4>
+				<textarea id="need-text" rows="2" placeholder="How can others help you create?"/></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="medium-8 small-12 medium-offset-2 columns">	
+				<!-- selected need tags -->
+				<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
+					<label class="tag button small round" for="need-1">need tag 1</label>
+
+				<a class="add-more" href="#"><button class="button small round">Add more</button></a>
+			</div>
 		</div>	
+
+
+<!-- included for all -->
+
+	<div id="change-image-reveal" class="reveal-modal" data-reveal>
+		<h3>Change profile image</h3>
+		
+	</div>
+
+	<div id="edit-name-reveal" class="reveal-modal" data-reveal>
+		<form id="full-name">
+			<div class="medium-8 small-12 columns end">
+				<h3>Edit name</h3>
+				<input id="last-name" type="text" placeholder="Last name" value="{{ lastName }}"/>
+				<div id="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstName }}"/></div>
+				<div>
+					<button type="submit" class="button round success">Save</button>
+					<button class="button round light">Cancel</button>
+				</div>	
+			</div>
+		</form>
+	</div>	
+
 		<div class="push"></div>
 	</div>
 
-	{% include "./zaplings/footer.html" %}		
-		
+	{% include "./zaplings/footer.html" %}
+			
+				
+    <script src="{% static "./js/foundation.min.js" %}"></script>		
+	<script type="text/javascript">
+	  $(document).foundation();
+	</script>	
+	
+
   </body>
 			
