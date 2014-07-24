@@ -144,7 +144,7 @@
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 		<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 {% endfor %}				
-					<a class="add-more" href="loves.html"><button class="button small light round">Add more...</button></a>
+					<a class="add-more" href="{% url "zaplings:loves" %}"><button class="button small light round">Add more...</button></a>
 				</div>
 			</div>
 			

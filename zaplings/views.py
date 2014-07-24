@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
@@ -225,11 +225,12 @@ def record_new_email(request):
             logger.info('User [%s] already exists.', email)
             status = 'EXISTS'
         login_email(request, email)
-              
-    return render(request, 'zaplings/index.html', {
-        'status_message': status_message[status],
-        'featured_ideas': FeaturedIdea.objects.all()
-    })
+    
+    request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
+                    'status_message': status_message[status] }
+    return render(request, 'zaplings/index.html', request_obj) \
+           if status == 'REENTER' else \
+           redirect('/loves/')
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
