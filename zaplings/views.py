@@ -10,8 +10,7 @@ from django.db import IntegrityError
 import time
 import logging
 
-logging.basicConfig(level=logging.DEBUG, filename="/tmp/views.log")
-
+logging.basicConfig(level=logging.DEBUG, filename="logs/views.log")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -25,8 +24,6 @@ logger.setLevel(logging.DEBUG)
     #return render(request, 'polls/index.html', context)
     #return HttpResponse(template.render(context))
     #output = ', '.join([p.question for p in latest_poll_list])
-    #return HttpResponse(output)
-    #return HttpResponse("Hello, world. You're at the poll index.")
 class SignupView(generic.ListView):
     model = User
     template_name = 'zaplings/signup.html'
@@ -184,7 +181,7 @@ def record_loves(request):
             'suggested_offers': suggested_offers
         })
     else:
-        return redirect('/loves/')
+        return redirect('zaplings:loves')
 
 def record_offers(request):
     if request.method == "POST":
@@ -216,11 +213,11 @@ def record_offers(request):
             'suggested_needs': suggested_needs
         })
     else:
-        return redirect('/offers/')
+        return redirect('zaplings:loves')
 
 def record_needs(request):
     if request.method == "POST":
-        logger.info(request.POST)
+        logger.info('POST request: %s', str(request.POST))
         need_ids = request.POST.getlist(u'need-tag')
         logger.info("Selected need ids: %s", str(need_ids))
         selected_needs = [ Need.objects.get(id=need_id).tagname \
@@ -248,21 +245,30 @@ def record_needs(request):
             'user_needtags': user_needtags
         })
     else:
-        return redirect('/needs/')
+        logger.info('GET request: %s', str(request.GET))
+        return redirect('zaplings:loves')
 
 def record_new_email(request):
     email = request.POST['email']
     status_message = {'REENTER': 'Please enter your email.',
                       'EXISTS': 'You are already part of Zaplings! Thanks!',
                       'SUCCESS': 'Thank you for joining Zaplings!'}
-
+    # REENTER
     if not email or email == "" or not '@' in email:
         status = 'REENTER'
         logger.info('Empty email submitted')
+    # EXISTS
     elif NewUserEmail.objects.filter(email=email):
-        logger.info('User [%s] already exists.', email)
+        logger.info('Email [%s] has already been submitted.', email)
+        # create django user if needed
+        if not User.objects.filter(username=email):
+            newuser = User.objects.create_user(email)
+            newuser.set_password('')
+            newuser.save()
+            logger.info('Created user [%s]', email)
         login_email(request, email)
         status = 'EXISTS'
+    # NEW
     else:
         # create new user (email, '')
         NewUserEmail.objects.create(email=email)
@@ -272,7 +278,7 @@ def record_new_email(request):
             newuser.set_password('')
             newuser.save()
             status= 'SUCCESS'
-            logger.info('Create user [%s]', email)
+            logger.info('Created user [%s]', email)
         except IntegrityError:
             logger.info('User [%s] already exists.', email)
             status = 'EXISTS'
@@ -280,13 +286,14 @@ def record_new_email(request):
     
     request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
                     'status_message': status_message[status] }
-    return render(request, 'zaplings/index.html', request_obj) \
-           if status == 'REENTER' else \
-           redirect('/loves/')
+    # return back to index for the time-being
+    return render(request, 'zaplings/index.html', request_obj) 
+           #if status == 'REENTER' else \
+           #redirect('/loves/')
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
-    # extra check enforces for active users
+    # extra check enforced for active users
     if user is not None and user.is_active:
         login(request, user)
         logger.info('Logged in [%s]', email)
@@ -328,10 +335,7 @@ def login_email_password(request):
         #return HttpResponse(success_message % email)
         
         return render(request, 'zaplings/profile-love.html', {
-            'username': user.get_username(),
-            'user': user
+            'username': user.get_username()
         })
 
         #return HttpResponseRedirect(reverse('polls:profile', args=(user.id,)))
-
-
