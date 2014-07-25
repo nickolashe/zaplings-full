@@ -138,7 +138,7 @@
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 		<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 {% endfor %}				
-					<a class="add-more" href="loves.html"><button class="button small light round">Add more...</button></a>
+					<a class="add-more" href="{% url 'zaplings:loves' %}"><button class="button small light round">Add more...</button></a>
 				</div>
 			</div>
 			
@@ -150,15 +150,11 @@
 			</div>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
-					<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
-						<label class="tag button small round" for="offer-1">offer tag 1</label>
-					<input id="offer-2" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-2">
-						<label class="tag button small round" for="offer-2">offer tag 2</label>
-					<input id="offer-3" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-3">
-						<label class="tag button small round" for="offer-3">offer tag 3</label>
-					<input id="offer-4" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-4">
-						<label class="tag button small round" for="offer-4">offer tag 4</label>
-					<a class="add-more" href="offers.html"><button class="button small round light">Add more...</button></a>
+                               {% for tag in user_offertags %} 
+                                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
+                                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
+                               {% endfor %}				
+					<a class="add-more" href="{% url 'zaplings:offers' %}"><button class="button small round light">Add more...</button></a>
 				</div>		
 			</div>
 			<div class="row">
@@ -169,15 +165,11 @@
 			</div>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
-					<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
-						<label class="tag button small round" for="need-1">need tag 1</label>
-					<input id="need-2" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-2">
-						<label class="tag button small round" for="need-2">need tag 2</label>
-					<input id="need-3" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-3">
-						<label class="tag button small round" for="need-3">need tag 3</label>
-					<input id="need-4" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-4">
-						<label class="tag button small round" for="need-4">need tag 4</label>
-					<a class="add-more" href="needs.html"><button class="button small round light">Add more...</button></a>
+                               {% for tag in user_needtags %} 
+                                    <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
+                                    <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
+                               {% endfor %}				
+					<a class="add-more" href="{% url 'zaplings:needs' %}"><button class="button small round light">Add more...</button></a>
 				</div>		
 			</div>
 			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
