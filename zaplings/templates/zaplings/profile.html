@@ -22,6 +22,7 @@
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 			</div>
 			<div class="rightText medium-3 columns end">
+				<!-- display if username created and all questions answered -->
 				<a href="#" data-reveal-id="change-image-reveal"><button id="change-image" class="button small round light">Change image</button></a>		
 			</div>
 		</div>
@@ -32,7 +33,8 @@
 				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
 			</div>
 			<div class="rightText medium-3 columns end">
-				<a href="#" data-reveal-id="edit-name-reveal"><button id="change-name" class="button small round light">Edit name</button></a>
+				<!-- display if username created and all questions answered -->
+				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>
 			</div>
 		</div>
 		
@@ -44,10 +46,11 @@
 			</div>
 		</div>	
 		
+		<!-- display if username created and all questions answered -->
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
 				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-				<a href="#" data-reveal-id="edit-name-reveal"><button class="button tiny round light">Edit name</button></a>
+				<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
 			</div>	
 		</div>	
 		
@@ -131,18 +134,8 @@
 		
 	</div>
 
-	<div id="edit-name-reveal" class="reveal-modal" data-reveal>
-		<form id="full-name">
-			<div class="medium-8 small-12 columns end">
-				<h3>Edit name</h3>
-				<input id="last-name" type="text" placeholder="Last name" value="{{ lastName }}"/>
-				<div id="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstName }}"/></div>
-				<div>
-					<button type="submit" class="button round success">Save</button>
-					<button class="button round light">Cancel</button>
-				</div>	
-			</div>
-		</form>
+	<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
+		{% include "./zaplings/user-details-reveal.html" %}
 	</div>	
 
 		<div class="push"></div>

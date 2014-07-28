@@ -1,17 +1,16 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, NewUserEmail
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, NewUserEmail
 from django.template import RequestContext, loader
 from django.views import generic
 from django.db import IntegrityError
 import time
 import logging
 
-logging.basicConfig(level=logging.DEBUG, filename="/tmp/views.log")
-
+logging.basicConfig(level=logging.DEBUG, filename="logs/views.log")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -25,11 +24,9 @@ logger.setLevel(logging.DEBUG)
     #return render(request, 'polls/index.html', context)
     #return HttpResponse(template.render(context))
     #output = ', '.join([p.question for p in latest_poll_list])
-    #return HttpResponse(output)
-    #return HttpResponse("Hello, world. You're at the poll index.")
 class SignupView(generic.ListView):
     model = User
-    template_name = 'zaplings/signup.html'
+    template_name = 'zaplings/signup-reveal.html'
 
     #def get_queryset(self):
     #    """Return the last five published polls."""
@@ -67,10 +64,6 @@ class LovesView(generic.ListView):
         """Return the all suggested loves."""
         return Love.objects.all()
     
-class RecordLovesView(generic.ListView):
-    template_name = 'zaplings/record_loves.html'
-    context_object_name = 'selected_loves'
-
 class OffersView(generic.ListView):
     template_name = 'zaplings/offers.html'
     context_object_name = 'suggested_offers'
@@ -79,10 +72,6 @@ class OffersView(generic.ListView):
         """Return the all suggested offers."""
         return Offer.objects.all()
     
-class RecordOffersView(generic.ListView):
-    template_name = 'zaplings/record_offers.html'
-    context_object_name = 'selected_offers'
-
 class NeedsView(generic.ListView):
     template_name = 'zaplings/needs.html'
     context_object_name = 'suggested_needs'
@@ -91,14 +80,6 @@ class NeedsView(generic.ListView):
         """Return the all suggested needs."""
         return Need.objects.all()
 
-class RecordNeedsView(generic.ListView):
-    template_name = 'zaplings/record_needs.html'
-    context_object_name = 'selected_needs'
-    
-class RecordNewEmailView(generic.ListView):
-    model = User    
-    template_name = 'zaplings/index.html'
-    
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
@@ -178,39 +159,116 @@ def record_loves(request):
     if request.method == "POST":
         logger.info(request.POST)
         love_ids = request.POST.getlist(u'love-tag')
-        logger.info("Selected love ids:", love_ids)
+        logger.info("Selected love ids: %s", str(love_ids))
         selected_loves = [ Love.objects.get(id=love_id).tagname \
                            for love_id in love_ids ]
-    else:
-        selected_loves = []
-    logger.info("Selected love tags:", selected_loves)
+        logger.info("Selected love tags: %s", str(selected_loves))
+        
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username) 
     
-    userid = request.user.pk
-    logger.info("Current session userid: [%s]", request.user.username) 
+        for love_id in love_ids:
+            if not UserLove.objects.filter(user_id=request.user.pk, love_id=love_id):
+                UserLove.objects.create(user_id=request.user.pk, love_id=love_id)
+        # user loves
+        #user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+        #user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
+        #return render(request, 'zaplings/profile-text.html', {
+        #    'user_lovetags': user_lovetags
+        #})
+        suggested_offers = Offer.objects.all()
+        return render(request, 'zaplings/offers.html', {
+            'suggested_offers': suggested_offers
+        })
+    else:
+        return redirect('zaplings:loves')
 
-    for love_id in love_ids:
-        if not UserLove.objects.filter(user_id=request.user.pk, love_id=love_id):
-            UserLove.objects.create(user_id=request.user.pk, love_id=love_id)
-    # user loves
-    user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
-    user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
-    return render(request, 'zaplings/profile-text.html', {
-        'user_lovetags': user_lovetags
-    })
+def record_offers(request):
+    if request.method == "POST":
+        logger.info(request.POST)
+        offer_ids = request.POST.getlist(u'offer-tag')
+        logger.info("Selected offer ids: %s", str(offer_ids))
+        selected_offers = [ Offer.objects.get(id=offer_id).tagname \
+                           for offer_id in offer_ids ]
+        logger.info("Selected offer tags: %s", str(selected_offers))
+        
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username) 
+    
+        for offer_id in offer_ids:
+            if not UserOffer.objects.filter(user_id=request.user.pk, offer_id=offer_id):
+                UserOffer.objects.create(user_id=request.user.pk, offer_id=offer_id)
+        # user loves
+        #user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+        #user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
+        # user offers
+        #user_offers = [offer.offer_id for offer in UserOffer.objects.filter(user_id=userid)]
+        #user_offertags = [Offer.objects.get(id=offer_id).tagname for offer_id in user_offers]
+        #return render(request, 'zaplings/profile-text.html', {
+        #    'user_lovetags': user_lovetags,
+        #    'user_offertags': user_offertags
+        #})
+        suggested_needs = Need.objects.all()
+        return render(request, 'zaplings/needs.html', {
+            'suggested_needs': suggested_needs
+        })
+    else:
+        return redirect('zaplings:loves')
+
+def record_needs(request):
+    if request.method == "POST":
+        logger.info('POST request: %s', str(request.POST))
+        need_ids = request.POST.getlist(u'need-tag')
+        logger.info("Selected need ids: %s", str(need_ids))
+        selected_needs = [ Need.objects.get(id=need_id).tagname \
+                           for need_id in need_ids ]
+        logger.info("Selected need tags: %s", str(selected_needs))
+        
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username) 
+    
+        for need_id in need_ids:
+            if not UserNeed.objects.filter(user_id=request.user.pk, need_id=need_id):
+                UserNeed.objects.create(user_id=request.user.pk, need_id=need_id)
+        # user loves
+        user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
+        user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
+         # user offers
+        user_offers = [offer.offer_id for offer in UserOffer.objects.filter(user_id=userid)]
+        user_offertags = [Offer.objects.get(id=offer_id).tagname for offer_id in user_offers]
+        # user needs
+        user_needs = [need.need_id for need in UserNeed.objects.filter(user_id=userid)]
+        user_needtags = [Need.objects.get(id=need_id).tagname for need_id in user_needs]
+        return render(request, 'zaplings/profile-text.html', {
+            'user_lovetags': user_lovetags,
+            'user_offertags': user_offertags,
+            'user_needtags': user_needtags
+        })
+    else:
+        logger.info('GET request: %s', str(request.GET))
+        return redirect('zaplings:loves')
 
 def record_new_email(request):
     email = request.POST['email']
     status_message = {'REENTER': 'Please enter your email.',
                       'EXISTS': 'You are already part of Zaplings! Thanks!',
                       'SUCCESS': 'Thank you for joining Zaplings!'}
-
+    # REENTER
     if not email or email == "" or not '@' in email:
         status = 'REENTER'
         logger.info('Empty email submitted')
+    # EXISTS
     elif NewUserEmail.objects.filter(email=email):
-        logger.info('User [%s] already exists.', email)
+        logger.info('Email [%s] has already been submitted.', email)
+        # create django user if needed
+        if not User.objects.filter(username=email):
+            newuser = User.objects.create_user(email)
+            newuser.set_password('')
+            newuser.save()
+            logger.info('Created user [%s]', email)
         login_email(request, email)
         status = 'EXISTS'
+    # NEW
     else:
         # create new user (email, '')
         NewUserEmail.objects.create(email=email)
@@ -220,20 +278,108 @@ def record_new_email(request):
             newuser.set_password('')
             newuser.save()
             status= 'SUCCESS'
-            logger.info('Create user [%s]', email)
+            logger.info('Created user [%s]', email)
         except IntegrityError:
             logger.info('User [%s] already exists.', email)
             status = 'EXISTS'
         login_email(request, email)
-              
-    return render(request, 'zaplings/index.html', {
-        'status_message': status_message[status],
-        'featured_ideas': FeaturedIdea.objects.all()
-    })
+    
+    request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
+                    'status_message': status_message[status] }
+    # return back to index for the time-being
+    return render(request, 'zaplings/index.html', request_obj) 
+           #if status == 'REENTER' else \
+           #redirect('/loves/')
+
+def signup_user(request):
+    status_message = { 'PASSWORD_VERIFY': 'Passwords do not match!',
+                       'PASSWORD_EMPTY': 'Please type in your password',
+                       'NAME_EMPTY': 'Please enter your name',
+                       'EMAIL_EMPTY': 'Please enter your email',
+                       'EMAIL_EXISTS': 'User is already registered with this email',
+                       'USERNAME_EMPTY': 'Please pick a username',
+                       'USERNAME_EXISTS': 'This username already exists',
+                       'USER_UPDATED': 'Thank you for joining Zaplings!',
+                       'USER_CREATED': 'Thank you for joining Zaplings!' }
+    try:
+        email = request.POST['user-email']
+        firstname = request.POST['user-firstname']
+        lastname = request.POST['user-lastname']
+        username = request.POST['user-username']
+        password = request.POST['user-password']
+        password_verify = request.POST['user-password-verify']
+
+        status = ''
+        if password == password_verify:
+            if password:
+                password_valid = password
+            else:
+                status = 'PASSWORD_EMPTY'
+        else:
+            status = 'PASSWORD_VERIFY'
+   
+        if not email:
+            status = 'EMAIL_EMPTY'
+        if not firstname or not lastname:
+            status = 'NAME_EMPTY'
+        if not username:
+            status = 'USERNAME_EMPTY'
+        if User.objects.filter(username=username):
+            status = 'USERNAME_EXISTS'
+        if User.objects.filter(email=email):
+            status = 'EMAIL_EXISTS'
+
+        failure_keys = [key for key in status_message.keys() if 'USER_' not in key]
+        if not status in failure_keys:
+            if User.objects.filter(username=email):
+                user = User.objects.get(username=email)
+                user.username = username
+                user.email = email
+                status = 'USER_UPDATED'
+            else:
+                user = User.objects.create_user(username=username, 
+                                                email=email)
+                status = 'USER_CREATED'
+            user.first_name = firstname
+            user.last_name = lastname
+            user.set_password(password_valid)
+            user.save()
+            user = authenticate(username=username, password=password_valid)
+            if user is not None and user.is_active:
+                login(request, user)
+                logger.info('Logged in [%s]', user.username)
+            # user loves
+            user_loves = [ love.love_id \
+                           for love in UserLove.objects.filter(user_id=user.pk) ]
+            user_lovetags = [ Love.objects.get(id=love_id).tagname \
+                              for love_id in user_loves ]
+             # user offers
+            user_offers = [ offer.offer_id \
+                            for offer in UserOffer.objects.filter(user_id=user.pk) ]
+            user_offertags = [ Offer.objects.get(id=offer_id).tagname \
+                               for offer_id in user_offers ]
+            # user needs
+            user_needs = [ need.need_id \
+                           for need in UserNeed.objects.filter(user_id=user.pk) ]
+            user_needtags = [ Need.objects.get(id=need_id).tagname \
+                              for need_id in user_needs ]
+            return render(request, 'zaplings/profile-text.html', {
+                'user_lovetags': user_lovetags,
+                'user_offertags': user_offertags,
+                'user_needtags': user_needtags
+            })
+        else:
+            request_obj = { 'status_message': status_message[status] }
+            # return back to index for the time-being
+            return render(request, 'zaplings/signup-reveal.html', request_obj) 
+    except Exception as e:
+        request_obj = { 'status_message': e.message }
+        # return back to index for the time-being
+        return render(request, 'zaplings/signup-reveal.html', request_obj) 
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
-    # extra check enforces for active users
+    # extra check enforced for active users
     if user is not None and user.is_active:
         login(request, user)
         logger.info('Logged in [%s]', email)
@@ -275,10 +421,7 @@ def login_email_password(request):
         #return HttpResponse(success_message % email)
         
         return render(request, 'zaplings/profile-love.html', {
-            'username': user.get_username(),
-            'user': user
+            'username': user.get_username()
         })
 
         #return HttpResponseRedirect(reverse('polls:profile', args=(user.id,)))
-
-

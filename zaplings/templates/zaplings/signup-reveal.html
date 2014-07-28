@@ -1,16 +1,21 @@
 <div class="row">
 	<div class="centerText medium-8 medium-offset-2 columns end">
-		<form id="form-signup">
+		<form id="form-signup" action="{% url 'zaplings:signup_user' %}" method="post"/>
+                        {% csrf_token %}  
 			<h3>Sign up</h3>
-				<input id="email" type="email" placeholder="Email" value="{{ user.email }}" tabindex="1" />
-				<input id="last-name" type="text" placeholder="Last name" tabindex="3" />
-				<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" tabindex="2" /></div>
+				<input id="email" type="email" placeholder="Email" name="user-email" value="{{ user.username }}"/>
+				<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
+				<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
 				<span class="fit-left">zaplings.com/</span>
-				<span class="input-sizer"><input id="username" type="text" placeholder="username" tabindex="4" /></span>
-				<input id="verify" type="password" placeholder="Verify password" tabindex="6"/>
-				<div class="overflow-div"><input id="password" type="password" placeholder="Password" tabindex="5" /></div>
-				<button type="submit" class="button success round">Create profile</button>
-				<div class="add-margin-top">or <a href="#" data-reveal-id="login-reveal">Log in</a></div>
+				<span class="input-sizer"><input id="username" name="user-username" type="text" placeholder="username"/></span>
+				<input id="verify" type="password" name="user-password" placeholder="Verify password">
+				<div class="overflow-div"><input id="password" type="password" name="user-password-verify" placeholder="Password"/></div>
+                                {% if status_message %}
+                                    <p id="status_message"> {{ status_message }}</p>
+                                {% else %}
+				    <button type="submit" class="button success round">Create profile</button>
+				    <div class="add-margin-top">or <a href="#" data-reveal-id="login-reveal">Log in</a></div>
+                                {% endif %}
 		</form>
 	</div>
 </div>
