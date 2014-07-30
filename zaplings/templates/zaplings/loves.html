@@ -9,6 +9,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "js/vendor/modernizr.js" %}"></script>
     <script src="{% static "js/vendor/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
 
   </head>
   <body>
@@ -17,16 +18,17 @@
 
 		{% include "./zaplings/header.html" %}
 	  		
-		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you love?</h2>
+		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds (or more):<br> What do you love?</h2>
 		<form id="love-tags" action="{% url "zaplings:record_loves" %}" method="post">
 		    {% csrf_token %}
 	  		<div class="row">
 				<div class="large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I love... (press return to add)"/>
-					<div class="continue-delay hidden">Take as much time as you need!
+					<div class="continue-delay hidden">Keep going! More tags allow stronger connections.
 						<div class="continue-tags">
-							<a href="#" data-reveal-id="signup-reveal"><button class="button round small light">Save</button></a>
-							<button type="submit" class="button success round small">Next: What do you offer?</button>
+							<a href="{% url "zaplings:offers" %}">
+								<button type="submit" class="button success round small">Next: What do you offer?</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -100,8 +102,6 @@
 				var values = $('#love-tags').serialize();
 			});
 		});
-		
-
 	</script>
  
  </body>

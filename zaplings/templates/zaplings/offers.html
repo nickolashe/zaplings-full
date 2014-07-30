@@ -15,7 +15,7 @@
 	<div class="wrapper">
 	  {% include "./zaplings/header.html" %}
 	  
-		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds: What do you offer?</h2>
+		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds (or more):<br>What do you offer?</h2>
 		<form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
 		    {% csrf_token %}
 	  		<div class="row">
@@ -23,7 +23,6 @@
 					<input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
 					<div class="continue-delay hidden">Take as much time as you need!
 						<div class="continue-tags">
-							<a href="#" data-reveal-id="signup-reveal"><button class="button round small light">Save</button></a>
 							<button type="submit" class="button success round small">Next: What do you need?</button>
 						</div>
 					</div>
@@ -100,9 +99,11 @@
 				var values = $('#offer-tags').serialize();
 			});
 		});
-		
-
 	</script>
-	
+	<script type="text/javascript">
+		window.onbeforeunload = function(e) {
+		    return 'Your answers will not be saved until you click the "Next" button.';
+		};
+	</script>
   </body>
 </html>

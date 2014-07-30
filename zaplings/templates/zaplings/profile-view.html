@@ -91,66 +91,85 @@
 				</div>
 			</div>
 
+			<!-- if loves is answered -->
 			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I love</h4>
-					<!-- user.love-text -->
+				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+					<h4 class="section-header">What I love</h4>	
+					<!-- add textbox if all questions answered -->
+					<p>{{ love_text }}</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
-					
-				{% for love in user.loves %}	
-				
-					<input id="love-{{ user.love-id }}" class="vis-hidden" type="checkbox" name="love-tag[]" value="{{ love }}">
-						<label class="tag button small round" for="love-{{ user.love-id }}">{{ love }}</label>
-						
-				{% endfor %}		
-				
+				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				{% for tag in user_lovetags %} 
+                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
+					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
+				{% endfor %}				
+					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
-			
+				
+			<!-- if offers answered -->
 			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
+				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
-					<!-- user.offer_text -->
+					<!-- add textbox if all questions answered -->
+					<p>{{ offer_text }}</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
+				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">	
+					{% for tag in user_offertags %} 
+	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
+	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
+					{% endfor %}	
 					
- 				{% for offer in user.offers %}	
-				
- 					<input id="offer-{{ offer-id }}" class="vis-hidden" type="checkbox" name="offer-tag[]" value="{{ offer }}">
- 						<label class="tag button small round" for="offer-{{ offer.id }}">{{ offer }}</label>
-						
- 				{% endfor %}	
+					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				</div>
+			</div>
 
-				</div>		
-			</div>
+			<!-- if needs answered -->
 			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
+				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
-					<!-- user.need_text -->
+					<!-- add textbox if all questions answered -->
+					<p>{{ need_text }}</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
-					
-					{% for need in user.needs %}	
-				
-						<input id="need-{{ need-id }}" class="vis-hidden" type="checkbox" name="need-tag[]" value="{{ need }}">
-							<label class="tag button small round" for="need-{{ need-id }}">{{ need }}</label>
-						
+				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+					{% for tag in user_needtags %} 
+                        <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
+                        <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
 					{% endfor %}
 					
-				</div>		
-			</div>
-		</form>	
-				<div class="push"></div>
+					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				</div>
 			</div>
 
-			{% include "./zaplings/footer.html" %}
+			<!-- if all questions answered -->
+			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+
+<!-- included for all -->
+		</form>
+
+		<div id="change-image-reveal" class="reveal-modal" data-reveal>
+			<h3>Change profile image</h3>
+			
+		</div>
+
+		<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/user-details-reveal.html" %}
+		</div>	
+
+		<div id="badges-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/badges-reveal.html" %}
+		</div>
+
+		<div class="push"></div>
+	</div>
+
+	{% include "./zaplings/footer.html" %}
 
 		<script src="{% static "js/foundation.min.js" %}"></script>		
 		<script type="text/javascript">
