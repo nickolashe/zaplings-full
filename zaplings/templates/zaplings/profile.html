@@ -49,7 +49,9 @@
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 				<!-- if user has created username -->
 				{% if firstname != "" %}
-				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }} </h3>	
+				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }} </h3>
+				{% else %}
+				<h3 class="centerText">{{ username }}</h3>	
 				{% endif %}	
 			</div>
 		</div>	
