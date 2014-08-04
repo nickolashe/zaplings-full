@@ -3195,10 +3195,10 @@ h2 {
   font-size: 1.6875rem; }
 
 h3 {
-  font-size: 1.375rem; }
+  font-size: 1.475rem; }
 
 h4 {
-  font-size: 1.125rem; }
+  font-size: 1.375rem; }
 
 h5 {
   font-size: 1.125rem; }
@@ -7567,7 +7567,6 @@ input:hover:checked + label {
   margin-bottom: 0.5rem; }
 
 .section-header {
-  width: 100%;
   margin: 2rem 0.5rem 1rem 0; }
 
 #idea-slider {
@@ -7575,6 +7574,9 @@ input:hover:checked + label {
 
 #edit-profile {
   margin-top: 4.5rem; }
+
+#edit-user-details-reveal {
+  top: 3rem; }
 
 #idea-sort-box {
   list-style-type: none;

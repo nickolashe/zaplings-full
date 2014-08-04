@@ -22,22 +22,22 @@
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 			</div>
 
-			<!-- display "edit profile" button if visitor = user -->
+			<!-- display "edit profile" button if visitor = user. Add link to profile.html -->
 			<div class="rightText medium-3 columns end">
-				<button id="edit-profile" class="button small round light">Edit profile</button>		
+				<a href="#"><button id="edit-profile" class="button small round light">Edit profile</button></a>
 			</div>
 		</div>
 		
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
-				<h3 class="centerText">{{ firstName }} {{ lastName }}</h3>
+				<h3 class="centerText">{{ firstname }} {{ lastname }}</h3>
 			</div>
 		</div>
 		
 		<div class="row show-for-small-only">
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">{{ firstName }} {{ lastName }}</h3>		
+				<h3 class="centerText">{{ firstname }} {{ lastname }}</h3>		
 			</div>
 		</div>	
 		
@@ -61,8 +61,8 @@
 				<div class="medium-4 small-6 medium-offset-2 columns">
 					<h4 class="section-header">My ideas</h4>
 				</div>
-				<div class="rightText medium-4 small-6 columns">
-					<a href="#"><button class="button small success round">Add new</button></a>
+				<div class="rightText medium-5 small-6 columns end">
+					<a href="#"><button class="section-header button small success round">Add new</button></a>
 				</div>
 			</div>
 			<div class="row">
@@ -93,14 +93,14 @@
 
 			<!-- if loves is answered -->
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I love</h4>	
 					<!-- add textbox if all questions answered -->
 					<p>{{ love_text }}</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 				{% for tag in user_lovetags %} 
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
@@ -111,14 +111,14 @@
 				
 			<!-- if offers answered -->
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
 					<!-- add textbox if all questions answered -->
 					<p>{{ offer_text }}</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">	
+				<div class="medium-8 small-12 medium-offset-2 columns">	
 					{% for tag in user_offertags %} 
 	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
@@ -130,14 +130,14 @@
 
 			<!-- if needs answered -->
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
 					<!-- add textbox if all questions answered -->
 					<p>{{ need_text }}</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					{% for tag in user_needtags %} 
                         <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
                         <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>

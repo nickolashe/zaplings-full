@@ -5,22 +5,31 @@
  */
 var validNavigation = false;
  
-function endSession() {
-  // Browser or broswer tab is closed
-  // Do sth here ...
-  alert("Your answers will not be saved until you click the "Next" button.");
-}
- 
 function wireUpEvents() {
   /*
   * For a list of events that triggers onbeforeunload on IE
   * check http://msdn.microsoft.com/en-us/library/ms536907(VS.85).aspx
   */
-  window.onbeforeunload = function() {
+  var dont_confirm_leave = 0; //set dont_confirm_leave to 1 when you want the user to be able to leave withou confirmation
+    var leave_message = 'Your answers will not be saved until you click the "Next" button.'
+    function goodbye(e) {
       if (!validNavigation) {
-         endSession();
+        if (dont_confirm_leave!==1) {
+          if(!e) e = window.event;
+          //e.cancelBubble is supported by IE - this will kill the bubbling process.
+          e.cancelBubble = true;
+          e.returnValue = leave_message;
+          //e.stopPropagation works in Firefox.
+          if (e.stopPropagation) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+          //return works for Chrome and Safari
+          return leave_message;
+        }
       }
-  }
+    }
+    window.onbeforeunload=goodbye;
  
   // Attach the event keypress to exclude the F5 refresh
   $(document).bind('keypress', function(e) {

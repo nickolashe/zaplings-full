@@ -32,7 +32,9 @@
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
 				<!-- if user has created username -->
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
+				{% if firstname != "" %}
+				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }}</h3>
+				{% endif %}
 			</div>
 			<div class="rightText medium-3 columns end">
 				<!-- display if username created and all questions answered -->
@@ -44,11 +46,14 @@
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 				<!-- if user has created username -->
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>		
+				{% if firstname != "" %}
+				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }} </h3>	
+				{% endif %}	
 			</div>
 		</div>	
 		
 		<!-- display if username created and all questions answered -->
+		{% if firstname != "" and love_tags   and offer_tags   and need_tags   %}
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
 				<div>
@@ -62,24 +67,39 @@
 					<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
 			</div>	
 		</div>	
-		
+		{% endif %}
 
 		
 		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
 		<div class="row">
-			<div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
+			<div id="profile-info" class="medium-8 small-12 medium-offset-2 columns">
+				{% if love_tags == "" %}
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
+			{% endif %}
+			{% if offer_tags == "" %}
+				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
+				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
+				<button class="intro-questions button small disabled round">Create account</button>
+			{% endif %}
+			{% if need_tags == "" %}
+				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
+				<button class="intro-questions button small disabled round">Create account</button>
+			{% endif %}
+			{% if firstname == "" %}
+				<button class="intro-questions button large success round">Create account</button>
+			{% endif %}
 			</div>
 		</div>
 		
 		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
 		    {% csrf_token %}
 		<!-- if all questions answered -->
+		{% if firstname  and love_tags   and offer_tags   and need_tags   %}
 			<div class="row">
-					<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">My public ideas</h4>
 						<!-- if user has no public ideas -->
 						<p>To display this section, make an idea public.</p>
@@ -111,17 +131,19 @@
 						</ul>
 					</div>
 				</div>
+			{% endif %}
 
 			<!-- if loves is answered -->
+			{% if love_tags   %}
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I love</h4>	
 					<!-- add textbox if all questions answered -->
 					<textarea id="love-text" rows="2" placeholder="How can you help others create?" name="love_text"/></textarea>
 				</div>
 			</div>
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 				{% for tag in user_lovetags %} 
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
@@ -129,17 +151,19 @@
 					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
+			{% endif %}
 				
 			<!-- if offers answered -->
+			{% if offer_tags   %}
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
 					<!-- add textbox if all questions answered -->
 					<textarea id="offer-text" rows="2" placeholder="How can you help others create?" name="offer_text"/></textarea>
 				</div>
 			</div>
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">	
+				<div class="medium-8 small-12 medium-offset-2 columns">	
 					{% for tag in user_offertags %} 
 	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
@@ -148,17 +172,19 @@
 					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
+			{% endif %}
 
 			<!-- if needs answered -->
+			{% if need_tags   %}
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
 					<!-- add textbox if all questions answered -->
 					<textarea id="need-text" rows="2" placeholder="How can you help others create?" name="need_text"/></textarea>
 				</div>
 			</div>
 			<div class="row">
-				<div class="large-8 medium-10 small-12 medium-offset-1 large-offset-2 columns">
+				<div class="medium-8 small-12 medium-offset-2 columns">
 					{% for tag in user_needtags %} 
                         <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
                         <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
@@ -167,9 +193,12 @@
 					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
+			{% endif %}
 
 			<!-- if all questions answered -->
+			{% if firstname != "" and love_tags   and offer_tags   and need_tags   %}
 			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+			{% endif %}
 
 <!-- included for all -->
 		</form>
