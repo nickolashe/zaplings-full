@@ -9,6 +9,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "./js/vendor/modernizr.js" %}"></script>
 	<script src="{% static "./js/vendor/jquery.js" %}"></script>
+	<script src="{% static "./js/jquery-ui-1.11.0.custom/jquery-ui.min.js" %}"></script>
+	<script src="{% static "./js/jquery.ui.touch-punch.min.js" %}"></script>
 	
   </head>
   <body>
@@ -30,7 +32,11 @@
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
 				<!-- if user has created username -->
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
+				{% if firstname %}
+				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }}</h3>
+				{% else %}
+				<h3 class="centerText">{{ username }}</h3>
+				{% endif %}
 			</div>
 			<div class="rightText medium-3 columns end">
 				<!-- display if username created and all questions answered -->
@@ -42,101 +48,172 @@
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 				<!-- if user has created username -->
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>		
+				{% if firstname != "" %}
+				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }} </h3>	
+				{% endif %}	
 			</div>
 		</div>	
 		
 		<!-- display if username created and all questions answered -->
+		{% if firstname != "" and love_tags   and offer_tags   and need_tags   %}
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
-				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-				<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
+				<div>
+					<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
+					<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
+				</div>
+				<div>
+					<button data-reveal-id="badges-reveal" class="button round success">Earn badges</button>
+				</div>
+					<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
+					<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
 			</div>	
 		</div>	
-		
+		{% endif %}
 
 		
 		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
 		<div class="row">
-			<div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
-				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a></div>
+			<div id="profile-info" class="medium-8 small-12 medium-offset-2 columns">
+				{% if love_tags == null %}
+				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
-				<!-- if username has not been created -->
-				<a href="#" data-reveal-id="signup-reveal"><button class="intro-questions button round small disabled">Save profile</button></a>
+				<button class="intro-questions button small disabled round">Create account</button>
+			{% elif offer_tags == null %}
+				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
+				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
+				<button class="intro-questions button small disabled round">Create account</button>
+			{% elif need_tags == null %}
+				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
+				<button class="intro-questions button small disabled round">Create account</button>
+			{% elif firstname == null %}
+				<button class="intro-questions button large success round">Create account</button>
+			{% endif %}
 			</div>
 		</div>
-	<form id="form-profile">
-
-		<!-- if loves is answered -->
-		<div class="row">
-			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
-				<h4 class="section-header">What I love</h4>
-				<!-- add textbox if all questions answered -->
-				<textarea id="love-text" rows="2" placeholder="How can you help others create?"/></textarea>
-			</div>
-		</div>
-		<div class="row">
-			<div class="centerText medium-8 small-12 medium-offset-2 columns">
-				<!-- selected love tags -->
-				<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1"/>
-					<label class="tag button small light round" for="love-1">love tag 1</label>
-				<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
-			</div>
-		</div>
-			
-		<!-- if offers answered -->
-		<div class="row">
-			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
-				<h4 class="section-header">What I offer</h4>
-				<!-- add textbox if all questions answered -->
-				<textarea id="offer-text" rows="2" placeholder="How can you help others create?"/></textarea>
-			</div>
-		</div>
-		<div class="row">
-			<div class="centerText medium-8 small-12 medium-offset-2 columns">
-				<!-- selected offer tags -->	
-				<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
-					<label class="tag button small light round" for="offer-1">offer tag 1</label>
-				
-				<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
-			</div>
-		</div>
-
-		<!-- if needs answered -->
-		<div class="row">
-			<div class="large-4 medium-5 small-6 medium-offset-1 large-offset-2 columns">
-				<h4 class="section-header">What I need</h4>
-				<!-- add textbox if all questions answered -->
-				<textarea id="need-text" rows="2" placeholder="How can you help others create?"/></textarea>
-			</div>
-		</div>
-		<div class="row">
-			<div class="centerText medium-8 small-12 medium-offset-2 columns">
-				<!-- selected offer tags -->	
-				<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
-					<label class="tag button small light round" for="need-1">need tag 1</label>
-				
-				<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
-			</div>
-		</div>
-
+		
+		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
+		    {% csrf_token %}
 		<!-- if all questions answered -->
-		<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+		{% if firstname  and love_tags   and offer_tags   and need_tags   %}
+			<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">My public ideas</h4>
+						<!-- if user has no public ideas -->
+						<p>To display this section, make an idea public.</p>
 
+						<!-- if user has idea -->
+						<p>Drag and drop icons to set the display order of your ideas.</p>
+						<!-- for idea in user.ideas (add image and title variables) -->
+						<ul id="idea-sort-box">
+							<li>
+								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<p class="aside sort-title">Ideatitlecropped</p>
+							</li>
+							<li>
+								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<p class="aside sort-title">Idea title cropped</p>
+							</li>
+							<li>
+								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<p class="aside sort-title">Idea title cropped</p>
+							</li>
+							<li>
+								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<p class="aside sort-title">Idea title cropped</p>
+							</li>
+							<li>
+								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<p class="aside sort-title">Idea title cropped</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			{% endif %}
 
+			<!-- if loves is answered -->
+			{% if love_tags   %}
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">
+					<h4 class="section-header">What I love</h4>	
+					<!-- add textbox if all questions answered -->
+					<textarea id="love-text" rows="2" placeholder="How can you help others create?" name="love_text"/></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">
+				{% for tag in user_lovetags %} 
+                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
+					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
+				{% endfor %}				
+					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				</div>
+			</div>
+			{% endif %}
+				
+			<!-- if offers answered -->
+			{% if offer_tags   %}
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">
+					<h4 class="section-header">What I offer</h4>
+					<!-- add textbox if all questions answered -->
+					<textarea id="offer-text" rows="2" placeholder="How can you help others create?" name="offer_text"/></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">	
+					{% for tag in user_offertags %} 
+	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
+	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
+					{% endfor %}	
+					
+					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				</div>
+			</div>
+			{% endif %}
+
+			<!-- if needs answered -->
+			{% if need_tags   %}
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">
+					<h4 class="section-header">What I need</h4>
+					<!-- add textbox if all questions answered -->
+					<textarea id="need-text" rows="2" placeholder="How can you help others create?" name="need_text"/></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">
+					{% for tag in user_needtags %} 
+                        <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
+                        <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
+					{% endfor %}
+					
+					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				</div>
+			</div>
+			{% endif %}
+
+			<!-- if all questions answered -->
+			{% if firstname != "" and love_tags   and offer_tags   and need_tags   %}
+			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+			{% endif %}
 
 <!-- included for all -->
-	</form>
+		</form>
 
-	<div id="change-image-reveal" class="reveal-modal" data-reveal>
-		<h3>Change profile image</h3>
-		
-	</div>
+		<div id="change-image-reveal" class="reveal-modal" data-reveal>
+			<h3>Change profile image</h3>
+			
+		</div>
 
-	<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
-		{% include "./zaplings/user-details-reveal.html" %}
-	</div>	
+		<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/user-details-reveal.html" %}
+		</div>	
+
+		<div id="badges-reveal" class="reveal-modal" data-reveal>
+			{% include "./zaplings/badges-reveal.html" %}
+		</div>
 
 		<div class="push"></div>
 	</div>
@@ -148,6 +225,15 @@
 	<script type="text/javascript">
 	  $(document).foundation();
 	</script>	
+	<script type="text/javascript">
+			$(document).ready(function(){
+				$('#idea-sort-box').sortable();
+				$('#idea-sort-box').disableSelection();
+				$('#form-profile').submit(function(){
+					var sorted = $( "#idea-sort-box" ).sortable( "serialize", { key: "sort" } );
+				});
+			});
+		</script>
 	
 
   </body>

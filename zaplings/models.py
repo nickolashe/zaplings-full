@@ -52,6 +52,18 @@ class UserOffer(models.Model):
 class NewUserEmail(models.Model):
     email = models.EmailField(max_length=60, unique=True)
 
+class LoveText(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    text = models.CharField(max_length=1000)
+
+class OfferText(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    text = models.CharField(max_length=1000)
+
+class NeedText(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    text = models.CharField(max_length=1000)
+
       #def was_published_recently(self):
     #    return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 

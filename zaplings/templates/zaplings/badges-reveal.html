@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<div class="row">
+	<h3>Earn badges</h3>
+	<p>You have the opportunity to be recognized and rewarded for sharing your time and talents on Zaplings. Get started on these two badges today, and we will add more as we grow.</p>
+	<h5>Connector</h5>
+	<img id="connector-large" src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold.png" %}'" alt="Connector badge" title="Connector badge" width="100px" height="100px"/>
+	<p>Earn this badge by inviting others to the community and making meaningful introductions for friends on Zaplings. You will be rewarded with introductions to other top Connectors to build your network further.</p>
+	<a href="#"><button class="button round success">Introduce Zaplings</button></a>
+</div>
+<div class="row">
+	<h5>Creator</h5>
+	<img id="creator-large" src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver.png" %}'" alt="Connector badge" title="Connector badge" width="100px" height="100px"/>
+	<p>Earn this badge by sharing ideas publicly on Zaplings. Ideas need a +3 score or above to count towards your Creator badge. (The community votes with + or - buttons.) Your ideas will be more likely to be featured, and you will be introduced to top Connectors and eventually to Mentors.</p>
+	<a href="{% url "zaplings:share" %}"><button class="button round success">Share an idea</button></a>
+</div>
+<div class="row">
+	<p>Gold badges are awarded to the top 10% of the community, silver to the top 20%, and bronze to the top 40%. Just because you earn a badge doesn't mean it's yours forever, so keep up the good work!</p>
+</div>
+<button class="close-reveal-modal button light small round">Got it!</button>

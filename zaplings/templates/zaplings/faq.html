@@ -1,0 +1,63 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Grow.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<script src="{% static "js/vendor/modernizr.js" %}"></script>
+		<script src="{% static "js/vendor/jquery.js" %}"></script>
+
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+	  		
+			<h2 class="titleCenter">Frequently asked questions</h2>
+
+	
+
+			<div class="row">
+				<div class="medium-8 medium-offset-2 small-12 columns end">
+					<h5>Why should I share my idea? Won't someone steal it?</h5>
+					<p>Fear kills, and Fear of the Stolen Idea claims countless creations before they ever have a chance.  It is largely a myth - ideas are rarely stolen. (People love their own ideas way more.) This is the first of many fears and obstacles you'll need to face to create and thrive.</p>
+					<p>It's much more likely that your idea needs work. Your "big idea" requires the support of many more specific ideas about what to do and how to do it in order to become a reality. The best way to figure out these details is to start talking about it. The feedback you receive will inspire all sorts of possibilities that your single mind would have never explored on its own.</p>
+					<p>The irony is, the longer your idea stays stuck in your head, the more likely it is that someone else will act on their similar idea independently. Whatever inspired the idea in you will inspire some of the other billions of people too. Luckily, they too have fears to face.</p>
+					<h5>Why shouldn't I worry about my idea being stolen?</h5>
+					<p>Here are a few reasons, you may find others:</p>
+					<ul>
+						<li>“Don't worry about people stealing your ideas. If your ideas are any good, you'll have to ram them down people's throats.”—Howard Aiken</li>
+						<li>There are infinite possibilities for things to create, and your idea is just one.</li>
+						<li>It's only "your idea" if you make it yours by doing it.</li>
+						<li>If you're saying "Someday I'll have what I need to start this", you're fooling yourself. You already have it, and "someday" is an illusion. Start today.</li>
+					</ul>
+					<h5>Can I keep my ideas private on Zaplings?</h5>
+					<p>Yes! Every idea starts in your provate idea book. When you are ready to move forward, you can create a public idea page to get feedback and seek support.</p>
+					<h5>Is Zaplings only for "idea people"?</h5>
+					<p>Nope! A strong team requires many different skills and strengths, and a team of just thinkers would probably never get anything done.</p>
+					<p>Zaplings is a place to find ideas that inspire you. Our hope is that you will want to help make them happen. You choose your level of engagement - anywhere from a half hour conversation to a full partnership in creation.</p>
+					<h5>What does the future hold for Zaplings?</h5>
+					<p>We're curious to find out too! As the community grows, we will start testing introductions with our first users to make sure we are suggesting valuable conversations. We will also be looking to make sure we are giving different types of creators the functionality and flexibility they need to share ideas effectively.</p>
+					<p>We are committed to being open about how we intend to grow, and we want you to be involved in that process. <!-- Take a look at our [agile development list] to see what we're working on next. -->We'd love to hear your suggestions!</p>
+					<textarea id="ask-question" rows="3" placeholder="Ask another question"></textarea>
+					<button style="submit" class="button round success">Send</button>
+				</div>
+			</div>
+		
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+	</body>
+</html>

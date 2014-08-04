@@ -9,6 +9,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "./js/vendor/modernizr.js" %}"></script>
 	<script src="{% static "./js/vendor/jquery.js" %}"></script>
+	<script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
   </head>
   <body>
 	  
@@ -21,9 +22,8 @@
 	  		<div class="row">
 				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I need... (press return to add)"/>
-					<div class="continue-delay hidden">Take as much time as you need!
+					<div class="continue-delay hidden">Nice job! Anything else you could use?
 						<div class="continue-tags">
-							<a href="#" data-reveal-id="signup-reveal"><button class="button round small light">Save</button></a>
 							<button type="submit" class="button success round small">Next: Go to profile!</button>
 						</div>
 					</div>
@@ -100,9 +100,11 @@
 				var values = $('#need-tags').serialize();
 			});
 		});
-		
-
 	</script>
-	
+	<script type="text/javascript">
+		window.onbeforeunload = function(e) {
+		    return 'Your answers will not be saved until you click the "Next" button.';
+		};
+	</script>
   </body>
 </html>
