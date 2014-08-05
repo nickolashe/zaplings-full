@@ -30,14 +30,14 @@
 		
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
-				<h3 class="centerText">{{ firstname }} {{ lastname }}</h3>
+				<h3 class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
 			</div>
 		</div>
 		
 		<div class="row show-for-small-only">
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">{{ firstname }} {{ lastname }}</h3>		
+				<h3 class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>		
 			</div>
 		</div>	
 		

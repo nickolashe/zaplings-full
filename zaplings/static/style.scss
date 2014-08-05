@@ -7367,6 +7367,7 @@ th.hide-for-touch {
 }
 
 
+
 // Sticky footer
  
 .wrapper {
@@ -7418,16 +7419,16 @@ th.hide-for-touch {
     color:    #666;
 }
 
-// Menu Styles
+/* Menu Styles */
 
 .third-level-menu
 {
     position: absolute;
     top: 0;
-    right: -150px;
+    right: 150px;
     width: 150px;
     list-style: none;
-    padding: 0.5rem 1rem;
+    padding: 0;
     margin: 0;
     display: none;
 }
@@ -7435,9 +7436,9 @@ th.hide-for-touch {
 .third-level-menu > li
 {
     height: 30px;
-    background: #05325b;
+    background: #999999;
 }
-.third-level-menu > li:hover { background: #3a579e; }
+.third-level-menu > li:hover { background: #CCCCCC; }
 
 .second-level-menu
 {
@@ -7446,7 +7447,7 @@ th.hide-for-touch {
     left: 0;
     width: 150px;
     list-style: none;
-    padding: 0.5rem 1rem;
+    padding: 0;
     margin: 0;
     display: none;
 }
@@ -7455,38 +7456,33 @@ th.hide-for-touch {
 {
     position: relative;
     height: 30px;
-    background: #05325b;
+    background: #999999;
 }
-.second-level-menu > li:hover { background: #3a579e; }
+.second-level-menu > li:hover { background: #CCCCCC; }
 
 .top-level-menu
 {
     list-style: none;
-    padding: 0.5rem 1rem;
+    padding: 0;
     margin: 0;
+    
 }
 
 .top-level-menu > li
 {
     position: relative;
     float: right;
-    content: ' ▾';
-	
+    height: 30px;
+    width: 150px;
+    background: #999999;
+    border-radius: 999px;
 }
-.top-level-menu > li:hover { background: #3a579e; }
+.top-level-menu > li:hover { background: #CCCCCC; }
 
 .top-level-menu li:hover > ul
 {
     /* On hover, display the next level's menu */
     display: inline;
-}
-
-.top-level-menu li > a:after {
-    content: ' ▾';
-}
-
-.top-level-menu li > a:only-child:after {
-	content: '';
 }
 
 
@@ -7503,7 +7499,7 @@ th.hide-for-touch {
     display: block;
     line-height: 30px;
 }
-.top-level-menu a:hover { color: #3a579e; }
+.top-level-menu a:hover { color: #000000; }
 
 // Signup page
 
@@ -7968,6 +7964,107 @@ input:hover:checked + label {
   float: right;
   margin-left: 0.5rem;
   margin-top: 1rem;
+}
+
+// Matthew's selectors
+
+.idea {
+  padding: 1.0rem 0 0 0;
+  transition: all 300ms ease-out; }
+
+.idea p {
+  color: black;
+  transition: all 300ms ease-out; }
+
+.idea h3, h5 {
+  transition: all 300ms ease-out; }
+
+.row.idea:hover h3, h5 {
+  color: #c2d1df;
+  transition: all 300ms ease-out; }
+
+.idea-status {
+  font-size: 0.75rem !important; }
+
+.idea a.button {
+  transition: all 300ms ease-out; }
+
+.idea a.button:hover {
+  background-color: #70bf4f;
+  transition: all 300ms ease-out; }
+
+.idea img.hide-for-small {
+  margin-right: 1.5rem;
+  height: 88px;
+  width: 88px; }
+
+.idea img.show-for-small {
+  height: 60px;
+  width: 60px; }
+
+a.add-notes {
+  color: #3a579e;
+  transition: all 300ms ease-out; }
+
+a.add-notes:hover {
+  color: #98abd9;
+  transition: all 300ms ease-out; }
+
+.idea-text p {
+  font-size: 0.875rem;
+  color: #4d4d4d;
+  margin-bottom: 0; }
+
+.controls a.button, .when a.button {
+  margin: 0 0.25rem 0 0.25rem; }
+
+#text-zip-code {
+  display: inline-block;
+  width: 6.125rem;
+}
+
+#text-favorite-spot {
+  display: inline-block;
+  margin-left: 0.5rem;
+  width: 15rem;
+}
+
+#select-distance {
+  width: 3rem;
+}
+
+#meet-local, {
+  margin-right: 0.5rem;
+}
+
+#meet-by-video-call {
+  margin-right: 0.5rem;
+}
+
+.checkbox-indent {
+  margin-left: 1.5rem;
+}
+
+.start-time, .end-time {
+  min-width:1rem;
+  display:inline;
+}
+
+.times-specific td {
+  text-align: center;
+}
+
+.times-specific input {
+  text-align: center;
+  padding: 0 2px 0 2px;
+}
+
+.times-general .row {
+  margin: 1rem 0 0 0;
+}
+
+.times-general label {
+  margin: 1rem 0 0 0;
 }
 
 

@@ -1,0 +1,37 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Connect to create.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<script src="{% static "js/vendor/modernizr.js" %}"></script>
+		<script src="{% static "js/vendor/jquery.js" %}"></script>
+
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+	  		
+			<h2 class="titleCenter">Oops! Something went wrong...</h2>
+			<p>Sorry about that. We've been informed of the error and will look into the issue. We'll send you back where you came from!</p>
+		
+		
+		
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+	</body>
+</html>

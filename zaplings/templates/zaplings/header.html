@@ -13,19 +13,26 @@
 	</div>
 
 	<div class="header-menu large-3 medium-4 hide-for-small-only columns end">
-		<ul id="menu">
-			<li><a href="#">My ideas</a></li>
-			<li><a href="{% url "zaplings:profile-view" %}">My profile</a></li>
-			<li><a href="{% url "zaplings:idea-feed" %}">Public ideas</a></li>
-			<li><a href="#">Learn more</a>
-				<ul>
-					<li><a href="#">How it works</a></li>
-			    	<li><a href="{% url "zaplings:10-reasons" %}">10 reasons to join</a></li>
-					<li><a href="{% url "zaplings:faq" %}">FAQ</a></li>
-					<li><a href="#">Get involved</a></li>
-				</ul>
-			</li>
-		</ul>
+		    <ul class="top-level-menu">
+			    <li>
+			        <a href="#">Menu</a>
+			        <ul class="second-level-menu">
+			            <li><a href="#">My ideas</a></li>
+			            <li><a href="#">My profile</a></li>
+			            <li><a href="#">Idea feed</a></li>
+			            <li>
+			                <a href="#">Learn more</a>
+			                <ul class="third-level-menu">
+			                    <li><a href="#">How it works</a></li>
+			                    <li><a href="#">10 reasons to join</a></li>
+			                    <li><a href="#">FAQs</a></li>
+			                    <li><a href="#">Get involved</a></li>
+			                </ul>
+			            </li>
+			            <li><a href="#">Log out</a></li>
+			        </ul>
+			    </li>
+			</ul>
 	</div>
 
 	<div class="header-menu show-for-small-only small-2 columns">
