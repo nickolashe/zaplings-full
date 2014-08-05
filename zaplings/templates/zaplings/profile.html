@@ -26,8 +26,8 @@
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 			</div>
 			<div class="rightText medium-3 columns end">
-				<!-- display if username created and all questions answered -->
-				<a href="#" data-reveal-id="change-image-reveal"><button id="change-image" class="button small round light">Change image</button></a>		
+				<!-- display if username created and all questions answered
+				<a href="#" data-reveal-id="change-image-reveal"><button id="change-image" class="button small round light">Change image</button></a>-->		
 			</div>
 		</div>
 		
@@ -41,8 +41,8 @@
 				{% endif %}
 			</div>
 			<div class="rightText medium-3 columns end">
-				<!-- display if username created and all questions answered -->
-				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>
+				<!-- display if username created and all questions answered 
+				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>-->
 			</div>
 		</div>
 		
@@ -69,8 +69,8 @@
 				<div>
 					<button data-reveal-id="badges-reveal" class="button round success">Earn badges</button>
 				</div>
-					<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-					<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
+					<!--<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
+					<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>-->
 			</div>	
 		</div>	
 		{% endif %}
@@ -81,18 +81,24 @@
 			<div id="profile-info" class="medium-8 small-12 medium-offset-2 columns">
 				{% if not user_lovetags %}
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
-				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
-				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
+				<button class="intro-questions button round small disabled">What do you offer?</button>
+				<button class="intro-questions button round small disabled">What do you need?</button>
+				{% if not user.first_name %}
 				<button class="intro-questions button small disabled round">Create account</button>
+				{% endif %}
 			{% elif not user_offertags %}
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
-				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
+				<button class="intro-questions button round small disabled">What do you need?</button>
+				{% if not user.first_name %}
 				<button class="intro-questions button small disabled round">Create account</button>
+				{% endif %}
 			{% elif not user_needtags %}
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
+				{% if not user.first_name %}
 				<button class="intro-questions button small disabled round">Create account</button>
+				{% endif %}
 			{% elif not user.first_name %}
-				<button class="intro-questions button large success round">Create account</button>
+				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button large success round">Create account</button></a>
 			{% endif %}
 			</div>
 		</div>
@@ -100,16 +106,16 @@
 		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
 		    {% csrf_token %}
 		<!-- if all questions answered -->
-		{% if user.first_name  and user_lovetags   and user_offertags   and user_needtags   %}
+		<!--{% if user.first_name and user_lovetags and user_offertags and user_needtags   %}
 			<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">My public ideas</h4>
-						<!-- if user has no public ideas -->
+						<!-- if user has no public ideas 
 						<p>To display this section, make an idea public.</p>
 
-						<!-- if user has idea -->
+						<!-- if user has idea
 						<p>Drag and drop icons to set the display order of your ideas.</p>
-						<!-- for idea in user.ideas (add image and title variables) -->
+						<!-- for idea in user.ideas (add image and title variables) 
 						<ul id="idea-sort-box">
 							<li>
 								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
@@ -134,10 +140,10 @@
 						</ul>
 					</div>
 				</div>
-			{% endif %}
+			{% endif %} -->
 
-			<!-- if loves is answered -->
-			{% if user_lovetags   %}
+			<!-- if all questions answered -->
+			{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I love</h4>	
@@ -154,10 +160,7 @@
 					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
-			{% endif %}
-				
-			<!-- if offers answered -->
-			{% if user_offertags   %}
+
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
@@ -175,10 +178,7 @@
 					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
-			{% endif %}
 
-			<!-- if needs answered -->
-			{% if user_needtags %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
@@ -196,10 +196,7 @@
 					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
-			{% endif %}
 
-			<!-- if all questions answered -->
-			{% if user.first_name and user_lovetags   and user_offertags   and user_needtags   %}
 			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
 			{% endif %}
 

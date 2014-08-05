@@ -19,16 +19,16 @@
 					<h3 class="titleCenter">Sign up</h3>
 					<form id="form-signup" action="{% url 'zaplings:signup_user' %}" method="post">
                         {% csrf_token %}
-						<input id="email" type="email" name="user-email" placeholder="Email" value="{{ signup_email }}"/>
-						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
-						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
+						<input id="email" type="email" name="user-email" placeholder="Email" value="{{ signup_email }}" tabindex="1" />
+						<input id="last-name" type="text" placeholder="Last name" name="user-lastname" tabindex="3" />
+						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="2" /></div>
 						<span class="fit-left">zaplings.com/</span>
-						<span class="input-sizer"><input id="username" type="text" placeholder="username" name="user-username"/></span>
-						<input id="verify" type="password" placeholder="Verify password" name="user-password-verify">
-						<div class="overflow-div"><input id="password" type="password" name="user-password" placeholder="Password"/></div>
+						<span class="input-sizer"><input id="username" type="text" placeholder="username" name="user-username" tabindex="4" /></span>
+						<input id="verify" type="password" placeholder="Verify password" name="user-password-verify" tabindex="6">
+						<div class="overflow-div"><input id="password" type="password" name="user-password" placeholder="Password" tabindex="5" /></div>
 						
 						<div class="centerText">	
-							<button type="submit" class="button success round">Create profile</button>
+							<button type="submit" class="button success round" tabindex="7">Create profile</button>
 							{% if signup_status_message %}
 	                            <p id="status_message"> {{ signup_status_message }}</p>
 	                        {% endif %}
@@ -43,10 +43,10 @@
 					<form id="form-login" action="{% url 'zaplings:login_email_password' %}" method="post">
                         {% csrf_token %} 
 						<h3 class="titleCenter">Log in</h3>
-						<input id="login-name" type="text" name="login-name" value="{{ login_email }}" placeholder="Email or username"/>
-						<input id="password" type="password" name="password" placeholder="Password" value="" />
+						<input id="login-name" type="text" name="login-name" value="{{ login_email }}" placeholder="Email or username" tabindex="8" />
+						<input id="password" type="password" name="password" placeholder="Password" value="" tabindex="9" />
 						<div class="centerText">
-							<button type="submit" class="button success round">Go</button>
+							<button type="submit" class="button success round" tabindex="10">Go</button>
 					</form>	
 						{% if login_status_message %}
 	                        <p id="status_message"> {{ login_status_message }}</p>

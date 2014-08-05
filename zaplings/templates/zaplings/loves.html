@@ -90,7 +90,7 @@
 						$('.input-tags').val('');						
 				  		$('.suggestion-box').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag" value="'+loveNum+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
 						e.preventDefault();	
-						$(this).focus().select().attr("placeholder", "");
+						$(this).focus().select();
 					}
 			});
 			
