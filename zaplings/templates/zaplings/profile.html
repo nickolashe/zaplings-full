@@ -34,10 +34,10 @@
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
 				<!-- if user has created username -->
-				{% if firstname %}
-				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }}</h3>
+				{% if user.first_name %}
+				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
 				{% else %}
-				<h3 class="centerText">{{ username }}</h3>
+				<h3 class="centerText">{{ user.username }}</h3>
 				{% endif %}
 			</div>
 			<div class="rightText medium-3 columns end">
@@ -50,16 +50,16 @@
 			<div class="small-12 columns">
 				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 				<!-- if user has created username -->
-				{% if firstname != "" %}
-				<h3 id="full-name" class="centerText">{{ firstname }} {{ lastname }} </h3>
+				{% if user.first_name  %}
+				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>
 				{% else %}
-				<h3 class="centerText">{{ username }}</h3>	
+				<h3 class="centerText">{{ user.username }}</h3>	
 				{% endif %}	
 			</div>
 		</div>	
 		
 		<!-- display if username created and all questions answered -->
-		{% if firstname != "" and love_tags   and offer_tags   and need_tags   %}
+		{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
 				<div>
@@ -79,19 +79,19 @@
 		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
 		<div class="row">
 			<div id="profile-info" class="medium-8 small-12 medium-offset-2 columns">
-				{% if love_tags == null %}
+				{% if user_lovetags == null %}
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
-			{% elif offer_tags == null %}
+			{% elif user_offertags == null %}
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
-			{% elif need_tags == null %}
+			{% elif user_needtags == null %}
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
-			{% elif firstname == null %}
+			{% elif user.first_name == null %}
 				<button class="intro-questions button large success round">Create account</button>
 			{% endif %}
 			</div>
@@ -100,7 +100,7 @@
 		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
 		    {% csrf_token %}
 		<!-- if all questions answered -->
-		{% if firstname  and love_tags   and offer_tags   and need_tags   %}
+		{% if user.first_name  and user_lovetags   and user_offertags   and user_needtags   %}
 			<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">My public ideas</h4>
@@ -137,7 +137,7 @@
 			{% endif %}
 
 			<!-- if loves is answered -->
-			{% if love_tags   %}
+			{% if user_lovetags   %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I love</h4>	
@@ -157,7 +157,7 @@
 			{% endif %}
 				
 			<!-- if offers answered -->
-			{% if offer_tags   %}
+			{% if user_offertags   %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
@@ -178,7 +178,7 @@
 			{% endif %}
 
 			<!-- if needs answered -->
-			{% if need_tags   %}
+			{% if user_needtags %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
@@ -199,7 +199,7 @@
 			{% endif %}
 
 			<!-- if all questions answered -->
-			{% if firstname != "" and love_tags   and offer_tags   and need_tags   %}
+			{% if user.first_name and user_lovetags   and user_offertags   and user_needtags   %}
 			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
 			{% endif %}
 
