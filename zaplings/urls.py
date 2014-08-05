@@ -31,8 +31,8 @@ urlpatterns = patterns('',
     url(r'^record_new_email/$', views.record_new_email, name='record_new_email'),
     url(r'^record_text/$', views.record_text, name='record_text'),
     url(r'^signup_user/$', views.signup_user, name='signup_user'),
+    url(r'^login_email_password/$', views.login_email_password, name='login_email_password'),
     url(r'^profile-text/$', views.ProfileTextView.as_view(), name='profile-text'),
     url(r'^profile-view/$', views.ViewProfileView.as_view(), name='profile-view'),
     #url(r'^profile-view-html-only/$', views.ViewProfileHtmlView.as_view(), name='profile-view-html-only'),
-    url(r'^login/$', views.login, name='login')  
 )
