@@ -1,0 +1,106 @@
+<!doctype html>
+{% load staticfiles %}
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Connect to create.</title>
+    <link rel="stylesheet" href="{% static "style.css" %}" />
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+    <script src="{% static "./js/vendor/jquery.js" %}"></script>
+    <link rel="stylesheet" href="{% static "./SlickNav/slicknav.css" %}"/>
+	<script src="{% static "./SlickNav/jquery.slicknav.min.js" %}"></script>
+  </head>
+  <body>
+
+	 <div class="wrapper">
+	 	{% include "./zaplings/header.html" %}
+	  		<div class="row">
+				<div id="signup" class="medium-5 small-12 columns">
+					<h3 class="titleCenter">Sign up</h3>
+					<form id="form-signup" action="{% url 'zaplings:login' %}" method="post">
+                        {% csrf_token %}
+						<input id="email" type="email" name="user-email" placeholder="Email" value="{{ email }}"/>
+						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
+						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
+						<span class="fit-left">zaplings.com/</span>
+						<span class="input-sizer"><input id="username" type="text" placeholder="username"/></span>
+						<input id="verify" type="password" placeholder="Verify password">
+						<div class="overflow-div"><input id="password" type="password" placeholder="Password"/></div>
+						
+						<div class="centerText">	
+							<button type="submit" class="button success round">Create profile</button>
+							{% if status_message %}
+	                            <p id="status_message"> {{ status_message }}</p>
+	                        {% endif %}
+	                    </div>
+					</form>
+				</div>
+				
+				<div class="vert-rule hide-for-small-only medium-1 columns">
+				</div>
+				
+				<div id="login" class="medium-5 medium-offset-1 small-12 columns end">
+					<form id="form-login">
+						<h3 class="titleCenter">Log in</h3>
+						<input id="email-or-username" type="text" placeholder="Email or username"/>
+						<input id="password" type="password" placeholder="Password"/>
+						<div class="centerText">
+							<button type="submit" class="button success round">Go</button>
+						{% if status_message %}
+	                        <p id="status_message"> {{ status_message }}</p>
+	                    {% endif %}
+	                    </div>
+					</form>	
+				</div>	
+			</div>
+<!--				<div class="large-6 medium-6 small-10 large-centered small-centered columns">
+					<h2 class="titleCenter">Sign up</h2>
+                                        <form id="form-signup" action="{% url 'zaplings:login' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <input id="email" type="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"/>
+							<input id="password" type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"/>
+                                                        <input type="submit" value="Go" class="button success round" />
+                                        </form>
+			        </div>
+                        </div>
+                        <div id="authenticate" class="row">
+				<div class="large-6 medium-8 small-10 large-centered small-centered columns">
+                                        {% if error_message %}<div><strong><color=red>{{ error_message }}</color></strong></div>{% endif %}
+				</div>
+-->
+
+<!--		<div id="authenticate" class="row">
+				<div class="large-6 medium-8 small-10 large-centered small-centered columns">
+					<div>or connect with another account</div>
+					<button class="auth-button button round small">Google</button>
+					<button class="auth-button button round small">Facebook</button>
+					<button class="auth-button button round small">LinkedIn</button>
+					
+				</div>
+			</div>
+			-->
+
+			<div class="push"></div>
+		</div>
+		<div class="footer">
+			{% include "./zaplings/footer.html" %}
+		</div>	
+			
+			
+
+    
+    <script src="{% static "js/vendor/jquery.js" %}"></script>
+    <script src="{% static "js/foundation.min.js" %}"></script>
+	<script src="{% static "js/foundation/foundation.orbit.js" %}"></script>
+	<script>
+		$(document).ready(function(){
+			$('#menu').slicknav();
+		});
+	</script>
+
+  </body>
+</html>
+
+
