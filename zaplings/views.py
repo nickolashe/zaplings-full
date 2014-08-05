@@ -16,7 +16,7 @@ logger.setLevel(logging.DEBUG)
 
 class SignupView(generic.ListView):
     model = User
-    template_name = 'zaplings/signup-reveal.html'
+    template_name = 'zaplings/signup.html'
 
 class ProfileView(generic.ListView):
     context_object_name = 'user_tags'    
