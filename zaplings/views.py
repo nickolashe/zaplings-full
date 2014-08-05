@@ -26,7 +26,7 @@ logger.setLevel(logging.DEBUG)
     #output = ', '.join([p.question for p in latest_poll_list])
 class SignupView(generic.ListView):
     model = User
-    template_name = 'zaplings/signup-reveal.html'
+    template_name = 'zaplings/signup.html'
 
     #def get_queryset(self):
     #    """Return the last five published polls."""

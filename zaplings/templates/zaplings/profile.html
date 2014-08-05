@@ -4,13 +4,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Grow.</title>
+    <title>Zaplings | Connect to create.</title>
     <link rel="stylesheet" href="{% static "style.css" %}" />
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "./js/vendor/modernizr.js" %}"></script>
 	<script src="{% static "./js/vendor/jquery.js" %}"></script>
 	<script src="{% static "./js/jquery-ui-1.11.0.custom/jquery-ui.min.js" %}"></script>
 	<script src="{% static "./js/jquery.ui.touch-punch.min.js" %}"></script>
+	<link rel="stylesheet" href="{% static "./SlickNav/slicknav.css" %}"/>
+	<script src="{% static "./SlickNav/jquery.slicknav.min.js" %}"></script>
 	
   </head>
   <body>
@@ -226,6 +228,11 @@
     <script src="{% static "./js/foundation.min.js" %}"></script>		
 	<script type="text/javascript">
 	  $(document).foundation();
+	</script>
+	<script>
+	$(function(){
+		$('#menu').slicknav();
+		});
 	</script>	
 	<script type="text/javascript">
 			$(document).ready(function(){
