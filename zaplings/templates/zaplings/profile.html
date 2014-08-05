@@ -79,19 +79,19 @@
 		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
 		<div class="row">
 			<div id="profile-info" class="medium-8 small-12 medium-offset-2 columns">
-				{% if user_lovetags == null %}
+				{% if not user_lovetags %}
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round small disabled">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
-			{% elif user_offertags == null %}
+			{% elif not user_offertags %}
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round small disabled">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
-			{% elif user_needtags == null %}
+			{% elif not user_needtags %}
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
 				<button class="intro-questions button small disabled round">Create account</button>
-			{% elif user.first_name == null %}
+			{% elif not user.first_name %}
 				<button class="intro-questions button large success round">Create account</button>
 			{% endif %}
 			</div>

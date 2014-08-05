@@ -412,34 +412,15 @@ def signup_user(request):
             if user is not None and user.is_active:
                 login(request, user)
                 logger.info('Logged in [%s]', user.username)
-            # user loves
-            user_loves = [ love.love_id \
-                           for love in UserLove.objects.filter(user_id=user.pk) ]
-            user_lovetags = [ Love.objects.get(id=love_id).tagname \
-                              for love_id in user_loves ]
-             # user offers
-            user_offers = [ offer.offer_id \
-                            for offer in UserOffer.objects.filter(user_id=user.pk) ]
-            user_offertags = [ Offer.objects.get(id=offer_id).tagname \
-                               for offer_id in user_offers ]
-            # user needs
-            user_needs = [ need.need_id \
-                           for need in UserNeed.objects.filter(user_id=user.pk) ]
-            user_needtags = [ Need.objects.get(id=need_id).tagname \
-                              for need_id in user_needs ]
-            return render(request, 'zaplings/profile.html', {
-                'user_lovetags': user_lovetags,
-                'user_offertags': user_offertags,
-                'user_needtags': user_needtags
-            })
+            return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
         else:
-            request_obj = { 'status_message': status_message[status] }
+            request_obj = { 'signup_status_message': status_message[status] }
             # return back to index for the time-being
-            return render(request, 'zaplings/signup-reveal.html', request_obj) 
+            return render(request, 'zaplings/signup.html', request_obj) 
     except Exception as e:
         request_obj = { 'status_message': e.message }
         # return back to index for the time-being
-        return render(request, 'zaplings/signup-reveal.html', request_obj) 
+        return render(request, 'zaplings/signup.html', request_obj) 
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
