@@ -9,8 +9,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "js/vendor/modernizr.js" %}"></script>
     <script src="{% static "./js/vendor/jquery.js" %}"></script>
-    <link rel="stylesheet" href="{% static "./SlickNav/slicknav.css" %}"/>
-	<script src="{% static "./SlickNav/jquery.slicknav.min.js" %}"></script>
   </head>
   <body>
 
@@ -87,18 +85,18 @@
 		<div class="footer">
 			{% include "./zaplings/footer.html" %}
 		</div>	
-			
-			
-
-    
-    <script src="{% static "js/vendor/jquery.js" %}"></script>
+		
     <script src="{% static "js/foundation.min.js" %}"></script>
-	<script src="{% static "js/foundation/foundation.orbit.js" %}"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#menu').slicknav();
+    <script type="text/javascript">
+	    $(document).ready(function(){
+	    	$('#dl-menu').dlmenu({
+		    animationClasses : { 
+		    	classin : 'animation-class-name',
+		    	classout : 'animation-class-name' 
+		    }
 		});
-	</script>
+    </script>
+	
 
   </body>
 </html>
