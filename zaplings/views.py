@@ -14,23 +14,9 @@ logging.basicConfig(level=logging.DEBUG, filename="logs/views.log")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-#def index(request):
-    #latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
-    #template = loader.get_template('polls/index.html')
-    #context = RequestContext(request, {
-    #    'latest_poll_list': latest_poll_list,
-    #})
-    #context = {'latest_poll_list': latest_poll_list}
-    #return render(request, 'polls/index.html', context)
-    #return HttpResponse(template.render(context))
-    #output = ', '.join([p.question for p in latest_poll_list])
 class SignupView(generic.ListView):
     model = User
     template_name = 'zaplings/signup.html'
-
-    #def get_queryset(self):
-    #    """Return the last five published polls."""
-    #    return Poll.objects.order_by('-pub_date')[:5]
 
 class ProfileView(generic.ListView):
     context_object_name = 'user_tags'    
@@ -310,7 +296,8 @@ def generate_user_tags(request, userid):
     #userid = request.user.pk
     if userid:
         logger.info("Userid provided: [%s]", userid) 
-        user_tags = get_user_tags(userid)    
+        user_tags = get_user_tags(userid)
+        logger.info("User tags: %s", user_tags)
         return render(request, 'zaplings/profile.html', user_tags)                
     else:
         logger.error('No userid provided')
@@ -332,25 +319,28 @@ def record_new_email(request):
         # return back to index for the time-being
         return render(request, 'zaplings/index.html', request_obj) 
 
-    # EXISTS
-    elif NewUserEmail.objects.filter(email=email):
+    # EXISTING EMAIL
+    elif User.objects.filter(username=email):
+        status = 'EXISTS'
         logger.info('Email [%s] has already been submitted.', email)
         # create django user if needed
-        if not User.objects.filter(username=email):
-            newuser = User.objects.create_user(email)
-            newuser.set_password('')
-            newuser.save()
-            logger.info('Created user [%s]', email)
-        login_email(request, email)
+        request_obj = { 'signup_email': email }
+        # return back to index for the time-being
+        return render(request, 'zaplings/signup.html', request_obj) 
+  
+    # EXISTING USER
+    elif User.objects.filter(email=email):
         status = 'EXISTS'
-        # generate user tags and redirect to profile
-        return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
-        #return HttpResponseRedirect('zaplings:generate_user_tags', args=(p.id,)))
-    # NEW
-    else:
         # create new user (email, '')
         NewUserEmail.objects.create(email=email)
-        newuser = None
+        # generate user tags and redirect to profile
+        #return render(request, 'zaplings/profile.html', {}) 
+        request_obj = { 'login_email': email }
+        # return back to index for the time-being
+        return render(request, 'zaplings/signup.html', request_obj) 
+
+    # NEW USER
+    else:
         try:
             newuser = User.objects.create_user(email)
             newuser.set_password('')
@@ -363,8 +353,7 @@ def record_new_email(request):
         login_email(request, email)
         # generate user tags and redirect to profile
         return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
-        #return render(request, 'zaplings/profile.html', {}) 
-    
+             
 
 def signup_user(request):
     status_message = { 'PASSWORD_VERIFY': 'Passwords do not match!',
@@ -423,34 +412,15 @@ def signup_user(request):
             if user is not None and user.is_active:
                 login(request, user)
                 logger.info('Logged in [%s]', user.username)
-            # user loves
-            user_loves = [ love.love_id \
-                           for love in UserLove.objects.filter(user_id=user.pk) ]
-            user_lovetags = [ Love.objects.get(id=love_id).tagname \
-                              for love_id in user_loves ]
-             # user offers
-            user_offers = [ offer.offer_id \
-                            for offer in UserOffer.objects.filter(user_id=user.pk) ]
-            user_offertags = [ Offer.objects.get(id=offer_id).tagname \
-                               for offer_id in user_offers ]
-            # user needs
-            user_needs = [ need.need_id \
-                           for need in UserNeed.objects.filter(user_id=user.pk) ]
-            user_needtags = [ Need.objects.get(id=need_id).tagname \
-                              for need_id in user_needs ]
-            return render(request, 'zaplings/profile.html', {
-                'user_lovetags': user_lovetags,
-                'user_offertags': user_offertags,
-                'user_needtags': user_needtags
-            })
+            return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
         else:
-            request_obj = { 'status_message': status_message[status] }
+            request_obj = { 'signup_status_message': status_message[status] }
             # return back to index for the time-being
-            return render(request, 'zaplings/signup-reveal.html', request_obj) 
+            return render(request, 'zaplings/signup.html', request_obj) 
     except Exception as e:
         request_obj = { 'status_message': e.message }
         # return back to index for the time-being
-        return render(request, 'zaplings/signup-reveal.html', request_obj) 
+        return render(request, 'zaplings/signup.html', request_obj) 
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
@@ -460,43 +430,50 @@ def login_email(request, email):
         logger.info('Logged in [%s]', email)
 
 def login_email_password(request):
+    status_message = { 'LOGIN_INCORRECT': "The login information you provided did not match our records. Please try again.",
+                       'LOGIN_INCOMPLETE': "Please include both email and password." }
     error_message = None
+    user = None
     try:
-        email = request.POST['email']
+        login_name = request.POST['login-name']
         password = request.POST['password']
-        user = authenticate(username=email, password=password)
+        logger.info("Requested login with login name %s", login_name)
+        match = User.objects.filter(username=login_name)
+        if match:
+            username = login_name
+        else:
+            match = User.objects.filter(email=login_name)
+            if match:
+                username = match[0].username
+            else:
+                raise User.DoesNotExist
+        user = authenticate(username=username, password=password)
         if user is not None:
             # the password verified for the user
             if user.is_active:
                 login(request, user)
-                success_message = "User %s is valid, active and authenticated"
+                auth_message = "User %s is valid, active and authenticated"
             else:
-                success_message = "The password is valid, but the account %s has been disabled!"
+                auth_message = "The password is valid, but the account %s has been disabled!"
+            logger.info(auth_message)
         else:
             # the authentication system was unable to verify the username and password
-            error_message = "The username and password were incorrect."
+            error_message = status_message['LOGIN_INCORRECT']
 
-    except (KeyError, User.DoesNotExist):
+    except KeyError:
         # Redisplay the poll voting form.
-        error_message = "Please include both email and password."
-
-    if '@' not in email or len(email.split('.')) == 1:
-        error_message = "Are you serious? What kind of email is this: %s?" % email
+        error_message = status_message['LOGIN_INCOMPLETE']
+    except User.DoesNotExist:
+        error_message = status_message['LOGIN_INCORRECT']
 
     if error_message:
         return render(request, 'zaplings/signup.html', {
-            'error_message': error_message,
+            'login_status_message': error_message
         })
     else:
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        #return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
-        #p = get_object_or_404(User, pk=user_id)
-        #return HttpResponse(success_message % email)
-        
-        return render(request, 'zaplings/profile-love.html', {
-            'username': user.get_username()
-        })
-
-        #return HttpResponseRedirect(reverse('polls:profile', args=(user.id,)))
+        #user_tags = generate_user_tags(user.pk)
+        #return render(request, 'zaplings/profile.html', user_tags)
+        return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
