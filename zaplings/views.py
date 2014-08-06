@@ -225,7 +225,7 @@ def record_needs(request):
         for need_id in need_ids:
             if not UserNeed.objects.filter(user_id=request.user.pk, need_id=need_id):
                 UserNeed.objects.create(user_id=request.user.pk, need_id=need_id)
-        user_tags = generate_user_tags(userid)
+        user_tags = generate_user_tags(request, userid)
         return render(request, 'zaplings/profile.html', user_tags)
     else:
         logger.info('GET request: %s', str(request.GET))
