@@ -4857,7 +4857,7 @@ ul.off-canvas-list li a:hover {
 
 .f-dropdown.content {
   position: absolute;
-  left: -9999px;
+  right: -9999px;
   list-style: none;
   margin-left: 0;
   padding: 1.25rem;
@@ -7198,6 +7198,8 @@ th.hide-for-touch {
 
 #drop1 {
   	width: 162px;
+    position: absolute;
+    left: 80px;
 }
 
 #drop1 li a {
@@ -7421,6 +7423,110 @@ th.hide-for-touch {
 
 /* Menu Styles */
 
+.top-level-menu a /* Apply to all links inside the multi-level menu */
+{
+    text-decoration: none;
+    padding: 0 0 0 15px;
+    
+    /* Make the link cover the entire list item-container */
+    display: block;
+    line-height: 30px;
+}
+
+.second-level-menu a {
+  color: #555555;
+  background-color: #fff;
+  font-size: 0.875rem;
+  padding: 0 0 0 15px;
+}
+
+.arrow-down {
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+}
+
+.top-level-menu > li
+{
+    position: relative;
+    float: right;
+    margin-top: 0.875rem;
+    height: 30px;
+    width: 100px;
+    background: #05325b;
+}
+
+.top-level-menu a:hover { 
+  color: #ffffff; 
+  background-color: #3a579e;
+}
+
+.top-level-menu > li > a {
+  color: #fff;
+  border-radius: 999px;
+}
+
+.top-level-menu-small > li
+{
+    position: relative;
+    float: right;
+    margin-top: 0.5rem;
+    height: 40px;
+    width: 40px;
+    background: #05325b;
+}
+
+.top-level-menu-small a:hover { 
+  color: #ffffff; 
+  background-color: #3a579e;
+}
+
+.top-level-menu-small > li > a {
+  color: #fff;
+  border-radius: 5px;
+}
+
+.top-level-menu-small a /* Apply to all links inside the multi-level menu */
+{
+    text-decoration: none;
+    padding: 0 5px 0 5px;
+    
+    /* Make the link cover the entire list item-container */
+    display: block;
+    line-height: 30px;
+}
+
+.top-level-menu-small li:hover > ul
+{
+    /* On hover, display the next level's menu */
+    display: inline;
+}
+
+.second-level-menu
+{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    z-index: 98;
+}
+
+.second-level-menu > li
+{
+    position: relative;
+    height: 30px;
+    background: #c2d1df;
+}
+
 .third-level-menu
 {
     position: absolute;
@@ -7431,53 +7537,15 @@ th.hide-for-touch {
     padding: 0;
     margin: 0;
     display: none;
+    z-index: 99;
 }
 
 .third-level-menu > li
 {
     height: 30px;
-    background: #999999;
-}
-.third-level-menu > li:hover { background: #CCCCCC; }
-
-.second-level-menu
-{
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 150px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: none;
+    background: #c2d1df;
 }
 
-.second-level-menu > li
-{
-    position: relative;
-    height: 30px;
-    background: #999999;
-}
-.second-level-menu > li:hover { background: #CCCCCC; }
-
-.top-level-menu
-{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    
-}
-
-.top-level-menu > li
-{
-    position: relative;
-    float: right;
-    height: 30px;
-    width: 150px;
-    background: #999999;
-    border-radius: 999px;
-}
-.top-level-menu > li:hover { background: #CCCCCC; }
 
 .top-level-menu li:hover > ul
 {
@@ -7486,20 +7554,6 @@ th.hide-for-touch {
 }
 
 
-/* Menu Link Styles */
-
-.top-level-menu a /* Apply to all links inside the multi-level menu */
-{
-    font: bold 14px Arial, Helvetica, sans-serif;
-    color: #FFFFFF;
-    text-decoration: none;
-    padding: 0 0 0 10px;
-    
-    /* Make the link cover the entire list item-container */
-    display: block;
-    line-height: 30px;
-}
-.top-level-menu a:hover { color: #000000; }
 
 // Signup page
 
@@ -7979,10 +8033,10 @@ input:hover:checked + label {
 .idea h3, h5 {
   transition: all 300ms ease-out; }
 
-.row.idea:hover h3, h5 {
+/*.row.idea:hover h3, h5 {
   color: #c2d1df;
   transition: all 300ms ease-out; }
-
+*/
 .idea-status {
   font-size: 0.75rem !important; }
 
@@ -8020,17 +8074,24 @@ a.add-notes:hover {
 
 #text-zip-code {
   display: inline-block;
-  width: 6.125rem;
+  width: 5.5rem;
+  padding: 0 10px;
+  margin-left: 5px;
+  margin-right: 1rem;
 }
 
 #text-favorite-spot {
   display: inline-block;
   margin-left: 0.5rem;
-  width: 15rem;
+  margin-right: 1rem;
+  width: 16.5rem;
 }
 
 #select-distance {
-  width: 3rem;
+  display: inline;
+  width: 66px;
+  padding: 0 10px;
+  margin: 0 5px;
 }
 
 #meet-local, {
@@ -8041,12 +8102,20 @@ a.add-notes:hover {
   margin-right: 0.5rem;
 }
 
+#select-my-timezone {
+  display: inline;
+}
+
+.meet-anywhere {
+  margin-bottom: 1rem;
+}
+
 .checkbox-indent {
   margin-left: 1.5rem;
 }
 
 .start-time, .end-time {
-  min-width:1rem;
+  min-width: 1rem;
   display:inline;
 }
 

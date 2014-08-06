@@ -70,6 +70,14 @@ class NeedsView(generic.ListView):
         """Return the all suggested needs."""
         return Need.objects.all()
 
+class WhereView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/where.html'
+
+class WhenView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/when.html'
+
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
