@@ -1,4 +1,5 @@
 <!doctype html>
+{% load staticfiles %}
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -9,6 +10,8 @@
     <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
       <script src="{% static "./js/vendor/modernizr.js" %}"></script>
       <script src="{% static "./js/prefixfree.min.js" %}"></script>
+      <script src="{% static "./js/vendor/jquery.js" %}"></script>
+      <script src="{% static "./js/jquery.selectric.min.js" %}"></script>
     </head>
     <body>
       <div class="wrapper">
@@ -18,31 +21,23 @@
           <h2 class="titleCenter">Where would you like to meet?</h2>
           <form action=""> <!-- form interaction goes here -->
               <div class="row">
-                <div class="medium-6 medium-offset-3 columns">
+                <div class="centerText medium-7 small-centered columns">
                   <input type="checkbox" name="meet-local" id="checkbox-meet-local"> 
                   <span>Meet </span>
-                  <!-- <span> -->
-                    <select name="select-distance" id="select-distance">
-                      <option value="5">5</option>
-                      <option value="10" selected>10</option>
-                      <option value="15">15</option>
-                      <option value="20">20</option>
-                      <option value="25">25</option>
-                    </select>
-                  <!-- </span> -->
+                    <input type="text" name="select-distance" id="select-distance" value="25" placeholder="(5-99)"/>
                   <span>miles from</span>
                   <input type="text" name="text-zip-code" id="text-zip-code" placeholder="zip code"/>
                 </div>
               </div>
               <div class="row">
-                <div class="medium-6 medium-offset-3 columns">
+                <div class="centerText medium-7 small-centered columns">
                   <span class="checkbox-indent">at</span>
                   <input type="text" name="text-favorite-spot" id="text-favorite-spot" placeholder="your favorite place"/><!-- </span> --> 
                   <!-- this element appears to not have a matching <span> before the closing tag -->
                 </div>
               </div>
               <div class="row meet-anywhere">
-                <div class="medium-6 medium-offset-3 columns">
+                <div class="centerText medium-7 small-centered columns">
                   <input type="checkbox" name="meet-by-video-call" id="meet-by-video-call"><span>Meet people around the world by video call</span>
                 </div>
               </div>
@@ -56,12 +51,15 @@
         <div class="push"></div>
       </div>
       {% include "./zaplings/footer.html" %}
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/jquery.selectric.min.js"></script>
+
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">
-    $(document).foundation();
-    $(document).ready($('select').selectric());
+      $(document).foundation();
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('select').selectric()
+      });
     </script>
   </body>
 </html>
