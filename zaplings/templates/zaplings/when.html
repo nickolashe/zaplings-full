@@ -23,15 +23,16 @@
             <!-- form interaction goes here -->
             <div class="times-general">
               <div class="row weekdays-or-weekends">
-                <input type="checkbox" name="weekdays" id="weekdays" value="0" class="hide"><label for="weekdays" class="button small light round">weekdays</label>
-                <input type="checkbox" name="weekends" id="weekends" value="1" class="hide"><label for="weekends" class="button small light round">weekends</label>
+                <input type="checkbox" name="weekdays" id="weekdays" value="weekdays" class="hide"><label for="weekdays" class="button small light round">weekdays</label>
+                <input type="checkbox" name="weekends" id="weekends" value="weekends" class="hide"><label for="weekends" class="button small light round">weekends</label>
               </div>
               <div class="row time-of-day">
                 <div class="column small-8 medium-12 small-centered">
-                  <input type="checkbox" name="mornings" id="mornings" value="10" class="hide"><label for="mornings" class="button small light round">mornings</label>
-                  <input type="checkbox" name="afternoons" id="afternoons" value="11" class="hide"><label for="afternoons" class="button small light round">afternoons</label>
-                  <input type="checkbox" name="evenings" id="evenings" value="12" class="hide"><label for="evenings" class="button small light round">evenings</label>
-                  <input type="checkbox" name="nights" id="nights" value="13" class="hide"><label for="nights" class="button small light round">nights</label>
+                  <input type="checkbox" name="mornings" id="mornings" value="mornings" class="hide"><label for="mornings" class="button small light round">mornings</label>
+                  <input type="checkbox" name="afternoons" id="afternoons" value="afternoons" class="hide"><label for="afternoons" class="button small light round">afternoons</label>
+                  <input type="checkbox" name="evenings" id="evenings" value="evenings" class="hide"><label for="evenings" class="button small light round">evenings</label>
+                  <input type="checkbox" name="nights" id="nights" value="nights" class="hide"><label for="nights" class="button small light round">nights</label>
+
                 </div>
               </div>
               <hr>
@@ -125,7 +126,7 @@
             <div class="row when my-timezone">
               <div class="small-6 small-offset-3 columns end">
               <span>My time zone:</span>
-              <select name="select-my-timezone" id="select-my-timezone">
+              <select name="timezone" id="select-my-timezone">
                 <option value="WDT">US Western Time</option>
                 <option value="MDT">US Mountain Time</option>
                 <option value="CDT">US Central Time</option>
