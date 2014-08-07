@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, NewUserEmail
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, NewUserEmail, Where, When
 from django.template import RequestContext, loader
 from django.views import generic
 from django.db import IntegrityError
@@ -110,6 +110,14 @@ class ViewProfileView(generic.ListView):
     model = User
     template_name = 'zaplings/profile-view.html'
 
+class WhenView(generic.ListView):
+    model = User
+    template_name = 'zaplings/when.html'
+
+class WhereView(generic.ListView):
+    model = User
+    template_name = 'zaplings/where.html'
+
 class IndexView(generic.ListView):
     #model = FeaturedIdea
     template_name = 'zaplings/index.html'
@@ -119,16 +127,9 @@ class IndexView(generic.ListView):
         """Return the all features ideas."""
         return FeaturedIdea.objects.all()
 
-#def detail(request, poll_id):
-    #poll = Poll.objects.get(id=poll_id)
-    #context = {'poll': poll}
-    #return render(request, 'polls/detail.html', context)
-    #return HttpResponse("You're looking at poll %s." % poll_id)
-
-#def results(request, poll_id):
-    #poll = get_object_or_404(Poll, pk=poll_id)
-    #return render(request, 'polls/results.html', {'poll': poll})
-
+class ErrorView(generic.ListView):
+    model = User
+    template_name = 'zaplings/error.html'
 
 def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
@@ -225,6 +226,78 @@ def record_needs(request):
         for need_id in need_ids:
             if not UserNeed.objects.filter(user_id=request.user.pk, need_id=need_id):
                 UserNeed.objects.create(user_id=request.user.pk, need_id=need_id)
+        user_tags = generate_user_tags(request, userid)
+        return render(request, 'zaplings/profile.html', user_tags)
+    else:
+        logger.info('GET request: %s', str(request.GET))
+        return redirect('zaplings:loves')
+
+def record_whens(request):
+    try:
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username)
+    except Exception as e:
+        logger.info("Redirecting to login")
+        request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+        return render(request, 'zaplings/signup.html', request_obj) 
+ 
+    try:
+        if request.method == "POST":
+            post = request.POST
+            logger.info('POST request: %s', str(post))
+            if post.has_key('meet-local') and post['meet-local'] == 'on':
+                logger.info("meet-local is set") 
+   
+            user_tags = generate_user_tags(request, userid)
+            return render(request, 'zaplings/profile.html', user_tags)
+        else:
+            logger.info('GET request: %s', str(request.GET))
+            return redirect('zaplings:loves')
+    except Exception as e:
+        logger.error("Error in record_whens: %s (%s)",
+                      e.message, str(type(e)))
+        return redirect('zaplings:error')
+
+def record_wheres(request):
+    userid=None
+    try:
+        userid = request.user.pk
+        logger.info("Current session userid: [%s]", request.user.username)
+    except Exception as e:
+        logger.info("Redirecting to login")
+        request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+        return render(request, 'zaplings/signup.html', request_obj) 
+
+    if not userid:
+        return render(request, 'zaplings/signup.html', request_obj)
+
+    if request.method == "POST":
+        if not Where.objects.filter(user_id=userid):
+            user_where = Where.objects.create(user_id=userid, 
+                                              radius=0,
+                                              zipcode="",
+                                              hangout=True)
+        else:
+            user_where = Where.objects.get(user_id=userid)
+
+        post = request.POST
+        logger.info('POST request: %s', str(post))
+        if post.has_key('meet-local') and post.get('meet-local') == 'on':
+            # radius
+            if post.has_key('radius'):
+                user_where.radius = int(post.get('radius'))
+            # zipcode
+            if post.has_key('zipcode'):
+                user_where.zipcode = post.get('zipcode')
+
+        if post.has_key('place'):
+            user_where.place = post.get('place')
+
+        if not post.has_key('hangout'):
+            user_where.hangout = False
+
+        user_where.save()
+ 
         user_tags = generate_user_tags(request, userid)
         return render(request, 'zaplings/profile.html', user_tags)
     else:

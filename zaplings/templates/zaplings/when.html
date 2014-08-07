@@ -18,18 +18,20 @@
         <div class="row when week">
           <div class="column small-12 medium-10 large-8 small-centered text-center">
             <h2 class="titleCenter">When would you like to meet?</h2>
-            <form action="" class="when custom"> <!-- form interaction goes here -->
+            <form action="{% url "zaplings:record_whens" %}" class="when custom" method="post"> 
+            {% csrf_token %}
+            <!-- form interaction goes here -->
             <div class="times-general">
               <div class="row weekdays-or-weekends">
-                <input type="checkbox" name="weekdays" id="weekdays" class="hide"><label for="weekdays" class="button small light round">weekdays</label>
-                <input type="checkbox" name="weekends" id="weekends" class="hide"><label for="weekends" class="button small light round">weekends</label>
+                <input type="checkbox" name="weekdays" id="weekdays" value="0" class="hide"><label for="weekdays" class="button small light round">weekdays</label>
+                <input type="checkbox" name="weekends" id="weekends" value="1" class="hide"><label for="weekends" class="button small light round">weekends</label>
               </div>
               <div class="row time-of-day">
                 <div class="column small-8 medium-12 small-centered">
-                  <input type="checkbox" name="mornings" id="mornings" class="hide"><label for="mornings" class="button small light round">mornings</label>
-                  <input type="checkbox" name="afternoons" id="afternoons" class="hide"><label for="afternoons" class="button small light round">afternoons</label>
-                  <input type="checkbox" name="evenings" id="evenings" class="hide"><label for="evenings" class="button small light round">evenings</label>
-                  <input type="checkbox" name="nights" id="nights" class="hide"><label for="nights" class="button small light round">nights</label>
+                  <input type="checkbox" name="mornings" id="mornings" value="10" class="hide"><label for="mornings" class="button small light round">mornings</label>
+                  <input type="checkbox" name="afternoons" id="afternoons" value="11" class="hide"><label for="afternoons" class="button small light round">afternoons</label>
+                  <input type="checkbox" name="evenings" id="evenings" value="12" class="hide"><label for="evenings" class="button small light round">evenings</label>
+                  <input type="checkbox" name="nights" id="nights" value="13" class="hide"><label for="nights" class="button small light round">nights</label>
                 </div>
               </div>
               <hr>
@@ -114,11 +116,11 @@
               </div>
               <!-- <hr> -->
             </div>
-            <div class="row">
+            <!--<div class="row">
               <div class="column small-12 small-centered">
                 <input type="checkbox" name="checkbox-get-more-specific" id="checkbox-get-more-specific" class="hide"><label for="checkbox-get-more-specific" id="label-get-more-specific" class="button small light round">Get more specific</label>
               </div>
-            </div>
+            </div>-->
             <hr>
             <div class="row when my-timezone">
               <div class="small-6 small-offset-3 columns end">
@@ -129,8 +131,9 @@
                 <option value="CDT">US Central Time</option>
                 <option value="EDT">US Eastern Time</option>
               </select>
-              <a href="" class="button small round success">next</a>
-              </div>
+              <!--<a href="" class="button small round success">next</a>-->
+              <button type="submit" class="button success round small">Next: Go to profile!</button>
+         </div>
             </div>
           </form>
         </div>

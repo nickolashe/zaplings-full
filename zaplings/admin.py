@@ -1,5 +1,5 @@
 from django.contrib import admin
-from zaplings.models import Idea, FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed
+from zaplings.models import Idea, FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, Where, When
 
 # Register your models here.
 admin.site.register(Idea)
@@ -10,4 +10,5 @@ admin.site.register(Need)
 admin.site.register(UserLove)
 admin.site.register(UserOffer)
 admin.site.register(UserNeed)
-
+admin.site.register(Where)
+admin.site.register(When)
