@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -259,29 +259,39 @@ def record_whens(request):
         return redirect('zaplings:error')
 
 def record_wheres(request):
+    """
+    process input from zaplings:where
+    redirect to zaplings:profile
+    """
     userid=None
+    login_log_msg = "No user session - redirecting to login"
+    login_status_msg = { 'login_status_message': 'Please login to Zaplings!' }
+
     try:
         userid = request.user.pk
         logger.info("Current session userid: [%s]", request.user.username)
     except Exception as e:
-        logger.info("Redirecting to login")
-        request_obj = { 'login_status_message': 'Please login to Zaplings!' }
-        return render(request, 'zaplings/signup.html', request_obj) 
+        logger.info(login_log_msg)
+        return render(request, 'zaplings/signup.html', login_status_msg) 
 
     if not userid:
-        return render(request, 'zaplings/signup.html', request_obj)
+        logger.info(login_log_msg)
+        return render(request, 'zaplings/signup.html', login_status_msg)
 
     if request.method == "POST":
+        post = request.POST
+        logger.info('POST request: %s', str(post))
+
         if not Where.objects.filter(user_id=userid):
+            # create new user
             user_where = Where.objects.create(user_id=userid, 
-                                              radius=0,
+                                              radius=-1,
                                               zipcode="",
                                               hangout=True)
         else:
+            # update existing user
             user_where = Where.objects.get(user_id=userid)
 
-        post = request.POST
-        logger.info('POST request: %s', str(post))
         if post.has_key('meet-local') and post.get('meet-local') == 'on':
             # radius
             if post.has_key('radius'):
@@ -301,7 +311,7 @@ def record_wheres(request):
         user_tags = generate_user_tags(request, userid)
         return render(request, 'zaplings/profile.html', user_tags)
     else:
-        logger.info('GET request: %s', str(request.GET))
+        logger.info('GET request - redirecting to loves')
         return redirect('zaplings:loves')
 
 def record_text(request):
@@ -374,7 +384,10 @@ def get_user_tags(userid):
     return user_tags    
 
 def generate_user_tags(request, userid):
-    #userid = request.user.pk
+    """
+    obtain the set of user selected profile tags
+    pass on the set of tags to profile
+    """
     if userid:
         logger.info("Userid provided: [%s]", userid) 
         user_tags = get_user_tags(userid)
@@ -382,8 +395,8 @@ def generate_user_tags(request, userid):
         return render(request, 'zaplings/profile.html', user_tags)                
     else:
         logger.error('No userid provided')
-        return render(request, 'zaplings/index.html', {
-            'status_message': "Please enter your email!"
+        return render(request, 'zaplings/signup.html', {
+            'login_status_message': "Please enter your email!"
             })    
 
 def record_new_email(request):
@@ -558,3 +571,22 @@ def login_email_password(request):
         #user_tags = generate_user_tags(user.pk)
         #return render(request, 'zaplings/profile.html', user_tags)
         return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+
+def user_logout(request):
+    status_msg = None
+    try:
+        username = request.user.username
+        if request.user.is_authenticated():
+            logout(request)
+            logger.info('Logged out [%s]', username)
+            status_msg = "You've been succesfully logged out!"
+    except Exception as e:
+        logger.info('Could not log out user [%s]', username)
+
+    request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
+                    'status_message': status_msg }
+    # return back to index for the time-being
+    return render(request, 'zaplings/index.html', request_obj) 
+
+
+

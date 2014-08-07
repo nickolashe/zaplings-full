@@ -40,6 +40,7 @@ urlpatterns = patterns('',
     url(r'^profile-text/$', views.ProfileTextView.as_view(), name='profile-text'),
     url(r'^profile-view/$', views.ViewProfileView.as_view(), name='profile-view'),
     url(r'^when/$', views.WhereView.as_view(), name='when'),
-    url(r'^where/$', views.WhereView.as_view(), name='where')
+    url(r'^where/$', views.WhereView.as_view(), name='where'),
+    url(r'^logout/$', views.user_logout, name='user_logout')
     #url(r'^profile-view-html-only/$', views.ViewProfileHtmlView.as_view(), name='profile-view-html-only'),
 )
