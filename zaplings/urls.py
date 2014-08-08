@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^where/$', views.WhereView.as_view(), name='where'),
     url(r'^when/$', views.WhenView.as_view(), name='when'),
     url(r'^(?P<userid>\d+)/generate_user_tags/$', views.generate_user_tags, name='generate_user_tags'),
+    url(r'^generate_profile/$', views.generate_profile, name='generate_profile'),
     # form handlers
     url(r'^record_loves/$', views.record_loves, name='record_loves'),
     url(r'^record_offers/$', views.record_offers, name='record_offers'),

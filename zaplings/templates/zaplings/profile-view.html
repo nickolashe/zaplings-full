@@ -24,9 +24,8 @@
 
 			<!-- display "edit profile" button if visitor = user. Add link to profile.html -->
 			<div class="rightText medium-3 columns end">
-				<a href="#"><button id="edit-profile" class="button small round light">Edit profile</button></a>
-			</div>
-		</div>
+				<a href="{% url 'zaplings:generate_profile' %}"><button id="edit-profile" class="button small light round">Edit profile</button></a>
+		        </div>
 		
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
@@ -44,7 +43,7 @@
 		<!-- display "edit profile" button if visitor = user -->
 		<div class="row show-for-small-only">
 			<div class="small-12 centerText columns">
-				<div><button class="button small light round">Edit profile</button></div>
+				<div><a href="{% url 'zaplings:generate_profile' %}" class="button small light round">Edit profile</a></div>
 			</div>	
 		</div>
 		<!-- Only displayed if user has Connector and/or Creator badge -->
