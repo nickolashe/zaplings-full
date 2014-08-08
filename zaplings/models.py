@@ -116,4 +116,4 @@ class Referrer(models.Model):
     referree = models.ForeignKey(User, related_name="user_referree", unique=True) 
 
     def __unicode__(self):
-        return "%s referred %s" % (self.refferer.username, self.referree.username)
+        return "%s referred %s" % (self.referrer.username, self.referree.username)
