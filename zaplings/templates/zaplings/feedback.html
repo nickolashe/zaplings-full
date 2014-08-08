@@ -1,0 +1,58 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Connect to create.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<script src="{% static "js/vendor/modernizr.js" %}"></script>
+		<script src="{% static "js/vendor/jquery.js" %}"></script>
+
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+	  		
+			<div class="row">
+				<div class="centerText medium-10 medium-offset-1 columns end">
+					<form id="form-feedback" action="" method="post"/>
+						<h3>Share feedback</h3>
+						<p>Questions? Issues with the site? Let us know.</p>
+						<div class="medium-10 medium-offset-1 columns">
+							<select>
+								<option value="question">Question</option>
+								<option value="comment">Comment</option>
+								<option value="suggestion">Suggestion</option>
+								<option value="issue">Website issue</option>
+								<option value="other">Other - Describe in subject field</option>
+							</select>
+						</div>
+						<input type="text" placeholder="Subject (optional)"/>
+						<textarea rows="3" placeholder="Share your thoughts..."></textarea>
+						<div class="centerText">
+							<button type="submit" class="button round success">Send</button>
+							<button class="button round light">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		
+		
+		
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+	</body>
+</html>

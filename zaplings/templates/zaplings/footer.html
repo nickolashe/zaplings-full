@@ -1,6 +1,12 @@
 {% load static %}
 
 <div class="footer row full-width">
+	<div class="small-6 columns">
+		<button id="feedback-button" data-reveal-id="feedback-reveal" class="button small round light">Give feedback</button>
+			<div id="feedback-reveal" class="reveal-modal" data-reveal>
+				{% include "./zaplings/feedback-reveal.html" %}
+			</div>
+	</div>
 	<div class="social-media">
 		<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
 		<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>

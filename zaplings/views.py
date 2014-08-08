@@ -125,6 +125,45 @@ class FaqView(generic.ListView):
     model = User
     template_name = 'zaplings/faq.html'
 
+<<<<<<< HEAD
+class ErrorView(generic.ListView):
+    model = User
+    template_name = 'zaplings/error.html'
+
+class LovesView(generic.ListView):
+    template_name = 'zaplings/loves.html'
+    context_object_name = 'suggested_loves'
+
+    def get_queryset(self):
+        """Return the all suggested loves."""
+        return Love.objects.all()
+    
+class OffersView(generic.ListView):
+    template_name = 'zaplings/offers.html'
+    context_object_name = 'suggested_offers'
+
+    def get_queryset(self):
+        """Return the all suggested offers."""
+        return Offer.objects.all()
+    
+class NeedsView(generic.ListView):
+    template_name = 'zaplings/needs.html'
+    context_object_name = 'suggested_needs'
+
+    def get_queryset(self):
+        """Return the all suggested needs."""
+        return Need.objects.all()
+
+class WhereView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/where.html'
+
+class WhenView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/when.html'
+
+=======
+>>>>>>> master
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
