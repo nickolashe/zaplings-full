@@ -83,23 +83,17 @@
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<button class="intro-questions button round small disabled">What do you offer?</button>
 				<button class="intro-questions button round small disabled">What do you need?</button>
-				{% if not user.first_name %}
-				<button class="intro-questions button small disabled round">Create account</button>
-				{% endif %}
-			{% elif not user_offertags %}
+			        {% elif not user_offertags %}
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
 				<button class="intro-questions button round small disabled">What do you need?</button>
-				{% if not user.first_name %}
-				<button class="intro-questions button small disabled round">Create account</button>
-				{% endif %}
-			{% elif not user_needtags %}
+			        {% elif not user_needtags %}
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
-				{% if not user.first_name %}
-				<button class="intro-questions button small disabled round">Create account</button>
+			        {% endif %}
+                  
+                                <!-- display create profile if no first name -->
+                                {% if not user.first_name %}
+				    <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create account</button></a>
 				{% endif %}
-			{% elif not user.first_name %}
-				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button large success round">Create account</button></a>
-			{% endif %}
 			</div>
 		</div>
 		
@@ -110,12 +104,12 @@
 			<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">My public ideas</h4>
-						<!-- if user has no public ideas 
+						if user has no public ideas 
 						<p>To display this section, make an idea public.</p>
 
-						<!-- if user has idea
+						if user has idea
 						<p>Drag and drop icons to set the display order of your ideas.</p>
-						<!-- for idea in user.ideas (add image and title variables) 
+						for idea in user.ideas (add image and title variables) 
 						<ul id="idea-sort-box">
 							<li>
 								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
@@ -148,7 +142,7 @@
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I love</h4>	
 					<!-- add textbox if all questions answered -->
-					<textarea id="love-text" rows="2" placeholder="How can you help others create?" name="love_text"/></textarea>
+                                        <textarea id="love-text" rows="2" {% if not love_text %} placeholder="What do you love creating?" {% endif %} name="love_text"/>{% if love_text %}{{ love_text }}{% endif %}</textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -157,7 +151,11 @@
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 				{% endfor %}				
-					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+                                <a class="add-more button small round" href="{% url "zaplings:loves" %}">
+                                <!--<button class="button small round">-->
+                                Add more...
+                                <!--</button>-->
+                                </a>
 				</div>
 			</div>
 
@@ -165,17 +163,21 @@
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
 					<!-- add textbox if all questions answered -->
-					<textarea id="offer-text" rows="2" placeholder="How can you help others create?" name="offer_text"/></textarea>
+					<textarea id="offer-text" rows="2" {% if not offer_text %} placeholder="How can you help others create?" {% endif %} name="offer_text"/>{% if offer_text %}{{ offer_text }}{% endif %}</textarea>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
-					{% for tag in user_offertags %} 
+        			{% for tag in user_offertags %} 
 	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
-					{% endfor %}	
+				{% endfor %}	
 					
-					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				<a class="add-more button small round" href="{% url "zaplings:offers" %}">
+                                <!--<button class="button small round">-->
+                                Add more...
+                                <!--</button>-->
+                                </a>
 				</div>
 			</div>
 
@@ -183,17 +185,21 @@
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
 					<!-- add textbox if all questions answered -->
-					<textarea id="need-text" rows="2" placeholder="How can you help others create?" name="need_text"/></textarea>
+                                        <textarea id="need-text" rows="2" {% if not need_text %} placeholder="What do you need from others to create?" {% endif %} name="need_text"/>{% if need_text %}{{ need_text }}{% endif %}</textarea>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
-					{% for tag in user_needtags %} 
+				{% for tag in user_needtags %} 
                         <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
                         <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
-					{% endfor %}
+				{% endfor %}
 					
-					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+				<a class="add-more button small round" href="{% url "zaplings:needs" %}">
+                                  <!--<button class="button small round">-->
+                                  Add more...
+                                  <!--</button>-->
+                                </a>
 				</div>
 			</div>
 
