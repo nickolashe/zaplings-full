@@ -7,8 +7,11 @@ from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer
 from django.template import RequestContext, loader
 from django.views import generic
 from django.db import IntegrityError
-import time
+
+from nltk.stem.snowball import SnowballStemmer
+
 import logging
+import time
 
 logging.basicConfig(level=logging.INFO, filename="logs/views.log")
 logger = logging.getLogger(__name__)
@@ -51,24 +54,59 @@ class LovesView(generic.ListView):
     context_object_name = 'suggested_loves'
 
     def get_queryset(self):
-        """Return the all suggested loves."""
-        return Love.objects.all()
+        """Return top suggested loves."""
+        # pre-sort loves based on frequency of selection
+        loves_freq = [ [ userlove.love.id 
+                        for userlove in UserLove.objects.filter(love_id=id) ]
+                      for id in [ love.id 
+                                  for love in Love.objects.all() ]]
+        # display first n tags
+        top_loves = sorted(loves_freq, key=len, reverse=True)[:12]
+        suggested_loves = Love.objects.filter(id__in=[loveid[0] 
+                                              for loveid in top_loves])
+        #return Love.objects.all()
+        logger.info("top loves: %s", [(Love.objects.get(pk=ids[0]), len(ids)) \
+                                      for ids in top_loves] )
+        return suggested_loves
     
 class OffersView(generic.ListView):
     template_name = 'zaplings/offers.html'
     context_object_name = 'suggested_offers'
 
     def get_queryset(self):
-        """Return the all suggested offers."""
-        return Offer.objects.all()
+        """Return the top suggested offers."""
+        # pre-sort offers based on frequency of selection
+        offers_freq = [ [ useroffer.offer.id 
+                        for useroffer in UserOffer.objects.filter(offer_id=id) ]
+                      for id in [ offer.id 
+                                  for offer in Offer.objects.all() ]]
+        # display first n tags
+        top_offers = sorted(offers_freq, key=len, reverse=True)[:12]
+        suggested_offers = Offer.objects.filter(id__in=[offerid[0] 
+                                              for offerid in top_offers])
+        #return Offer.objects.all()
+        logger.info("top offers: %s", [(Offer.objects.get(pk=ids[0]), len(ids)) \
+                                      for ids in top_offers] )
+        return suggested_offers
     
 class NeedsView(generic.ListView):
     template_name = 'zaplings/needs.html'
     context_object_name = 'suggested_needs'
 
     def get_queryset(self):
-        """Return the all suggested needs."""
-        return Need.objects.all()
+        """Return top suggested needs."""
+        needs_freq = [ [ userneed.need.id 
+                        for userneed in UserNeed.objects.filter(need_id=id) ]
+                      for id in [ need.id 
+                                  for need in Need.objects.all() ]]
+        # display first n tags
+        top_needs = sorted(needs_freq, key=len, reverse=True)[:12]
+        suggested_needs = Need.objects.filter(id__in=[needid[0] 
+                                              for needid in top_needs])
+        #return Need.objects.all()
+        logger.info("top needs: %s", [ (Need.objects.get(pk=ids[0]), len(ids)) \
+                                        for ids in top_needs] )
+        return suggested_needs
 
 class WhereView(generic.ListView):
     model = User    
@@ -151,68 +189,175 @@ def vote(request, poll_id):
 
     #return HttpResponse("You're voting on poll %s." % poll_id)
 
+
 def record_loves(request):
-    if request.method == "POST":
-        logger.info(request.POST)
-        love_ids = request.POST.getlist(u'love-tag')
-        logger.info("Selected love ids: %s", str(love_ids))
-        selected_loves = [ Love.objects.get(id=love_id).tagname \
-                           for love_id in love_ids ]
-        logger.info("Selected love tags: %s", str(selected_loves))
-        
-        userid = request.user.pk
-        logger.info("Current session userid: [%s]", request.user.username) 
-    
-        for love_id in love_ids:
-            if not UserLove.objects.filter(user_id=request.user.pk, love_id=love_id):
-                UserLove.objects.create(user_id=request.user.pk, love_id=love_id)
-        # user loves
-        #user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
-        #user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
-        #return render(request, 'zaplings/profile-text.html', {
-        #    'user_lovetags': user_lovetags
-        #})
-        suggested_offers = Offer.objects.all()
-        return render(request, 'zaplings/offers.html', {
-            'suggested_offers': suggested_offers
-        })
-    else:
-        return redirect('zaplings:loves')
+    """
+    process input from zaplings:loves
+    create new love offer tags based on nltk stemmer match results
+    redirect to zaplings:profile
+    """
+    try:
+        userid = None
+        login_log_msg = "No user session - redirecting to login"
+        login_status_msg = { 'login_status_message': 'Please login to Zaplings!' }         
+        try:
+            userid = request.user.pk
+            logger.info("Current session userid: [%s]", request.user.username) 
+        except Exception as e:
+            logger.info(login_log_msg)
+            return render(request, 'zaplings/signup.html', login_status_msg) 
+
+        if userid:
+            if request.method == "POST":
+                logger.info(request.POST)
+                love_ids = set(request.POST.getlist(u'love-tag'))
+                logger.info("Selected love ids: %s", str(love_ids))
+                selected_loves = [ Love.objects.get(id=love_id).tagname \
+                                   for love_id in love_ids ]
+                logger.info("Selected love tags: %s", str(selected_loves))
+
+                # process new love tags
+                new_love_tags = request.POST.getlist(u'love-tag-new')
+                logger.info("New love tags: %s", str(new_love_tags))
+                if new_love_tags:
+                    stemmer = SnowballStemmer('english')
+                for tag in new_love_tags:
+                    # stem existing tags
+                    stemmed_loves = dict([(stemmer.stem(love.tagname), love.id) 
+                                           for love in Love.objects.all() ])
+                    
+                    if not stemmer.stem(tag) in stemmed_loves.keys():
+                        new_tag = Love.objects.create(tagname=tag)
+                        love_ids.add(new_tag.id)
+                        logger.info("Added new love tag [%s] with id [%d]", 
+                                     tag, int(new_tag.id))
+                    else:
+                        exist_id = stemmed_loves[stemmer.stem(tag)]
+                        love_ids.add(exist_id)
+                        logger_msg = ' '.join(["Stem match for love tag [%s].",
+                                               "Adding existing love tag id [%d]."])
+                        logger.info(logger_msg, tag, int(exist_id))
+
+                for love_id in love_ids:
+                    if not UserLove.objects.filter(user_id=request.user.pk, 
+                                                   love_id=love_id):
+                        UserLove.objects.create(user_id=request.user.pk, 
+                                                love_id=love_id)
+
+                # pre-sort offers based on frequency of selection
+                offers_freq = [ [ useroffer.offer.id 
+                                for useroffer in UserOffer.objects.filter(offer_id=id) ]
+                              for id in [ offer.id 
+                                          for offer in Offer.objects.all() ]]
+                # display first n tags
+                top_offers = sorted(offers_freq, key=len, reverse=True)[:12]
+                suggested_offers = Offer.objects.filter(id__in=[offerid[0] 
+                                                        for offerid in top_offers])
+                logger.info("top offers: %s", [ (Offer.objects.get(pk=ids[0]), len(ids)) \
+  
+                                                 for ids in top_offers] )
+                #suggested_offers = Offer.objects.all()
+                return render(request, 'zaplings/offers.html', {
+                    'suggested_offers': suggested_offers
+                })
+            else:
+                return redirect('zaplings:loves')
+        else:
+            logger.info("Redirecting to login")
+            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+            return render(request, 'zaplings/signup.html', request_obj)
+    except Exception as e:
+        logger.error("Error in record_loves: %s (%s)",
+                      e.message, str(type(e)))
+        return redirect('zaplings:error')
 
 def record_offers(request):
-    if request.method == "POST":
-        logger.info(request.POST)
-        offer_ids = request.POST.getlist(u'offer-tag')
-        logger.info("Selected offer ids: %s", str(offer_ids))
-        selected_offers = [ Offer.objects.get(id=offer_id).tagname \
-                           for offer_id in offer_ids ]
-        logger.info("Selected offer tags: %s", str(selected_offers))
-        
-        userid = request.user.pk
-        logger.info("Current session userid: [%s]", request.user.username) 
-    
-        for offer_id in offer_ids:
-            if not UserOffer.objects.filter(user_id=request.user.pk, offer_id=offer_id):
-                UserOffer.objects.create(user_id=request.user.pk, offer_id=offer_id)
-        # user loves
-        #user_loves = [love.love_id for love in UserLove.objects.filter(user_id=userid)]
-        #user_lovetags = [Love.objects.get(id=love_id).tagname for love_id in user_loves]
-        # user offers
-        #user_offers = [offer.offer_id for offer in UserOffer.objects.filter(user_id=userid)]
-        #user_offertags = [Offer.objects.get(id=offer_id).tagname for offer_id in user_offers]
-        #return render(request, 'zaplings/profile-text.html', {
-        #    'user_lovetags': user_lovetags,
-        #    'user_offertags': user_offertags
-        #})
-        suggested_needs = Need.objects.all()
-        return render(request, 'zaplings/needs.html', {
-            'suggested_needs': suggested_needs
-        })
-    else:
-        return redirect('zaplings:loves')
+    """
+    process input from zaplings:offers
+    create new offer tags based on nltk stemmer match results
+    redirect to zaplings:profile
+    """
+    try:
+        userid = None
+        login_log_msg = "No user session - redirecting to login"
+        login_status_msg = { 'login_status_message': 'Please login to Zaplings!' }         
+        try:
+            userid = request.user.pk
+            logger.info("Current session userid: [%s]", request.user.username) 
+        except Exception as e:
+            logger.info(login_log_msg)
+            return render(request, 'zaplings/signup.html', login_status_msg) 
 
+        if userid:
+            if request.method == "POST":
+                logger.info(request.POST)
+                offer_ids = set(request.POST.getlist(u'offer-tag'))
+                logger.info("Selected offer ids: %s", str(offer_ids))
+                selected_offers = [ Offer.objects.get(id=offer_id).tagname \
+                                   for offer_id in offer_ids ]
+                logger.info("Selected offer tags: %s", str(selected_offers))
+                
+                # process new love tags
+                new_offer_tags = request.POST.getlist(u'offer-tag-new')
+                logger.info("New offer tags: %s", str(new_offer_tags))
+                if new_offer_tags:
+                    stemmer = SnowballStemmer('english')
+                for tag in new_offer_tags:
+                    # stem existing tags
+                    stemmed_offers = dict([(stemmer.stem(offer.tagname), offer.id)
+                                           for offer in Offer.objects.all() ])
+                    
+                    if not stemmer.stem(tag) in stemmed_offers.keys():
+                        new_tag = Offer.objects.create(tagname=tag)
+                        offer_ids.add(new_tag.id)
+                        logger.info("Added new offer tag [%s] with id [%d]", 
+                                     tag, int(new_tag.id))
+                    else:
+                        exist_id = stemmed_offers[stemmer.stem(tag)]
+                        offer_ids.add(exist_id)
+                        logger_msg = ' '.join(["Stem match for offer tag [%s].",
+                                               "Adding existing offer tag id [%d]."])
+                        logger.info(logger_msg, tag, int(exist_id))
+
+                for offer_id in offer_ids:
+                    if not UserOffer.objects.filter(user_id=request.user.pk, 
+                                                    offer_id=offer_id):
+                        UserOffer.objects.create(user_id=request.user.pk, 
+                                                 offer_id=offer_id)
+
+                # pre-sort offers based on frequency of selection
+                needs_freq = [ [ userneed.need.id 
+                                for userneed in UserNeed.objects.filter(need_id=id) ]
+                              for id in [ need.id 
+                                          for need in Need.objects.all() ]]
+                # display first n tags
+                top_needs = sorted(needs_freq, key=len, reverse=True)[:12]
+                suggested_needs = Need.objects.filter(id__in=[needid[0] 
+                                                      for needid in top_needs])
+                # suggested_needs = Need.objects.all()
+                logger.info("top needs: %s", [ (Need.objects.get(pk=ids[0]), len(ids)) \
+ 
+                                                for ids in top_needs] )
+                return render(request, 'zaplings/needs.html', {
+                    'suggested_needs': suggested_needs
+                })
+            else:
+                return redirect('zaplings:loves')
+        else:
+            logger.info("Redirecting to login")
+            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+            return render(request, 'zaplings/signup.html', request_obj)
+    except Exception as e:
+        logger.error("Error in record_offers: %s (%s)",
+                      e.message, str(type(e)))
+        return redirect('zaplings:error')
 
 def record_needs(request):
+    """
+    process input from zaplings:needs
+    create new need tags based on nltk stemmer match results
+    redirect to zaplings:profile
+    """
     try:
         userid = None
         login_log_msg = "No user session - redirecting to login"
@@ -227,17 +372,41 @@ def record_needs(request):
         if userid:
             if request.method == "POST":
                 logger.info('POST request: %s', str(request.POST))
-                need_ids = request.POST.getlist(u'need-tag')
+                need_ids = set(request.POST.getlist(u'need-tag'))
                 logger.info("Selected need ids: %s", str(need_ids))
                 selected_needs = [ Need.objects.get(id=need_id).tagname \
                                    for need_id in need_ids ]
                 logger.info("Selected need tags: %s", str(selected_needs))
                 
+               # process new love tags
+                new_need_tags = request.POST.getlist(u'need-tag-new')
+                logger.info("New need tags: %s", str(new_need_tags))
+                if new_need_tags:
+                    stemmer = SnowballStemmer('english')
+                for tag in new_need_tags:
+                    # stem existing tags
+                    stemmed_needs = dict([(stemmer.stem(need.tagname), need.id) 
+                                           for need in Need.objects.all() ])
+                    
+                    if not stemmer.stem(tag) in stemmed_needs.keys():
+                        new_tag = Need.objects.create(tagname=tag)
+                        need_ids.add(new_tag.id)
+                        logger.info("Added new need tag [%s] with id [%d]", 
+                                     tag, int(new_tag.id))
+                    else:
+                        exist_id = stemmed_needs[stemmer.stem(tag)]
+                        need_ids.add(exist_id)
+                        logger_msg = ' '.join(["Stem match for need tag [%s].",
+                                               "Adding existing need tag id [%d]."])
+                        logger.info(logger_msg, tag, int(exist_id))
+
                 for need_id in need_ids:
                     if not UserNeed.objects.filter(user_id=request.user.pk, 
-                                                  need_id=need_id):
+                                                    need_id=need_id):
                         UserNeed.objects.create(user_id=request.user.pk, 
-                                                need_id=need_id)
+                                                 need_id=need_id)
+
+                # get all user tags to render profile
                 user_tags = get_user_tags(userid)
                 logger.info("User tags: %s", user_tags)
                 return render(request, 'zaplings/profile.html', user_tags)
@@ -250,7 +419,7 @@ def record_needs(request):
             return render(request, 'zaplings/signup.html', request_obj) 
                  
     except Exception as e:
-        logger.error("Error in record_text: %s (%s)",
+        logger.error("Error in record_need: %s (%s)",
                       e.message, str(type(e)))
         return redirect('zaplings:error')
 

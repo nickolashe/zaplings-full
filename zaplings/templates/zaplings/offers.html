@@ -83,10 +83,10 @@
 			
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
-					if (e.which == 13 && text != '') {
-						num = num+1;
+					if (e.which == num+1 && text != '') {
+						num += 1;
 						$('.input-tags').val('');						
-				  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
+				  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
 						return false;	
 						$(this).focus().select().attr("placeholder", "");
 					}

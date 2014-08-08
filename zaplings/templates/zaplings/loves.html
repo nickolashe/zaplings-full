@@ -85,10 +85,10 @@
 				
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
-					if (e.which == 13 && text != '') {
+					if (e.which == loveNum+1 && text != '') {
 						loveNum++;
 						$('.input-tags').val('');						
-				  		$('.suggestion-box').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag" value="'+loveNum+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+				  		$('.suggestion-box').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
 						e.preventDefault();	
 						$(this).focus().select();
 					}
