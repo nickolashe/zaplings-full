@@ -7233,6 +7233,10 @@ th.hide-for-touch {
 .header-learn > ul {
   text-align: left; }
 
+#feedback-button {
+  margin-top: 0.5rem;
+  margin-left: 3rem; }
+
 .menu-button {
   padding: 2px;
   position: absolute;

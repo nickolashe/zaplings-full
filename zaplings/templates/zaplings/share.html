@@ -48,6 +48,11 @@
 				<div class="overflow-div"><input id="user-link" type="text" onClick="this.setSelectionRange(0, this.value.length)" value="http://www.zaplings.com/{{ user.username }}" readonly/></div>
 			</div>
 		</div>
+		<div class="row add-margin-top">
+			<div class="centerText small-6 small-offset-3 columns end">
+				<a href="{% url "zaplings:profile-view" %}"><button class="button small round">View profile</button></a>
+			</div>
+		</div>
 <!--
 
 		<div class="row">

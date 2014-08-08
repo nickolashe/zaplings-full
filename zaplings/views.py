@@ -46,6 +46,10 @@ class FaqView(generic.ListView):
     model = User
     template_name = 'zaplings/faq.html'
 
+class ErrorView(generic.ListView):
+    model = User
+    template_name = 'zaplings/error.html'
+
 class LovesView(generic.ListView):
     template_name = 'zaplings/loves.html'
     context_object_name = 'suggested_loves'
