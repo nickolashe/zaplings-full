@@ -125,7 +125,6 @@ class FaqView(generic.ListView):
     model = User
     template_name = 'zaplings/faq.html'
 
-<<<<<<< HEAD
 class ErrorView(generic.ListView):
     model = User
     template_name = 'zaplings/error.html'
@@ -162,8 +161,6 @@ class WhenView(generic.ListView):
     model = User    
     template_name = 'zaplings/when.html'
 
-=======
->>>>>>> master
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'

@@ -21,8 +21,8 @@
 	  		<div class="row">
 		  		<div class="medium-8 medium-offset-2 columns">
 					<h2 class="titleCenter">Oops! Something went wrong...</h2>
-					<p>Sorry about that. We've been informed of the error and will look into the issue. You will automatically be sent back where you came from, or click the button below.</p>
-					<div class="centerText"><button class="button round" onclick="window.history.back();return false;">Go back</button></div>
+					<p>Sorry about that. We've been informed of the error and will look into the issue. You will be sent to the home page in 5 seconds.</p>
+					<div class="centerText"><button class="button round" onclick="window.history.back();return false;">Go home</button></div>
 				</div>
 			</div>
 		
@@ -36,8 +36,8 @@
 		<script type="text/javascript">
 	  		$(document).foundation();
 	  		$(document).ready(function(){
-	  			// wait 5s (5000ms), then go back one page
-				setTimeout( function(){ window.history.back(); return false; }, 5000);	
+	  			// wait 5s (5000ms), then go home
+				setTimeout( function(){ window.location.href = "{% url 'zaplings:index' %}" return false; }, 5000);	
 	  		});
 		</script>
 	</body>
