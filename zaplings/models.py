@@ -68,13 +68,22 @@ class LoveText(models.Model):
     user = models.ForeignKey(User, unique=True)
     text = models.CharField(max_length=1000)
 
+    def __unicode__(self):
+        return ' '.join(["Love text for", self.user.username])
+
 class OfferText(models.Model):
     user = models.ForeignKey(User, unique=True)
     text = models.CharField(max_length=1000)
 
+    def __unicode__(self):
+        return ' '.join(["Offer text for", self.user.username])
+
 class NeedText(models.Model):
     user = models.ForeignKey(User, unique=True)
     text = models.CharField(max_length=1000)
+
+    def __unicode__(self):
+        return ' '.join(["Need text for", self.user.username])
 
 class Where(models.Model):
     user = models.ForeignKey(User, unique=True)

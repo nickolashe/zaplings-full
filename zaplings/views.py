@@ -10,9 +10,9 @@ from django.db import IntegrityError
 import time
 import logging
 
-logging.basicConfig(level=logging.DEBUG, filename="logs/views.log")
+logging.basicConfig(level=logging.INFO, filename="logs/views.log")
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 class SignupView(generic.ListView):
     model = User
@@ -211,26 +211,48 @@ def record_offers(request):
     else:
         return redirect('zaplings:loves')
 
+
 def record_needs(request):
-    if request.method == "POST":
-        logger.info('POST request: %s', str(request.POST))
-        need_ids = request.POST.getlist(u'need-tag')
-        logger.info("Selected need ids: %s", str(need_ids))
-        selected_needs = [ Need.objects.get(id=need_id).tagname \
-                           for need_id in need_ids ]
-        logger.info("Selected need tags: %s", str(selected_needs))
-        
-        userid = request.user.pk
-        logger.info("Current session userid: [%s]", request.user.username) 
-    
-        for need_id in need_ids:
-            if not UserNeed.objects.filter(user_id=request.user.pk, need_id=need_id):
-                UserNeed.objects.create(user_id=request.user.pk, need_id=need_id)
-        user_tags = generate_user_tags(request, userid)
-        return render(request, 'zaplings/profile.html', user_tags)
-    else:
-        logger.info('GET request: %s', str(request.GET))
-        return redirect('zaplings:loves')
+    try:
+        userid = None
+        login_log_msg = "No user session - redirecting to login"
+        login_status_msg = { 'login_status_message': 'Please login to Zaplings!' }         
+        try:
+            userid = request.user.pk
+            logger.info("Current session userid: [%s]", request.user.username) 
+        except Exception as e:
+            logger.info(login_log_msg)
+            return render(request, 'zaplings/signup.html', login_status_msg) 
+
+        if userid:
+            if request.method == "POST":
+                logger.info('POST request: %s', str(request.POST))
+                need_ids = request.POST.getlist(u'need-tag')
+                logger.info("Selected need ids: %s", str(need_ids))
+                selected_needs = [ Need.objects.get(id=need_id).tagname \
+                                   for need_id in need_ids ]
+                logger.info("Selected need tags: %s", str(selected_needs))
+                
+                for need_id in need_ids:
+                    if not UserNeed.objects.filter(user_id=request.user.pk, 
+                                                  need_id=need_id):
+                        UserNeed.objects.create(user_id=request.user.pk, 
+                                                need_id=need_id)
+                user_tags = get_user_tags(userid)
+                logger.info("User tags: %s", user_tags)
+                return render(request, 'zaplings/profile.html', user_tags)
+            else:
+                logger.info('GET request: %s', str(request.GET))
+                return redirect('zaplings:loves')
+        else:
+            logger.info("Redirecting to login")
+            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+            return render(request, 'zaplings/signup.html', request_obj) 
+                 
+    except Exception as e:
+        logger.error("Error in record_text: %s (%s)",
+                      e.message, str(type(e)))
+        return redirect('zaplings:error')
 
 
 def record_wheres(request):
@@ -363,61 +385,72 @@ def record_whens(request):
         return redirect('zaplings:error')
 
 def record_text(request):
+    """
+    record custom text from loves, offers, needs fields
+    redirect to profile-view
+    """
     try:
         userid = request.user.pk
-        logger.info("Recording text's for userid [%s]", userid)
-        love_text = request.POST['love_text']
-        offer_text = request.POST['offer_text']
-        need_text = request.POST['need_text']
-        if love_text:
-            try:
-                LoveText.objects.create(user_id=userid, text=love_text)
-            except IntegrityError:
-                lovetext = LoveText.objects.get(user_id=userid)
-                lovetext.text = love_text
-                lovetext.save()
+
+        if userid:
+            logger.info("Recording text's for userid [%s]", userid)
+            love_text = request.POST['love_text']
+            offer_text = request.POST['offer_text']
+            need_text = request.POST['need_text']
+            if love_text:
+                try:
+                    LoveText.objects.create(user_id=userid, text=love_text)
+                except IntegrityError:
+                    lovetext = LoveText.objects.get(user_id=userid)
+                    lovetext.text = love_text
+                    lovetext.save()
+            else:
+                try:
+                    love = LoveText.objects.get(user_id=userid)
+                    love_text = love.text
+                except Exception:
+                    pass
+            if offer_text:
+                try:
+                    OfferText.objects.create(user_id=userid, text=offer_text)
+                except IntegrityError:
+                    offertext = OfferText.objects.get(user_id=userid)
+                    offertext.text = offer_text
+                    offertext.save()
+            else:
+                try:
+                    offer = OfferText.objects.get(user_id=userid)
+                    offer_text = offer.text
+                except Exception:
+                    pass
+            if need_text:
+                try:
+                    NeedText.objects.create(user_id=userid, text=need_text)
+                except IntegrityError:
+                    needtext = NeedText.objects.get(user_id=userid)
+                    needtext.text = need_text
+                    needtext.save()
+            else:
+                try:
+                    need = NeedText.objects.get(user_id=userid)
+                    need_text = need.text
+                except Exception:
+                    pass
+        
+            # render profile-view now
+            request_obj = get_user_tags(userid)
+            #request_obj.update({'love_text': love_text,
+            #                    'offer_text': offer_text,
+            #                    'need_text': need_text
+            #                   })
+            return render(request, 'zaplings/profile-view.html', request_obj)
         else:
-            try:
-                love = LoveText.objects.get(user_id=userid)
-                love_text = love.text
-            except Exception:
-                pass
-        if offer_text:
-            try:
-                OfferText.objects.create(user_id=userid, text=offer_text)
-            except IntegrityError:
-                offertext = OfferText.objects.get(user_id=userid)
-                offertext.text = offer_text
-                offertext.save()
-        else:
-            try:
-                offer = OfferText.objects.get(user_id=userid)
-                offer_text = offer.text
-            except Exception:
-                pass
-        if need_text:
-            try:
-                NeedText.objects.create(user_id=userid, text=need_text)
-            except IntegrityError:
-                needtext = NeedText.objects.get(user_id=userid)
-                needtext.text = need_text
-                needtext.save()
-        else:
-            try:
-                need = NeedText.objects.get(user_id=userid)
-                need_text = need.text
-            except Exception:
-                pass
-    
-        # render profile-view now
-        request_obj = get_user_tags(userid)
-        request_obj.update({'love_text': love_text,
-                            'offer_text': offer_text,
-                            'need_text': need_text
-                           })
-        return render(request, 'zaplings/profile-view.html', request_obj)
+            logger.info("Redirecting to login")
+            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+            return render(request, 'zaplings/signup.html', request_obj)
+
     except Exception as e:
-        logger.error("Error in record_whens: %s (%s)",
+        logger.error("Error in record_text: %s (%s)",
                       e.message, str(type(e)))
         return redirect('zaplings:error')
 
@@ -432,10 +465,41 @@ def get_user_tags(userid):
     # user needs
     user_needs = [need.need_id for need in UserNeed.objects.filter(user_id=userid)]
     user_needtags = [Need.objects.get(id=need_id).tagname for need_id in user_needs]
-    user_tags =  { 'user_lovetags': user_lovetags,
-                   'user_offertags': user_offertags,
-                   'user_needtags': user_needtags }
-    return user_tags    
+
+    #user love text
+    user_lovetext = None
+    try:
+        user_lovetext = LoveText.objects.get(user_id=userid)
+        user_lovetext = user_lovetext.text
+    except Exception as e:
+        logger.info("No love text for userid [%s]", userid)
+        pass
+   
+    #user offer text
+    user_offertext = None
+    try:
+        user_offertext = OfferText.objects.get(user_id=userid)
+        user_offertext = user_offertext.text
+    except Exception as e:
+        logger.info("No offer text for userid [%s]", userid)
+        pass
+   
+    #user need text
+    user_needtext = None
+    try:
+        user_needtext = NeedText.objects.get(user_id=userid)
+        user_needtext = user_needtext.text
+    except Exception as e:
+        logger.info("No need text for userid [%s]", userid)
+        pass
+   
+    user_profile =  { 'user_lovetags': user_lovetags,
+                      'user_offertags': user_offertags,
+                      'user_needtags': user_needtags,
+                      'love_text': user_lovetext,
+                      'offer_text': user_offertext,
+                      'need_text': user_needtext }
+    return user_profile    
 
 def generate_user_tags(request, userid):
     """
@@ -563,7 +627,6 @@ def signup_user(request):
             return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
         else:
             request_obj = { 'signup_status_message': status_message[status] }
-            # return back to index for the time-being
             return render(request, 'zaplings/signup.html', request_obj) 
     except Exception as e:
         request_obj = { 'status_message': e.message }

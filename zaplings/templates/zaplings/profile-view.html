@@ -56,7 +56,7 @@
 			<img src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-silver-small.png" %}'" alt="Silver Creator" title="Silver Creator" width="40px" height="40px"/>
 			<img src="{% static "./images/ideator-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-bronze-small.png" %}'" alt="Bronze Creator" title="Bronze Creator" width="40px" height="40px"/>
 		</div>
-		<form>
+		<!--<form>-->
 			<div class="row">
 				<div class="medium-4 small-6 medium-offset-2 columns">
 					<h4 class="section-header">My ideas</h4>
@@ -105,7 +105,7 @@
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 				{% endfor %}				
-					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+					<a class="add-more" href="{% url 'zaplings:loves' %}"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
 				
@@ -124,7 +124,7 @@
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
 					{% endfor %}	
 					
-					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+					<a class="add-more" href="{% url 'zaplings:offers' %}"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
 
@@ -143,15 +143,15 @@
                         <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
 					{% endfor %}
 					
-					<a class="add-more" href="#"><button class="button small round">Add more...</button></a>
+					<a class="add-more" href="{% url 'zaplings:needs' %}"><button class="button small round">Add more...</button></a>
 				</div>
 			</div>
 
 			<!-- if all questions answered -->
-			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+			<!--<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>-->
 
 <!-- included for all -->
-		</form>
+		<!--</form>-->
 
 		<div id="change-image-reveal" class="reveal-modal" data-reveal>
 			<h3>Change profile image</h3>
