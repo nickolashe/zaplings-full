@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, NewUserEmail, Where, When
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, NewUserEmail, Where, When, Referrer
 from django.template import RequestContext, loader
 from django.views import generic
 from django.db import IntegrityError
@@ -17,37 +17,14 @@ logging.basicConfig(level=logging.INFO, filename="logs/views.log")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class SignupView(generic.ListView):
-    model = User
-    template_name = 'zaplings/signup.html'
+class IndexView(generic.ListView):
+    #model = FeaturedIdea
+    template_name = 'zaplings/index.html'
+    context_object_name = 'featured_ideas'
 
-class ProfileView(generic.ListView):
-    context_object_name = 'user_tags'    
-    template_name = 'zaplings/profile.html'
-    queryset = Love.objects.all()
-
-    def get_context_data(self, **kwargs):
-        context = super(ProfileView, self).get_context_data(**kwargs)
-        user_tags = generate_user_tags(request.user.pk)
-        context.update(user_tags)
-        # And so on for more models
-        return context
-
-class AboutView(generic.ListView):
-    model = User
-    template_name = 'zaplings/10-reasons.html'
-    
-class HowItWorksView(generic.ListView):
-    model = User
-    template_name = 'zaplings/howitworks.html'
-    
-class GetInvolvedView(generic.ListView):
-    model = User
-    template_name = 'zaplings/getinvolved.html'
-    
-class FaqView(generic.ListView):
-    model = User
-    template_name = 'zaplings/faq.html'
+    def get_queryset(self):
+        """Return the all features ideas."""
+        return FeaturedIdea.objects.all()
 
 class LovesView(generic.ListView):
     template_name = 'zaplings/loves.html'
@@ -116,6 +93,38 @@ class WhenView(generic.ListView):
     model = User    
     template_name = 'zaplings/when.html'
 
+class SignupView(generic.ListView):
+    model = User
+    template_name = 'zaplings/signup.html'
+
+class ProfileView(generic.ListView):
+    context_object_name = 'user_tags'    
+    template_name = 'zaplings/profile.html'
+    queryset = Love.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        user_tags = generate_user_tags(pk)
+        context.update(user_tags)
+        # And so on for more models
+        return context
+
+class AboutView(generic.ListView):
+    model = User
+    template_name = 'zaplings/10-reasons.html'
+    
+class HowItWorksView(generic.ListView):
+    model = User
+    template_name = 'zaplings/howitworks.html'
+    
+class GetInvolvedView(generic.ListView):
+    model = User
+    template_name = 'zaplings/getinvolved.html'
+    
+class FaqView(generic.ListView):
+    model = User
+    template_name = 'zaplings/faq.html'
+
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
@@ -156,18 +165,18 @@ class WhereView(generic.ListView):
     model = User
     template_name = 'zaplings/where.html'
 
-class IndexView(generic.ListView):
-    #model = FeaturedIdea
-    template_name = 'zaplings/index.html'
-    context_object_name = 'featured_ideas'
-
-    def get_queryset(self):
-        """Return the all features ideas."""
-        return FeaturedIdea.objects.all()
-
 class ErrorView(generic.ListView):
     model = User
     template_name = 'zaplings/error.html'
+
+
+def referrer(request, referrer):
+    logger.info("referrer is [%s]", referrer)
+    request.session['referrer'] = referrer
+    #logger.info("request.session: %s", str(request.session.items()))
+    request_obj = { 'featured_ideas': FeaturedIdea.objects.all() }
+    # return back to index for the time-being
+    return render(request, 'zaplings/index.html', request_obj) 
 
 def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
@@ -687,53 +696,78 @@ def generate_user_tags(request, userid):
             })    
 
 def record_new_email(request):
-    email = request.POST['email']
-    status_message = {'REENTER': 'Please enter your email.',
-                      'EXISTS': 'You are already part of Zaplings! Thanks!',
-                      'SUCCESS': 'Thank you for joining Zaplings!'}
-    # REENTER
-    if not email or email == "" or not '@' in email:
-        status = 'REENTER'
-        logger.info('Empty email submitted')
-        request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
-                        'status_message': status_message[status] }
-        # return back to index for the time-being
-        return render(request, 'zaplings/index.html', request_obj) 
-
-    # EXISTING EMAIL
-    elif User.objects.filter(username=email):
-        status = 'EXISTS'
-        logger.info('Email [%s] has already been submitted.', email)
-        # create django user if needed
-        request_obj = { 'signup_email': email }
-        # return back to index for the time-being
-        return render(request, 'zaplings/signup.html', request_obj) 
-  
-    # EXISTING USER
-    elif User.objects.filter(email=email):
-        status = 'EXISTS'
-        # create new user (email, '')
-        NewUserEmail.objects.create(email=email)
-        # generate user tags and redirect to profile
-        #return render(request, 'zaplings/profile.html', {}) 
-        request_obj = { 'login_email': email }
-        # return back to index for the time-being
-        return render(request, 'zaplings/signup.html', request_obj) 
-
-    # NEW USER
-    else:
-        try:
-            newuser = User.objects.create_user(email)
-            newuser.set_password('')
-            newuser.save()
-            status= 'SUCCESS'
-            logger.info('Created user [%s]', email)
-        except IntegrityError:
-            logger.info('User [%s] already exists.', email)
+    try:
+        email = request.POST['email']
+        status_message = {'REENTER': 'Please enter your email.',
+                          'EXISTS': 'You are already part of Zaplings! Thanks!',
+                          'SUCCESS': 'Thank you for joining Zaplings!'}
+        # REENTER
+        if not email or not '@' in email:
+            status = 'REENTER'
+            logger.info('Empty email submitted')
+            request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
+                            'status_message': status_message[status] }
+            # return back to index for the time-being
+            return render(request, 'zaplings/index.html', request_obj) 
+    
+        # EXISTING EMAIL
+        elif User.objects.filter(username=email):
             status = 'EXISTS'
-        login_email(request, email)
-        # generate user tags and redirect to profile
-        return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+            logger.info('Email [%s] has already been submitted.', email)
+            # create django user if needed
+            request_obj = { 'signup_email': email }
+            # return back to index for the time-being
+            return render(request, 'zaplings/signup.html', request_obj) 
+      
+        # EXISTING USER
+        elif User.objects.filter(email=email):
+            status = 'EXISTS'
+            # create new user (email, '')
+            try:
+                NewUserEmail.objects.create(email=email)
+            except Exception as e:
+                pass
+            # generate user tags and redirect to profile
+            #return render(request, 'zaplings/profile.html', {}) 
+            request_obj = { 'login_email': email }
+            # return back to index for the time-being
+            return render(request, 'zaplings/signup.html', request_obj) 
+    
+        # NEW USER
+        else:
+            try:
+                newuser = User.objects.create_user(email)
+                newuser.set_password('')
+                newuser.save()
+                status= 'SUCCESS'
+                logger.info('Created user [%s]', email)
+            except IntegrityError:
+                logger.error('User [%s] already exists.', email)
+                status = 'EXISTS'
+
+            #logger.info("request.session: %s", str(request.session.items()))
+            if request.session.has_key('referrer'):
+                referrer_username = request.session['referrer']
+                referrer_id = User.objects.get(username=referrer_username).pk
+                referree_id = User.objects.get(username=email).pk
+                logger.info("New user [%s] was referred by [%s]", 
+                             email, referrer_username)
+                try:
+                    Referrer.objects.create( referrer_id = referrer_id,
+                                             referree_id = referree_id)
+                    logger.info("Recorded this referral")
+                except IntegrityError:
+                    logger.info("This referral has already been recorded!")
+
+            # login new user
+            login_email(request, email)
+  
+            # generate user tags and redirect to profile
+            return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+    except Exception as e:
+        logger.error("Error in record_new_email: %s (%s)",
+                      e.message, str(type(e)))
+        return redirect('zaplings:error')
              
 
 def signup_user(request):

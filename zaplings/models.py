@@ -109,3 +109,11 @@ class When(models.Model):
     def __unicode__(self):
         return ' '.join([self.user.username + "'s",
                          "when preferences"])
+
+class Referrer(models.Model):
+    referrer = models.ForeignKey(User, related_name="user_referrer")
+    # email address of referred user    
+    referree = models.ForeignKey(User, related_name="user_referree", unique=True) 
+
+    def __unicode__(self):
+        return "%s referred %s" % (self.refferer.username, self.referree.username)
