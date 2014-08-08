@@ -608,9 +608,12 @@ def record_text(request):
 
         if userid:
             logger.info("Recording text's for userid [%s]", userid)
-            love_text = request.POST['love_text']
-            offer_text = request.POST['offer_text']
-            need_text = request.POST['need_text']
+            love_text = request.POST['love_text'] if request.POST.has_key('love_text') \
+                                                  else ''
+            offer_text = request.POST['offer_text'] if request.POST.has_key('offer_text') \
+                                                    else ''
+            need_text = request.POST['need_text'] if request.POST.has_key('need_text') \
+                                                  else ''
             if love_text:
                 try:
                     LoveText.objects.create(user_id=userid, text=love_text)
@@ -653,10 +656,6 @@ def record_text(request):
         
             # render profile-view now
             request_obj = get_user_tags(userid)
-            #request_obj.update({'love_text': love_text,
-            #                    'offer_text': offer_text,
-            #                    'need_text': need_text
-            #                   })
             return render(request, 'zaplings/profile-view.html', request_obj)
         else:
             logger.info("Redirecting to login")
@@ -905,7 +904,7 @@ def login_email_password(request):
                 auth_message = "User %s is valid, active and authenticated"
             else:
                 auth_message = "The password is valid, but the account %s has been disabled!"
-            logger.info(auth_message)
+            logger.info(auth_message, username)
         else:
             # the authentication system was unable to verify the username and password
             error_message = status_message['LOGIN_INCORRECT']
