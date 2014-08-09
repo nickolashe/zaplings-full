@@ -129,38 +129,6 @@ class ErrorView(generic.ListView):
     model = User
     template_name = 'zaplings/error.html'
 
-class LovesView(generic.ListView):
-    template_name = 'zaplings/loves.html'
-    context_object_name = 'suggested_loves'
-
-    def get_queryset(self):
-        """Return the all suggested loves."""
-        return Love.objects.all()
-    
-class OffersView(generic.ListView):
-    template_name = 'zaplings/offers.html'
-    context_object_name = 'suggested_offers'
-
-    def get_queryset(self):
-        """Return the all suggested offers."""
-        return Offer.objects.all()
-    
-class NeedsView(generic.ListView):
-    template_name = 'zaplings/needs.html'
-    context_object_name = 'suggested_needs'
-
-    def get_queryset(self):
-        """Return the all suggested needs."""
-        return Need.objects.all()
-
-class WhereView(generic.ListView):
-    model = User    
-    template_name = 'zaplings/where.html'
-
-class WhenView(generic.ListView):
-    model = User    
-    template_name = 'zaplings/when.html'
-
 class IdeaFeedView(generic.ListView):
     model = User    
     template_name = 'zaplings/idea-feed.html'
@@ -193,19 +161,7 @@ class ViewProfileView(generic.ListView):
     model = User
     template_name = 'zaplings/profile-view.html'
 
-class WhenView(generic.ListView):
-    model = User
-    template_name = 'zaplings/when.html'
-
-class WhereView(generic.ListView):
-    model = User
-    template_name = 'zaplings/where.html'
-
-class ErrorView(generic.ListView):
-    model = User
-    template_name = 'zaplings/error.html'
-
-
+# form handler views
 def referrer(request, referrer):
     logger.info("referrer is [%s]", referrer)
     request.session['referrer'] = referrer
@@ -608,9 +564,12 @@ def record_text(request):
 
         if userid:
             logger.info("Recording text's for userid [%s]", userid)
-            love_text = request.POST['love_text']
-            offer_text = request.POST['offer_text']
-            need_text = request.POST['need_text']
+            love_text = request.POST['love_text'] if request.POST.has_key('love_text') \
+                                                  else ''
+            offer_text = request.POST['offer_text'] if request.POST.has_key('offer_text') \
+                                                    else ''
+            need_text = request.POST['need_text'] if request.POST.has_key('need_text') \
+                                                  else ''
             if love_text:
                 try:
                     LoveText.objects.create(user_id=userid, text=love_text)
@@ -653,10 +612,6 @@ def record_text(request):
         
             # render profile-view now
             request_obj = get_user_tags(userid)
-            #request_obj.update({'love_text': love_text,
-            #                    'offer_text': offer_text,
-            #                    'need_text': need_text
-            #                   })
             return render(request, 'zaplings/profile-view.html', request_obj)
         else:
             logger.info("Redirecting to login")
@@ -730,6 +685,30 @@ def generate_user_tags(request, userid):
         return render(request, 'zaplings/signup.html', {
             'login_status_message': "Please enter your email!"
             })    
+
+def generate_profile(request):
+    """
+    obtain the set of user selected profile tags
+    pass on the set of tags to profile
+    """
+    try:
+        userid = request.user.pk
+
+        if userid:
+            logger.info("Userid provided: [%s]", userid) 
+            user_tags = get_user_tags(userid)
+            logger.info("User tags: %s", user_tags)
+            return render(request, 'zaplings/profile.html', user_tags)                
+        else:
+            logger.error('No userid provided')
+            return render(request, 'zaplings/signup.html', {
+                'login_status_message': "Please login to Zaplings!"
+                })    
+    except Exception as e:
+        logger.info("Redirecting to login")
+        request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+        return render(request, 'zaplings/signup.html', request_obj)
+
 
 def record_new_email(request):
     try:
@@ -905,7 +884,7 @@ def login_email_password(request):
                 auth_message = "User %s is valid, active and authenticated"
             else:
                 auth_message = "The password is valid, but the account %s has been disabled!"
-            logger.info(auth_message)
+            logger.info(auth_message, username)
         else:
             # the authentication system was unable to verify the username and password
             error_message = status_message['LOGIN_INCORRECT']

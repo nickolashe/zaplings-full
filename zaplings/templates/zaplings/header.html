@@ -18,18 +18,15 @@
 		        <a href="#">Menu <span class="arrow-down"></span></a>
 		        <ul class="second-level-menu">
 		        <!--    <li><a href="#">My ideas</a></li>-->
-		            <li><a href="{% url 'zaplings:profile-view' %}">My profile</a></li>
+		            <li><a href="{% url 'zaplings:record_text' %}">My profile</a></li>
 		        <!--    <li><a href="#">Idea feed</a></li>
 		            <li>
 		                <a href="#">Learn more</a>
 		                <ul class="third-level-menu">
 		                    <li><a href="#">How it works</a></li>-->
-		                    <li><a href="{% url 'zaplings:10-reasons' %}">10 reasons to join</a></li>
-		                    <li><a href="{% url 'zaplings:faq' %}">FAQs</a></li>
-		                <!--    <li><a href="#">Get involved</a></li>
-		                </ul>
-
-		            </li>-->
+		            <li><a href="{% url 'zaplings:10-reasons' %}">10 reasons to join</a></li>
+		            <li><a href="{% url 'zaplings:faq' %}">FAQs</a></li>
+		            <!--<li><a href="{% url 'zaplings:getinvolved' %}">Get involved</a></li>-->
 		            <li><a href="{% url "zaplings:user_logout" %}">Log out</a></li>
 
 		        </ul>
@@ -43,44 +40,41 @@
 		        <a href="#"><img src="{% static "./images/three-lines.png" %}" alt="Menu" width="40px" height="40px"/></a>
 		        <ul class="second-level-menu">
 		         <!--   <li><a href="#">My ideas</a></li>-->
-		            <li><a href="{% url 'zaplings:profile-view' %}">My profile</a></li>
+   		            <li><a href="{% url 'zaplings:profile-view' %}">My profile</a></li>
 		        <!--    <li><a href="#">Idea feed</a></li>
 		            <li>
 		                <a href="#">Learn more</a>
 		                <ul class="third-level-menu">
 		                    <li><a href="#">How it works</a></li>	-->
-		                    <li><a href="{% url 'zaplings:10-reasons' %}">10 reasons to join</a></li>
-		                    <li><a href="{% url 'zaplings:faq' %}">FAQs</a></li>
-		                <!--    <li><a href="#">Get involved</a></li>
-		                </ul>
-		            </li>-->
+			    <!--<li><a href="{% url 'zaplings:howitworks' %}">How it works</a></li>-->
+		            <li><a href="{% url 'zaplings:10-reasons' %}">10 reasons to join</a></li>
+		            <li><a href="{% url 'zaplings:faq' %}">FAQs</a></li>
+		            <!--<li><a href="{% url 'zaplings:getinvolved' %}">Get involved</a></li>-->
 		            <li><a href="{% url "zaplings:user_logout" %}">Log out</a></li>
-
 		        </ul>
 		    </li>
 		</ul>
 	</div>
 
-<!--	<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
+	<!--<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
 		<a href="#" data-dropdown="drop1" class="button round small dropdown">Menu</a><br>
 		<ul id="drop1" data-dropdown-content class="f-dropdown">
-		<!--	<li><a href="./howitworks.html">How it works</a></li>
-			<li><a href="{% url "zaplings:10-reasons" %}">10 reasons to join</a></li>
-			<li><a href="{% url "zaplings:faq" %}">FAQ</a></li>
-			<li><a href="{% url "zaplings:index" %}">Log out</a></li>
+			<li><a href=>Log out</a></li>
 		</ul>
-	</div>
+	</div>-->
 
 	<div class="header-learn show-for-small-only small-2 columns">
 		<a href="#" data-dropdown="drop1" class="menu-button"><img src="{% static "./images/three-lines.png" %}" alt="Menu" width="30px" height="30px"></a><br>
 		<ul id="drop1" data-dropdown-content class="f-dropdown">
-	    	<!--	<li><a href="./howitworks.html">How it works</a></li>
+   		        <li><a href="{% url 'zaplings:profile-view' %}">My profile</a></li>
+		<!--	<li><a href="{% url 'zaplings:howitworks' %}">How it works</a></li>-->
 			<li><a href="{% url "zaplings:10-reasons" %}">10 reasons to join</a></li>
 			<li><a href="{% url "zaplings:faq" %}">FAQ</a></li>
-			<li><a href="{% url "zaplings:index" %}">Log out</a></li>
+<!--                        <li><a href="{% url 'zaplings:getinvolved' %}">Get involved</a></li>-->
+			<li><a href="{% url "zaplings:user_logout" %}">Log out</a></li>
 	  	</ul>
 	</div>
--->
+
 </header>
 
 <div id="idea-preview-reveal" class="reveal-modal" data-reveal>
