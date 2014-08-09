@@ -6,7 +6,7 @@
 	<h5>Connector</h5>
 	<img id="connector-large" src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold.png" %}'" alt="Connector badge" title="Connector badge" width="100px" height="100px"/>
 	<p>Earn this badge by inviting others to the community and making meaningful introductions for friends on Zaplings. You will be rewarded with introductions to other top Connectors to build your network further.</p>
-	<a href="#"><button class="button round success">Introduce Zaplings</button></a>
+	<a href="{% url 'zaplings:share' %}"><button class="button round success">Introduce Zaplings</button></a>
 </div>
 <div class="row">
 	<h5>Creator</h5>
