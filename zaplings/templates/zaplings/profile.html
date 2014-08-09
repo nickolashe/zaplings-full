@@ -60,14 +60,14 @@
 		
 		<!-- display if username created and all questions answered -->
 		{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
-		<div class="row show-for-small-only">
+		<div class="row">
 			<div class="small-12 centerText columns">
 				<div>
 					<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
 					<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
 				</div>
 				<div>
-					<button data-reveal-id="badges-reveal" class="button round success">Earn badges</button>
+					<button data-reveal-id="badges-reveal" class="button round success add-margin-top">Earn badges</button>
 				</div>
 					<!--<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
 					<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>-->
@@ -140,7 +140,7 @@
 			{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I love</h4>	
+					<h4 class="add-margin-bottom">What I love</h4>	
 					<!-- add textbox if all questions answered -->
                                         <textarea id="love-text" rows="2" {% if not love_text %} placeholder="What do you love creating?" {% endif %} name="love_text"/>{% if love_text %}{{ love_text }}{% endif %}</textarea>
 				</div>
@@ -203,7 +203,7 @@
 				</div>
 			</div>
 
-			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>
+			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and share</button></div>
 			{% endif %}
 
 <!-- included for all -->

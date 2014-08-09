@@ -9,6 +9,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script src="{% static "js/vendor/modernizr.js" %}"></script>
     <script src="{% static "./js/vendor/jquery.js" %}"></script>
+    <script src="{% static "./js/jquery.placeholder.js" %}"></script>
   </head>
   <body>
 	 <div class="wrapper">
@@ -89,6 +90,9 @@
     	<script src="{% static "js/foundation.min.js" %}"></script>
 		<script type="text/javascript">
 	  		$(document).foundation();
+	  		$(document).ready(function(){
+	  			$('input, textarea').placeholder();
+	  		});
 		</script>
 	
 
