@@ -110,6 +110,19 @@ class When(models.Model):
         return ' '.join([self.user.username + "'s",
                          "when preferences"])
 
+class FeedBack(models.Model):
+    user = models.ForeignKey(User)
+    feedback_type = models.CharField(max_length=30)    
+    feedback_subject = models.CharField(max_length=200,   blank=True)    
+    feedback_response = models.CharField(max_length=2000, blank=True)    
+
+    def __unicode__(self):
+        subject = self.feedback_subject
+        return "feedback from [%s] on %s (%s)" % \
+                    (self.user.username,
+                     subject if subject else 'No subject provided',
+                     self.feedback_type)
+
 class Referrer(models.Model):
     referrer = models.ForeignKey(User, related_name="user_referrer")
     # email address of referred user    

@@ -2,11 +2,12 @@
 <script src="{% static "./js/jquery.selectric.min.js" %}"></script>
 <div class="row">
 	<div class="centerText medium-10 medium-offset-1 columns end">
-		<form id="form-feedback" action="" method="post"/>
+		<form id="form-feedback" action="{% url "zaplings:record_feedback" %}" method="post"/>
+                        {% csrf_token %}
 			<h3>Share feedback</h3>
 			<p>Questions? Issues with the site? Let us know.</p>
 			<div class="medium-10 medium-offset-1 columns">
-				<select>
+				<select name="feedback-type">
 					<option value="question">Question</option>
 					<option value="comment">Comment</option>
 					<option value="suggestion">Suggestion</option>
@@ -14,8 +15,8 @@
 					<option value="other">Other - Describe in subject field</option>
 				</select>
 			</div>
-			<input type="text" placeholder="Subject (optional)"/>
-			<textarea rows="3" placeholder="Share your thoughts..."></textarea>
+			<input type="text" name="feedback-subject" placeholder="Subject (optional)"/>
+			<textarea rows="3" name="feedback-response" placeholder="Share your thoughts..."></textarea>
 			<div class="centerText">
 				<button type="submit" class="button round success">Send</button>
 				<button class="close-reveal-modal button round light">Cancel</button>

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, NewUserEmail, Where, When, Referrer
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, NewUserEmail, Where, When, FeedBack, Referrer
 from django.template import RequestContext, loader
 from django.views import generic
 from django.db import IntegrityError
@@ -707,6 +707,51 @@ def generate_profile(request):
     except Exception as e:
         logger.info("Redirecting to login")
         request_obj = { 'login_status_message': 'Please login to Zaplings!' }
+        return render(request, 'zaplings/signup.html', request_obj)
+
+def record_feedback(request):
+    """
+    record feedback to the database
+    redirect to the index page with a status message
+    """
+    login_status_msg = ' '.join(["We'd like to be able to contact you back -",
+                                 "please login to Zaplings!"])
+    index_status_msg = ' '.join(["Thank you for your feedback!",
+                           "It will help us build a better next version of Zaplings!"])
+    try:
+        userid = request.user.pk
+
+        if userid:
+            logger.info("Userid provided: [%s]", userid) 
+            logger.info("POST from feedback form: %s", str(request.POST))
+            feedback_type = request.POST.get('feedback-type')
+            feedback_subject = request.POST.get('feedback-subject')
+            feedback_response = request.POST.get('feedback-response')
+            try:
+                FeedBack.objects.create(user_id=userid,
+                                        feedback_type=feedback_type,
+                                        feedback_subject=feedback_subject,
+                                        feedback_response=feedback_response)
+                logger.info("Recorded feedback from [%s] on %s (%s)",
+                         request.user.username,
+                         feedback_subject if feedback_subject else 'No subject provided',
+                         feedback_type)
+                #request.QueryDict.update( { 'status_message': index_status_msg } )
+                #return redirect('zaplings:index')
+                return render(request, 'zaplings/index.html', {
+                              'status_message': index_status_msg,
+                              'featured_ideas': FeaturedIdea.objects.all() })
+            except Exception as e:
+                logger.error("Error recording feedback from [%s]: %s (%s)",
+                              userid, e.message, str(type(e)))
+                return redirect('zaplings:error')
+        else:
+            logger.error('No userid provided')
+            return render(request, 'zaplings/signup.html', {
+                'login_status_message': login_status_msg }) 
+    except Exception as e:
+        logger.info("Redirecting to login")
+        request_obj = { 'login_status_message': login_status_msg }
         return render(request, 'zaplings/signup.html', request_obj)
 
 
