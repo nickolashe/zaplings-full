@@ -611,8 +611,9 @@ def record_text(request):
                     pass
         
             # render profile-view now
-            request_obj = get_user_tags(userid)
-            return render(request, 'zaplings/profile-view.html', request_obj)
+            #request_obj = get_user_tags(userid)
+            #return render(request, 'zaplings/profile-view.html', request_obj)
+            return redirect('zaplings:share')
         else:
             logger.info("Redirecting to login")
             request_obj = { 'login_status_message': 'Please login to Zaplings!' }
