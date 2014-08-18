@@ -53,9 +53,13 @@
 							</div>
 <!--			  			    <button id="share-idea" class="button round success">Share an idea</button>		-->
 						</div>
-                                        {% if status_message %}
-                                            <p id="status_message" class="large"> {{ status_message }}</p>
-                                        {% endif %}
+                {% if status_message %}
+                <div class="add-margin-bottom">
+                    <p id="status_message" class="lead"> 
+                        {{ status_message }}
+                    </p>
+                </div>
+                {% endif %}
 				</div>
 	
 				<div class="titleMargin large-4 large-offset-1 medium-8 medium-offset-2 small-12 columns end">

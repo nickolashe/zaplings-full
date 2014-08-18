@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^record_whens/$', views.record_whens, name='record_whens'),
     url(r'^record_new_email/$', views.record_new_email, name='record_new_email'),
     url(r'^record_text/$', views.record_text, name='record_text'),
+    url(r'^record_feedback/$', views.record_feedback, name='record_feedback'),
     # menu links
     url(r'^10-reasons/$', views.AboutView.as_view(), name='10-reasons'),
     url(r'^howitworks/$', views.HowItWorksView.as_view(), name='howitworks'),
