@@ -9,37 +9,13 @@
     <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
       <script src="js/vendor/modernizr.js"></script>
       <script src="js/prefixfree.min.js"></script>
+      <script src="{% static "./mmenu-master/src/js/jquery.mmenu.min.js" %}" type="text/javascript"></script>
+      <link href="{% static "./mmenu-master/src/css/jquery.mmenu.all.css" %}" type="text/css" rel="stylesheet" />
     </head>
     <body>
       <div class="wrapper">
-        <header class="row header full-width">
-          <div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
-            <img class="headerLogo" src="./images/logo150.png" width="101px" height="43px"/>
-            <button class="new-idea button small radius">What's your great idea?</button>
-          </div>
-          <div class="header-left small-10 show-for-small-only columns">
-            <img class="headerLogo" src="./images/logo150.png" width="94px" height="40px"/>
-            <button class="small-new-idea button small radius">What's your great idea?</button>
-          </div>
-          <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
-            <a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a>
-            <ul id="drop1" class="f-dropdown" data-dropdown-content>
-              <li><a href="#">How it works</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Get involved</a></li>
-            </ul>
-          </div>
-          <div class="header-learn show-for-small-only small-2 columns">
-            <a href="#" data-dropdown="drop2" class="menu-button"><img src="./images/three-lines.png" alt="Menu" width="30px" height="30px"></a>
-            <ul id="drop2" data-dropdown-content class="f-dropdown">
-              <li><a href="#">How it works</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Get involved</a></li>
-            </ul>
-          </div>
-        </header>
+        {% include "./zaplings/header.html" %}
+        
         <div class="row my-ideas">
           <div class="medium-8 medium-offset-2 columns">
             <div class="row">
@@ -98,5 +74,6 @@
       <script type="text/javascript">
       $(document).foundation();
       </script>
+      <script type="text/javascript" src="{% static "./js/mobile-menu.js" %}"></script>
     </body>
   </html>

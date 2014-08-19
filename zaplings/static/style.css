@@ -7250,6 +7250,9 @@ th.hide-for-touch {
 .menu-button > ul {
   text-align: left; }
 
+#three-lines {
+  margin-top: 0.4rem; }
+
 .header-left {
   display: inline-block;
   padding-left: 3px !important;
@@ -7367,33 +7370,6 @@ th.hide-for-touch {
 .top-level-menu > li > a {
   color: #fff;
   border-radius: 999px; }
-
-.top-level-menu-small > li {
-  position: relative;
-  float: right;
-  margin-top: 0.5rem;
-  height: 40px;
-  width: 40px;
-  background: #05325b; }
-
-.top-level-menu-small a:hover {
-  color: #ffffff;
-  background-color: #3a579e; }
-
-.top-level-menu-small > li > a {
-  color: #fff;
-  border-radius: 5px; }
-
-.top-level-menu-small a {
-  text-decoration: none;
-  padding: 0 5px 0 5px;
-  /* Make the link cover the entire list item-container */
-  display: block;
-  line-height: 30px; }
-
-.top-level-menu-small li:hover > ul {
-  /* On hover, display the next level's menu */
-  display: inline; }
 
 .second-level-menu {
   position: absolute;
