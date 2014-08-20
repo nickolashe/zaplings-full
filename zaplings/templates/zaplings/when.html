@@ -10,6 +10,9 @@
     <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
       <script src="{% static "./js/vendor/modernizr.js" %}"></script>
       <script src="{% static "./js/prefixfree.min.js" %}"></script>
+      <script src="{% static "./js/vendor/jquery.js" %}"></script>
+      <script src="{% static "./mmenu-master/src/js/jquery.mmenu.min.js" %}" type="text/javascript"></script>
+      <link href="{% static "./mmenu-master/src/css/jquery.mmenu.all.css" %}" type="text/css" rel="stylesheet" />
     </head>
     <body>
       <div class="wrapper">
@@ -144,7 +147,6 @@
     
     {% include "./zaplings/footer.html" %}
 
-    <script src="{% static "./js/vendor/jquery.js" %}"></script>
     <script src="{% static "./js/jquery.selectric.min.js" %}"></script>
     <script src="{% static "./js/foundation.min.js" %}"></script>
     <script src="{% static "./js/when.js" %}"></script>
@@ -154,5 +156,6 @@
       $('select').selectric()
     });
     </script>
+    <script type="text/javascript" src="{% static "./js/mobile-menu.js" %}"></script>
   </body>
 </html>
