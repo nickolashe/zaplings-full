@@ -3634,7 +3634,7 @@ dialog[open] {
     margin-left: 0 !important; } }
 @media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
   dialog, .reveal-modal {
-    top: 6.25rem; } }
+    top: 3.5rem; } }
 @media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
   dialog.tiny, .reveal-modal.tiny {
     margin-left: -15%;
@@ -7588,7 +7588,7 @@ input:hover:checked + label {
   margin-top: 4.5rem; }
 
 #edit-user-details-reveal {
-  top: 3rem; }
+  top: 3.5rem; }
 
 #idea-sort-box {
   list-style-type: none;
@@ -7671,7 +7671,7 @@ input:hover:checked + label {
   width: 100%; }
 
 #crowdtilt-reveal {
-  top: 3rem; }
+  top: 3.5rem; }
 
 #galleria {
   width: 100px;
