@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^needs/$', views.NeedsView.as_view(), name='needs'),
     url(r'^where/$', views.WhereView.as_view(), name='where'),
     url(r'^when/$', views.WhenView.as_view(), name='when'),
+    url(r'^newidea/$', views.NewIdeaView.as_view(), name='newidea'),
     url(r'^(?P<userid>\d+)/generate_user_tags/$', views.generate_user_tags, name='generate_user_tags'),
     url(r'^generate_profile/$', views.generate_profile, name='generate_profile'),
     # form handlers

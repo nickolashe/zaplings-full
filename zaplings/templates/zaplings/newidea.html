@@ -20,9 +20,9 @@
         <div class="row text-center">
           <div class="medium-8 medium-offset-2 column">
           {% if not user.idea %}
-            <h2 class="titleCenter">Start your private idea book</h2>
+            <h3 class="titleCenter">Start your private idea book</h3>
           {% else %}
-            <p><img class="profile-image" src="./images/leaf-circle.png" alt="Idea image" width="75px" height="75px"/></p>
+            <h3 class="titleCenter">Add a new idea</h3>
           {% endif %}
           </div>
         </div>
@@ -55,8 +55,9 @@
           </div>
           <div class="row controls">
             <div class="medium-12 large-8 column">
-              <a href="#" class="button small light round" data-reveal-id="add-image">Add Image</a>
-              <a href="#" class="button small light round success">Save</a>
+              <a href="#" class="button small round success">Save</a>
+              <a href="#" class="button small light round" data-reveal-id="add-image">Add image</a>
+              <button class="small round light" data-reveal-id="modal-share-now">Share Now</button>
             </div>
           </div>
         </div>
