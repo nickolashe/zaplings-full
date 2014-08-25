@@ -1,0 +1,88 @@
+<!-- startidea / new-book -->
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaplings | Grow.</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+      <script src="js/vendor/modernizr.js"></script>
+      <script src="js/vendor/jquery.js"></script>
+      <script src="{% static "./mmenu-master/src/js/jquery.mmenu.min.js" %}" type="text/javascript"></script>
+      <link href="{% static "./mmenu-master/src/css/jquery.mmenu.all.css" %}" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+      <div class="wrapper">
+        
+        {% include "./zaplings/header.html" %}
+
+        <div class="row text-center">
+          <div class="medium-8 medium-offset-2 column">
+          {% if not user.idea %}
+            <h3 class="titleCenter">Start your private idea book</h3>
+          {% else %}
+            <h3 class="titleCenter">Add a new idea</h3>
+          {% endif %}
+          </div>
+        </div>
+        <div class="medium-8 medium-offset-2 columns">
+          <form action="#"> <!-- insert form action / submit.php / etc here ~MC -->
+          <div class="row">
+            <div class="medium-8 column">
+              <input type="text" id="idea-name" placeholder="Idea name">
+            </div>
+            <div class="medium-4 column">
+              <select name="idea-type" id="idea-type">
+                <option value="no-type-selected" disabled selected>Idea type</option>
+                <option value="idea-service">Service</option>
+                <option value="idea-product">Product</option>
+                <option value="idea-cause">Cause</option>
+                <option value="idea-art">Art</option>
+                <option value="idea-project">Project</option>
+                <option value="idea-event">Event</option>
+                <option value="idea-fun">Fun</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 column">
+              <textarea name="idea-description" id="idea-description" cols="30" rows="1" placeholder="A short sweet slogan goes here (50 characters max)" maxlength="50"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="medium-4 column"><p><a href="#" class="idea add-notes">Add notes</a></p></div>
+          </div>
+          <div class="row controls">
+            <div class="medium-12 large-8 column">
+              <a href="#" class="button small round success">Save</a>
+              <a href="#" class="button small light round" data-reveal-id="add-image">Add image</a>
+              <button class="small round light" data-reveal-id="modal-share-now">Share Now</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="push"></div>
+</div>
+<div class="footer row full-width">
+  {% include "./zaplings/footer.html" %}
+</div>
+<!-- modals here ~MC -->
+<div id="add-image" class="reveal-modal" data-reveal>
+  <h2>"Add Image" Modal Title</h2>
+  <p>this is text in the "add image" modal</p>
+  <a class="close-reveal-modal">x</a>
+</div>
+<!-- end of modals ~MC -->
+<!--
+for some reason they still don't work properly - the events fire correctly but nothing is displayed. Might there be something in the base classes that causes this?
+need to investigate - first step is locating a clean copy of the big scss file which is normally pre-split and compiled into app.scss by bower or grunt.
+-->
+
+<script src="js/foundation.min.js"></script>
+<script type="text/javascript">$(document).foundation();</script>
+<script type="text/javascript" src="{% static "./js/mobile-menu.js" %}"></script>
+</body>
+</html>
