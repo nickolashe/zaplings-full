@@ -65,5 +65,11 @@
       });
     </script>
     <script type="text/javascript" src="{% static "./js/mobile-menu.js" %}"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript">
+      var input = document.getElementById('text-favorite-spot');
+      var options = { types: ['establishment'] };
+      autocomplete = new google.maps.places.Autocomplete(input, options);
+    </script>
   </body>
 </html>
