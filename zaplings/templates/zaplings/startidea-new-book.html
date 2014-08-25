@@ -14,37 +14,16 @@
     </head>
     <body>
       <div class="wrapper">
-        <header class="row header full-width">
-          <div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
-            <img class="headerLogo" src="./images/logo150.png" width="101px" height="43px"/>
-            <button class="new-idea button small radius">What's your great idea?</button>
-          </div>
-          <div class="header-left small-10 show-for-small-only columns">
-            <img class="headerLogo" src="./images/logo150.png" width="94px" height="40px"/>
-            <button class="small-new-idea button small radius">What's your great idea?</button>
-          </div>
-          <div class="header-learn large-3 medium-4 hide-for-small-only columns end">
-            <a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a>
-            <ul id="drop1" class="f-dropdown" data-dropdown-content>
-              <li><a href="#">How it works</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Get involved</a></li>
-            </ul>
-          </div>
-          <div class="header-learn show-for-small-only small-2 columns">
-            <a href="#" data-dropdown="drop1" class="menu-button"><img src="./images/three-lines.png" alt="Menu" width="30px" height="30px"></a>
-            <ul id="drop1" data-dropdown-content class="f-dropdown">
-              <li><a href="#">How it works</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Get involved</a></li>
-            </ul>
-          </div>
-        </header>
+        
+        {% include "./zaplings/header.html" %}
+
         <div class="row text-center">
           <div class="medium-8 medium-offset-2 column">
+          {% if not user.idea %}
             <h2 class="titleCenter">Start your private idea book</h2>
+          {% else %}
+            <p><img class="profile-image" src="./images/leaf-circle.png" alt="Idea image" width="75px" height="75px"/></p>
+          {% endif %}
           </div>
         </div>
         <div class="medium-8 medium-offset-2 columns">
@@ -87,11 +66,7 @@
   <div class="push"></div>
 </div>
 <div class="footer row full-width">
-  <div class="social-media">
-    <a href="#"><img class="social-button" src="./images/facebook-icon.png" alt="Facebook"></a>
-    <a href="#"><img class="social-button" src="./images/twitter-icon.png" alt="Twitter"></a>
-    <a href="#"><img class="social-button" src="./images/linkedin-icon.png" alt="LinkedIn"></a>
-  </div>
+  {% include "./zaplings/footer.html" %}
 </div>
 <!-- modals here ~MC -->
 <div id="add-image" class="reveal-modal" data-reveal>
