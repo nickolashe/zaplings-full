@@ -9,13 +9,14 @@
     <title>Zaplings | Connect to create.</title>
     <link rel="stylesheet" href="{% static "style.css" %}" />
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "./js/vendor/modernizr.js" %}"></script>
-	<script src="{% static "./js/vendor/jquery.js" %}"></script>
+
+	{% include "./zaplings/start-scripts.html" %}
+
 	<script src="{% static "./galleria/galleria-1.3.6.min.js" %}"></script>
 	<link rel="stylesheet" href="{% static "./galleria/themes/classic/galleria.classic.css" %}">
 	<script src="{% static "./galleria/themes/classic/galleria.classic.min.js" %}"></script>
 
-	{% include "./zaplings/start-scripts.html" %}
+	
   </head>
   	<body>
 	  
@@ -56,17 +57,17 @@
 			</div>
 		
 			<div class="row show-for-small-only">
-				<h3 class="idea-name">{{ idea.title }}</h3>		
+				<h2 class="idea-name">{{ idea.title }}</h2>		
 				<div class="small-12 centerText columns">
-					<a href="#" data-reveal-id="change-icon-reveal"><button class="button tiny round light">Change icon</button></a>
+					<a href="#" data-reveal-id="change-icon-reveal"><button class="button tiny round light">Change image</button></a>
 					<a href="#" data-reveal-id="edit-details-reveal"><button class="button tiny round light">Edit details</button></a>
 				</div>	
 			</div>
 			<div class="row">
 				<div class="centerText medium-6 small-12 medium-offset-3 columns">
-					<p>{{ idea.description }}<br>
-					<!-- add idea.website to href -->
-					<a href="" ></a></p>
+					<p class="large">{{ idea.description }}<br>
+					<!-- add idea.website to href; remove http:// or https:// from variable value -->
+					<a href="http://{{ idea.website }}">{{ idea.website }}</a></p>
 
 				<!-- If music added, display embed code -->
 					
@@ -141,6 +142,8 @@
 				<!--  end for  -->
 				</div>
 			</div>
+			<div class="centerText add-margin-top"><a href="#" data-reveal-id="publish-idea-reveal"><button class="button success round">Publish idea page</button></a></div>
+			<div class="centerText add-margin-top"><a href="{% url "zaplings:myideas" %}"><button class="button light small round">Back to my ideas</button></a></div>
 
 			<div id="funding-info-reveal" class="reveal-modal" data-reveal>
 				<h3>You are leaving zaplings.com</h3>

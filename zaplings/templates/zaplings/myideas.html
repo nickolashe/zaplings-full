@@ -38,7 +38,7 @@
                     {% if idea.page %}
                     <a class="no-decoration idea-feed-text" href="{% url "zaplings:edit-idea-page" %}">
                     {% else %}
-                    <a href="#" data-reveal-id="edit-details-reveal">
+                    <a href="#" class="no-decoration idea-feed-text" data-reveal-id="edit-details-reveal">
                     {% endif %}
                     <h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
                     <p class="idea-feed-description">A short sweet slogan goes here (100 character max) A short sweet slogan goes here (100 character max</p></a>
@@ -50,7 +50,7 @@
         </div>
 
         <div id="edit-details-reveal" class="reveal-modal" data-reveal>
-          {% include "./zaplings/edit-details-reveal.html"}
+          {% include "./zaplings/edit-details-reveal.html" %}
         </div>
         
         <div class="push"></div>

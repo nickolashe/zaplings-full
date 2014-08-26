@@ -7809,6 +7809,11 @@ input:hover:checked + label {
   float: left;
   margin-right: 2.5rem; }
 
+.idea-feed-img-right {
+  display: inline-block;
+  float: right;
+  margin-left: 2.5rem; }
+
 .idea-feed-img-small {
   display: inline-block;
   float: left;
