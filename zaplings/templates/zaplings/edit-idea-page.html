@@ -35,7 +35,7 @@
 					<h3 class="idea-name">{{ idea.title }}</h3>
 				</div>
 				<div class="rightText medium-3 columns end">
-					<a href="#" data-reveal-id="change-icon-reveal"><button id="change-idea-image" class="button small round light">Change icon</button>
+					<a href="#" data-reveal-id="change-icon-reveal"><button id="change-idea-image" class="button small round light">Change image</button>
 					<a href="#" data-reveal-id="edit-details-reveal"><button id="edit-details" class="button small round light">Edit details</button></a>
 				</div>
 				
@@ -159,7 +159,7 @@
 				<form id="change-cover-form">
 					<input type="file" id="cover-image" class="add-margin-top"/>
 					<label class="add-margin-top">Introduce your idea by video (ideal length: 60-90 seconds)</label>
-					<input type="text" id="video-link" class="add-margin-top" placeholder="YouTube or Vimeo link" value="VariableVideoLink"/>
+					<input type="text" id="video-link" class="add-margin-top" placeholder="YouTube or Vimeo link" value=""/>
 					<button type="submit" class="add-margin-top button small round success">Save</button>
 					<button class="close-reveal-modal button small round light">Cancel</button>
 				</form>	
@@ -175,33 +175,7 @@
 			</div>
 		
 			<div id="edit-details-reveal" class="reveal-modal" data-reveal>
-				<form id="edit-idea-details">
-					<h3>Edit details</h3>
-					<div class="medium-8 small-12 columns">
-						<input type="text" id="idea-name" placeholder="Idea name" value="VariableIdeaname"/>
-					</div>
-					<div class="medium-4 small-12 column">
-						<select name="idea-type" id="idea-type">
-							<option value="no-type-selected" disabled selected>Idea type</option>
-							<option value="idea-service">Service</option>
-							<option value="idea-product">Product</option>
-							<option value="idea-cause">Cause</option>
-							<option value="idea-art">Art</option>
-							<option value="idea-project">Project</option>
-							<option value="idea-event">Event</option>
-							<option value="idea-fun">Fun</option>
-						</select>
-					</div>
-					<div class="row">
-						<div class="column">
-							<textarea name="idea-description" id="idea-description" cols="30" rows="6" placeholder="A short sweet slogan goes here. (50 character max)" value="" maxlength="50"></textarea>
-						</div>
-					</div>
-					<div>
-						<button type="submit" class="button small round success">Save</button>
-						<button class="close-reveal-modal button small round light">Cancel</button>
-					</div>
-				</form>
+				{% include "./zaplings/edit-details-reveal.html"}
 			</div>
 			
 			<div id="crowdtilt-reveal" class="reveal-modal" data-reveal>

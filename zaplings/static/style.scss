@@ -7294,6 +7294,8 @@ th.hide-for-touch {
   
 .headerLogo {
   display: inline-block;
+  padding-left: 3px !important;
+  padding-right: 0 !important;
 }
 
 .header-learn {
@@ -7310,7 +7312,6 @@ th.hide-for-touch {
 
 #feedback-button {
   margin-top: 0.5rem;
-  margin-left: 3rem;
 }
 
 .menu-button {
@@ -7466,8 +7467,7 @@ th.hide-for-touch {
 
 .header-left {
 	display: inline-block;
-	padding-left: 3px !important;
-	padding-right: 0 !important;
+
 }
 
 .new-idea {
@@ -8020,8 +8020,13 @@ input:hover:checked + label {
 // Idea feed
 
 .list-heading {
-	margin-top: 2rem;
+	margin-top: 3rem;
 	margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+#add-idea {
+  margin-left: 2rem;
 }
 
 .idea-feed {
@@ -8075,7 +8080,6 @@ input:hover:checked + label {
 }
 
 .idea-feed-description {
-    font-size: 0.875rem;
     color: #4d4d4d;
 	  margin-bottom: 0;
     text-decoration: none;

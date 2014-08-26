@@ -1,0 +1,29 @@
+<script src="{% static "./js/jquery.selectric.min.js" %}"></script>
+
+<form id="edit-idea-details">
+	<h3>Edit details</h3>
+	<div class="medium-8 small-12 columns">
+		<input type="text" id="idea-name" placeholder="Idea name" value="{{ idea.title }}"/>
+	</div>
+	<div class="medium-4 small-12 column">
+		<select name="idea-type" id="idea-type">
+			<option value="no-type-selected" disabled selected>Idea type</option>
+			<option value="idea-service">Service</option>
+			<option value="idea-product">Product</option>
+			<option value="idea-cause">Cause</option>
+			<option value="idea-art">Art</option>
+			<option value="idea-project">Project</option>
+			<option value="idea-event">Event</option>
+			<option value="idea-fun">Fun</option>
+		</select>
+	</div>
+	<div class="row">
+		<div class="column">
+			<textarea name="idea-description" id="idea-description" cols="30" rows="3" placeholder="A short sweet slogan goes here. (100 character max)" value="{{ idea.description }}" maxlength="100"></textarea>
+		</div>
+	</div>
+	<div>
+		<button type="submit" class="button small round success">Save</button>
+		<button class="close-reveal-modal button small round light">Cancel</button>
+	</div>
+</form>

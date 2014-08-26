@@ -45,7 +45,7 @@
           </div>
           <div class="row">
             <div class="small-12 column">
-              <textarea name="idea-description" id="idea-description" cols="30" rows="1" placeholder="A short sweet slogan goes here (50 characters max)" maxlength="50"></textarea>
+              <textarea name="idea-description" id="idea-description" cols="30" rows="1" placeholder="A short sweet slogan goes here (100 characters max)" maxlength="100"></textarea>
             </div>
           </div>
           <div class="row">
@@ -53,9 +53,10 @@
           </div>
           <div class="row controls">
             <div class="medium-12 large-8 column">
-              <a href="#" class="button small round success">Save</a>
-              <a href="#" class="button small light round" data-reveal-id="add-image">Add image</a>
-              <button class="small round light" data-reveal-id="modal-share-now">Share Now</button>
+              <a href="#"><button type="submit" class="button small round light">Save</button></a>
+              <button class="button small round light" data-reveal-id="modal-share-now">Share Now</button>
+              <a href="#"><button type="submit" class="button small round success">Go to idea page</button></a>
+
             </div>
           </div>
         </div>
@@ -64,15 +65,9 @@
   </div>
   <div class="push"></div>
 </div>
-<div class="footer row full-width">
+
   {% include "./zaplings/footer.html" %}
-</div>
-<!-- modals here ~MC -->
-<div id="add-image" class="reveal-modal" data-reveal>
-  <h2>"Add Image" Modal Title</h2>
-  <p>this is text in the "add image" modal</p>
-  <a class="close-reveal-modal">x</a>
-</div>
+
 <!-- end of modals ~MC -->
 <!--
 for some reason they still don't work properly - the events fire correctly but nothing is displayed. Might there be something in the base classes that causes this?

@@ -1,11 +1,12 @@
 <!-- myideas -->
 <!doctype html>
+{% load static %}
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static "./style.css" %}"/>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
       {% include "./zaplings/start-scripts.html" %}
@@ -14,60 +15,49 @@
       <div class="wrapper">
         {% include "./zaplings/header.html" %}
         
-        <div class="row my-ideas">
-          <div class="medium-8 medium-offset-2 columns">
-            <div class="row">
-              <div class="medium-5 small-6 columns">
-                <h2 class="titleMargin">My ideas</h2>
-              </div>
-              <div class="medium-7 columns small-6 text-right">
-                <a href="#" class="button success round titleMargin">Add a new idea</a>
-                <!-- the interaction for adding new ideas belongs here ~MC -->
-              </div>
-            </div>
-            <!-- .row.idea*3>a[href="startidea.html"]>.small-3.medium-2.columns>img.right^+.small-9.medium-10.columns>h3{Bam's Brussel Sprouts}+p{The best spicy sprouts you ever did taste!} -->
-            <div class="row idea">
-              <a href="startidea.html">
-                <div class="small-12 column idea-text clearfix">
-                  <img src="images/leaf-circle-1.png" alt="" class="left hide-for-small">
-                  <img src="images/leaf-circle-1.png" alt="" class="left show-for-small">
-                  <h3>Bam's Brussel Sprouts</h3>
-                  <p>A short sweet slogan goes here. (50 character max) A short sweet slogan goes here. (50 character max)</p>
-                </div>
-              </a>
-            </div>
-            <div class="row idea">
-              <a href="startidea.html">
-                <div class="small-12 column idea-text clearfix">
-                  <img src="images/leaf-circle-2.png" alt="" class="left hide-for-small">
-                  <img src="images/leaf-circle-2.png" alt="" class="left show-for-small">
-                  <h3>Bam's Brussel Sprouts</h3>
-                  <p>A short sweet slogan goes here. (50 character max) A short sweet slogan goes here. (50 character max)</p>
-                </div>
-              </a>
-            </div>
-            <div class="row idea">
-              <a href="startidea.html">
-                <div class="small-12 column idea-text clearfix">
-                  <img src="images/leaf-circle-3.png" alt="" class="left hide-for-small">
-                  <img src="images/leaf-circle-3.png" alt="" class="left show-for-small">
-                  <h3>Bam's Brussel Sprouts</h3>
-                  <p>A short sweet slogan goes here. (50 character max) A short sweet slogan goes here. (50 character max)</p>
-                </div>
-              </a>
-            </div>
+        <div class="row full-width">
+          <div class="list-heading medium-3 medium-offset-2 small-5 columns">
+            <h3>My ideas</h3>
+          </div>
+          <div class="rightText list-heading medium-5 small-7 columns end">
+            <a href="newidea.html"><button id="add-idea" class="button round success">Add new</button></a>
           </div>
         </div>
+
+        <div class="row full-width">
+          <div class="medium-8 medium-offset-2 columns">
+            <ul class="idea-feed">
+              <li>
+            <!-- Needs idea variables and link to idea page -->
+                <div class="idea-feed-content">
+                  <a href="#">
+                    <img class="hide-for-small-only idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
+                    <img class="show-for-small-only idea-feed-img-small" src="{% static "./images/leaf-circle.png" %}" height="60px" width="60px">
+                  </a>
+                  <div class="overflow-div">
+                    {% if idea.page %}
+                    <a class="no-decoration idea-feed-text" href="{% url "zaplings:edit-idea-page" %}">
+                    {% else %}
+                    <a href="#" data-reveal-id="edit-details-reveal">
+                    {% endif %}
+                    <h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
+                    <p class="idea-feed-description">A short sweet slogan goes here (100 character max) A short sweet slogan goes here (100 character max</p></a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>       
+        </div>
+
+        <div id="edit-details-reveal" class="reveal-modal" data-reveal>
+          {% include "./zaplings/edit-details-reveal.html"}
+        </div>
+        
         <div class="push"></div>
       </div>
-      <div class="footer row full-width">
-        <div class="social-media">
-          <a href="#"><img class="social-button" src="./images/facebook-icon.png" alt="Facebook"></a>
-          <a href="#"><img class="social-button" src="./images/twitter-icon.png" alt="Twitter"></a>
-          <a href="#"><img class="social-button" src="./images/linkedin-icon.png" alt="LinkedIn"></a>
-        </div>
-      </div>
-      <script src="js/vendor/jquery.js"></script>
+      
+      {% include "./zaplings/footer.html" %}
+
       <script src="js/foundation.min.js"></script>
       <script type="text/javascript">
       $(document).foundation();
