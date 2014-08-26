@@ -7,9 +7,8 @@
     <title>Zaplings | Connect to create.</title>
     <link rel="stylesheet" href="{% static "style.css" %}" />
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
-
 	{% include "./zaplings/start-scripts.html" %}
+	<script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
   </head>
   <body>
 	  
@@ -83,14 +82,17 @@
 			
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
-					if (e.which == num+1 && text != '') {
-						num = num+1;
-						$('.input-tags').val('');						
-				  		$('.suggestion-box').prepend('<input id="need-suggest-'+num+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+num+'">'+text+'</label>');
-						return false;	
-						$(this).focus().select().attr("placeholder", "");
-					}
-
+				if (e.which == 13 && text != '') {
+					num = num+1;
+					$('.input-tags').val('');						
+			  		$('.suggestion-box').prepend('<input id="need-suggest-'+num+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+num+'">'+text+'</label>');
+					return false;	
+					$(this).focus().select().attr("placeholder", "");
+				}
+				else if (e.which == 13 && text == ''){
+					e.preventDefault();
+			        return false;
+				};
 			});	
 			$('.suggestion-box').on('click', 'label', (function(){
 				$(this).toggleClass('selected').blur();

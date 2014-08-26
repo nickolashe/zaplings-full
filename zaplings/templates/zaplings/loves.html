@@ -7,9 +7,8 @@
     <title>Zaplings | Connect to create.</title>
     <link rel="stylesheet" href="{% static "style.css" %}" />
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
-
 	{% include "./zaplings/start-scripts.html" %}
+    <script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
   </head>
   <body>
 	  
@@ -84,13 +83,17 @@
 				
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
-					if (e.which == loveNum+1 && text != '') {
+					if (e.which == 13 && text != '') {
 						loveNum++;
 						$('.input-tags').val('');						
 				  		$('.suggestion-box').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
 						e.preventDefault();	
 						$(this).focus().select();
 					}
+					else if (e.which == 13 && text == ''){
+						e.preventDefault();
+				        return false;
+					};
 			});
 			
 			$('.suggestion-box').on('click', 'label', (function(){
@@ -101,6 +104,11 @@
 				var values = $('#love-tags').serialize();
 			});
 		});
+	</script>
+	<script type="text/javascript">
+		window.onbeforeunload = function(e) {
+		    return 'Your answers will not be saved until you click the "Next" button.';
+		};
 	</script>
 	
 	 {% include "./zaplings/end-scripts.html" %}

@@ -9,9 +9,10 @@
 		<title>Zaplings | Connect to create.</title>
 		<link rel="stylesheet" href="{% static "style.css" %}" />
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-		<script src="{% static "./js/jquery.selectric.min.js" %}"></script>
 
 		{% include "./zaplings/start-scripts.html" %}
+
+		<script src="{% static "./js/jquery.selectric.min.js" %}"></script>	
 	</head>
 	<body>
 	  
@@ -26,12 +27,12 @@
 				<div id="idea-filter" class="medium-2 small-3 columns end">
 
 				<!-- I need to look into getting filters to work -->
-						<select>
-							<option value="all">All</option>
-							<option value="zapling">zapling</option>
-							<option value="whoswithme">whoswithme</option>
-							<option value="takeitandrun">takeitandrun</option>
-						</select>
+					<select>
+						<option value="all">All</option>
+						<option value="zapling">zapling</option>
+						<option value="whoswithme">whoswithme</option>
+						<option value="takeitandrun">takeitandrun</option>
+					</select>
 				</div>
 			</div>
 			<div class="row full-width">
@@ -51,11 +52,8 @@
 		             				<span>&nbsp;&nbsp;<a href="#">discussion</a></span>
 								</div>
 							</div>
-<!--								<div class="rightText large-2 medium-3 columns end">
-								<button class="button tiny round light dropdown">Actions</button>
-							</div>
--->
 						</li>
+						
 					</ul>
 				</div>	
 			</div>
@@ -74,7 +72,8 @@
 				$('select').selectric()
 			});
 		</script>
-		
+
+		<script type="text/javascript" src="{% static "./js/filters.js" %}"></script>
 		{% include "./zaplings/end-scripts.html" %}
 	</body>
 </html>
