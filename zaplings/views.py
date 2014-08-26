@@ -101,6 +101,10 @@ class NewIdeaView(generic.ListView):
     model = User
     template_name = 'zaplings/newidea.html'
 
+class ThankYouView(generic.ListView):
+    model = User
+    template_name = 'zaplings/thankyou.html'
+
 class ProfileView(generic.ListView):
     context_object_name = 'user_tags'    
     template_name = 'zaplings/profile.html'

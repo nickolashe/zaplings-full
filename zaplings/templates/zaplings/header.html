@@ -34,35 +34,27 @@
 		</ul>
 	</div>	
 
-	<div class="right show-for-small-only small-2 columns">
-		<a href="#mobile-menu"><img id="three-lines" src="{% static "./images/three-lines.png" %}" height="32px" width="32px"/></a>
-	</div>
-
-	<nav id="mobile-menu" class="mm-light">
-	        <ul>
-	         <!--   <li><a href="#">My ideas</a></li>-->
-		            <li><a href="{% url 'zaplings:profile-view' %}">My profile</a></li>
-	        <!--    <li><a href="#">Idea feed</a></li>-->
-	            <li>
-	            	<span>Learn more</span>
-                	<ul>
-				    	<!--<li><a href="{% url 'zaplings:howitworks' %}">How it works</a></li>-->
-			            <li><a href="{% url 'zaplings:10-reasons' %}">10 reasons to join</a></li>
-			            <li><a href="{% url 'zaplings:faq' %}">FAQs</a></li>
-            			<!--<li><a href="{% url 'zaplings:getinvolved' %}">Get involved</a></li>-->
-            		</ul>
-            	</li>
-	            <li><a href="{% url "zaplings:user_logout" %}">Log out</a></li>
-	        </ul>
-		</nav>
+	<nav id="nav" role="navigation" class="show-for-small-only rightText">
+	    <a href="#nav" title="Show menu"><img id="three-lines" src="{% static "./images/three-lines.png" %}" height="32px" width="32px"/></a>
+	    <a href="#" title="Hide menu"><img id="three-lines" src="{% static "./images/three-lines.png" %}" height="32px" width="32px"/></a>
+			<ul>
+				<li><a href="#">My ideas</a></li>
+		        <li><a href="{% url 'zaplings:profile-view' %}">My profile</a></li>
+				<li><a href="#">Idea feed</a></li>
+		    	<li>
+		    		<a href="#" aria-haspopup="true">Learn more</a>
+		    			<ul>
+					    	<li><a href="{% url 'zaplings:howitworks' %}">How it works</a></li>
+				            <li><a href="{% url 'zaplings:10-reasons' %}">10 reasons to join</a></li>
+				            <li><a href="{% url 'zaplings:faq' %}">FAQs</a></li>
+							<li><a href="{% url 'zaplings:getinvolved' %}">Get involved</a></li>
+						</ul>
+				</li>
+		    	<li><a href="{% url "zaplings:user_logout" %}">Log out</a></li>
+			</ul>
+	</nav>
 
 
-	<!--<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
-		<a href="#" data-dropdown="drop1" class="button round small dropdown">Menu</a><br>
-		<ul id="drop1" data-dropdown-content class="f-dropdown">
-			<li><a href=>Log out</a></li>
-		</ul>
-	</div>-->
 
 </header>
 

@@ -43,6 +43,7 @@ urlpatterns = patterns('',
     url(r'^edit-idea-page/$', views.EditIdeaPageView.as_view(), name='edit-idea-page'),
     url(r'^editprofile/$', views.EditProfileView.as_view(), name='editprofile'),
     url(r'^share/$', views.ShareView.as_view(), name='share'),
+    url(r'^thankyou/$', views.ThankYouView.as_view(), name='thankyou'),
     url(r'^error/$', views.ErrorView.as_view(), name='error'),
     url(r'^(?P<referrer>\w+)/$', views.referrer, name='referrer')
 )

@@ -1,0 +1,46 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Connect to create.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+    	{% include "./zaplings/start-scripts.html" %}
+	</head>
+	<body>
+		<div class="wrapper">
+			{% include "./zaplings/header.html" %}
+	  		
+			<h2 class="titleCenter">We're glad you're here!</h2>
+			<div class="row">
+				<div class="medium-8 medium-offset-2 small-12 columns">
+					<p>Thank you for joining this growing creative community. Our mission is to help you create and thrive. This is only the beginning. We have many ideas for how we can help you, and we want your help in choosing where to focus our efforts. Let us know what you think!</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
+					<a href="#"><button class="button small round">My profile</button></a>
+					<a href="{% url zaplings:idea-feed"><button class="button small round">See public ideas</button></a>
+					<a href="{% url "zaplings:share" %}"><button class="button small round">Share Zaplings</button></a>
+					<button id="feedback-button" data-reveal-id="feedback-reveal" class="button small round">Give feedback</button>
+				</div>
+			</div>	
+		
+			<div class="push"></div>
+		</div>
+
+		{% include "./zaplings/footer.html" %}
+
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		
+		{% include "./zaplings/end-scripts.html" %}
+	</body>
+</html>
