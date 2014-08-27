@@ -14,38 +14,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<header class="row header full-width">
-		  		<div class="header-left medium-7 medium-offset-1 hide-for-small-only columns">
-					<a href="{% url "zaplings:index" %}"><img class="headerLogo" src="{% static "./images/header-logo.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/header-logo.png" %}'" alt="Zaplings logo" width="111px" height="50px"/></a>
-<!--					<a href="./startidea.html"><button class="new-idea button small radius">What's your great idea?</button></a>	-->
-				</div>		
-
-				<div class="header-left small-10 show-for-small-only columns">
-					<a href="./index.html"><img class="headerLogo" src="{% static "./images/header-logo-small.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/header-logo-small.png" %}'" width="96px" height="44px"/></a>
-<!--					<a href="./startidea.html"><button class="small-new-idea button small radius">What's your great idea?</button></a>	-->
-		  	  	</div>
-		  
-<!--				<div class="header-learn large-3 medium-4 hide-for-small-only columns end">
-					<a href="#" data-dropdown="drop1" class="button round small dropdown">Learn more</a><br>
-					<ul id="drop1" data-dropdown-content class="f-dropdown">
-						<li><a href="./howitworks.html">How it works</a></li>
-						<li><a href="./faq.html">FAQ</a></li>
-						<li><a href="./about.html">About</a></li>
-						<li><a href="./getinvolved">Get involved</a></li>
-					</ul>
-				</div>
-	  
-				<div class="header-learn show-for-small-only small-2 columns">
-					<a href="#" data-dropdown="drop1" class="menu-button"><img src="{% static "./images/three-lines.png" %}" alt="Menu" width="30px" height="30px"></a><br>
-					<ul id="drop1" data-dropdown-content class="f-dropdown">
-				    	<li><a href="./howitworks.html">How it works</a></li>
-				    	<li><a href="./faq.html">FAQ</a></li>
-				    	<li><a href="./about.html">About us</a></li>
-						<li><a href="./getinvolved.html">Get involved</a></li>
-				  	</ul>
-		  	  	</div>
--->
-		  	</header>
+			{% include "./zaplings/header.html" %}
 	  		
 			<h2 class="titleCenter">10 reasons to join Zaplings</h2>
 			<div class="row">
@@ -67,13 +36,17 @@
 				<div class="medium-7 medium-offset-2 small-10 small-offset-1 columns">
 					<div id="start-options" class="add-margin-top">
                         <form id="form-join" action="{% url 'zaplings:record_new_email' %}" method="post"> 
-                                {% csrf_token %}  
+                                {% csrf_token %}
 							<button id="email-submit" type="submit" class="button round success">Join Zaplings</button>
 							<div id="home-email"><input type="email" name="email" placeholder="Email"/></div>
+							<p>or <a href="{% url 'zaplings:signup' %}">Log in</a></p>
 						</form>
+						<p class="add-margin-top">Any questions? Check out our <a href="{% url "zaplings:faq" %}">FAQs</a> or ask one of your own.</p>
 					</div>
 				</div>
 			</div>
+				
+				
 		
 			<div class="push"></div>
 		</div>

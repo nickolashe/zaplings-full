@@ -43,7 +43,7 @@
                                 {% csrf_token %}  
 								<div id="email-div"><button id="email-submit" type="submit" class="button round success">I'm in!</button>
                                     <div id="home-email">
-                                        <input type="email" name="email" placeholder="Email"/>
+                                        <input type="email" name="email" placeholder="Your email"/>
                                     </div>
 								</div>
                             </form>
@@ -51,7 +51,7 @@
 							<div class="add-margin-top add-margin-bottom">
 								<a class="home-text" href="{% url "zaplings:10-reasons" %}">10 reasons to join</a> 
 							</div>
-<!--			  			    <button id="share-idea" class="button round success">Share an idea</button>		-->
+<!--<button id="share-idea" class="button round success">Share an idea</button>		-->
 						</div>
                 {% if status_message %}
                 <div class="add-margin-bottom">

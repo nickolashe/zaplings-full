@@ -7223,7 +7223,7 @@ th.hide-for-touch {
 }
 
 #start-options {
-  	padding: 0.25rem 0 0.1rem 0;
+  padding: 0.25rem 0 0.1rem 0;
 	margin-bottom: 1.5rem;
 }
 
@@ -7294,7 +7294,6 @@ th.hide-for-touch {
   
 .headerLogo {
   display: inline-block;
-  padding-left: 3px !important;
   padding-right: 0 !important;
 }
 
@@ -7329,6 +7328,58 @@ th.hide-for-touch {
 .menu-button > ul {
 	text-align: left;
 }
+
+#three-lines {
+  margin-top: 0.4rem;
+  margin-right: 0.4rem;
+}
+
+.header-left {
+	display: inline-block;
+}
+
+#header-left-small {
+  padding: 0;
+}
+
+.new-idea {
+	padding: 0.4rem 0.75rem 0.3rem 0.75rem !important;
+	position: absolute;
+  left: 8.5rem;
+  top: 0.75rem;
+	background-color: #c2d1df;
+	color: #05325b;
+	font-weight: 300;
+  transition: all 300ms ease-out;
+}
+
+.small-new-idea {
+	padding: 0.4rem 0.25rem 0.3rem 0.25rem !important;
+  position: absolute;
+	left: 6.5rem;
+  top: 0.5rem;
+	background-color: #c2d1df;
+	color: #05325b;
+	font-weight: 300;
+  transition: all 300ms ease-out;
+}
+
+.new-idea:hover, .small-new-idea:hover {
+	background-color: #70bf4f;
+	color: #fff;
+}
+
+.social-media {
+	height: 1.5rem;
+	margin-top: 0.75rem;
+	float: right;
+}
+
+.social-button {
+	height: 100%;
+}
+
+// Mobile menu
 
 #nav
 {
@@ -7449,7 +7500,6 @@ th.hide-for-touch {
 
     #nav > ul > li:hover {
       background-color: #ddd;
-      padding-bottom: 0;
     }
     #nav > ul > li:hover a {
     color: #333;
@@ -7459,55 +7509,6 @@ th.hide-for-touch {
     border-top: 1px solid #fff;
     }
 }
-
-#three-lines {
-  margin-top: 0.4rem;
-  margin-right: 0.4rem;
-}
-
-.header-left {
-	display: inline-block;
-
-}
-
-.new-idea {
-	padding: 0.4rem 0.75rem 0.3rem 0.75rem !important;
-	position: absolute;
-  left: 8rem;
-  top: 0.75rem;
-	background-color: #c2d1df;
-	color: #05325b;
-	font-weight: 300;
-  transition: all 300ms ease-out;
-}
-
-.small-new-idea {
-	padding: 0.4rem 0.25rem 0.3rem 0.25rem !important;
-  position: absolute;
-	left: 6.5rem;
-  top: 0.4rem;
-	background-color: #c2d1df;
-	color: #05325b;
-	font-weight: 300;
-  transition: all 300ms ease-out;
-}
-
-.new-idea:hover, .small-new-idea:hover {
-	background-color: #70bf4f;
-	color: #fff;
-}
-
-.social-media {
-	height: 1.5rem;
-	margin-top: 0.75rem;
-	margin-right: 3rem;
-	float: right;
-}
-
-.social-button {
-	height: 100%;
-}
-
 
 
 // Sticky footer
@@ -7805,7 +7806,7 @@ input:hover:checked + label {
   margin-bottom: 1rem;
 }
 
-#change-image {
+.change-image {
 	margin-top: 4.5rem;
 }
 
@@ -7962,6 +7963,10 @@ input:hover:checked + label {
   text-align: center;
 }
 
+#idea-title-input {
+  text-align: center;
+}
+
 .idea-name-small {
   margin-bottom: 0.5rem;
   margin-top: 4rem;
@@ -8042,8 +8047,7 @@ input:hover:checked + label {
 }
 
 #idea-filter {
-  margin-top: 2.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: 3.125rem;
   width: 160px;
 }
 

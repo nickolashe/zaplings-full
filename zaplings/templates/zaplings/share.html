@@ -47,11 +47,6 @@
 				<div class="overflow-div"><input id="user-link" type="text" onClick="this.setSelectionRange(0, this.value.length)" value="http://www.zaplings.com/{{ user.username }}" readonly/></div>
 			</div>
 		</div>
-		<div class="row add-margin-top">
-			<div class="centerText small-6 small-offset-3 columns end">
-				<a href="{% url "zaplings:generate_profile" %}"><button class="button small round">View profile</button></a>
-			</div>
-		</div>
 
 
 		<div class="row">
@@ -63,6 +58,12 @@
 					<a href="https://twitter.com/share?url=http%3A//www.zaplings.com&text=Check%20out%20Zaplings,%20a%20place%20to%20share%20new%20ideas%20and%20find%20help%20to%20make%20them%20happen." target="_blank"><button class="button small round">Twitter</button></a>
 					<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.zaplings.com&title=Create%20something%20with%20Zaplings.&summary=Share%20ideas,%20get%20feedback,%20and%20build%20a%20team.%20Zaplings%20introduces%20you%20to%20ideas%20you%27ll%20love%20and%20people%20you%27re%20looking%20for.&source=Zaplings" target="_blank"><button class="button small round">LinkedIn</button></a>
 					<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=https://www.zaplings.com', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><button class="button small round">Google+</button></a>
+			</div>
+		</div>
+
+		<div class="row add-margin-top">
+			<div class="centerText small-6 small-offset-3 columns end">
+				<a href="{% url "zaplings:generate_profile" %}"><button class="button small light round">View profile</button></a>
 			</div>
 		</div>
 

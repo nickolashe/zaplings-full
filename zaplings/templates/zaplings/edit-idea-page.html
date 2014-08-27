@@ -18,52 +18,50 @@
 
 			{% include "./zaplings/header.html" %}
 
-			<div class="row full-width hide-for-small-only">
-
 			<!-- When image is added, idea-cover needs to be replaced with an image 250px tall and full screen width. (For mobile version - 1st "show-for-small-only" class below - image will be smaller.) I'd like to use imagedrag to move the visible portion of the image (just like Facebook's "Reposition cover image"). -->
 
+<!--		<div class="row full-width hide-for-small-only">
 				<div class="idea-cover light">
 					<img class="idea-image" src="{% static "./images/leaf-circle.png" %}" alt="Idea image" width="88px" height="88px"/>
 					<div class="centerText medium-6 small-centered columns">
 						<a href="#" data-reveal-id="change-cover-reveal"><button id="change-cover" class="button small round">Optional image and video</button></a>
 					</div>
-				</div>	
-			</div>
-		<form>
-			<div class="row hide-for-small-only">
+				</div> 
+			</div>-->
+		<form id="form-edit-idea-page" action="{% url 'zaplings:error' %}" method="post">
+		{% csrf_token %}
+			<div class="row full-width hide-for-small-only">
 				<div class="medium-6 medium-offset-3 columns">
-					<h3 class="idea-name">{{ idea.title }}</h3>
+					<img class="profile-image" src="{% static "./images/.png" %}" alt="Idea image" width="75px" height="75px"/>
 				</div>
-				<div class="rightText medium-3 columns end">
-					<a href="#" data-reveal-id="change-icon-reveal"><button id="change-idea-image" class="button small round light">Change image</button>
-					<a href="#" data-reveal-id="edit-details-reveal"><button id="edit-details" class="button small round light">Edit details</button></a>
+				<div class="medium-3 columns end">
+					<a href="#" data-reveal-id="change-icon-reveal"><button class="change-image button small round light">Change image</button>
 				</div>
-				
 			</div>
 
-			<div class="row full-width show-for-small-only">
+<!--			<div class="row full-width show-for-small-only">
 				<div class="idea-cover-small light">
 					<img class="idea-image-small" src="{% static "./images/leaf-circle.png" %}" alt="Idea image" width="75px" height="75px"/>
 					<div class="centerText medium-6 small-centered columns">
 						<a href="#" data-reveal-id="change-cover-reveal"><button id="change-cover-small" class="button tiny round">Optional image and video</button></a>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		
 			<div class="row add-margin-bottom show-for-small-only">
-				<h3 class="idea-name">{{ idea.title }}</h3>		
+				<img class="small-profile-image" src="{% static "./images/.png" %}" alt="Profile image" width="75px" height="75px"/>
 				<div class="small-12 centerText columns">
-					<a href="#" data-reveal-id="change-icon-reveal"><button class="button tiny round light">Change icon</button></a>
-					<a href="#" data-reveal-id="edit-details-reveal"><button class="button tiny round light">Edit details</button></a>
+					<a href="#" data-reveal-id="change-icon-reveal"><button class="button tiny round light">Change image</button></a>
 				</div>
 			</div>
 
 				<div class="row">
 					<div class="centerText medium-6 small-12 medium-offset-3 columns">
+						<input id="idea-title-input" type="text" placeholder="Idea title" value="{{ idea.title }}"/>
 						<textarea id="idea-intro" rows="2" placeholder="Introduce {{ idea.title }} (100 character maximum)" value="{{ idea.description }}"/></textarea>
-						<input id="website-link" type="text" placeholder="www.yourwebsite.com (Optional)"/>
-					<!-- Show only if Idea type = Music -->
-						<div class="centerText"><a href="#" data-reveal-id="music-reveal"><button class="button small round">Add music</button></a></div>
+						<input id="website-link" type="text" placeholder="www.yourwebsite.com (Optional)" value="{{ idea.website }}"/>
+					<!-- Show only if Idea type = Music
+						<div class="centerText"><a href="#" data-reveal-id="music-reveal"><button class="button small round">Add music</button></a></div>-->
 					</div>	
 				</div>
 
@@ -158,7 +156,7 @@
 				<h3>Add cover image and video (optional)</h3>
 				<form id="change-cover-form">
 					<input type="file" id="cover-image" class="add-margin-top"/>
-					<label class="add-margin-top">Introduce your idea by video (ideal length: 60-90 seconds)</label>
+					<p class="add-margin-top no-margin-bottom aside">Introduce your idea by video (ideal length: 60-90 seconds)</p>
 					<input type="text" id="video-link" class="add-margin-top" placeholder="YouTube or Vimeo link" value=""/>
 					<button type="submit" class="add-margin-top button small round success">Save</button>
 					<button class="close-reveal-modal button small round light">Cancel</button>

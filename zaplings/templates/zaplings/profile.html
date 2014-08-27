@@ -23,8 +23,9 @@
 				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
 			</div>
 			<div class="rightText medium-3 columns end">
-				<!-- display if username created and all questions answered
-				<a href="#" data-reveal-id="change-image-reveal"><button id="change-image" class="button small round light">Change image</button></a>-->		
+				{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
+				<a href="#" data-reveal-id="change-image-reveal"><button class="change-image button small round light">Change image</button></a>
+				{% endif %}
 			</div>
 		</div>
 		
@@ -38,8 +39,10 @@
 				{% endif %}
 			</div>
 			<div class="rightText medium-3 columns end">
-				<!-- display if username created and all questions answered 
-				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>-->
+				{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
+				
+				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>
+				{% endif %}
 			</div>
 		</div>
 		

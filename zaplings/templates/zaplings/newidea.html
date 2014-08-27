@@ -1,11 +1,12 @@
 <!-- startidea / new-book -->
 <!doctype html>
+{% load static %}
 <html class="no-js" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static "./style.css"%}" />
     <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
       
       {% include "./zaplings/start-scripts.html" %}
@@ -24,45 +25,40 @@
           {% endif %}
           </div>
         </div>
-        <div class="medium-8 medium-offset-2 columns">
-          <form action="#"> <!-- insert form action / submit.php / etc here ~MC -->
+
+        <form id="form-new-idea" action="{% url 'zaplings:error' %}" method="post"> <!-- insert form action / submit.php / etc here ~MC -->       {% csrf_token %}  
           <div class="row">
-            <div class="medium-8 column">
-              <input type="text" id="idea-name" placeholder="Idea name">
-            </div>
-            <div class="medium-4 column">
-              <select name="idea-type" id="idea-type">
-                <option value="no-type-selected" disabled selected>Idea type</option>
-                <option value="idea-service">Service</option>
-                <option value="idea-product">Product</option>
-                <option value="idea-cause">Cause</option>
-                <option value="idea-art">Art</option>
-                <option value="idea-project">Project</option>
-                <option value="idea-event">Event</option>
-                <option value="idea-fun">Fun</option>
-              </select>
-            </div>
+              <div class="medium-5 medium-offset-2 small-7 column">
+                <input type="text" id="idea-name" placeholder="Idea name">
+              </div>
+              <div class="medium-3 small-5 column end">
+                <select name="idea-type" id="idea-type">
+                  <option value="no-type-selected" disabled selected>Idea type</option>
+                  <option value="idea-service">Service</option>
+                  <option value="idea-product">Product</option>
+                  <option value="idea-cause">Cause</option>
+                  <option value="idea-art">Art</option>
+                  <option value="idea-project">Project</option>
+                  <option value="idea-event">Event</option>
+                  <option value="idea-fun">Fun</option>
+                </select>
+              </div>
           </div>
           <div class="row">
-            <div class="small-12 column">
+            <div class="medium-8 medium-offset-2 columns end">
               <textarea name="idea-description" id="idea-description" cols="30" rows="1" placeholder="A short sweet slogan goes here (100 characters max)" maxlength="100"></textarea>
             </div>
           </div>
-          <div class="row">
-            <div class="medium-4 column"><p><a href="#" class="idea add-notes">Add notes</a></p></div>
-          </div>
           <div class="row controls">
-            <div class="medium-12 large-8 column">
+            <div class="medium-8 medium-offset-2 columns end">
+              <a id="add-notes" href="#"><button class="button small round light">Add notes</button></a>
               <a href="#"><button type="submit" class="button small round light">Save</button></a>
               <button class="button small round light" data-reveal-id="modal-share-now">Share Now</button>
-              <a href="#"><button type="submit" class="button small round success">Go to idea page</button></a>
+              <a href="#"><button type="submit" class="button small round success">Start idea page</button></a>
 
             </div>
           </div>
-        </div>
       </form>
-    </div>
-  </div>
   <div class="push"></div>
 </div>
 
@@ -76,6 +72,13 @@ need to investigate - first step is locating a clean copy of the big scss file w
 
 <script src="js/foundation.min.js"></script>
 <script type="text/javascript">$(document).foundation();</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#idea-description").click('#add-notes', function(){
+      $(this).after('<textarea name="idea-notes" id="idea-notes" rows="3" placeholder="Notes"></textarea>')
+    });
+  });
+</script>
 
 {% include "./zaplings/end-scripts.html" %}
 </body>

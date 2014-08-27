@@ -24,7 +24,7 @@
 			</div>
 			<div class="row">
 				<div class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
-					<a href="#"><button class="button small round">My profile</button></a>
+					<a href="{% url "zaplings:profile-view" %}"><button class="button small round">My profile</button></a>
 					<a href="{% url zaplings:idea-feed"><button class="button small round">See public ideas</button></a>
 					<a href="{% url "zaplings:share" %}"><button class="button small round">Share Zaplings</button></a>
 					<button id="feedback-button" data-reveal-id="feedback-reveal" class="button small round">Give feedback</button>
