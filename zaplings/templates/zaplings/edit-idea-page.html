@@ -57,9 +57,9 @@
 
 				<div class="row">
 					<div class="centerText medium-6 small-12 medium-offset-3 columns">
-						<input id="idea-title-input" type="text" placeholder="Idea title" value="{{ idea.title }}"/>
+						<input id="idea-title-input" name="idea-title-input"type="text" placeholder="Idea title" value="{{ idea.title }}"/>
 						<textarea id="idea-intro" rows="2" placeholder="Introduce {{ idea.title }} (100 character maximum)" value="{{ idea.description }}"/></textarea>
-						<input id="website-link" type="text" placeholder="www.yourwebsite.com (Optional)" value="{{ idea.website }}"/>
+						<input id="website-link" name="website-link" type="text" placeholder="www.yourwebsite.com (Optional)" value="{{ idea.website }}"/>
 					<!-- Show only if Idea type = Music
 						<div class="centerText"><a href="#" data-reveal-id="music-reveal"><button class="button small round">Add music</button></a></div>-->
 					</div>	
@@ -155,9 +155,9 @@
 			<div id="change-cover-reveal" class="reveal-modal" data-reveal>
 				<h3>Add cover image and video (optional)</h3>
 				<form id="change-cover-form">
-					<input type="file" id="cover-image" class="add-margin-top"/>
+					<input type="file" id="cover-image" name="cover-image" class="add-margin-top"/>
 					<p class="add-margin-top no-margin-bottom aside">Introduce your idea by video (ideal length: 60-90 seconds)</p>
-					<input type="text" id="video-link" class="add-margin-top" placeholder="YouTube or Vimeo link" value=""/>
+					<input type="text" id="video-link" name="video-link" class="add-margin-top" placeholder="YouTube or Vimeo link" value=""/>
 					<button type="submit" class="add-margin-top button small round success">Save</button>
 					<button class="close-reveal-modal button small round light">Cancel</button>
 				</form>	
@@ -183,7 +183,7 @@
 						<div class="medium-6 columns">
 							<p><a href="http://www.crowdtilt.com/" target="_blank">Visit Crowdtilt to start a campaign</a></p>
 							<div>Link to your campaign:</div>
-							<input type="text" placeholder="www.crowdtilt.com/your-project-link"/>
+							<input id="crowdtilt-link" name="crowdtilt-link" type="text" placeholder="www.crowdtilt.com/your-project-link"/>
 							<div class="add-margin-bottom">
 								<button type="submit" class="button round small success">Save</button>
 								<button class="close-reveal-modal button round small light">Cancel</button>
@@ -230,7 +230,7 @@
 			var num = 1;
 			$('#add-team-member').click(function(){
 				num++;
-				$('#team-details').append('<label>Team member '+num+'</label><input type="text" id="team-user-'+num+'" placeholder="Email or Zaplings username"/><textarea id="team-intro-'+num+'" placeholder="Describe his or her role in the team" rows="3"></textarea>');
+				$('#team-details').append('<label>Team member '+num+'</label><input type="text" name="team-user-'+num+'" id="team-user-'+num+'" placeholder="Email or Zaplings username"/><textarea id="team-intro-'+num+'" name="team-intro-'+num+'" placeholder="Describe his or her role in the team" rows="3"></textarea>');
 				return false;
 			});
 		

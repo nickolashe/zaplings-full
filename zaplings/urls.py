@@ -21,7 +21,6 @@ urlpatterns = patterns('',
     url(r'^when/$', views.WhenView.as_view(), name='when'),
     url(r'^newidea/$', views.NewIdeaView.as_view(), name='newidea'),
     url(r'^myideas/$', views.MyIdeasView.as_view(), name='myideas'),
-    url(r'^feedback/$', views.FeedbackView.as_view(), name='feedback'),
     url(r'^(?P<userid>\d+)/generate_user_tags/$', views.generate_user_tags, name='generate_user_tags'),
     url(r'^generate_profile/$', views.generate_profile, name='generate_profile'),
     # form handlers

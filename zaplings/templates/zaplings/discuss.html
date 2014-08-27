@@ -41,7 +41,7 @@
 					<div class="medium-8 medium-offset-2 columns">
 						<h6 class="no-margin-bottom">username</h6>
 						<button id="comment-submit" type="submit" class="button success small round">Share</button>
-						<div class="overflow-div"><textarea id="new-comment" placeholder="New question, comment, or suggestion"></textarea></div>
+						<div class="overflow-div"><textarea id="new-comment" name="new-comment" placeholder="New question, comment, or suggestion"></textarea></div>
 					</div>
 				</div>
 				<div class="row full-width">
@@ -89,7 +89,7 @@
 
 				$('.reply').click(function() {
 					$('.reply-div').remove();
-					$(this).parent().parent().after('<div class="reply-div row full-width"><div class="medium-7 medium-offset-3 small-offset-1 columns"><h6 class="no-margin-bottom">username</h6><button id="comment-submit" type="submit" class="button success small round">Share</button><div class="overflow-div"><textarea id="new-comment" placeholder="Reply with a question, comment, or suggestion"></textarea></div></div></div>');
+					$(this).parent().parent().after('<div class="reply-div row full-width"><div class="medium-7 medium-offset-3 small-offset-1 columns"><h6 class="no-margin-bottom">username</h6><button id="comment-submit" type="submit" class="button success small round">Share</button><div class="overflow-div"><textarea id="new-comment" name="new-comment" placeholder="Reply with a question, comment, or suggestion"></textarea></div></div></div>');
 					return false;
 				});
 			});

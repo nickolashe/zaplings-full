@@ -134,7 +134,7 @@
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="add-margin-bottom">What I love</h4>	
 					<!-- add textbox if all questions answered -->
-                                        <textarea id="love-text" rows="2" {% if not love_text %} placeholder="What do you love creating?" {% endif %} name="love_text"/>{% if love_text %}{{ love_text }}{% endif %}</textarea>
+                        <textarea id="love-text" rows="2" placeholder="What's your passion?" name="love_text" value="{{ love_text }}"></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -155,12 +155,12 @@
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I offer</h4>
 					<!-- add textbox if all questions answered -->
-					<textarea id="offer-text" rows="2" {% if not offer_text %} placeholder="How can you help others create?" {% endif %} name="offer_text"/>{% if offer_text %}{{ offer_text }}{% endif %}</textarea>
+					<textarea id="offer-text" rows="2" placeholder="How can you help others create?" name="offer_text" value="{{ offer_text }}"></textarea>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">	
-        			{% for tag in user_offertags %} 
+        		{% for tag in user_offertags %} 
 	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
 				{% endfor %}	
@@ -177,7 +177,7 @@
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="section-header">What I need</h4>
 					<!-- add textbox if all questions answered -->
-                                        <textarea id="need-text" rows="2" {% if not need_text %} placeholder="What do you need from others to create?" {% endif %} name="need_text"/>{% if need_text %}{{ need_text }}{% endif %}</textarea>
+                        <textarea id="need-text" rows="2" placeholder="What do you need from others to create?" name="need_text" value="{{ need_text }}"></textarea>
 				</div>
 			</div>
 			<div class="row">

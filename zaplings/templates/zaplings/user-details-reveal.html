@@ -3,17 +3,17 @@
 	<div class="medium-8 small-12 columns end">
 		<h3>Edit user details</h3>
 		<h5>Edit name</h5>
-		<input id="last-name" type="text" placeholder="Last name" value="{{ lastname }}" tabindex="2" />
-		<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstname }}" tabindex="1" /></div>
+		<input id="last-name" name="last-name" type="text" placeholder="Last name" value="{{ lastname }}" tabindex="2" />
+		<div class="overflow-div"><input id="first-name" name="first-name" type="text" placeholder="First name" value="{{ firstname }}" tabindex="1" /></div>
 
 		<h5>Edit username</h5>
-		<input id="username" type="text" placeholder="username" value="{{ user.username }}" tabindex="3" />
+		<input id="username" name="username" type="text" placeholder="username" value="{{ user.username }}" tabindex="3" />
 
 		<h5>Edit password</h5>
 		<p>Leave blank to keep your same password.</p>
-		<input id="password" type="password" placeholder="Current password" tabindex="4"/>
-		<input id="verify" type="password" placeholder="Verify new" tabindex="6"/>
-		<div class="overflow-div"><input id="new-password" type="password" placeholder="New password" tabindex="5"/></div>
+		<input id="password" name="password" type="password" placeholder="Current password" tabindex="4"/>
+		<input id="verify" name="password" type="password" placeholder="Verify new password" tabindex="6"/>
+		<div class="overflow-div"><input id="new-password" name="new-password" type="password" placeholder="New password" tabindex="5"/></div>
 			<button type="submit" class="button round small success">Save</button>
 			<button class="close-reveal-modal button small round light">Cancel</button>
 	</div>
