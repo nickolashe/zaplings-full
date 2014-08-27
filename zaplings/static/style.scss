@@ -7806,7 +7806,7 @@ input:hover:checked + label {
   margin-bottom: 1rem;
 }
 
-#change-image {
+.change-image {
 	margin-top: 4.5rem;
 }
 
@@ -7960,6 +7960,10 @@ input:hover:checked + label {
 .idea-name {
   margin-bottom: 0.5rem;
 	margin-top: 4rem;
+  text-align: center;
+}
+
+#idea-title-input {
   text-align: center;
 }
 

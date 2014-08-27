@@ -7,7 +7,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Zaplings | Connect to create.</title>
-		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link rel="stylesheet" href="{% static "./style.css" %}" />
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
 		{% include "./zaplings/start-scripts.html" %}
@@ -19,9 +19,10 @@
 			{% include "./zaplings/header.html" %}
 	  		
 			<div class="row">
-				<div class="centerText medium-10 medium-offset-1 columns end">
+				<div class="centerText large-6 large-offset-3 medium-8 medium-offset-2 columns end">
 					<form id="form-feedback" action="" method="post"/>
-						<h3>Share feedback</h3>
+						{% csrf_token %}
+						<h3 class="three-margin-top">Share feedback</h3>
 						<p>Questions? Issues with the site? Let us know.</p>
 						<div class="medium-10 medium-offset-1 columns">
 							<select>

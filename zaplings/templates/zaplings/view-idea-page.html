@@ -59,15 +59,18 @@
 			<div class="row show-for-small-only">
 				<h2 class="idea-name">{{ idea.title }}</h2>		
 				<div class="small-12 centerText columns">
-					<a href="#" data-reveal-id="change-icon-reveal"><button class="button tiny round light">Change image</button></a>
-					<a href="#" data-reveal-id="edit-details-reveal"><button class="button tiny round light">Edit details</button></a>
+					<!-- if user is owner of page... -->
+					<a href="{% url "zaplings:edit-idea-page" %}"><button class="button tiny round light">Edit page</button></a>
 				</div>	
 			</div>
 			<div class="row">
 				<div class="centerText medium-6 small-12 medium-offset-3 columns">
 					<p class="large">{{ idea.description }}<br>
 					<!-- add idea.website to href; remove http:// or https:// from variable value -->
-					<a href="http://{{ idea.website }}">{{ idea.website }}</a></p>
+					{% if idea.website %}
+					<a href="http://{{ idea.website }}">{{ idea.website }}</a>
+					{% endif %}
+					</p>
 
 				<!-- If music added, display embed code -->
 					
