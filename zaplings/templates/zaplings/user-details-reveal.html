@@ -1,4 +1,5 @@
-<form id="user-details">
+<form id="user-details" action="{% url 'zaplings:error' %}" method="post">
+    {% csrf_token %}
 	<div class="medium-8 small-12 columns end">
 		<h3>Edit user details</h3>
 		<h5>Edit name</h5>

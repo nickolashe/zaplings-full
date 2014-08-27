@@ -35,7 +35,7 @@
 					<img class="profile-image" src="{% static "./images/.png" %}" alt="Idea image" width="75px" height="75px"/>
 				</div>
 				<div class="medium-3 columns end">
-					<a href="#" data-reveal-id="change-icon-reveal"><button class="change-image button small round light">Change image</button>
+					<a href="#" data-reveal-id="change-image-reveal"><button class="change-image button small round light">Change image</button>
 				</div>
 			</div>
 
@@ -163,13 +163,8 @@
 				</form>	
 			</div>	
 		
-			<div id="change-icon-reveal" class="reveal-modal" data-reveal>
-				<h3>Change idea icon</h3>
-				<form id="change-icon">
-					<input type="file" class="add-margin-top"/>
-					<button type="submit" class="add-margin-top button small round success">Save</button>
-					<button class="close-reveal-modal button small round light">Cancel</button>
-				</form>
+			<div id="change-image-reveal" class="reveal-modal" data-reveal>
+				{% include "./zaplings/change-image-reveal.html"}
 			</div>
 		
 			<div id="edit-details-reveal" class="reveal-modal" data-reveal>
