@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="medium-8 medium-offset-2 columns">
-          <form action="#"> <!-- insert form action / submit.php / etc here ~MC -->
+          <form id="form-new-idea" action="{% url 'zaplings:error' %}" method="post"> <!-- insert form action / submit.php / etc here ~MC -->
           <div class="row">
             <div class="medium-8 column">
               <input type="text" id="idea-name" placeholder="Idea name">

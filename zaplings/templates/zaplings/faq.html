@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="medium-8 medium-offset-2 small-12 columns end">
 					<h5>Why should I share my idea? Won't someone steal it?</h5>
-					<p>Fear kills, and Fear of the Stolen Idea claims countless creations before they ever have a chance.  It is largely a myth - ideas are rarely stolen. (People love their own ideas way more.) This is the first of many fears and obstacles you'll need to face to create and thrive.</p>
+					<p>Fear of the Stolen Idea claims countless creations before they ever have a chance.  It is largely a myth - ideas are rarely stolen. (People love their own ideas way more.) This is the first of many fears and obstacles you'll need to face to create and thrive.</p>
 					<p>It's much more likely that your idea needs work. Your "big idea" requires the support of many more specific ideas about what to do and how to do it in order to become a reality. The best way to figure out these details is to start talking about it. The feedback you receive will inspire all sorts of possibilities that your single mind would have never explored on its own.</p>
 					<p>The irony is, the longer your idea stays stuck in your head, the more likely it is that someone else will act on their similar idea independently. Whatever inspired the idea in you will inspire some of the other billions of people too. Luckily, they too have fears to face.</p>
 					<h5>Why shouldn't I worry about my idea being stolen?</h5>
@@ -44,8 +44,25 @@
 					<h5>What does the future hold for Zaplings?</h5>
 					<p>We're curious to find out too! As the community grows, we will start testing introductions with our first users to make sure we are suggesting valuable conversations. We will also be looking to make sure we are giving different types of creators the functionality and flexibility they need to share ideas effectively.</p>
 					<p>We are committed to being open about how we intend to grow, and we want you to be involved in that process. <!-- Take a look at our [agile development list] to see what we're working on next. -->We'd love to hear your suggestions!</p>
-					<textarea id="ask-question" rows="3" placeholder="Ask another question"></textarea>
-					<button style="submit" class="button round success">Send</button>
+					<form id="form-ask-question" action="{% url 'zaplings:error' %}" method="post">
+						
+						{% if user.loggedIn %}
+							<h5>I have another question...</h5>
+							<p><strong>{{ user.username }}</strong></p>
+							<textarea id="ask-question" rows="3" placeholder="Your question"></textarea>
+							<button style="submit" class="button round success">Send</button>
+							<p class="add-margin-top">or <button class="button round small light"><a href="{% url 'zaplings:profile-view' %}">Go to profile</a></button></p>
+						{% else %}
+							<h5 class="add-margin-top">Last question... Are you ready?</h5>
+							<button id="email-submit" type="submit" class="button round success">Join Zaplings</button>
+							<div id="home-email"><input type="email" name="email" placeholder="Your email"/></div>
+							<p class="rightText">or <a href="{% url 'zaplings:signup' %}">Log in</a></p>
+							<h5 class="add-margin-top">I have another question...</h5>
+							<input id="email" type="text" placeholder="Your email"/>
+							<textarea id="ask-question" rows="3" placeholder="Your question"></textarea>
+							<div class="rightText"><button style="submit" class="button round">Send</button></div>
+						{% endif %}
+					</form>
 				</div>
 			</div>
 		
