@@ -33,14 +33,14 @@
               </div>
               <div class="medium-3 small-5 column end">
                 <select name="idea-type" id="idea-type">
-                  <option value="no-type-selected" disabled selected>Idea type</option>
-                  <option value="idea-service">Service</option>
-                  <option value="idea-product">Product</option>
-                  <option value="idea-cause">Cause</option>
-                  <option value="idea-art">Art</option>
-                  <option value="idea-project">Project</option>
-                  <option value="idea-event">Event</option>
-                  <option value="idea-fun">Fun</option>
+                  <option value="no-type-selected" disabled {% if not idea.type %}selected{% endif %}>Idea type</option>
+                  <option value="idea-service" {% if idea.type = "Service" %}selected {% endif %}>Service</option>
+                  <option value="idea-product" {% if idea.type = "Product" %}selected {% endif %}>Product</option>
+                  <option value="idea-cause" {% if idea.type = "Cause" %}selected {% endif %}>Cause</option>
+                  <option value="idea-art" {% if idea.type = "Art" %}selected {% endif %}>Art</option>
+                  <option value="idea-project" {% if idea.type = "Project" %}selected {% endif %}>Project</option>
+                  <option value="idea-event" {% if idea.type = "Event" %}selected {% endif %}>Event</option>
+                  <option value="idea-fun" {% if idea.type = "Fun" %}selected {% endif %}>Fun</option>
                 </select>
               </div>
           </div>

@@ -74,14 +74,16 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<label class="half-margin-right">Select relevant tags:</label>
+						<div id="selected-offers">
 						
-		<!-- Suggested tags for ideas = user's selected tags -->
-		
-						<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
-							<label class="tag button tiny light round" for="offer-1">offer tag 1</label>
-				<!--  end for -->
+							<!-- Suggested tags for ideas = user's selected tags -->
+							<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
+								<label class="tag button tiny light round" for="offer-1">offer tag 1</label>
+							<!--  end for -->
+						</div>
+						<input id="input-offers" class="input-tags" type="text" placeholder="We offer... (press return to add)"/>
 
-						<a class="add-more" href="offers.html"><button class="button tiny round light">Add more...</button></a>
+					<!--	<a class="add-more" href="offers.html"><button class="button tiny round light">Add more...</button></a>-->
 					</div>		
 				</div>
 				<div class="row">
@@ -89,39 +91,29 @@
 					<p class="no-margin-bottom">Ready for funding? <a href="#" data-reveal-id="crowdtilt-reveal"><button class="button small round">Try Crowdtilt</button></a></p>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="medium-8 small-12 medium-offset-2 columns">
-						<h4 class="section-header">Who we are</h4>
 
-						<div id="team-details">	
-							<h5>{{ user.firstname }}{{ user.lastname }}</h5>
-							<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
-						</div>
-							<a href="#" id="add-team-member">Add team member</a>	
-					</div>
-				</div>
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">		
 						<h4 class="section-header">What we love</h4>
 						<textarea id="love-text" rows="3" placeholder="Share to your heart's content"/></textarea>
 					</div>	
 				</div>
-				
-				<!-- Suggested tags for ideas = user's selected tags -->
-								
+
+				<!-- Suggested tags for ideas = user's selected tags -->		
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">	
 						<label>Select relevant tags:</label>
-						<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1">
-							<label class="tag button tiny light round" for="love-1">love tag 1</label>
-						<input id="love-2" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-2">
-							<label class="tag button tiny light round" for="love-2">love tag 2</label>
-						<input id="love-3" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-3">
-							<label class="tag button tiny light round" for="love-3">love tag 3</label>
-						<input id="love-4" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-4">
-							<label class="tag button tiny light round" for="love-4">love tag 4</label>
-						<a class="add-more" href="loves.html"><button class="button tiny light round">Add more...</button></a>
+						<div id="selected-loves">
+							<!-- for user-selected love tags -->
+							<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1">
+								<label class="tag button tiny light round" for="love-1">love tag 1</label>
+							<!-- endfor -->
+						</div>
+
+						<input id="input-loves" class="input-tags" type="text" placeholder="We love... (press return to add)"/>
+
+
+					<!--	<a class="add-more" href="loves.html"><button class="button tiny light round">Add more...</button></a>-->
 					</div>
 				</div>
 			
@@ -138,17 +130,34 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">	
 						<label class="half-margin-right">Select relevant tags:</label>
-						<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
-							<label class="tag button tiny round light" for="need-1">need tag 1</label>
-						<input id="need-2" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-2">
-							<label class="tag button tiny round light" for="need-2">need tag 2</label>
-						<input id="need-3" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-3">
-							<label class="tag button tiny round light" for="need-3">need tag 3</label>
-						<input id="need-4" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-4">
-							<label class="tag button tiny round light" for="need-4">need tag 4</label>
-						<a class="add-more" href="needs.html"><button class="button tiny round light">Add more...</button></a>
+
+						<div id="selected-needs">
+
+						<!-- for user need tags -->
+							<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
+								<label class="tag button tiny round light" for="need-1">need tag 1</label>
+							<!-- end for -->
+						</div>
+								<input id="input-needs" class="input-tags" type="text" placeholder="We need... (press return to add)"/>
+
+
+						<!--<a class="add-more" href="needs.html"><button class="button tiny round light">Add more...</button></a>-->
 					</div>		
 				</div>
+
+				<div class="row">
+					<div class="medium-8 small-12 medium-offset-2 columns">
+						<h4 class="section-header">Who we are</h4>
+
+						<div id="team-details">	
+							<h5>{{ user.firstname }}{{ user.lastname }}</h5>
+							<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
+						</div>
+							<a href="#" id="add-team-member">Add team member</a>	
+					</div>
+				</div>
+				
+
 				<div class="centerText add-margin-top"><button type="submit" class="button success round">Save and view</button></div>
 			</form>
 			
@@ -240,6 +249,81 @@
 			
 		});	
 		
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var loveNum = ;
+				var offerNum = ;
+				var needNum = ;
+				$('#input-loves').keypress(function (e) {
+				var text = $(this).val();
+					if (e.which == 13 && text != '') {
+						loveNum++;
+						$('#selected-loves').val('');						
+				  		$('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+						e.preventDefault();	
+						$(this).focus().select();
+					}
+					else if (e.which == 13 && text == ''){
+						e.preventDefault();
+				        return false;
+					};
+				});
+				
+				$('#selected-loves').on('click', 'label', (function(){
+					$(this).toggleClass('selected').blur();
+				}));
+
+				$('#love-tags').submit(function() {
+					var values = $('#love-tags').serialize();
+				});		
+			
+				$('#input-offers').keypress(function (e) {
+					var text = $(this).val();
+					if (e.which == 13 && text != '') {
+						offerNum++;
+						$('#input-offers').val('');						
+				  		$('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
+						return false;
+						$(this).focus().select().attr("placeholder", "");
+					}
+					else if (e.which == 13 && text == ''){
+						e.preventDefault();
+				        return false;
+					};
+				});	
+				$('#selected-offers').on('click', 'label', (function(){
+					$(this).toggleClass('selected').blur();
+				}));
+
+				$('#offer-tags').submit(function() {
+					var values = $('#offer-tags').serialize();
+				});
+
+				$('#input-needs').keypress(function (e) {
+					var text = $(this).val();
+					if (e.which == 13 && text != '') {
+						needNum++;
+						$('#input-needs').val('');						
+				  		$('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+needNum+'">'+text+'</label>');
+						return false;	
+						$(this).focus().select().attr("placeholder", "");
+					}
+					else if (e.which == 13 && text == ''){
+						e.preventDefault();
+				        return false;
+					};
+				});	
+
+				$('#selected-needs').on('click', 'label', (function(){
+					$(this).toggleClass('selected').blur();
+				}));
+
+				$('#need-tags').submit(function() {
+					var values = $('#need-tags').serialize();
+				});
+			});
 		</script>
 		
 		{% include "./zaplings/end-scripts.html" %}
