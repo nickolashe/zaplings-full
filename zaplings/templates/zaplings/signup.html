@@ -53,38 +53,12 @@
 	                    </div>
 				</div>	
 			</div>
-<!--				<div class="large-6 medium-6 small-10 large-centered small-centered columns">
-					<h2 class="titleCenter">Sign up</h2>
-                                        <form id="form-signup" action="{% url 'zaplings:login_email_password' %}" method="post">
-                                                        {% csrf_token %}
-                                                        <input id="email" type="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"/>
-							<input id="password" type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"/>
-                                                        <input type="submit" value="Go" class="button success round" />
-                                        </form>
-			        </div>
-                        </div>
-                        <div id="authenticate" class="row">
-				<div class="large-6 medium-8 small-10 large-centered small-centered columns">
-                                        {% if error_message %}<div><strong><color=red>{{ error_message }}</color></strong></div>{% endif %}
-				</div>
--->
-
-<!--		<div id="authenticate" class="row">
-				<div class="large-6 medium-8 small-10 large-centered small-centered columns">
-					<div>or connect with another account</div>
-					<button class="auth-button button round small">Google</button>
-					<button class="auth-button button round small">Facebook</button>
-					<button class="auth-button button round small">LinkedIn</button>
-					
-				</div>
-			</div>
-			-->
 
 			<div class="push"></div>
 		</div>
-		<div class="footer">
+
 			{% include "./zaplings/footer.html" %}
-		</div>	
+
 		
     	<script src="{% static "js/foundation.min.js" %}"></script>
 		<script type="text/javascript">

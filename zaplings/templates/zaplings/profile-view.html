@@ -7,12 +7,11 @@
     <title>Zaplings | Connect to create.</title>
     <link rel="stylesheet" href="{% static "./style.css" %}"/>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "js/vendor/modernizr.js" %}"></script>
-    <script src="{% static "js/vendor/jquery.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "slick/slick.css" %}"/>
+
+    {% include "./zaplings/start-scripts.html" %}
+
     <script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script>
-    <script src="{% static "./mmenu-master/src/js/jquery.mmenu.min.js" %}" type="text/javascript"></script>
-    <link href="{% static "./mmenu-master/src/css/jquery.mmenu.all.css" %}" type="text/css" rel="stylesheet" />
   </head>
   <body>
 	 <div class="wrapper">
@@ -28,7 +27,7 @@
 			<div class="rightText medium-3 columns end">
 				<a href="{% url 'zaplings:generate_profile' %}"><button id="edit-profile" class="button small light round">Edit profile</button></a>
 		        </div>
-		
+		</div>
 		<div class="row hide-for-small-only">
 			<div class="medium-6 medium-offset-3 columns">
 				<h3 class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
@@ -50,12 +49,8 @@
 		</div>
 		<!-- Only displayed if user has Connector and/or Creator badge -->
 		<div class="centerText row">
-			<img src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold-small.png" %}'" alt="Gold Connector" title="Gold Connector" width="40px" height="40px"/>
-			<img src="{% static "./images/connector-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver-small.png" %}'" alt="Silver Connector" title="Silver Connector" width="40px" height="40px"/>
-			<img src="{% static "./images/connector-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-bronze-small.png" %}'" alt="Bronze Connector" title="Bronze Connector" width="40px" height="40px"/>
-			<img src="{% static "./images/ideator-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-gold-small.png" %}'" alt="Gold Creator" title="Gold Creator" width="40px" height="40px"/>
-			<img src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-silver-small.png" %}'" alt="Silver Creator" title="Silver Creator" width="40px" height="40px"/>
-			<img src="{% static "./images/ideator-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-bronze-small.png" %}'" alt="Bronze Creator" title="Bronze Creator" width="40px" height="40px"/>
+			<a data-reveal-id="badges-reveal" href="#"><img src="{% static "./images/connector-none.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-none-small.png" %}'" alt="Creator badge" title="Creator badge" width="40px" height="40px"/>
+			<img src="{% static "./images/ideator-none.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-none-small.png" %}'" alt="Creator badge" title="Creator badge" width="40px" height="40px"/></a>
 		</div>
 		<!--<form>-->
 			<div class="row">
@@ -69,15 +64,6 @@
 			<div class="row">
 				<div class="medium-8 medium-offset-2 small-10 small-offset-1 columns">
 					<div id="idea-slider" class="single-item">
-							<div>
-								<a class="hide-for-small-only" href="#">
-									<img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
-								</a>
-								<div class="overflow-div">
-	              					<a class="no-decoration idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
-	             					<p class="idea-feed-description">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></a>
-								</div>
-							</div>
 							<div>
 								<a class="hide-for-small-only" href="#">
 									<img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
@@ -106,7 +92,7 @@
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
 					<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 				{% endfor %}				
-					<a class="add-more" href="{% url 'zaplings:loves' %}"><button class="button small round">Add more...</button></a>
+<!--					<a class="add-more" href="{% url 'zaplings:loves' %}"><button class="button small round">Add more...</button></a>-->
 				</div>
 			</div>
 				
@@ -125,7 +111,7 @@
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
 					{% endfor %}	
 					
-					<a class="add-more" href="{% url 'zaplings:offers' %}"><button class="button small round">Add more...</button></a>
+<!--					<a class="add-more" href="{% url 'zaplings:offers' %}"><button class="button small round">Add more...</button></a>-->
 				</div>
 			</div>
 
@@ -144,7 +130,7 @@
                         <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
 					{% endfor %}
 					
-					<a class="add-more" href="{% url 'zaplings:needs' %}"><button class="button small round">Add more...</button></a>
+<!--					<a class="add-more" href="{% url 'zaplings:needs' %}"><button class="button small round">Add more...</button></a>-->
 				</div>
 			</div>
 

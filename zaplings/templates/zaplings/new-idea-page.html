@@ -67,7 +67,7 @@
 					<div class="medium-6 medium-offset-3 small-12 columns">
 					<!-- Add description variable into value -->
 						<textarea id="idea-intro" rows="2" placeholder="Introduce {{ idea.title }} (100 character maximum)" value="(VariableIntroContent)"/></textarea>
-						<input id="website-link" type="text" placeholder="www.yourwebsite.com (Optional)"/>
+						<input id="website-link" name="website-link" type="text" placeholder="www.yourwebsite.com (Optional)"/>
 					</div>
 				</div>
 				<div class="row">
@@ -91,7 +91,7 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">What {{ idea.title }} offers</h4>
-						<textarea id="offer-text" rows="3" placeholder="What value does this idea provide?"/></textarea>
+						<textarea id="offer-text" name="offer-text" rows="3" placeholder="What value does this idea provide?"/></textarea>
 					</div>
 				</div>
 				<div class="row">
@@ -134,7 +134,7 @@
 
 						<div id="team-details">	
 							<em><a href="http://www.zaplings.com/{{user.username}}">{{ user.firstname }}{{ user.lastname }}</a></em>
-							<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
+							<textarea id="team-intro-1" name="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
 						</div>
 							<a href="#" id="add-team-member">Add team member</a>	
 					</div>
@@ -142,7 +142,7 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">		
 						<h4 class="section-header">What we love</h4>
-						<textarea id="love-text" rows="3" placeholder="Share to your heart's content"/></textarea>
+						<textarea id="love-text" name="love-text" rows="3" placeholder="Share to your heart's content"/></textarea>
 				</div>
 				
 				<!-- Suggested tags for ideas = user's selected tags -->
@@ -166,7 +166,7 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">What we need</h4>
-						<textarea id="need-text" rows="3" placeholder="How can others help you create?"/></textarea>
+						<textarea id="need-text" name="need-text" rows="3" placeholder="How can others help you create?"/></textarea>
 					</div>
 				</div>
 				
@@ -277,7 +277,7 @@
 
 					<!-- Nicko: Check user's input to ensure Embed code has bandcamp, rdio, soundcloud, or spotify in embed URL. If not, error message displays "Sorry, this embed code is not supported." --> 
 					<p>Copy your embed code from Soundcloud, Bandcamp, Rdio, or Spotify:</p>
-					<textarea id="music-embed" rows="2" placeholder="<iframe ..."></textarea>
+					<textarea id="music-embed" name="music-embed" rows="2" placeholder="<iframe ..."></textarea>
 					<button type="submit" class="button round small success">Save</button>
 					<button class="close-reveal-modal button round small light">Cancel</button>
 				</form>

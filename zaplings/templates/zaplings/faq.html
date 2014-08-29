@@ -58,8 +58,8 @@
 							<div id="home-email"><input type="email" name="email" placeholder="Your email"/></div>
 							<p class="rightText">or <a href="{% url 'zaplings:signup' %}">Log in</a></p>
 							<h5 class="add-margin-top">I have another question...</h5>
-							<input id="email" type="text" placeholder="Your email"/>
-							<textarea id="ask-question" rows="3" placeholder="Your question"></textarea>
+							<input id="email" name="email" type="text" placeholder="Your email"/>
+							<textarea id="ask-question" name="ask-question" rows="3" placeholder="Your question"></textarea>
 							<div class="rightText"><button style="submit" class="button round">Send</button></div>
 						{% endif %}
 					</form>
