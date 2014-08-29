@@ -26,7 +26,7 @@
           </div>
         </div>
 
-        <form id="form-new-idea" action="{% url 'zaplings:error' %}" method="post"> <!-- insert form action / submit.php / etc here ~MC -->       {% csrf_token %}  
+        <form id="form-new-idea"> <!-- insert form action / submit.php / etc here ~MC -->       {% csrf_token %}  
           <div class="row">
               <div class="medium-5 medium-offset-2 small-7 column">
                 <input type="text" id="idea-title" name="idea-title" value="{{ idea.title }}" placeholder="Idea name">

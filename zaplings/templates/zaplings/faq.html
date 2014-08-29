@@ -44,7 +44,7 @@
 					<h5>What does the future hold for Zaplings?</h5>
 					<p>We're curious to find out too! As the community grows, we will start testing introductions with our first users to make sure we are suggesting valuable conversations. We will also be looking to make sure we are giving different types of creators the functionality and flexibility they need to share ideas effectively.</p>
 					<p>We are committed to being open about how we intend to grow, and we want you to be involved in that process. <!-- Take a look at our [agile development list] to see what we're working on next. -->We'd love to hear your suggestions!</p>
-					<form id="form-ask-question" action="{% url 'zaplings:error' %}" method="post">
+					<form id="form-ask-question">
 						{% csrf_token %}
 						{% if user.loggedIn %}
 							<h5>I have another question...</h5>

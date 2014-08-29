@@ -97,10 +97,6 @@ class SignupView(generic.ListView):
     model = User
     template_name = 'zaplings/signup.html'
 
-class NewIdeaView(generic.ListView):
-    model = User
-    template_name = 'zaplings/newidea.html'
-
 class MyIdeasView(generic.ListView):
     model = User
     template_name = 'zaplings/myideas.html'

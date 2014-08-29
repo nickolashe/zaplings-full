@@ -35,7 +35,7 @@
 
 				<!-- for comment in idea.comment, display in order of net plus (plus - minus). Also only allow user to vote once (up or down) on any comment. -->
 
-			<form id="form-comment" action="{% url 'zaplings:error' %}" method="post">
+			<form id="form-comment">
 			{% csrf_token %}
 				<div class="row full-width">
 					<div class="medium-8 medium-offset-2 columns">
