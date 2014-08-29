@@ -81,7 +81,7 @@
 								<label class="tag button tiny light round" for="offer-1">offer tag 1</label>
 							<!--  end for -->
 						</div>
-						<input id="input-offers" class="input-tags" type="text" placeholder="We offer... (press return to add)"/>
+						<input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
 
 					<!--	<a class="add-more" href="offers.html"><button class="button tiny round light">Add more...</button></a>-->
 					</div>		
@@ -110,7 +110,7 @@
 							<!-- endfor -->
 						</div>
 
-						<input id="input-loves" class="input-tags" type="text" placeholder="We love... (press return to add)"/>
+						<input id="input-loves" name="input-loves" type="text" placeholder="Add more... (press return to add)"/>
 
 
 					<!--	<a class="add-more" href="loves.html"><button class="button tiny light round">Add more...</button></a>-->
@@ -121,7 +121,7 @@
 				<div class="row">
 					<div class="medium-8 small-12 medium-offset-2 columns">
 						<h4 class="section-header">What we need</h4>
-						<textarea id="need-text" rows="3" placeholder="How can others help you create?"/></textarea>
+						<textarea id="need-text" name="need-text" value="" rows="3" placeholder="How can others help you create?"/></textarea>
 					</div>
 				</div>
 				
@@ -138,7 +138,7 @@
 								<label class="tag button tiny round light" for="need-1">need tag 1</label>
 							<!-- end for -->
 						</div>
-								<input id="input-needs" class="input-tags" type="text" placeholder="We need... (press return to add)"/>
+								<input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
 
 
 						<!--<a class="add-more" href="needs.html"><button class="button tiny round light">Add more...</button></a>-->
@@ -151,7 +151,7 @@
 
 						<div id="team-details">	
 							<h5>{{ user.firstname }}{{ user.lastname }}</h5>
-							<textarea id="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
+							<textarea id="team-intro-1" name="team-intro-1" placeholder="Introduce yourself and your role in the team" rows="3"></textarea>
 						</div>
 							<a href="#" id="add-team-member">Add team member</a>	
 					</div>

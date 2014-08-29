@@ -132,7 +132,7 @@
 			{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
-				<textarea id="intro-text" name="intro-text" placeholder="Introduce yourself" value="{{ user.intro-text }}"></textarea>
+				<textarea id="intro-text" name="intro-text" placeholder="Introduce yourself" value=""></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -144,6 +144,7 @@
 						<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
 					{% endfor %}	
 					</div>	
+					<input id="input-loves" name="input-loves" type="text" placeholder="Add more... (press return to add)"/>
 					<!--<input id="input-needs" class="input-tags" type="text" placeholder="We need... (press return to add)"/>		
                                 <a class="add-more button small round" href="{% url "zaplings:loves" %}">Add more...</a>-->
 				</div>
@@ -158,7 +159,7 @@
 	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
 				{% endfor %}
 					</div>	
-					<input id="input-offers" class="input-tags" type="text" placeholder="We need... (press return to add)"/>
+					<input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
 					
 				<!--<a class="add-more button small round" href="{% url "zaplings:offers" %}">Add more...</a>-->
 				</div>
@@ -173,7 +174,7 @@
                         <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
 				{% endfor %}
 					</div>
-					<input id="input-needs" class="input-tags" type="text" placeholder="We need... (press return to add)"/>
+					<input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
 				<!--<a class="add-more button small round" href="{% url "zaplings:needs" %}">Add more</a>-->
 				</div>
 			</div>
