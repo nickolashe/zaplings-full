@@ -87,7 +87,7 @@
 					$('.input-tags').val('');						
 			  		$('.suggestion-box').prepend('<input id="need-suggest-'+num+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+num+'">'+text+'</label>');
 					return false;	
-					$(this).focus().select().attr("placeholder", "");
+					$(this).focus().select();
 				}
 				else if (e.which == 13 && text == ''){
 					e.preventDefault();

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="{% static "style.css" %}"/>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="{% static "./slick/slick.css" %}"/>
-    <script src="{% static "js/vendor/modernizr.js" %}"></script>
+
+    {% include "./zaplings/start-scripts.html" %}
   </head>
   <body id="home">
     
@@ -90,7 +91,6 @@
 			</div>
 		</div>
 						
-    <script src="{% static "./js/vendor/jquery.js" %}"></script>
     <script src="{% static "./js/foundation.min.js" %}"></script>
 	<script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script> 
 	<script src="{% static "./js/home-slider.js" %}"></script>

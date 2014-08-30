@@ -60,6 +60,7 @@
 						<input id="idea-title-input" name="idea-title-input"type="text" placeholder="Idea title" value="{{ idea.title }}"/>
 						<textarea id="idea-intro" rows="2" placeholder="Introduce {{ idea.title }} (100 character maximum)" value="{{ idea.description }}"/></textarea>
 						<input id="website-link" name="website-link" type="text" placeholder="www.yourwebsite.com (Optional)" value="{{ idea.website }}"/>
+						<p class="no-margin-bottom">Ready for funding? <a href="#" data-reveal-id="crowdtilt-reveal"><button class="button small round">Try Crowdtilt</button></a></p>
 					<!-- Show only if Idea type = Music
 						<div class="centerText"><a href="#" data-reveal-id="music-reveal"><button class="button small round">Add music</button></a></div>-->
 					</div>	
@@ -78,18 +79,13 @@
 						
 							<!-- Suggested tags for ideas = user's selected tags -->
 							<input id="offer-1" class="vis-hidden" type="checkbox" name="offer-tag[]" value="offer-tag-1">
-								<label class="tag button tiny light round" for="offer-1">offer tag 1</label>
+								<label class="tag button small light round" for="offer-1">offer tag 1</label>
 							<!--  end for -->
 						</div>
 						<input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
 
 					<!--	<a class="add-more" href="offers.html"><button class="button tiny round light">Add more...</button></a>-->
 					</div>		
-				</div>
-				<div class="row">
-					<div class="medium-8 small-12 medium-offset-2 columns">
-					<p class="no-margin-bottom">Ready for funding? <a href="#" data-reveal-id="crowdtilt-reveal"><button class="button small round">Try Crowdtilt</button></a></p>
-					</div>
 				</div>
 
 				<div class="row">
@@ -106,7 +102,7 @@
 						<div id="selected-loves">
 							<!-- for user-selected love tags -->
 							<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1">
-								<label class="tag button tiny light round" for="love-1">love tag 1</label>
+								<label class="tag button small light round" for="love-1">love tag 1</label>
 							<!-- endfor -->
 						</div>
 
@@ -135,7 +131,7 @@
 
 						<!-- for user need tags -->
 							<input id="need-1" class="vis-hidden" type="checkbox" name="need-tag[]" value="need-tag-1">
-								<label class="tag button tiny round light" for="need-1">need tag 1</label>
+								<label class="tag button small round light" for="need-1">need tag 1</label>
 							<!-- end for -->
 						</div>
 								<input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
@@ -183,13 +179,13 @@
 			<div id="crowdtilt-reveal" class="reveal-modal" data-reveal>
 				<form id="form-crowdtilt">
 					<div class="row">
-						<div class="medium-12 columns">
+						<div class="add-margin-bottom medium-12 columns">
 							<h3>Fund with Crowdtilt, share with Zaplings</h3>
-							<p>Crowdtilt makes it easy to raise money for a project. Create a campaign, and add the link to your idea page.</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="medium-6 columns">
+							<p>Crowdtilt makes it easy to raise money for a project. Create a campaign, and add the link to your idea page. (Zaplings does not earn money from your campaign.)</p>
 							<p><a href="http://www.crowdtilt.com/" target="_blank">Visit Crowdtilt to start a campaign</a></p>
 							<div>Link to your campaign:</div>
 							<input id="crowdtilt-link" name="crowdtilt-link" type="text" placeholder="www.crowdtilt.com/your-project-link"/>
@@ -202,11 +198,6 @@
 							<div class="flex-video">
 								<iframe width="560" height="315" src="//www.youtube.com/embed/2LBYdBJKDEg" frameborder="0" allowfullscreen></iframe>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="rightText medium-8 columns end">
-							
 						</div>
 					</div>
 				</form>
@@ -253,9 +244,9 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
-				var loveNum = ;
-				var offerNum = ;
-				var needNum = ;
+			var loveNum = $('#selected-loves .tag').length;
+			var offerNum = $('#selected-offers .tag').length;
+			var needNum = $('#selected-needs .tag').length;
 				$('#input-loves').keypress(function (e) {
 				var text = $(this).val();
 					if (e.which == 13 && text != '') {

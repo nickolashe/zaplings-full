@@ -10,7 +10,7 @@
 
 	{% include "./zaplings/start-scripts.html" %}
 
-<!--	<script src="{% static "./js/jquery-ui-1.11.0.custom/jquery-ui.min.js" %}"></script>-->
+	<script src="{% static "./js/jquery-ui-1.11.0.custom/jquery-ui.min.js" %}"></script>
 	<script src="{% static "./js/jquery.ui.touch-punch.min.js" %}"></script>
 	</head>
   <body>
@@ -132,7 +132,7 @@
 			{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
-				<textarea id="intro-text" name="intro-text" placeholder="Introduce yourself" value=""></textarea>
+				<textarea id="intro-text" name="intro-text" rows="3" placeholder="Introduce yourself" value=""></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -140,8 +140,8 @@
 					<h4 class="add-margin-bottom">What I love</h4>	
 					<div id="selected-loves">
 					{% for tag in user_lovetags %} 
-	                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
-						<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
+	                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}" checked>
+						<label class="tag button small light round selected" for="love-{{ tag }}">{{ tag }}</label>
 					{% endfor %}	
 					</div>	
 					<input id="input-loves" name="input-loves" type="text" placeholder="Add more... (press return to add)"/>
@@ -155,8 +155,8 @@
 					<h4 class="section-header">What I offer</h4>
 					<div id="selected-offers">
         		{% for tag in user_offertags %} 
-	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
-	                    <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
+	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}" checked>
+	                    <label class="tag button small light round selected" for="offer-{{ tag }}">{{ tag }}</label>
 				{% endfor %}
 					</div>	
 					<input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
@@ -170,8 +170,8 @@
 					<h4 class="section-header">What I need</h4>
 					<div id="selected-needs">
 				{% for tag in user_needtags %} 
-                        <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
-                        <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
+                        <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}" checked>
+                        <label class="tag button small light round selected" for="need-{{ tag }}">{{ tag }}</label>
 				{% endfor %}
 					</div>
 					<input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
@@ -219,9 +219,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var loveNum = ;
-			var offerNum = ;
-			var needNum = ;
+			var loveNum = $('#selected-loves .tag').length;
+			var offerNum = $('#selected-offers .tag').length;
+			var needNum = $('#selected-needs .tag').length;
+
 			$('#input-loves').keypress(function (e) {
 			var text = $(this).val();
 				if (e.which == 13 && text != '') {
@@ -251,8 +252,8 @@
 					offerNum++;
 					$('#input-offers').val('');						
 			  		$('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
-					return false;
-					$(this).focus().select().attr("placeholder", "");
+					e.preventDefault();
+					$(this).focus().select();
 				}
 				else if (e.which == 13 && text == ''){
 					e.preventDefault();
@@ -273,10 +274,10 @@
 					needNum++;
 					$('#input-needs').val('');						
 			  		$('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+needNum+'">'+text+'</label>');
-					return false;	
-					$(this).focus().select().attr("placeholder", "");
+			  		e.preventDefault();	
+					$(this).focus().select();
 				}
-				else if (e.which == 13 && text == ''){
+				else if (e.which == 13){
 					e.preventDefault();
 			        return false;
 				};
