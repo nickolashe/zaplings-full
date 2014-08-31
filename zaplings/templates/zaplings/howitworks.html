@@ -68,8 +68,12 @@
 			</div>
 			<div class="row">
 				<div class="centerText add-margin-top small-centered columns">
+				{% if user.first_name %}
 					<a href="{% url "zaplings:myideas" %}"><button class="half-margin-right button round success">My ideas</button></a>
 					<a href="{% url "zaplings:idea-feed" %}"><button class="button round light">Browse ideas</button></a>
+				{% else %}
+					<a href="{% url "zaplings:signup" %}"><button class="button round success">Join Zaplings</button></a>
+				{% endif %}
 				</div>
 			</div>
 		
