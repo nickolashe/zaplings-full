@@ -78,8 +78,18 @@
 
 		
 		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
+{% if not user_lovetags or not user_offertags or not user_needtags %}
+		<div id="start-profile-reveal" class="reveal-modal" data-reveal>
+			<div class="medium-10 medium-offset-1 columns">
+				<h3 class="centerText">Welcome to Zaplings!</h3>
+				<p>Start your profile with the questions below. Once the community grows, we will use these responses to make meaningful introductions for you.</p>
+				<div class="centerText"><button class="close-reveal-modal button round success">Got it!</button></div>
+			</div>
+		</div>
+{% endif %}
+
 		<div class="row">
-			<div id="profile-info" class="medium-8 small-12 medium-offset-2 columns">
+			<div id="profile-info" class="medium-6 small-12 medium-offset-3 columns">
 				{% if not user_lovetags %}
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<button class="intro-questions button round small disabled">What do you offer?</button>
@@ -93,7 +103,7 @@
                   
                                 <!-- display create profile if no first name -->
                                 {% if not user.first_name %}
-				    <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create account</button></a>
+				    <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
 				{% endif %}
 			</div>
 		</div>
@@ -179,14 +189,14 @@
 				</div>
 			</div>
 
-			<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and share</button></div>
+			<div class="centerText add-margin-top"><button type="submit" class="button success round">Save and share</button></div>
 			{% endif %}
 
 <!-- included for all -->
 		</form>
 
 		<div id="change-image-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/change-image-reveal.html"}
+			{% include "./zaplings/change-image-reveal.html" %}
 		</div>
 
 		<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
@@ -219,6 +229,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+
+			$('#start-profile-reveal').foundation('reveal', 'open');
+
+
 			var loveNum = $('#selected-loves .tag').length;
 			var offerNum = $('#selected-offers .tag').length;
 			var needNum = $('#selected-needs .tag').length;

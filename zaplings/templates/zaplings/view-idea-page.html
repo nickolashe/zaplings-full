@@ -13,8 +13,8 @@
 	{% include "./zaplings/start-scripts.html" %}
 
 	<script src="{% static "./galleria/galleria-1.3.6.min.js" %}"></script>
-	<link rel="stylesheet" href="{% static "./galleria/themes/classic/galleria.classic.css" %}">
-	<script src="{% static "./galleria/themes/classic/galleria.classic.min.js" %}"></script>
+<!--	<link rel="stylesheet" href="{% static "./galleria/themes/classic/galleria.classic.css" %}">
+	<script src="{% static "./galleria/themes/classic/galleria.classic.min.js" %}"></script>-->
 
 	
   </head>
@@ -24,45 +24,60 @@
 
 			{% include "./zaplings/header.html" %}
 
-			<div class="row full-width hide-for-small-only">
+<!--			<div class="row full-width hide-for-small-only">
 
-			<!-- When image is added, idea-cover needs to be replaced with an image with full screen width. (For mobile version - 1st "show-for-small-only" class below - image will be smaller.) I'd like to use imagedrag to move the visible portion of the image (just like Facebook's "Reposition cover image"). -->
+			<!-- When image is added, idea-cover needs to be replaced with an image with full screen width. (For mobile version - 1st "show-for-small-only" class below - image will be smaller.) I'd like to use imagedrag to move the visible portion of the image (just like Facebook's "Reposition cover image"). 
 
 				<a class="fullscreen" href="#">
 					<div class="idea-cover light">
 						<img class="idea-image" src="{% static "./images/leaf-circle.png" %}" alt="Idea image" width="88px" height="88px"/>
 					</div>
 				</a>
+			</div>-->
+			<div class="row add-margin-bottom show-for-small-only">
+				<img class="small-profile-image" src="{% static "./images/.png" %}" alt="Idea image" width="75px" height="75px"/>
 			</div>
-		
-			<div class="row hide-for-small-only">
-				<div class="medium-6 medium-offset-3 columns end">
-					<h3 class="idea-name">{{ idea.title }}</h3>
+
+			<div class="row full-width hide-for-small-only">
+				<div class="medium-6 medium-offset-3 columns">
+					<img class="profile-image" src="{% static "./images/.png" %}" alt="Idea image" width="75px" height="75px"/>
 				</div>
 			</div>
 
-			<div class="row full-width show-for-small-only">
+			<div class="row show-for-small-only">
+				<h2 class="idea-name">{{ idea.title }}</h2>		
+				<div class="small-12 centerText columns">
+					<!-- if user is owner of page... -->
+					<a href="{% url "zaplings:edit-idea-page" %}"><button class="button small round light">Edit page</button></a>
+				</div>	
+			</div>
+
+			<div class="row hide-for-small-only">
+				<div class="medium-6 medium-offset-3 columns">
+					<h3 class="idea-name">{{ idea.title }}</h3>
+				</div>
+					<!-- if user is owner of page...-->
+				<div class="medium-3 columns">
+					<a href="{% url "zaplings:edit-idea-page" %}"><button class="button small round light">Edit page</button></a>
+				</div>
+			</div>
+
+<!--			<div class="row full-width show-for-small-only">
 				<a class="fullscreen" href="#">
 					<div class="idea-cover-small light">
 						<img class="idea-image-small" src="{% static "./images/leaf-circle.png" %}" alt="Idea image" width="75px" height="75px"/>
 					</div>
 				</a>
-			</div>
+			</div>-->
 
-			<div id="galleria">
+<!--			<div id="galleria">
 			    <a href="{% static "./images/logo150.png" %}"><img src="{% static "./images/home-logo.png" %}" data-big="{% static "./images/logo-large.png" %}" data-title="My title" data-description="My description"></a>
 			    <a href="{% static "./images/logo150.png" %}"><img src="{% static "./images/home-logo.png" %}" data-big="{% static "./images/logo-large.png" %}" data-title="Another title" data-description="My <em>HTML</em> description"></a>
 			    <a href="{% static "./images/connector-gold.png" %}"><img src="{% static "./images/connector-gold-large.png" %}" data-big="{% static "./images/connector-gold-large.png" %}" data-title="My title" data-description="My description"></a>
 
-			</div>
+			</div>-->
 		
-			<div class="row show-for-small-only">
-				<h2 class="idea-name">{{ idea.title }}</h2>		
-				<div class="small-12 centerText columns">
-					<!-- if user is owner of page... -->
-					<a href="{% url "zaplings:edit-idea-page" %}"><button class="button tiny round light">Edit page</button></a>
-				</div>	
-			</div>
+
 			<div class="row">
 				<div class="centerText medium-6 small-12 medium-offset-3 columns">
 					<p class="large">{{ idea.description }}<br>
@@ -76,6 +91,9 @@
 				-->
 				</div>	
 			</div>
+
+			<div class="centerText add-margin-top"><a href="#" data-reveal-id="publish-idea-reveal"><button class="button success round">Publish idea page</button></a></div>
+			<div class="centerText add-margin-top"><a href="{% url "zaplings:myideas" %}"><button type="submit" class="button light small round">Back to my ideas</button></a></div>
 
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
@@ -143,8 +161,10 @@
 				<!--  end for  -->
 				</div>
 			</div>
-			<div class="centerText add-margin-top"><a href="#" data-reveal-id="publish-idea-reveal"><button class="button success round">Publish idea page</button></a></div>
-			<div class="centerText add-margin-top"><a href="{% url "zaplings:myideas" %}"><button class="button light small round">Back to my ideas</button></a></div>
+			
+			<div id="publish-idea-reveal" class="reveal-modal" data-reveal>
+				{% include "./zaplings/publish-idea-reveal.html" %}
+			</div>			
 
 			<div id="funding-info-reveal" class="reveal-modal" data-reveal>
 				<h3>You are leaving zaplings.com</h3>
@@ -174,7 +194,7 @@
 
 		</script>
 -->
-		<script>
+<!--		<script>
 		$('#galleria').galleria({
 					width: 100,
 					height: 200,
@@ -192,7 +212,7 @@
 		            });
 		        }
 		    })
-		</script>
+		</script>-->
 		
 		{% include "./zaplings/end-scripts.html" %}
 	</body>

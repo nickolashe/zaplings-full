@@ -1,0 +1,82 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Connect to create.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		{% include "./zaplings/start-scripts.html" %}
+	
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+	  		
+			<h2 class="centerText three-margin-top">How it works</h2>
+			<div class="row">
+				<div class="medium-8 medium-centered columns">
+					<p class="centerText">Our mission at Zaplings is to help you create. Here's how we're doing it:</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-9 small-10 small-centered columns">
+					<div class="how-box medium-4 columns">
+						<img class="how-img" src="{% static "./images/idea-book.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/idea-book.png" %}'"/>
+						<strong>Private idea book</strong>
+						<p class="aside">Keep all your ideas in one place.
+						</p>
+					</div>
+					<div class="how-box medium-4 columns">
+						<img class="how-img" src="{% static "./images/idea-seed.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/idea-seed.png" %}'"/>
+						<strong>Plant an idea seed</strong>
+						<p class="aside">
+							Share a brief description of your idea with Zaplings and on Twitter to seek support or to donate it to the community.
+						</p>
+					</div>
+					<div class="how-box medium-4 columns">
+						<img class="how-img" src="{% static "./images/idea-page.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/idea-page.png" %}'"/>
+						<strong>Create an idea page</strong>
+							<p class="aside">Intorduce your idea in more detail and share the page with friends.  
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-9 small-centered columns">
+					<div class="how-box medium-4 columns">
+						<img class="how-img" src="{% static "./images/magnifier.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/magnifier.png" %}'"/>
+						<strong>Browse public ideas</strong>
+						<p class="aside">Find ideas you love, give feedback, and connect with creators.</p>
+					</div>
+					<div class="how-box medium-4 columns">
+						<img class="how-img" src="{% static "./images/connector-icon.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-icon.png" %}'"/>
+						<strong>Be the Connector</strong>
+						<p class="aside">Introduce friends to Zaplings and to each other to become a Gold Connector. We will match you to other Connectors to grow your network stronger.</p>
+					</div>
+					<div class="how-box medium-4 columns">
+						<img class="how-img" src="{% static "./images/salutation.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/salutation.png" %}'"/>
+						<strong>Get introduced</strong>
+						<p class="aside">As the community grows, we will suggest conversations with people who share your passion and offer what you need.</p>
+					</div>
+				</div>
+			</div>
+		
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		
+		{% include "./zaplings/end-scripts.html" %}
+	</body>
+</html>

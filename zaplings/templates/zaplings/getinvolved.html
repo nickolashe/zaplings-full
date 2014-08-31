@@ -1,0 +1,64 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Connect to create.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		{% include "./zaplings/start-scripts.html" %}
+	
+	</head>
+	<body>
+	  
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+	  		
+			<h2 class="titleCenter">Get involved</h2>
+			<div class="row">
+				<div class="medium-8 small-10 small-centered columns">
+				<form>
+					<p>Our mission at Zaplings is to help people create. It's not easy to make ideas succeed, but together we can make it easier. To make that possible, we need your help. Here's a few ways to get involved:</p>
+
+					<p><strong>Become a Campus Connector.</strong> Students have brilliant ideas, and there's no reason to wait until graduation to make them happen. Encourage your friends and classmates to join Zaplings and start creating now.
+					<button data-reveal-id="campus-connector-reveal" class="button small round success">Apply</button></p>
+
+					<p><strong>Tell us what you think.</strong> If you want to have input into what Zaplings becomes, let us know!
+					<button data-reveal-id="feedback-reveal" class="button small round success">Give feedback</button></p>
+
+					<p><strong>Suggest another way to help.</strong>
+					{% if user.first_name %}
+					{% else %}
+					<input id="email" type="email" name="user-email" placeholder="Email" value="{{ signup_email }}" tabindex="1" />
+					{% endif %}			
+					<textarea id="suggest-involvement" name="suggest-involvement" placeholder="Your suggestion" rows="3"></textarea>
+					<button type="submit" class="button small round success">Submit</button></p>
+					</form>
+				</div>
+			</div>
+			
+			<div id="feedback-reveal" class="reveal-modal" data-reveal>
+				{% include "./zaplings/feedback-reveal.html" %}
+			</div>
+
+			<div id="campus-connector-reveal" class="reveal-modal" data-reveal>
+				{% include "./zaplings/campus-connector-reveal.html"}
+			</div>
+		
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		
+		{% include "./zaplings/end-scripts.html" %}
+	</body>
+</html>
