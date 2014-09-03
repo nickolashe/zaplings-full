@@ -87,7 +87,7 @@
 					$('.input-tags').val('');						
 			  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
 					return false;
-					$(this).focus().select().attr("placeholder", "");
+					$(this).focus().select();
 				}
 				else if (e.which == 13 && text == ''){
 					e.preventDefault();

@@ -7525,6 +7525,15 @@ th.hide-for-touch {
   overflow: hidden;
   padding-left: 10px; }
 
+.how-box {
+  text-align: center; }
+
+.how-img {
+  display: block;
+  margin: 0.5rem auto;
+  height: 88px;
+  width: 88px; }
+
 .vis-hidden {
   border: 0;
   clip: rect(0 0 0 0);

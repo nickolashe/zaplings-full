@@ -1,0 +1,16 @@
+<form>
+<h3>Campus Connector application</h3>
+<p>As a Campus Connector, your mission is straightforward: to get students from your school to join Zaplings. How you accomplish this goal, however, is up to you. Perhaps you talk to professors about the idea, and ask them to send a message to their students. Or maybe you meet new people and tell them about us when you go out. One way or another, you will need to be willing to step out of your comfort zone and try something new. We will set a target number of connections for you to make, so get creative!</p>
+
+<input id="email" type="email" name="user-email" placeholder="Email" value="{{ signup_email }}" tabindex="1" />
+<input id="last-name" type="text" placeholder="Last name" value={{ user.last_name }} name="user-lastname" tabindex="3" />
+<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ user.first_name }}" name="user-firstname" tabindex="2" /></div>
+<input id="school" type="text" name="school" placeholder="Your college/university" tabindex="4" />
+<input id="major" type="text" name="major" placeholder="Area of study" tabindex="5" />
+<input id="social-link" type="text" name="social-link" placeholder="Facebook or LinkedIn url (optional)" tabindex="6" />
+<textarea id="marketing" name="marketing" rows="3" placeholder="Why do you want to be a Campus Connector?" tabindex="7"></textarea>
+<textarea id="marketing" name="marketing" rows="3" placeholder="How would you get students to join Zaplings?" tabindex="8"></textarea>
+<button type="submit" class="button success round">Apply</button>
+
+
+</form>
