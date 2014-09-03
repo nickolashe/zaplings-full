@@ -55,7 +55,6 @@
             {% if not idea.notes %}
               <button id="add-notes" class="button small round light">Add notes</button>
               {% endif %}
-              <a href="#"><button type="submit" class="button small round light">Save</button></a>
               <button class="button small round light" data-reveal-id="modal-share-now">Share Now</button>
               <a href="#"><button type="submit" class="button small round success">Start idea page</button></a>
 
@@ -66,6 +65,21 @@
 </div>
 
   {% include "./zaplings/footer.html" %}
+
+<div id="modal-share-now" class="reveal-modal" data-reveal>
+  <h2>Share {{ idea.title }} Now</h2>
+  <div class="row weekdays-or-weekends">
+    <radio name="hashtags" id="whoswithme" value="whoswithme"></radio>
+    <label for="whoswithme" class="button small light round">Who's with me?</label>
+    <radio name="hashtags" id="zapling" value="zapling"></radio>
+    <label for="" class="button small light round">Zapling</label>
+    <radio name="hashtags" id="takeitandrun" value="takeitandrun"></radio>
+    <label for="" class="button small light round">Take it and run</label>
+  </div>
+  <a href="https://twitter.com/intent/tweet?text=Check%20out%20{{ idea.title }}%20at&url={{ request.get_full_path }}" class="twitter-share-link">
+    <button type="submit" class="button small round light">Share via Twitter</button>
+  </a>
+</div>
 
 <!-- end of modals ~MC -->
 <!--
@@ -88,7 +102,15 @@ need to investigate - first step is locating a clean copy of the big scss file w
     });
   });
 </script>
+<script>
+  $("input:radio[name=hashtags]").click(function() {
+      var value = $(this).val();
+      var share_url = "https://twitter.com/intent/tweet?text=Check%20out%20{{ idea.title }}%20at&url={{ request.get_full_path }}&hashtags=" + value;
+      $(".twitter-share-link").attr("href", share_url)
+  });
+</script>
 
 {% include "./zaplings/end-scripts.html" %}
+
 </body>
 </html>

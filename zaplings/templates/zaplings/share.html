@@ -54,9 +54,9 @@
 				<p>
 					Share with your social networks:
 		  		</p>
-		  			<a ><button class="button small round" onclick="shareFB()">Facebook</button></a>
-					<a href="https://twitter.com/share?url=http%3A//www.zaplings.com&text=Check%20out%20Zaplings,%20a%20place%20to%20share%20new%20ideas%20and%20find%20help%20to%20make%20them%20happen." target="_blank"><button class="button small round">Twitter</button></a>
-					<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.zaplings.com&title=Create%20something%20with%20Zaplings.&summary=Share%20ideas,%20get%20feedback,%20and%20build%20a%20team.%20Zaplings%20introduces%20you%20to%20ideas%20you%27ll%20love%20and%20people%20you%27re%20looking%20for.&source=Zaplings" target="_blank"><button class="button small round">LinkedIn</button></a>
+		  			<a href="http://www.facebook.com/sharer.php?u={{ request.get_full_path }}&t=Check%20out%20{{ idea.title }}%20on%20Zaplings%20at%20{{ request.get_full_path }}"><button class="button small round">Facebook</button></a>
+					<a href="https://twitter.com/intent/tweet?text=Check%20out%20ideas%20at&url=http://zaplings.com&hashtags=zapling" target="_blank"><button class="button small round">Twitter</button></a>
+					<a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A//www.zaplings.com&title=Check%20out%20{{ idea.title }}%20on%20Zaplings.&summary=Share%20ideas,%20get%20feedback,%20and%20build%20a%20team.%20Zaplings%20introduces%20you%20to%20ideas%20you%27ll%20love%20and%20people%20you%27re%20looking%20for.&source=Zaplings" target="_blank"><button class="button small round">LinkedIn</button></a>
 					<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=https://www.zaplings.com', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><button class="button small round">Google+</button></a>
 			</div>
 		</div>
