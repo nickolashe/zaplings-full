@@ -6,10 +6,15 @@ import datetime
 # Create your models here.
 class Idea(models.Model):
     creator = models.ForeignKey(User)
+    #user.intro_text, 
     title = models.CharField(max_length=40)
     tagline = models.CharField(max_length=40)
     description = models.CharField(max_length=100)
-
+    notes = models.CharField(max_length=10000)
+    ispublic = models.BooleanField() # something for "if user has public ideas" 
+    isfunding = models.BooleanField()
+    haspage = models.BooleanField()
+    
     def __unicode__(self):
         return self.title
 
