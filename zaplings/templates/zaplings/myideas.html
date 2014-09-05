@@ -35,7 +35,8 @@
                     <img class="show-for-small-only idea-feed-img-small" src="{% static "./images/leaf-circle.png" %}" height="60px" width="60px">
                   </a>
                   <div class="overflow-div">
-                    {% if idea.page %}
+                  <!-- if idea has idea page -->
+                    {% if idea %}
                     <a class="no-decoration idea-feed-text" href="{% url "zaplings:edit-idea-page" %}">
                     {% else %}
                     <a href="{% url "zaplings:newidea" %}" class="no-decoration idea-feed-text">
