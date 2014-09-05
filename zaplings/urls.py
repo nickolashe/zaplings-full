@@ -19,7 +19,6 @@ urlpatterns = patterns('',
     url(r'^needs/$', views.NeedsView.as_view(), name='needs'),
     url(r'^where/$', views.WhereView.as_view(), name='where'),
     url(r'^when/$', views.WhenView.as_view(), name='when'),
-    url(r'^myideas/$', views.MyIdeasView.as_view(), name='myideas'),
     url(r'^(?P<userid>\d+)/generate_user_tags/$', views.generate_user_tags, name='generate_user_tags'),
     url(r'^generate_profile/$', views.generate_profile, name='generate_profile'),
     # form handlers
@@ -39,11 +38,13 @@ urlpatterns = patterns('',
     url(r'^discuss/$', views.DiscussView.as_view(), name='discuss'),
     # idea stuff
     url(r'^idea-feed/$', views.IdeaFeedView.as_view(), name='idea-feed'),
+    url(r'^newidea/$', views.NewIdeaView.as_view(), name='newidea'),
+    url(r'^myideas/$', views.MyIdeasView.as_view(), name='myideas'),
     url(r'^view-idea-page/$', views.ViewIdeaPageView.as_view(), name='view-idea-page'),
     url(r'^edit-idea-page/$', views.EditIdeaPageView.as_view(), name='edit-idea-page'),
     url(r'^editprofile/$', views.EditProfileView.as_view(), name='editprofile'),
     url(r'^share/$', views.ShareView.as_view(), name='share'),
     url(r'^thankyou/$', views.ThankYouView.as_view(), name='thankyou'),
-    url(r'^error/$', views.ErrorView.as_view(), name='error'),
-    url(r'^(?P<referrer>\w+)/$', views.referrer, name='referrer')
+    url(r'^error/$', views.ErrorView.as_view(), name='error')
+    #url(r'^(?P<referrer>\w+)/$', views.referrer, name='referrer')
 )
