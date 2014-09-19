@@ -94,57 +94,56 @@
 				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
 				<button class="intro-questions button round small disabled">What do you offer?</button>
 				<button class="intro-questions button round small disabled">What do you need?</button>
+				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
 			        {% elif not user_offertags %}
 				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
 				<button class="intro-questions button round small disabled">What do you need?</button>
+				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
 			        {% elif not user_needtags %}
 				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
+				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
 			        {% endif %}
-                  
-                                <!-- display create profile if no first name -->
-                                {% if not user.first_name %}
-				    <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
-				{% endif %}
 			</div>
 		</div>
 		
 		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
 		    {% csrf_token %}
-		<!-- if all questions answered -->
-		{% if user.first_name and user_lovetags and user_offertags and user_needtags   %}
+
+			<!-- if all questions answered -->
+			{% if user_lovetags and user_offertags and user_needtags %}
+				{% if not user.first_name %}
+					<div id="start-signup-reveal" class="reveal-modal" data-reveal>
+						{% include "./zaplings/signup-reveal.html" %}
+					</div>
+				{% endif %}
 			<div class="row">
-					<div class="medium-8 small-12 medium-offset-2 columns">
-						<!--<h4 class="section-header">My public ideas</h4>
-						 <!--if user has public ideas
+				<div class="medium-8 small-12 medium-offset-2 columns">
+				<textarea id="intro-text" name="intro-text" rows="3" placeholder="Introduce yourself" value="{{user.intro_text}}"></textarea>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="medium-8 small-12 medium-offset-2 columns">			<h4 class="section-header">My public ideas</h4>
+					{% if myideas %}
 						<p>Drag and drop icons to set the display order of your ideas.</p>
-						for idea in user.ideas (add image and title variables) 
+						{% for idea in myideas %} 
 						<ul id="idea-sort-box">
 							<li>
-								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<img src="{% static "./images/leaf-circle.png" %}" width="75px" height="75px"/>
 								<p class="aside sort-title">Ideatitlecropped</p>
 							</li>
 							<li>
-								<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+								<img src="{% static "./images/leaf-circle.png" %}" width="75px" height="75px"/>
 								<p class="aside sort-title">Idea title cropped</p>
 							</li>
 						</ul>
-						<!-- else
+						{% endfor %}
+					{% else %}
 						<p>To display this section on your profile, make an idea public.</p>
-					
-
-
-						-->
-					</div>
-				</div>
-			{% endif %}
-
-			<!-- if all questions answered -->
-			{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-				<textarea id="intro-text" name="intro-text" rows="3" placeholder="Introduce yourself" value=""></textarea>
+					{% endif %}
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 					<h4 class="add-margin-bottom">What I love</h4>	
@@ -231,7 +230,7 @@
 		$(document).ready(function(){
 
 			$('#start-profile-reveal').foundation('reveal', 'open');
-
+			$('#start-signup-reveal').foundation('reveal', 'open');
 
 			var loveNum = $('#selected-loves .tag').length;
 			var offerNum = $('#selected-offers .tag').length;
@@ -309,4 +308,4 @@
 
 	{% include "./zaplings/end-scripts.html" %}
   </body>
-			
+</html>	

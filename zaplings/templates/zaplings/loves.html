@@ -14,9 +14,9 @@
 	  
 	<div class="wrapper">
 
-		{% include "./zaplings/header.html" %}
+		{% include "./zaplings/header-nomenu.html" %}
 	  		
-		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds (or more):<br> What do you love?</h2>
+		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds or more:<br> What do you love?</h2>
 		<form id="love-tags" action="{% url "zaplings:record_loves" %}" method="post">
 		    {% csrf_token %}
 	  		<div class="row">

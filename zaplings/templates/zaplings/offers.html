@@ -13,9 +13,9 @@
   <body>
 	  
 	<div class="wrapper">
-	  {% include "./zaplings/header.html" %}
+	  {% include "./zaplings/header-nomenu.html" %}
 	  
-		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds (or more):<br>What do you offer?</h2>
+		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds or more:<br>What do you offer?</h2>
 		<form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
 		    {% csrf_token %}
 	  		<div class="row">
