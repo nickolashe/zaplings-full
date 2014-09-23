@@ -4,12 +4,23 @@ from django.utils import timezone
 import datetime
 
 # Create your models here.
+class IdeaType(models.Model):
+    ideatype = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.ideatype
+
 class Idea(models.Model):
     creator = models.ForeignKey(User)
+    ideatype = models.ForeignKey(IdeaType)
     title = models.CharField(max_length=40)
     tagline = models.CharField(max_length=40)
     description = models.CharField(max_length=100)
-
+    notes = models.CharField(max_length=10000)
+    ispublic = models.BooleanField() # something for "if user has public ideas" 
+    isfunding = models.BooleanField()
+    haspage = models.BooleanField()
+    
     def __unicode__(self):
         return self.title
 
@@ -18,6 +29,15 @@ class FeaturedIdea(models.Model):
 
     def __unicode__(self):
         return self.idea.title
+
+class IdeaTeam(models.Model):
+    member = models.ForeignKey(User)
+    idea = models.ForeignKey(Idea)
+    isadmin = models.BooleanField()
+
+    def __unicode__(self):
+        return "%s is member of idea %s" % \
+                (member.username, idea.title)
 
 class Love(models.Model):
     tagname = models.CharField(max_length=200)
