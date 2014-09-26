@@ -60,7 +60,7 @@
 						<input id="idea-title-input" name="idea-title-input"type="text" placeholder="Idea title" value="{{ idea.title }}"/>
 						<textarea id="idea-intro" rows="2" placeholder="Introduce {{ idea.title }} (100 character maximum)" value="{{ idea.description }}"/></textarea>
 						<input id="website-link" name="website-link" type="text" placeholder="www.yourwebsite.com (Optional)" value="{{ idea.website }}"/>
-						<p class="no-margin-bottom">Ready for funding? <a href="#" data-reveal-id="crowdtilt-reveal"><button class="button small round">Try Crowdtilt</button></a></p>
+						<!--<p class="no-margin-bottom">Ready for funding? <a href="#" data-reveal-id="crowdtilt-reveal"><button class="button small round">Try Crowdtilt</button></a></p>-->
 					<!-- Show only if Idea type = Music
 						<div class="centerText"><a href="#" data-reveal-id="music-reveal"><button class="button small round">Add music</button></a></div>-->
 					</div>	
@@ -157,7 +157,7 @@
 				<div class="centerText add-margin-top"><button type="submit" class="button success round">Save and view</button></div>
 			</form>
 			
-			<div id="change-cover-reveal" class="reveal-modal" data-reveal>
+			<!--<div id="change-cover-reveal" class="reveal-modal" data-reveal>
 				<h3>Add cover image and video (optional)</h3>
 				<form id="change-cover-form">
 					<input type="file" id="cover-image" name="cover-image" class="add-margin-top"/>
@@ -166,7 +166,7 @@
 					<button type="submit" class="add-margin-top button small round success">Save</button>
 					<button class="close-reveal-modal button small round light">Cancel</button>
 				</form>	
-			</div>	
+			</div>	-->
 		
 			<div id="change-image-reveal" class="reveal-modal" data-reveal>
 				{% include "./zaplings/change-image-reveal.html"}
@@ -176,7 +176,7 @@
 				{% include "./zaplings/edit-details-reveal.html"}
 			</div>
 			
-			<div id="crowdtilt-reveal" class="reveal-modal" data-reveal>
+	<!--		<div id="crowdtilt-reveal" class="reveal-modal" data-reveal>
 				<form id="form-crowdtilt">
 					<div class="row">
 						<div class="add-margin-bottom medium-12 columns">
@@ -207,13 +207,13 @@
 				<form id="form-music">
 					<h3>Share your sounds</h3>
 
-					<!-- Nicko: Check user's input to ensure Embed code has bandcamp, rdio, soundcloud, or spotify in embed URL. If not, error message displays "Sorry, this embed code is not supported." --> 
+					<!-- Nicko: Check user's input to ensure Embed code has bandcamp, rdio, soundcloud, or spotify in embed URL. If not, error message displays "Sorry, this embed code is not supported."  
 					<p>Copy your embed code from Soundcloud, Bandcamp, Rdio, or Spotify:</p>
 					<textarea id="music-embed" rows="2" placeholder="<iframe ..."></textarea>
 					<button type="submit" class="button round small success">Save</button>
 					<button class="close-reveal-modal button round small light">Cancel</button>
 				</form>
-			</div>
+			</div>-->
 		
 			<div class="push"></div>
 		</div>

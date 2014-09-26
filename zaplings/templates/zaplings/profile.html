@@ -105,17 +105,35 @@
 			        {% endif %}
 			</div>
 		</div>
-		
+		<!-- if all questions answered -->
+		{% if user_lovetags and user_offertags and user_needtags %}
+				{% if not user.first_name %}
+					<div id="start-signup-reveal" class="reveal-modal" data-reveal data-options="close_on_background_click:false">
+						<div class="row">
+							<div class="centerText medium-8 medium-offset-2 columns end">
+								<form id="form-signup" action="{% url 'zaplings:signup_user' %}" method="post"/>
+						                        {% csrf_token %}  
+									<h3>Sign up</h3>
+										<input id="email" type="email" placeholder="Email" name="user-email" value="{{ user.username }}" tabindex="1" />
+										<input id="last-name" type="text" placeholder="Last name" name="user-lastname" tabindex="3" />
+										<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="2" /></div>
+										<span class="fit-left">zaplings.com/</span>
+										<span class="input-sizer"><input id="username" name="user-username" type="text" placeholder="username" tabindex="4" /></span>
+										<input id="verify" type="password" name="user-password" placeholder="Verify password" tabindex="6">
+										<div class="overflow-div"><input id="password" type="password" name="user-password-verify" placeholder="Password" tabindex="5" /></div>
+						                                {% if status_message %}
+						                                    <p id="status_message"> {{ status_message }}</p>
+						                                {% else %}
+										    <button type="submit" class="button success round" tabindex="7">Create profile</button>
+						                                {% endif %}
+								</form>
+							</div>
+						</div>
+					</div>
+				{% endif %}
 		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
 		    {% csrf_token %}
 
-			<!-- if all questions answered -->
-			{% if user_lovetags and user_offertags and user_needtags %}
-				{% if not user.first_name %}
-					<div id="start-signup-reveal" class="reveal-modal" data-reveal>
-						{% include "./zaplings/signup-reveal.html" %}
-					</div>
-				{% endif %}
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">
 				<textarea id="intro-text" name="intro-text" rows="3" placeholder="Introduce yourself" value="{{user.intro_text}}"></textarea>
@@ -124,20 +142,19 @@
 
 			<div class="row">
 				<div class="medium-8 small-12 medium-offset-2 columns">			<h4 class="section-header">My public ideas</h4>
+				{% static "images/" as images %}
 					{% if myideas %}
 						<p>Drag and drop icons to set the display order of your ideas.</p>
-						{% for idea in myideas %} 
+						 
 						<ul id="idea-sort-box">
+							{% for idea in myideas %}
 							<li>
-								<img src="{% static "./images/leaf-circle.png" %}" width="75px" height="75px"/>
-								<p class="aside sort-title">Ideatitlecropped</p>
+								<img src="{{images}}idea-{{idea.id}}.png" height="75px" width="75px"/>
+								<p class="aside sort-title">{{ idea.title }}</p>
 							</li>
-							<li>
-								<img src="{% static "./images/leaf-circle.png" %}" width="75px" height="75px"/>
-								<p class="aside sort-title">Idea title cropped</p>
-							</li>
+							{% endfor %}
 						</ul>
-						{% endfor %}
+						
 					{% else %}
 						<p>To display this section on your profile, make an idea public.</p>
 					{% endif %}
@@ -189,10 +206,10 @@
 			</div>
 
 			<div class="centerText add-margin-top"><button type="submit" class="button success round">Save and share</button></div>
-			{% endif %}
+		</form>
+		{% endif %}
 
 <!-- included for all -->
-		</form>
 
 		<div id="change-image-reveal" class="reveal-modal" data-reveal>
 			{% include "./zaplings/change-image-reveal.html" %}

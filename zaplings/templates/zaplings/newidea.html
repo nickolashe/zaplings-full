@@ -34,13 +34,9 @@
               <div class="medium-3 small-5 column end">
                 <select name="idea-type" id="idea-type">
                   <option value="no-type-selected" disabled {% if not idea.type %}selected{% endif %}>Idea type</option>
-                  <option value="service" {% if idea.type = "service" %}selected {% endif %}>Service</option>
-                  <option value="product" {% if idea.type = "product" %}selected {% endif %}>Product</option>
-                  <option value="cause" {% if idea.type = "cause" %}selected {% endif %}>Cause</option>
-                  <option value="art" {% if idea.type = "art" %}selected {% endif %}>Art</option>
-                  <option value="project" {% if idea.type = "project" %}selected {% endif %}>Project</option>
-                  <option value="event" {% if idea.type = "event" %}selected {% endif %}>Event</option>
-                  <option value="fun" {% if idea.type = "fun" %}selected {% endif %}>Fun</option>
+                {% for type in idea_types %}
+                  <option value="{{ type }}" {% if idea_type == {{ type }} %}selected {% endif %}>{{ type }}</option>
+                {% endfor %}
                 </select>
               </div>
           </div>
