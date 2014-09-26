@@ -86,9 +86,9 @@
 					<a href="http://{{ idea.website }}">{{ idea.website }}</a>
 					{% endif %}
 					</p>
-					<!-- If crowdtilt = yes,
-					<p>We're fundraising! <a href="#" data-reveal-id="funding-info-reveal"><button class="button round success>View campaign</button></a></p>"
-				-->
+					{% if idea.isfunding %}
+					<p>We're fundraising! <a href="#" data-reveal-id="funding-info-reveal"><button class="button round success">View campaign</button></a></p>
+					{% endif %}
 				</div>	
 			</div>
 

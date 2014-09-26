@@ -821,17 +821,18 @@ def record_new_email(request):
             #logger.info("request.session: %s", str(request.session.items()))
             if request.session.has_key('referrer'):
                 referrer_username = request.session['referrer']
-                referrer_id = User.objects.get(username=referrer_username).pk
-                referree_id = User.objects.get(username=email).pk
                 logger.info("New user [%s] was referred by [%s]", 
                              email, referrer_username)
                 try:
+                    referrer_id = User.objects.get(username=referrer_username).pk
+                    referree_id = User.objects.get(username=email).pk
                     Referrer.objects.create( referrer_id = referrer_id,
                                              referree_id = referree_id)
                     logger.info("Recorded this referral")
                 except IntegrityError:
                     logger.info("This referral has already been recorded!")
-
+                except Exception:
+                    logger.info("Unable to record this referral")
             # login new user
             login_email(request, email)
   

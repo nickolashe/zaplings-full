@@ -29,21 +29,29 @@
             <ul class="idea-feed">
               <li>
             <!-- Needs idea variables and link to idea page -->
+            {% static "images/" as images %}
+            {% for idea in myideas %}
                 <div class="idea-feed-content">
-                  <a href="#">
-                    <img class="hide-for-small-only idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
-                    <img class="show-for-small-only idea-feed-img-small" src="{% static "./images/leaf-circle.png" %}" height="60px" width="60px">
+                    {% if idea.haspage %}
+                    <a href="{% url "zaplings:edit-idea-page" %}">
+                    {% else %}
+                    <a href="{% url "zaplings:newidea" %}">
+                    {% endif %}
+                    <img class="hide-for-small-only idea-feed-img" src="{{images}}idea-{{idea.id}}.png" height="75px" width="75px">
+                    <img class="show-for-small-only idea-feed-img-small" src="{{images}}idea-{{idea.id}}.png" height="60px" width="60px">
                   </a>
                   <div class="overflow-div">
-                    {% if idea.page %}
+                  <!-- if idea has idea page -->
+                    {% if idea.haspage %}
                     <a class="no-decoration idea-feed-text" href="{% url "zaplings:edit-idea-page" %}">
                     {% else %}
                     <a href="{% url "zaplings:newidea" %}" class="no-decoration idea-feed-text">
                     {% endif %}
-                    <h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
-                    <p class="idea-feed-description">A short sweet slogan goes here (100 character max) A short sweet slogan goes here (100 character max</p></a>
+                    <h5 class="idea-feed-title">{{ idea.title }}</h5>
+                    <p class="idea-feed-description">{{ idea.description }}</p></a>
                   </div>
                 </div>
+              {% endfor %}
               </li>
             </ul>
           </div>       

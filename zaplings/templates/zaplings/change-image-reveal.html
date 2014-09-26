@@ -1,6 +1,16 @@
+
+{% load static %}
+<div class="row">
 <h3>Change image</h3>
 <form id="change-icon">
-	<input type="file" class="add-margin-top"/>
+{% static "images/" as images %}
+	<div class="medium-4 columns">
+		<img src="{{images}}idea-{{ idea.id }}" />
+	</div>
+	<div class="medium-8 columns">
+		<input type="file" class="add-margin-top"/>
+	</div>
 	<button type="submit" class="add-margin-top button small round success">Save</button>
 	<button class="close-reveal-modal button small round light">Cancel</button>
 </form>
+</div>

@@ -34,20 +34,16 @@
               <div class="medium-3 small-5 column end">
                 <select name="idea-type" id="idea-type">
                   <option value="no-type-selected" disabled {% if not idea.type %}selected{% endif %}>Idea type</option>
-                  <option value="service" {% if idea.type = "service" %}selected {% endif %}>Service</option>
-                  <option value="product" {% if idea.type = "product" %}selected {% endif %}>Product</option>
-                  <option value="cause" {% if idea.type = "cause" %}selected {% endif %}>Cause</option>
-                  <option value="art" {% if idea.type = "art" %}selected {% endif %}>Art</option>
-                  <option value="project" {% if idea.type = "project" %}selected {% endif %}>Project</option>
-                  <option value="event" {% if idea.type = "event" %}selected {% endif %}>Event</option>
-                  <option value="fun" {% if idea.type = "fun" %}selected {% endif %}>Fun</option>
+                {% for type in idea_types %}
+                  <option value="{{ type }}" {% if idea_type == {{ type }} %}selected {% endif %}>{{ type }}</option>
+                {% endfor %}
                 </select>
               </div>
           </div>
           <div class="row">
             <div class="medium-8 medium-offset-2 columns end">
               <textarea name="idea-description" id="idea-description" cols="30" rows="1" placeholder="A short sweet slogan goes here (100 characters max)" value="{{ idea.description }}" maxlength="100"></textarea>
-              <textarea name="idea-notes" id="idea-notes" {% if not idea.notes %}class="hidden" {% endif %} rows="3" placeholder="Notes"></textarea>
+              <textarea name="idea-notes" id="idea-notes" value="{{ idea.notes }}" {% if not idea.notes %}class="hidden" {% endif %} rows="3" placeholder="Notes"></textarea>
             </div>
           </div>
           <div class="row controls">
@@ -56,8 +52,7 @@
               <button id="add-notes" class="button small round light">Add notes</button>
               {% endif %}
               <a href="#"><button type="submit" class="button small round light">Save</button></a>
-              <button class="button small round light" data-reveal-id="modal-share-now">Share Now</button>
-              <a href="#"><button type="submit" class="button small round success">Start idea page</button></a>
+              <button class="button small round success" data-reveal-id="modal-share-now">Share Now</button>
 
             </div>
           </div>
