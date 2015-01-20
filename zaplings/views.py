@@ -85,6 +85,10 @@ class NeedsView(generic.ListView):
                                         for ids in top_needs] )
         return suggested_needs
 
+class RsvpView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/creatorsnight.html'
+
 class WhereView(generic.ListView):
     model = User    
     template_name = 'zaplings/where.html'

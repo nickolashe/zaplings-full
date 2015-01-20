@@ -1,0 +1,220 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings | Connect to create.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		{% include "./zaplings/start-scripts.html" %}
+	
+	</head>
+	<body>
+		<!-- AddThisEvent -->
+		<script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
+		<div class="wrapper">
+
+			{% include "./zaplings/header.html" %}
+	  		
+			<div class="row">
+				<div class="small-12 medium-10 medium-offset-1 columns">
+					<h3 class="content-title">Zaplings presents Creators' Night</h3>
+					<p class="centerText half-margin-bottom">Let's celebrate what we create!</p>
+					<p class="centerText">
+						<a href="http://www.zaplings.com/creatorsnight" title="Add to Calendar" class="addthisevent button tiny success round">
+					    save the date
+					    <span class="_start">02-04-2015 19:00:00</span>
+					    <span class="_end">11-05-2015 21:30:00</span>
+					    <span class="_zonecode">11</span>
+					    <span class="_summary">Zaplings presents Creators' Night</span>
+					    <span class="_description">Let's celebrate what we create!<br>
+					    Featuring...<br>
+						Music: The Hollands<br>
+						Live art: Gent<br>
+						YOU: Share your art with open mic, bARTer table, idea contest, and more!</span>
+					    <span class="_location">Space12, 3121 East 12th Street, Austin, TX 78702</span>
+					    <span class="_organizer">Danny Pernik</span>
+					    <span class="_organizer_email">dannypernik@gmail.com</span>
+					    <span class="_facebook_event"></span>
+					    <span class="_all_day_event">false</span>
+					    <span class="_date_format">MM/DD/YYYY</span>
+						</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-6 medium-offset-3 end columns">
+						<p class="aside"><strong>When:</strong> Wednesday, Feb 4th, 2015 at 7pm<br>
+						<strong>Where</strong>: Space12 (<a href="https://www.google.com/maps/place/Space12/@30.276354,-97.701532,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5de4f4ad4eb:0xe66e489d8e377c6a" target="_blank">3121 East 12th Street, Austin, TX 78702</a>)</p>
+		
+						<p class="aside half-margin-bottom"><strong>Featuring...</strong></p>
+						<p>
+						Music: <a href="http://www.thehollands.org" target="_blank">The Hollands!</a> - 
+						Live art: <a href="http://www.artofgent.com" target="_blank">Gent</a> - 
+						Startup: <a href="#" target="_blank">dunno yet</a> - 
+						Nonprofit: <a href="#" target="_blank">dunno yet</a> - 
+						Food: <a href="#" target="_blank">dunno yet</a> - 
+						Wine: <a href="#" target="_blank">dunno yet</a>
+						<br>
+						YOU: Share your art with open mic, bARTer table, idea contest, and more!</p>
+						<p class="add-margin-top">
+							
+						</p>
+					</div>
+				</div>
+			<form id="form-rsvp" action="" method="post"/>
+                {% csrf_token %} 
+				<div class="row">
+					<div class="small-12 medium-6 medium-offset-3 columns">
+						<p>RSVP so we can suggest people for you to meet! You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
+						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
+						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
+						<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+						<h4 class="add-margin-bottom centerText">What do you love?</h4>	
+						<div class="medium-6 medium-offset-3 columns"><input id="input-loves" name="input-loves" type="text" placeholder="New love tag (press enter to add)"/></div>
+						<div class="selected-loves">
+							{% for suggested_love in suggested_loves %} 
+			                    <input id="love-suggest-{{ suggested_love.id }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }}">
+								<label class="tag button small light round" for="love-suggest-{{ suggested_love.id }}"> {{ suggested_love.tagname }} </label>
+							{% endfor %}	
+						</div>	
+					</div>
+				</div>
+				<div class="row">
+						<h4 class="add-margin-bottom centerText">What do you offer?</h4>	
+						<div class="medium-6 medium-offset-3 columns"><input id="input-offers" name="input-offers" type="text" placeholder="New help tag (press enter to add)"/></div>
+						<div>
+							{% for suggested_offer in suggested_offers %} 
+			                    <input id="offer-suggest-{{ suggested_offer.id }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ suggested_offer.id }}">
+								<label class="tag button small light round" for="offer-suggest-{{ suggested_offer.id }}"> {{ suggested_offer.tagname }} </label>
+							{% endfor %}	
+						</div>	
+					</div>
+				</div>
+				<div class="row">
+						<h4 class="add-margin-bottom centerText">What do you need?</h4>	
+						<div class="medium-6 medium-offset-3 columns"><input id="input-needs" name="input-needs" type="text" placeholder="New help tag (press enter to add)"/></div>
+						<div>
+							{% for suggested_need in suggested_needs %} 
+			                    <input id="need-suggest-{{ suggested_need.id }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ suggested_need.id }}">
+								<label class="tag button small light round" for="need-suggest-{{ suggested_need.id }}"> {{ suggested_need.tagname }} </label>
+							{% endfor %}	
+						</div>	
+					</div>
+				<h4 class="add-margin-bottom centerText">I want to meet someone who...</h4>	
+				<textarea id="want-to-meet" name="want-to-meet" rows="3" placeholder="optional"></textarea>
+				<p><button type="submit" class="large round success">RSVP</button></p>
+			</form>
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		<script type="text/javascript">
+			addthisevent.settings({
+				mouse		: false,
+				css			: false,
+				outlook		: {show:true, text:"Outlook Calendar"},
+				google		: {show:true, text:"Google Calendar"},
+				yahoo		: {show:true, text:"Yahoo Calendar"},
+				ical		: {show:true, text:"iCal Calendar"},
+				hotmail		: {show:true, text:"Hotmail Calendar"},
+				facebook	: {show:true, text:"Facebook Calendar"}
+			});
+		</script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+
+			$('#start-profile-reveal').foundation('reveal', 'open');
+			$('#start-signup-reveal').foundation('reveal', 'open');
+
+			var loveNum = $('#selected-loves .tag').length;
+			var offerNum = $('#selected-offers .tag').length;
+			var needNum = $('#selected-needs .tag').length;
+
+			$('#input-loves').keypress(function (e) {
+			var text = $(this).val();
+				if (e.which == 13 && text != '') {
+					loveNum++;
+					$('#selected-loves').val('');						
+			  		$('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+					e.preventDefault();	
+					$(this).focus().select();
+				}
+				else if (e.which == 13 && text == ''){
+					e.preventDefault();
+			        return false;
+				};
+			});
+			
+			$('#selected-loves').on('click', 'label', (function(){
+				$(this).toggleClass('selected').blur();
+			}));
+
+			$('#love-tags').submit(function() {
+				var values = $('#love-tags').serialize();
+			});		
+		
+			$('#input-offers').keypress(function (e) {
+				var text = $(this).val();
+				if (e.which == 13 && text != '') {
+					offerNum++;
+					$('#input-offers').val('');						
+			  		$('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
+					e.preventDefault();
+					$(this).focus().select();
+				}
+				else if (e.which == 13 && text == ''){
+					e.preventDefault();
+			        return false;
+				};
+			});	
+			$('#selected-offers').on('click', 'label', (function(){
+				$(this).toggleClass('selected').blur();
+			}));
+
+			$('#offer-tags').submit(function() {
+				var values = $('#offer-tags').serialize();
+			});
+
+			$('#input-needs').keypress(function (e) {
+				var text = $(this).val();
+				if (e.which == 13 && text != '') {
+					needNum++;
+					$('#input-needs').val('');						
+			  		$('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+needNum+'">'+text+'</label>');
+			  		e.preventDefault();	
+					$(this).focus().select();
+				}
+				else if (e.which == 13){
+					e.preventDefault();
+			        return false;
+				};
+			});	
+
+			$('#selected-needs').on('click', 'label', (function(){
+				$(this).toggleClass('selected').blur();
+			}));
+
+			$('#need-tags').submit(function() {
+				var values = $('#need-tags').serialize();
+			});
+		});
+		</script>
+
+		
+		{% include "./zaplings/end-scripts.html" %}
+	</body>
+</html>
