@@ -8170,20 +8170,20 @@ main {
 .addthisevent-drop {
   display: inline-block;
   position: relative;
-  z-index: 999998;
+  z-index: 95;
   font-family: arial;
   text-decoration: none;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-decoration: none; }
 
 .addthisevent-drop:hover {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-decoration: none; }
 
 .addthisevent_dropdown {
   width: 200px;
   position: absolute;
-  z-index: 99999;
+  z-index: 96;
   padding: 6px 0px 0px 0px;
   background: #fff;
   text-align: left;
@@ -8235,7 +8235,7 @@ main {
   overflow: hidden;
   background: #e0e0e0;
   position: absolute;
-  z-index: 100;
+  z-index: 50;
   left: 10px;
   top: 9px; }
 
@@ -8248,7 +8248,7 @@ main {
   font-style: normal;
   font-weight: normal;
   text-align: right;
-  z-index: 101;
+  z-index: 51;
   line-height: 110%;
   background: #fff;
   text-decoration: none;

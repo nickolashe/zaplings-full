@@ -89,6 +89,11 @@ class RsvpView(generic.ListView):
     model = User    
     template_name = 'zaplings/creatorsnight.html'
 
+class RsvpConfirmView(generic.ListView):
+    model = User    
+    template_name = 'zaplings/rsvp-confirm.html'
+
+
 class WhereView(generic.ListView):
     model = User    
     template_name = 'zaplings/where.html'
