@@ -22,8 +22,10 @@
 			<div class="row">
 				<div class="small-12 medium-10 medium-offset-1 columns">
 					<h3 class="content-title">Zaplings presents Creators' Night</h3>
-					<p class="centerText half-margin-bottom">Let's celebrate what we create!</p>
-					<p class="centerText">
+					<p class="centerText half-margin-bottom">Let's celebrate what we create</p>
+				</div>
+			</div>
+			<p class="centerText">
 						<a href="http://www.zaplings.com/creatorsnight" title="Add to Calendar" class="addthisevent button small success round">
 					    save the date
 					    <span class="_start">02-04-2015 19:00:00</span>
@@ -41,12 +43,12 @@
 					    <span class="_date_format">MM/DD/YYYY</span>
 						</a>
 					</p>
-				</div>
-			</div>
 			<div class="row">
 				<div class="medium-6 medium-offset-3 end columns">
 						<p class="aside"><strong>When:</strong> Wednesday, Feb 4th, 2015 at 7pm<br>
-						<strong>Where</strong>: Space12 (<a href="https://www.google.com/maps/place/Space12/@30.276354,-97.701532,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5de4f4ad4eb:0xe66e489d8e377c6a" target="_blank">3121 East 12th Street, Austin, TX 78702</a>)</p>
+						<strong>Where:</strong> Space12 (<a href="https://www.google.com/maps/place/Space12/@30.276354,-97.701532,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5de4f4ad4eb:0xe66e489d8e377c6a" target="_blank">3121 East 12th Street, Austin, TX 78702</a>)<br>
+						<strong>Cost: </strong>Free!
+						</p>
 		
 						<p class="aside half-margin-bottom"><strong>Featuring...</strong></p>
 						<p>
@@ -55,7 +57,8 @@
 						Startup: <a href="http://www.sillyangelcards.com" target="_blank">SillyAngel Cards</a> - 
 						Nonprofit: <a href="#" target="_blank">dunno yet</a> - 
 						Food: <a href="#" target="_blank">dunno yet</a> - 
-						Wine: <a href="#" target="_blank">dunno yet</a>
+						Wine: <a href="#" target="_blank">dunno yet</a> - 
+						Photography: <a href="http://www.holpphotography.com/" target="_blank">Mike Holp</a> - Videography: Aaron Good
 						<br>
 						YOU: Share your art with open mic, <a href="http://www.instagram.com/barteratx" target="_blank">bARTer</a> table, idea contest, and more!</p>
 						<p class="add-margin-top">
@@ -125,6 +128,13 @@
 					<div class="medium-6 medium-offset-3 columns">
 						<h4 class="add-margin-bottom centerText">I want to meet someone who...</h4>
 						<textarea id="want-to-meet" name="want-to-meet" rows="3" placeholder="(optional)"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="medium-6 medium-offset-3 columns centerText">
+						<input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom">
+						<span>I want to participate in open mic.</span>
+						<textarea id="open-mic-text" class="hidden" placeholder="What would you like to do for open mic? (5-7mins)"></textarea>
 						<p class="centerText add-margin-top"><button type="submit" class="large round success">RSVP</button></p>
 					</div>
 				</div>
@@ -227,6 +237,10 @@
 			$('#need-tags').submit(function() {
 				var values = $('#need-tags').serialize();
 			});
+		});
+		
+		$('#open-mic').click(function(){
+		    $('#open-mic-text').toggleClass('hidden');
 		});
 		</script>
 
