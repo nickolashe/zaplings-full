@@ -86,8 +86,21 @@ class NeedsView(generic.ListView):
         return suggested_needs
 
 class RsvpView(generic.ListView):
-    model = User    
+    context_object_name = 'suggested_tags'    
     template_name = 'zaplings/creatorsnight.html'
+    queryset = Love.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(RsvpView, self).get_context_data(**kwargs)
+        suggested_tags = {
+            'suggested_loves': Love.objects.filter(issuggested=True),
+            'suggested_offers': Offer.objects.filter(issuggested=True),
+            'suggested_needs': Need.objects.filter(issuggested=True),
+        }
+        context.update(suggested_tags)
+        # And so on for more models
+        logger.info('context: %s', context)
+        return context
 
 class RsvpConfirmView(generic.ListView):
     model = User    
@@ -265,23 +278,6 @@ def record_loves(request):
                                                    love_id=love_id):
                         UserLove.objects.create(user_id=request.user.pk, 
                                                 love_id=love_id)
-
-                # pre-sort offers based on frequency of selection
-                offers_freq = [ [ useroffer.offer.id 
-                                for useroffer in UserOffer.objects.filter(offer_id=id) ]
-                              for id in [ offer.id 
-                                          for offer in Offer.objects.all() ]]
-                # display first n tags
-                top_offers = sorted(offers_freq, key=len, reverse=True)[:12]
-                suggested_offers = Offer.objects.filter(id__in=[offerid[0] 
-                                                        for offerid in top_offers])
-                logger.info("top offers: %s", [ (Offer.objects.get(pk=ids[0]), len(ids)) \
-  
-                                                 for ids in top_offers] )
-                #suggested_offers = Offer.objects.all()
-                return render(request, 'zaplings/offers.html', {
-                    'suggested_offers': suggested_offers
-                })
             else:
                 return redirect('zaplings:loves')
         else:
@@ -346,23 +342,6 @@ def record_offers(request):
                                                     offer_id=offer_id):
                         UserOffer.objects.create(user_id=request.user.pk, 
                                                  offer_id=offer_id)
-
-                # pre-sort offers based on frequency of selection
-                needs_freq = [ [ userneed.need.id 
-                                for userneed in UserNeed.objects.filter(need_id=id) ]
-                              for id in [ need.id 
-                                          for need in Need.objects.all() ]]
-                # display first n tags
-                top_needs = sorted(needs_freq, key=len, reverse=True)[:12]
-                suggested_needs = Need.objects.filter(id__in=[needid[0] 
-                                                      for needid in top_needs])
-                # suggested_needs = Need.objects.all()
-                logger.info("top needs: %s", [ (Need.objects.get(pk=ids[0]), len(ids)) \
- 
-                                                for ids in top_needs] )
-                return render(request, 'zaplings/needs.html', {
-                    'suggested_needs': suggested_needs
-                })
             else:
                 return redirect('zaplings:loves')
         else:
@@ -427,11 +406,6 @@ def record_needs(request):
                                                     need_id=need_id):
                         UserNeed.objects.create(user_id=request.user.pk, 
                                                  need_id=need_id)
-
-                # get all user tags to render profile
-                user_tags = get_user_tags(userid)
-                logger.info("User tags: %s", user_tags)
-                return render(request, 'zaplings/profile.html', user_tags)
             else:
                 logger.info('GET request: %s', str(request.GET))
                 return redirect('zaplings:loves')
