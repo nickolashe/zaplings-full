@@ -41,18 +41,21 @@ class IdeaTeam(models.Model):
 
 class Love(models.Model):
     tagname = models.CharField(max_length=200)
+    issuggested = models.BooleanField()
 
     def __unicode__(self):
         return self.tagname
 
 class Offer(models.Model):
     tagname = models.CharField(max_length=200)
+    issuggested = models.BooleanField()
 
     def __unicode__(self):
         return self.tagname
 
 class Need(models.Model):
     tagname = models.CharField(max_length=200)
+    issuggested = models.BooleanField()
 
     def __unicode__(self):
         return self.tagname
