@@ -55,11 +55,11 @@
 						Music: <a href="http://www.thehollands.org" target="_blank">The Hollands!</a> - 
 						Art: <a href="http://www.artofgent.com" target="_blank">Gent</a> - 
 						Startup: <a href="http://www.sillyangelcards.com" target="_blank">SillyAngel Cards</a> - 
-						Nonprofit: <a href="#" target="_blank">dunno yet</a> - 
+						<!--Nonprofit: <a href="#" target="_blank">dunno yet</a> - 
 						Food: <a href="#" target="_blank">dunno yet</a> - 
 						Wine: <a href="#" target="_blank">dunno yet</a> - 
 						Photography: <a href="http://www.holpphotography.com/" target="_blank">Mike Holp</a> - Videography: Aaron Good
-						<br>
+						<br>-->
 						YOU: Share your art with open mic, <a href="http://www.instagram.com/barteratx" target="_blank">bARTer</a> table, idea contest, and more!</p>
 						<p class="add-margin-top">
 							
@@ -70,7 +70,7 @@
                 {% csrf_token %} 
 				<div class="row">
 					<div class="small-12 medium-6 medium-offset-3 columns">
-						<p>RSVP so we can suggest people for you to meet! You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
+						<p><strong>RSVP</strong> so we can suggest people for you to meet! You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
 						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
 						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
 						<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
@@ -79,8 +79,8 @@
 				</div>
 
 				<div class="row">
-						<h4 class="add-margin-top centerText">What do you love? (3 minimum)</h4>
-						<p class="aside centerText">The more you add, the better we can connect you!</p>
+						<h4 class="add-margin-top centerText">What do you love?</h4>
+						<p class="aside centerText">At least 5. The more you add, the better we can connect you!</p>
 						<div class="medium-6 medium-offset-3 columns"><input id="input-loves" class="centerText" name="input-loves" type="text" placeholder="New love tag (press enter to add)"/>
 					</div>
 				</div>
@@ -95,7 +95,8 @@
 					</div>
 				</div>
 				<div class="row">
-					<h4 class="add-margin-bottom add-margin-top centerText">What do you offer? (3 minimum)</h4>	
+					<h4 class="add-margin-top centerText">What do you offer?</h4>	
+					<p class="aside centerText">At least 3.</p>
 					<div class="medium-6 medium-offset-3 columns"><input id="input-offers" class="centerText" name="input-offers" type="text" placeholder="New help tag (press enter to add)"/>
 					</div>
 				</div>
@@ -110,7 +111,8 @@
 					</div>	
 				</div>
 				<div class="row">
-					<h4 class="add-margin-bottom add-margin-top centerText">What do you need? (3 minimum)</h4>
+					<h4 class="add-margin-top centerText">What do you need?</h4>
+					<p class="aside centerText">At least 3.</p>
 					<div class="medium-6 medium-offset-3 columns"><input id="input-needs" class="centerText" name="input-needs" type="text" placeholder="New help tag (press enter to add)"/>
 					</div>
 				</div>
@@ -126,7 +128,7 @@
 				</div>
 				<div class="row">
 					<div class="medium-6 medium-offset-3 columns">
-						<h4 class="add-margin-bottom centerText">I want to meet someone who...</h4>
+						<h4 class="add-margin-bottom add-margin-top centerText">I want to meet someone who...</h4>
 						<textarea id="want-to-meet" name="want-to-meet" rows="3" placeholder="(optional)"></textarea>
 					</div>
 				</div>
