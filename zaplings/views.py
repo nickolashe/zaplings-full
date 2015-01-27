@@ -700,13 +700,14 @@ def record_new_email(request):
 
         # generate user tags and redirect to profile
         return HttpResponseRedirect(
-            reverse('zaplings:generate_user_tags', 
+            reverse('zaplings:generate_user_tags',
             args=(request.user.pk,)))
     except Exception as e:
         logger.error(
             "Error in record_new_email: %s (%s)", e.message, str(type(e)))
         return redirect('zaplings:error')
-        
+
+
 def process_rsvp(request):
     record_new_email(request)
     record_loves(request)
@@ -720,25 +721,41 @@ def process_rsvp(request):
 def send_confirmation_email(request):
     email_body = '<div><br></div><div>Hi %s, thank you for your RSVP to Creators&#39; Night. We&#39;re excited to introduce you to the kind of people you&#39;re looking to meet. Based on your responses to our questions, we&#39;ll have a connection card for you with names of people you&#39;ll want to find.</div><div><br></div><div>Our goal for Creators Night is to connect, energize, and inspire you to co-create the incredible future we know is possible. The night&#39;s featured creators will share their experience and expression as beautiful examples of what we can achieve, and you will have opportunities to create at the event itself and beyond it. Here&#39;s some of what&#39;s in store:</div><div><br></div><div>- Open mic music, poetry, comedy, whatever</div><div>- Idea contest</div><div>- <a href=3D"http://www.instagram.com/barteratx">bARTer</a> table</div><div>- Performance by traveling family folk band <a href=3D"http://www.thehollands.org">The Hollands!</a></div><div>- Art by <a href=3D"http://www.artofgent.com">Gent</a>=C2=A0and art auction</div><div>- Talks by Donnie of <a href=3D"http://www.sillyangelcards.com">SillyAngel Cards</a> and [name] of [nonprofit name]</div><div>- [Food by ]</div><div>- [Drink by ]</div><div>- Photography by <a href=3D"http://www.holpphotography.com/">Mike Holp</a></div><div>- Videography by [Aaron Good]</div><div><br></div><div>Sound fun? We&#39;re looking forward to it. Know anyone who might want to join? Forward this email or pass on the RSVP link:</div><div><br></div><div><a href=3D"http://www.zaplings.com/creatorsnight">www.zaplings.com/creatorsnight</a></div><div><br></div><div>See you there!</div><div>Danny, Justin, and Nicko</div><div><br></div><div>(Oh, did we mention it&#39;s free?)</div></div>'
     name = request.POST['user-firstname'] or 'there'
-    return requests.post(
+    response = requests.post(
         "https://api.mailgun.net/v2/sandboxe0a00a1036dc430c933c3e1bd70ac0ea.mailgun.org/messages",
         auth=("api", "key-9c1bcab96768c19c80966e42c7882cd0"),
-        data={"from": "Zaplings Team <postmaster@sandboxe0a00a1036dc430c933c3e1bd70ac0ea.mailgun.org>",
-              "to": request.POST['user-email'],
-              "subject": "See you at Creators' Night Wednesday Feb 4!",
-              "h:Reply-To": "dannypernik@gmail.com",
-              "text": email_body % name})
+        data={
+            "from": "Zaplings Team <postmaster@sandboxe0a00a1036dc430c933c3e1bd70ac0ea.mailgun.org>",
+            "to": request.POST['user-email'],
+            "subject": "See you at Creators' Night Wednesday Feb 4!",
+            "h:Reply-To": "dannypernik@gmail.com",
+            "html": email_body % name
+        }
+    )
+
+    if response.status_code == 200:
+        logger.info("Email sent to:%s", request.POST['user-email'])
+        return True
+    else:
+        logger.error(
+            "MailGun returned %s: %s. For email: %s",
+            response.status_code,
+            response.text,
+            request.POST['user-email'])
+        return False
+
 
 def signup_user(request):
-    status_message = { 'PASSWORD_VERIFY': 'Passwords do not match!',
-                       'PASSWORD_EMPTY': 'Please type in your password',
-                       'NAME_EMPTY': 'Please enter your name',
-                       'EMAIL_EMPTY': 'Please enter your email',
-                       'EMAIL_EXISTS': 'User is already registered with this email',
-                       'USERNAME_EMPTY': 'Please pick a username',
-                       'USERNAME_EXISTS': 'This username already exists',
-                       'USER_UPDATED': 'Thank you for joining Zaplings!',
-                       'USER_CREATED': 'Thank you for joining Zaplings!' }
+    status_message = {
+        'PASSWORD_VERIFY': 'Passwords do not match!',
+        'PASSWORD_EMPTY': 'Please type in your password',
+        'NAME_EMPTY': 'Please enter your name',
+        'EMAIL_EMPTY': 'Please enter your email',
+        'EMAIL_EXISTS': 'User is already registered with this email',
+        'USERNAME_EMPTY': 'Please pick a username',
+        'USERNAME_EXISTS': 'This username already exists',
+        'USER_UPDATED': 'Thank you for joining Zaplings!',
+        'USER_CREATED': 'Thank you for joining Zaplings!'}
     try:
         email = request.POST['user-email']
         firstname = request.POST['user-firstname']
@@ -755,7 +772,7 @@ def signup_user(request):
                 status = 'PASSWORD_EMPTY'
         else:
             status = 'PASSWORD_VERIFY'
-   
+
         if not email:
             status = 'EMAIL_EMPTY'
         if not firstname or not lastname:
@@ -767,16 +784,19 @@ def signup_user(request):
         if User.objects.filter(email=email):
             status = 'EMAIL_EXISTS'
 
-        failure_keys = [key for key in status_message.keys() if 'USER_' not in key]
-        if not status in failure_keys:
+        failure_keys = [
+            key for key in status_message.keys() if 'USER_' not in key]
+
+        if status not in failure_keys:
             if User.objects.filter(username=email):
                 user = User.objects.get(username=email)
                 user.username = username
                 user.email = email
                 status = 'USER_UPDATED'
             else:
-                user = User.objects.create_user(username=username, 
-                                                email=email)
+                user = User.objects.create_user(
+                    username=username,
+                    email=email)
                 status = 'USER_CREATED'
             user.first_name = firstname
             user.last_name = lastname
@@ -786,14 +806,20 @@ def signup_user(request):
             if user is not None and user.is_active:
                 login(request, user)
                 logger.info('Logged in [%s]', user.username)
-            return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+            return HttpResponseRedirect(
+                reverse(
+                    'zaplings:generate_user_tags',
+                    args=(request.user.pk,)
+                )
+            )
         else:
-            request_obj = { 'signup_status_message': status_message[status] }
-            return render(request, 'zaplings/signup.html', request_obj) 
+            request_obj = {'signup_status_message': status_message[status]}
+            return render(request, 'zaplings/signup.html', request_obj)
     except Exception as e:
-        request_obj = { 'status_message': e.message }
+        request_obj = {'status_message': e.message}
         # return back to index for the time-being
-        return render(request, 'zaplings/signup.html', request_obj) 
+        return render(request, 'zaplings/signup.html', request_obj)
+
 
 def login_email(request, email):
     user = authenticate(username=email, password='')
@@ -802,9 +828,12 @@ def login_email(request, email):
         login(request, user)
         logger.info('Logged in [%s]', email)
 
+
 def login_email_password(request):
-    status_message = { 'LOGIN_INCORRECT': "The login information you provided did not match our records. Please try again.",
-                       'LOGIN_INCOMPLETE': "Please include both email and password." }
+    status_message = {
+        'LOGIN_INCORRECT': "The login information you provided did not match our records. Please try again.",
+        'LOGIN_INCOMPLETE': "Please include both email and password."
+    }
     error_message = None
     user = None
     try:
@@ -847,9 +876,10 @@ def login_email_password(request):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        #user_tags = generate_user_tags(user.pk)
-        #return render(request, 'zaplings/profile.html', user_tags)
-        return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+        # return render(request, 'zaplings/profile.html', user_tags)
+        return HttpResponseRedirect(
+            reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+
 
 def user_logout(request):
     status_msg = None
@@ -860,12 +890,14 @@ def user_logout(request):
             logger.info('Logged out [%s]', username)
             status_msg = "You've been succesfully logged out!"
         else:
-            status_msg = ' '.join(["You're not logged in.",
-                                   "Please enter your email to enter Zaplings!"])
-    except Exception as e:
+            status_msg = ' '.join([
+                "You're not logged in.",
+                "Please enter your email to enter Zaplings!"])
+    except Exception:
         logger.error('Could not log out user [%s]', username)
 
-    request_obj = { 'featured_ideas': FeaturedIdea.objects.all(),
-                    'status_message': status_msg }
-    # return back to index for the time-being
-    return render(request, 'zaplings/index.html', request_obj) 
+    request_obj = {
+        'featured_ideas': FeaturedIdea.objects.all(),
+        'status_messge': status_msg,
+    }
+    return render(request, 'zaplings/index.html', request_obj)
