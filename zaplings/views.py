@@ -279,11 +279,9 @@ def record_loves(request):
                         UserLove.objects.create(user_id=request.user.pk, 
                                                 love_id=love_id)
             else:
-                return redirect('zaplings:loves')
+                return redirect('zaplings:creatorsnight')
         else:
-            logger.info("Redirecting to login")
-            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
-            return render(request, 'zaplings/signup.html', request_obj)
+            return redirect('zaplings:creatorsnight')
     except Exception as e:
         logger.error("Error in record_loves: %s (%s)",
                       e.message, str(type(e)))
@@ -343,11 +341,9 @@ def record_offers(request):
                         UserOffer.objects.create(user_id=request.user.pk, 
                                                  offer_id=offer_id)
             else:
-                return redirect('zaplings:loves')
+                return redirect('zaplings:creatorsnight')
         else:
-            logger.info("Redirecting to login")
-            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
-            return render(request, 'zaplings/signup.html', request_obj)
+            return redirect('zaplings:creatorsnight')
     except Exception as e:
         logger.error("Error in record_offers: %s (%s)",
                       e.message, str(type(e)))
@@ -407,147 +403,15 @@ def record_needs(request):
                         UserNeed.objects.create(user_id=request.user.pk, 
                                                  need_id=need_id)
             else:
-                logger.info('GET request: %s', str(request.GET))
-                return redirect('zaplings:loves')
+                return redirect('zaplings:creatorsnight')
         else:
-            logger.info("Redirecting to login")
-            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
-            return render(request, 'zaplings/signup.html', request_obj) 
+            return redirect('zaplings:creatorsnight')
                  
     except Exception as e:
         logger.error("Error in record_need: %s (%s)",
                       e.message, str(type(e)))
         return redirect('zaplings:error')
 
-
-def record_wheres(request):
-    """
-    process input from zaplings:where
-    redirect to zaplings:profile
-    """
-    try:
-        userid=None
-        login_log_msg = "No user session - redirecting to login"
-        login_status_msg = { 'login_status_message': 'Please login to Zaplings!' }
-    
-        try:
-            userid = request.user.pk
-            logger.info("Current session userid: [%s]", request.user.username)
-        except Exception as e:
-            logger.info(login_log_msg)
-            return render(request, 'zaplings/signup.html', login_status_msg) 
-    
-        if not userid:
-            logger.info(login_log_msg)
-            return render(request, 'zaplings/signup.html', login_status_msg)
-    
-        if request.method == "POST":
-            post = request.POST
-            logger.info('POST request: %s', str(post))
-    
-            if not Where.objects.filter(user_id=userid):
-                # create new user
-                user_where = Where.objects.create(user_id=userid, 
-                                                  radius=-1,
-                                                  zipcode="",
-                                                  hangout=True)
-            else:
-                # update existing user
-                user_where = Where.objects.get(user_id=userid)
-    
-            if post.has_key('meet-local') and post.get('meet-local') == 'on':
-                # radius
-                if post.has_key('radius'):
-                    user_where.radius = int(post.get('radius'))
-                # zipcode
-                if post.has_key('zipcode'):
-                    user_where.zipcode = post.get('zipcode')
-    
-            if post.has_key('place'):
-                user_where.place = post.get('place')
-    
-            if not post.has_key('hangout'):
-                user_where.hangout = False
-    
-            user_where.save()
-     
-            user_tags = generate_user_tags(request, userid)
-            return render(request, 'zaplings/profile.html', user_tags)
-        else:
-            logger.info('GET request - redirecting to loves')
-            return redirect('zaplings:loves')
-    except Exception as e:
-        logger.error("Error in record_wheres: %s (%s)",
-                      e.message, str(type(e)))
-        return redirect('zaplings:error')
-
-
-def record_whens(request):
-    """
-    process input from zaplings:when
-    redirect to zaplings:profile
-    """
-    try:
-        userid = request.user.pk
-        logger.info("Current session userid: [%s]", request.user.username)
-    except Exception as e:
-        logger.info("Redirecting to login")
-        request_obj = { 'login_status_message': 'Please login to Zaplings!' }
-        return render(request, 'zaplings/signup.html', request_obj) 
- 
-    try:
-        if request.method == "POST":
-            post = request.POST
-            logger.info('POST request: %s', str(post))
-
-            if not When.objects.filter(user_id=userid):
-                # create new user
-                user_where = When.objects.create(user_id=userid,
-                                                 weekdays=False,
-                                                 weekends=False,
-                                                 mornings=False,
-                                                 afternoons=False,
-                                                 evenings=False,
-                                                 nights=False,
-                                                 utc_offset=-5)
-            else:
-                # update existing user
-                user_when = When.objects.get(user_id=userid)
-
-            # weekdays
-            if post.has_key('weekdays') and post['weekdays'] == 'on':
-                logger.info("weekdays is set") 
-                user_when.weekdays = True
-            # weekends
-            if post.has_key('weekends') and post['weekends'] == 'on':
-                logger.info("weekends is set") 
-                user_when.weekends = True
-            # mornings
-            if post.has_key('mornings') and post['mornings'] == 'on':
-                logger.info("mornings is set") 
-                user_when.mornings = True
-            # afternoons
-            if post.has_key('afternoons') and post['afternoons'] == 'on':
-                logger.info("afternoons is set") 
-                user_when.afternoons = True
-            # evenings
-            if post.has_key('evenings') and post['evenings'] == 'on':
-                logger.info("evenings is set") 
-                user_when.evenings = True
-            # nights
-            if post.has_key('nights') and post['nights'] == 'on':
-                logger.info("nights is set") 
-                user_when.nights = True
-              
-            user_tags = generate_user_tags(request, userid)
-            return render(request, 'zaplings/profile.html', user_tags)
-        else:
-            logger.info('GET request: %s', str(request.GET))
-            return redirect('zaplings:loves')
-    except Exception as e:
-        logger.error("Error in record_whens: %s (%s)",
-                      e.message, str(type(e)))
-        return redirect('zaplings:error')
 
 def record_text(request):
     """
@@ -558,61 +422,29 @@ def record_text(request):
         userid = request.user.pk
 
         if userid:
-            logger.info("Recording text's for userid [%s]", userid)
-            love_text = request.POST['love_text'] if request.POST.has_key('love_text') \
-                                                  else ''
-            offer_text = request.POST['offer_text'] if request.POST.has_key('offer_text') \
-                                                    else ''
-            need_text = request.POST['need_text'] if request.POST.has_key('need_text') \
-                                                  else ''
+            # wamt-to-meet
+            love_text = request.POST['want-to-meet'] if request.POST.has_key('want-to-meet') else ''
+            logger.info('want-to-meet text: %s', love_text)
             if love_text:
                 try:
                     LoveText.objects.create(user_id=userid, text=love_text)
                 except IntegrityError:
                     lovetext = LoveText.objects.get(user_id=userid)
-                    lovetext.text = love_text
+                    lovetext.text = text
                     lovetext.save()
-            else:
-                try:
-                    love = LoveText.objects.get(user_id=userid)
-                    love_text = love.text
-                except Exception:
-                    pass
+
+            # mic-text
+            offer_text = request.POST['open-mic-text'] if request.POST.has_key('open-mic-text') else ''
+            logger.info('open-mic text: %s', offer_text)
             if offer_text:
                 try:
                     OfferText.objects.create(user_id=userid, text=offer_text)
                 except IntegrityError:
                     offertext = OfferText.objects.get(user_id=userid)
-                    offertext.text = offer_text
+                    offertext.text = text
                     offertext.save()
-            else:
-                try:
-                    offer = OfferText.objects.get(user_id=userid)
-                    offer_text = offer.text
-                except Exception:
-                    pass
-            if need_text:
-                try:
-                    NeedText.objects.create(user_id=userid, text=need_text)
-                except IntegrityError:
-                    needtext = NeedText.objects.get(user_id=userid)
-                    needtext.text = need_text
-                    needtext.save()
-            else:
-                try:
-                    need = NeedText.objects.get(user_id=userid)
-                    need_text = need.text
-                except Exception:
-                    pass
-        
-            # render profile-view now
-            #request_obj = get_user_tags(userid)
-            #return render(request, 'zaplings/profile-view.html', request_obj)
-            return redirect('zaplings:share')
         else:
-            logger.info("Redirecting to login")
-            request_obj = { 'login_status_message': 'Please login to Zaplings!' }
-            return render(request, 'zaplings/signup.html', request_obj)
+            return redirect('zaplings:creatorsnight')
 
     except Exception as e:
         logger.error("Error in record_text: %s (%s)",
@@ -753,7 +585,7 @@ def record_feedback(request):
 
 def record_new_email(request):
     try:
-        email = request.POST['email']
+        email = request.POST['user-email']
         status_message = {'REENTER': 'Please enter your email.',
                           'EXISTS': 'You are already part of Zaplings! Thanks!',
                           'SUCCESS': 'Thank you for joining Zaplings!'}
@@ -770,29 +602,13 @@ def record_new_email(request):
         elif User.objects.filter(username=email):
             status = 'EXISTS'
             logger.info('Email [%s] has already been submitted.', email)
-            # create django user if needed
-            request_obj = { 'signup_email': email }
-            # return back to index for the time-being
-            return render(request, 'zaplings/signup.html', request_obj) 
       
-        # EXISTING USER
-        elif User.objects.filter(email=email):
-            status = 'EXISTS'
-            # create new user (email, '')
-            try:
-                NewUserEmail.objects.create(email=email)
-            except Exception as e:
-                pass
-            # generate user tags and redirect to profile
-            #return render(request, 'zaplings/profile.html', {}) 
-            request_obj = { 'login_email': email }
-            # return back to index for the time-being
-            return render(request, 'zaplings/signup.html', request_obj) 
-    
         # NEW USER
         else:
             try:
                 newuser = User.objects.create_user(email)
+                newuser.first_name = request.POST['user-firstname']
+                newuser.last_name = request.POST['user-lastname']
                 newuser.set_password('')
                 newuser.save()
                 status= 'SUCCESS'
@@ -801,31 +617,23 @@ def record_new_email(request):
                 logger.error('User [%s] already exists.', email)
                 status = 'EXISTS'
 
-            #logger.info("request.session: %s", str(request.session.items()))
-            if request.session.has_key('referrer'):
-                referrer_username = request.session['referrer']
-                logger.info("New user [%s] was referred by [%s]", 
-                             email, referrer_username)
-                try:
-                    referrer_id = User.objects.get(username=referrer_username).pk
-                    referree_id = User.objects.get(username=email).pk
-                    Referrer.objects.create( referrer_id = referrer_id,
-                                             referree_id = referree_id)
-                    logger.info("Recorded this referral")
-                except IntegrityError:
-                    logger.info("This referral has already been recorded!")
-                except Exception:
-                    logger.info("Unable to record this referral")
-            # login new user
-            login_email(request, email)
+        # login user
+        login_email(request, email)
   
-            # generate user tags and redirect to profile
-            return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
+        # generate user tags and redirect to profile
+        return HttpResponseRedirect(reverse('zaplings:generate_user_tags', args=(request.user.pk,)))
     except Exception as e:
         logger.error("Error in record_new_email: %s (%s)",
                       e.message, str(type(e)))
         return redirect('zaplings:error')
-             
+        
+def process_rsvp(request):
+    record_new_email(request)
+    record_loves(request)     
+    record_offers(request)     
+    record_needs(request)     
+    record_text(request)
+    return redirect('zaplings:rsvp-confirm')
 
 def signup_user(request):
     status_message = { 'PASSWORD_VERIFY': 'Passwords do not match!',
