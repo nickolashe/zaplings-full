@@ -66,7 +66,7 @@
 						</p>
 					</div>
 				</div>
-			<form id="form-rsvp" action="" method="post"/>
+			<form id="form-rsvp" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
                 {% csrf_token %} 
 				<div class="row">
 					<div class="small-12 medium-6 medium-offset-3 columns">
@@ -134,9 +134,9 @@
 				</div>
 				<div class="row">
 					<div class="medium-6 medium-offset-3 columns centerText">
-						<input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom">
+						<input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom" name="want-mic">
 						<span>I want to participate in open mic.</span>
-						<textarea id="open-mic-text" class="hidden" placeholder="What would you like to do for open mic? (5-7mins)"></textarea>
+						<textarea id="open-mic-text" class="hidden" name='open-mic-text' placeholder="What would you like to do for open mic? (5-7mins)"></textarea>
 						<p class="centerText add-margin-top"><button type="submit" class="large round success">RSVP</button></p>
 					</div>
 				</div>
