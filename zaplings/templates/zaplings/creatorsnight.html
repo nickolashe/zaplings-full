@@ -71,9 +71,9 @@
 				<div class="row">
 					<div class="small-12 medium-6 medium-offset-3 columns">
 						<p><strong>RSVP</strong> so we can suggest people for you to meet. You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
-						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
-						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
-						<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
+						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"tabindex="2"/>
+						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="2" /></div>
+						<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"tabindex="3"/>
 						</div>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 					<div class="medium-9 medium-centered columns">
 						<div id="selected-loves" class="centerText">
 							{% for suggested_love in suggested_loves %} 
-			                    <input id="love-suggest-{{ suggested_love.id }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }}">
+			                    <input id="love-suggest-{{ suggested_love.id }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }}"tabindex="4">
 								<label class="tag button small light round" for="love-suggest-{{ suggested_love.id }}"> {{ suggested_love.tagname }} </label>
 							{% endfor %}	
 						</div>	
@@ -97,14 +97,14 @@
 				<div class="row">
 					<h4 class="add-margin-top centerText">What do you offer?</h4>	
 					<p class="aside centerText">At least 3.</p>
-					<div class="medium-6 medium-offset-3 columns"><input id="input-offers" class="centerText" name="input-offers" type="text" placeholder="New help tag (press enter to add)"/>
+					<div class="medium-6 medium-offset-3 columns"><input id="input-offers" class="centerText" name="input-offers" type="text" placeholder="New help tag (press enter to add)" tabindex="5" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="medium-9 medium-centered columns">
 						<div id="selected-offers" class="centerText">
 							{% for suggested_offer in suggested_offers %} 
-			                    <input id="offer-suggest-{{ suggested_offer.id }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ suggested_offer.id }}">
+			                    <input id="offer-suggest-{{ suggested_offer.id }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ suggested_offer.id }}" tabindex="6">
 								<label class="tag button small light round" for="offer-suggest-{{ suggested_offer.id }}"> {{ suggested_offer.tagname }} </label>
 							{% endfor %}	
 						</div>
@@ -113,7 +113,7 @@
 				<div class="row">
 					<h4 class="add-margin-top centerText">What do you need?</h4>
 					<p class="aside centerText">At least 3.</p>
-					<div class="medium-6 medium-offset-3 columns"><input id="input-needs" class="centerText" name="input-needs" type="text" placeholder="New help tag (press enter to add)"/>
+					<div class="medium-6 medium-offset-3 columns"><input id="input-needs" class="centerText" name="input-needs" type="text" placeholder="New help tag (press enter to add)" tabindex="7" />
 					</div>
 				</div>
 				<div class="row">
@@ -129,15 +129,15 @@
 				<div class="row">
 					<div class="medium-6 medium-offset-3 columns">
 						<h4 class="add-margin-bottom add-margin-top centerText">I want to meet someone who...</h4>
-						<textarea id="want-to-meet" name="want-to-meet" rows="3" placeholder="(optional)"></textarea>
+						<textarea id="want-to-meet" name="want-to-meet" rows="3" placeholder="(optional)" tabindex="8"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="medium-6 medium-offset-3 columns centerText">
-						<input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom">
+						<input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom" tabindex="10">
 						<span>I want to participate in open mic.</span>
 						<textarea id="open-mic-text" class="hidden" placeholder="What would you like to do for open mic? (5-7mins)"></textarea>
-						<p class="centerText add-margin-top"><button type="submit" class="large round success">RSVP</button></p>
+						<p class="centerText add-margin-top"><button type="submit" class="large round success" tabindex="11">RSVP</button></p>
 					</div>
 				</div>
 			</form>
