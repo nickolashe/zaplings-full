@@ -1,7 +1,6 @@
 <!doctype html>
 
 {% load static %}
-{% load social_share %}
 
 <html class="no-js" lang="en">
     <head>
@@ -14,24 +13,6 @@
     
     </head>
     <body>
-        <!-- facebook sdk -->
-        <script>
-          window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '667258056730621',
-              xfbml      : true,
-              version    : 'v2.2'
-            });
-          };
-        
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
-        </script>
           <!-- AddThisEvent -->
         <script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
         <div class="wrapper">
@@ -70,15 +51,9 @@
             </div>
             <div class="row">
                 <div class="centerText medium-8 medium-offset-2 small-12 columns end">
-                <!--    <button id="copy-invite" data-text-swap="Copied!" data-clipboard-target="invite-msg" class="button round success">copy text</button>-->
+                    <button id="copy-invite" data-text-swap="Copied!" data-clipboard-target="invite-msg" class="button round success">copy text</button>
+                    <!--<a href="{% url 'zaplings:creatorsnight' %}"><button id="copy-invite" class="button large round success">RSVP Form</button></a>-->
                     <!-- facebook sdk -->
-                    <div
-                      class="fb-like"
-                      data-share="true"
-                      data-width="450"
-                      data-href='http://zaplings.com/creatorsnight/'
-                      data-show-faces="true">
-                    </div>
                     <!-- post_to_facebook 'http://zaplings.com:8080/creatorsnight/' "Post to Facebook!" -->
             </div>        
             <div class="push"></div>
