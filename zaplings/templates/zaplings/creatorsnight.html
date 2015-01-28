@@ -18,7 +18,7 @@
         <div class="wrapper">
 
             {% include "./zaplings/header.html" %}
-            
+              
             <div class="row">
                 <div class="small-12 medium-10 medium-offset-1 columns">
                     <h5 class="content-title">Zaplings presents</h5> <h3 class="centerText">Creators' Night</h3>
@@ -66,7 +66,7 @@
                         </p>
                     </div>
                 </div>
-            <form id="form-rsvp" action="" method="post"/>
+            <form id="form-rsvp" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
                 {% csrf_token %} 
                 <div class="row">
                     <div class="small-12 medium-6 medium-offset-3 columns">
@@ -91,11 +91,11 @@
                                 <input id="love-suggest-{{ suggested_love.id }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ suggested_love.id }}"tabindex="4">
                                 <label class="tag button small light round" for="love-suggest-{{ suggested_love.id }}"> {{ suggested_love.tagname }} </label>
                             {% endfor %}    
-                        </div>  
+                        </div>    
                     </div>
                 </div>
                 <div class="row">
-                    <h4 class="add-margin-top centerText">What do you offer?</h4>   
+                    <h4 class="add-margin-top centerText">What do you offer?</h4>    
                     <p class="aside centerText">At least 3.</p>
                     <div class="medium-6 medium-offset-3 columns"><input id="input-offers" class="centerText" name="input-offers" type="text" placeholder="New help tag (press enter to add)" tabindex="5" />
                     </div>
@@ -108,7 +108,7 @@
                                 <label class="tag button small light round" for="offer-suggest-{{ suggested_offer.id }}"> {{ suggested_offer.tagname }} </label>
                             {% endfor %}    
                         </div>
-                    </div>  
+                    </div>    
                 </div>
                 <div class="row">
                     <h4 class="add-margin-top centerText">What do you need?</h4>
@@ -123,8 +123,8 @@
                                 <input id="need-suggest-{{ suggested_need.id }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ suggested_need.id }}">
                                 <label class="tag button small light round" for="need-suggest-{{ suggested_need.id }}"> {{ suggested_need.tagname }} </label>
                             {% endfor %}
-                        </div>  
-                    </div>  
+                        </div>    
+                    </div>    
                 </div>
                 <div class="row">
                     <div class="medium-6 medium-offset-3 columns">
@@ -134,7 +134,7 @@
                 </div>
                 <div class="row">
                     <div class="medium-6 medium-offset-3 columns centerText">
-                        <input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom" tabindex="10">
+                        <input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom" name="want-mic" tabindex="10">
                         <span>I want to participate in open mic.</span>
                         <textarea id="open-mic-text" class="hidden" placeholder="What would you like to do for open mic? (5-7mins)"></textarea>
                         <p class="centerText add-margin-top"><button type="submit" class="large round success" tabindex="11">RSVP</button></p>
@@ -146,19 +146,19 @@
         
         {% include "./zaplings/footer.html" %}
             
-        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script src="{% static "js/foundation.min.js" %}"></script>    
         <script type="text/javascript">
-            $(document).foundation();
+              $(document).foundation();
         </script>
         <script type="text/javascript">
             addthisevent.settings({
-                mouse       : false,
-                css         : false,
-                outlook     : {show:true, text:"Outlook Calendar"},
-                google      : {show:true, text:"Google Calendar"},
-                yahoo       : {show:true, text:"Yahoo Calendar"},
+                mouse        : false,
+                css            : false,
+                outlook        : {show:true, text:"Outlook Calendar"},
+                google        : {show:true, text:"Google Calendar"},
+                yahoo        : {show:true, text:"Yahoo Calendar"},
                 ical        : {show:true, text:"iCal Calendar"},
-                hotmail     : {show:true, text:"Hotmail Calendar"},
+                hotmail        : {show:true, text:"Hotmail Calendar"},
                 facebook    : {show:true, text:"Facebook Calendar"}
             });
         </script>
@@ -176,9 +176,9 @@
             var text = $(this).val();
                 if (e.which == 13 && text != '') {
                     loveNum++;
-                    $('#selected-loves').val('');                       
-                    $('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
-                    e.preventDefault(); 
+                    $('#selected-loves').val('');                        
+                      $('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+                    e.preventDefault();    
                     $(this).focus().select();
                 }
                 else if (e.which == 13 && text == ''){
@@ -191,28 +191,16 @@
                 $(this).toggleClass('selected').blur();
             }));
 
-            /*$('#form-rsvp').submit(function() {
+            $('#form-rsvp').submit(function() {
                 var values = $('#form-rsvp').serialize();
-            });*/
-
-            $('#love-tag-new').submit(function() {
-                var values = $('#love-tag-new').serialize();
-            });
-
-            $('#need-tag-new').submit(function() {
-                var values = $('#need-tag-new').serialize();
-            });
-
-            $('#offer-tag-new').submit(function() {
-                var values = $('#offer-tag-new').serialize();
-            });
+            });        
         
             $('#input-offers').keypress(function (e) {
                 var text = $(this).val();
                 if (e.which == 13 && text != '') {
                     offerNum++;
-                    $('#input-offers').val('');                     
-                    $('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
+                    $('#input-offers').val('');                        
+                      $('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
                     e.preventDefault();
                     $(this).focus().select();
                 }
@@ -220,7 +208,7 @@
                     e.preventDefault();
                     return false;
                 };
-            }); 
+            });    
             $('#selected-offers').on('click', 'label', (function(){
                 $(this).toggleClass('selected').blur();
             }));
@@ -229,16 +217,16 @@
                 var text = $(this).val();
                 if (e.which == 13 && text != '') {
                     needNum++;
-                    $('#input-needs').val('');                      
-                    $('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+needNum+'">'+text+'</label>');
-                    e.preventDefault(); 
+                    $('#input-needs').val('');                        
+                      $('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+needNum+'">'+text+'</label>');
+                      e.preventDefault();    
                     $(this).focus().select();
                 }
                 else if (e.which == 13){
                     e.preventDefault();
                     return false;
                 };
-            }); 
+            });    
 
             $('#selected-needs').on('click', 'label', (function(){
                 $(this).toggleClass('selected').blur();
@@ -250,7 +238,6 @@
         });
         </script>
 
-        
         {% include "./zaplings/end-scripts.html" %}
     </body>
 </html>

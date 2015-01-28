@@ -1,6 +1,7 @@
 <!doctype html>
 
 {% load static %}
+{% load social_share %}
 
 <html class="no-js" lang="en">
     <head>
@@ -13,12 +14,30 @@
     
     </head>
     <body>
-        <!-- AddThisEvent -->
+        <!-- facebook sdk -->
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '667258056730621',
+              xfbml      : true,
+              version    : 'v2.2'
+            });
+          };
+        
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+          <!-- AddThisEvent -->
         <script type="text/javascript" src="https://addthisevent.com/libs/1.5.8/ate.min.js"></script>
         <div class="wrapper">
 
             {% include "./zaplings/header.html" %}
-            
+              
             <h2 class="content-title">See you there!</h2>
             <p class="centerText">
                         <a href="http://www.zaplings.com/creatorsnight" title="Add to Calendar" class="addthisevent button small light round">
@@ -51,28 +70,37 @@
             </div>
             <div class="row">
                 <div class="centerText medium-8 medium-offset-2 small-12 columns end">
-                    <button id="copy-invite" data-text-swap="Copied!" data-clipboard-target="invite-msg" class="button round success">copy text</button>
-                </div>
-            </div>      
-        
+                <!--    <button id="copy-invite" data-text-swap="Copied!" data-clipboard-target="invite-msg" class="button round success">copy text</button>-->
+                    <!--<a href="{% url 'zaplings:creatorsnight' %}"><button id="copy-invite" class="button large round success">RSVP Form</button></a>-->
+                    <!-- facebook sdk -->
+                    <div
+                      class="fb-like"
+                      data-share="true"
+                      data-width="450"
+                      data-href="http://zaplings.com/creatorsnight/"
+                      data-layout="button"
+                      data-show-faces="true">
+                    </div> 
+                    <!-- post_to_facebook "http://zaplings.com/creatorsnight/" -->
+            </div>        
             <div class="push"></div>
         </div>
         
         {% include "./zaplings/footer.html" %}
             
-        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script src="{% static "js/foundation.min.js" %}"></script>    
         <script type="text/javascript">
-            $(document).foundation();
+              $(document).foundation();
         </script>
         <script type="text/javascript">
             addthisevent.settings({
-                mouse       : false,
-                css         : false,
-                outlook     : {show:true, text:"Outlook Calendar"},
-                google      : {show:true, text:"Google Calendar"},
-                yahoo       : {show:true, text:"Yahoo Calendar"},
+                mouse        : false,
+                css            : false,
+                outlook        : {show:true, text:"Outlook Calendar"},
+                google        : {show:true, text:"Google Calendar"},
+                yahoo        : {show:true, text:"Yahoo Calendar"},
                 ical        : {show:true, text:"iCal Calendar"},
-                hotmail     : {show:true, text:"Hotmail Calendar"},
+                hotmail        : {show:true, text:"Hotmail Calendar"},
                 facebook    : {show:true, text:"Facebook Calendar"}
             });
         </script>
