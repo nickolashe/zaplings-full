@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, FeedBack
+from zaplings.models import FeaturedIdea, Love, Offer, Need, UserLove, UserOffer, UserNeed, LoveText, OfferText, NeedText, FeedBack, UserRsvp
 from django.views import generic
 from django.db import IntegrityError
 
@@ -715,6 +715,10 @@ def process_rsvp(request):
     record_needs(request)
     record_text(request)
     send_confirmation_email(request)
+
+    new_rsvp = UserRsvp.objects.create(user_id=request.user.pk)
+    logger.info("New rsvp: %s", unicode(new_rsvp))
+
     return redirect('zaplings:rsvp-confirm')
 
 
