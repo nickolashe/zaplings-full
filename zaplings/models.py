@@ -126,7 +126,7 @@ class UserRsvp(models.Model):
     """
     Keep timestamps of rsvp's
     """
-    user = models.ForeignKey(User, unique=True)
+    user = models.ForeignKey(User)
     date = models.DateTimeField(auto_now=True, auto_now_add=True)
 
     def __unicode__(self):
