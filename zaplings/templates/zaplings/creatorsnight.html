@@ -68,15 +68,15 @@
                 </div>
             <form id="form-rsvp" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
                 {% csrf_token %} 
-				<div class="row">
-					<div class="small-12 medium-6 medium-offset-3 columns">
-						<p><strong>RSVP</strong> so we can suggest people for you to meet. You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
-						<input id="last-name" type="text" placeholder="Last name" name="user-lastname"tabindex="2"/>
-						<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="1" /></div>
-						<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"tabindex="3"/>
-						</div>
-					</div>
-				</div>
+                <div class="row">
+                    <div class="small-12 medium-6 medium-offset-3 columns">
+                        <p><strong>RSVP</strong> so we can suggest people for you to meet. You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
+                        <input id="last-name" type="text" placeholder="Last name" name="user-lastname"tabindex="2"/>
+                        <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="1" /></div>
+                        <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"tabindex="3"/>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                         <h4 class="add-margin-top centerText">What do you love?</h4>
@@ -191,8 +191,8 @@
                 $(this).toggleClass('selected').blur();
             }));
 
-            $('#love-tags').submit(function() {
-                var values = $('#love-tags').serialize();
+            $('#form-rsvp').submit(function() {
+                var values = $('#form-rsvp').serialize();
             });        
         
             $('#input-offers').keypress(function (e) {
@@ -213,10 +213,6 @@
                 $(this).toggleClass('selected').blur();
             }));
 
-            $('#offer-tags').submit(function() {
-                var values = $('#offer-tags').serialize();
-            });
-
             $('#input-needs').keypress(function (e) {
                 var text = $(this).val();
                 if (e.which == 13 && text != '') {
@@ -235,10 +231,6 @@
             $('#selected-needs').on('click', 'label', (function(){
                 $(this).toggleClass('selected').blur();
             }));
-
-            $('#need-tags').submit(function() {
-                var values = $('#need-tags').serialize();
-            });
         });
         
         $('#open-mic').click(function(){
@@ -246,7 +238,6 @@
         });
         </script>
 
-        
         {% include "./zaplings/end-scripts.html" %}
     </body>
 </html>
