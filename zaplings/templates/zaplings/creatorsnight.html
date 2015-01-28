@@ -1,7 +1,7 @@
 <!doctype html>
 
 {% load staticfiles %}
-{% load social_share %}
+<!--{% load social_share %}-->
 
 <html class="no-js" lang="en">
     <head>
@@ -223,8 +223,8 @@
                 $(this).toggleClass('selected').blur();
             }));
 
-            $('#form-rsvp').submit(function() {
-                var values = $('#form-rsvp').serialize();
+            $('#love-tag-new, #offer-tag-new, #need-tag-new').submit(function() {
+                var values = $(this).serialize();
             });        
         
             $('#input-offers').keypress(function (e) {
