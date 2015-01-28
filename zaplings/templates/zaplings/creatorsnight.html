@@ -191,9 +191,21 @@
 				$(this).toggleClass('selected').blur();
 			}));
 
-			$('#form-rsvp').submit(function() {
+			/*$('#form-rsvp').submit(function() {
 				var values = $('#form-rsvp').serialize();
-			});		
+			});*/
+
+			$('#love-tag-new').submit(function() {
+				var values = $('#love-tag-new').serialize();
+			});
+
+			$('#need-tag-new').submit(function() {
+				var values = $('#need-tag-new').serialize();
+			});
+
+			$('#offer-tag-new').submit(function() {
+				var values = $('#offer-tag-new').serialize();
+			});
 		
 			$('#input-offers').keypress(function (e) {
 				var text = $(this).val();
