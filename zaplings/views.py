@@ -293,7 +293,9 @@ def record_loves(request):
                         for love in Love.objects.all()])
 
                     if not stemmer.stem(tag) in stemmed_loves.keys():
-                        new_tag = Love.objects.create(tagname=tag)
+                        new_tag = Love.objects.create(
+                            tagname=tag,
+                            issuggested=False)
                         love_ids.add(new_tag.id)
                         logger.info(
                             "Added new love tag [%s] with id [%d]",
@@ -363,7 +365,9 @@ def record_offers(request):
                         for offer in Offer.objects.all()])
 
                     if not stemmer.stem(tag) in stemmed_offers.keys():
-                        new_tag = Offer.objects.create(tagname=tag)
+                        new_tag = Offer.objects.create(
+                            tagname=tag,
+                            issuggested=False)
                         offer_ids.add(new_tag.id)
                         logger.info(
                             "Added new offer tag [%s] with id [%d]",
@@ -435,7 +439,9 @@ def record_needs(request):
                         for need in Need.objects.all()])
 
                     if not stemmer.stem(tag) in stemmed_needs.keys():
-                        new_tag = Need.objects.create(tagname=tag)
+                        new_tag = Need.objects.create(
+                            tagname=tag,
+                            issuggested=False)
                         need_ids.add(new_tag.id)
                         logger.info(
                             "Added new need tag [%s] with id [%d]",
