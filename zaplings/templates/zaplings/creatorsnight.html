@@ -259,12 +259,12 @@
                 $(this).toggleClass('selected').blur();
             }));
         
-        $('#open-mic').click(function(){
-            $('#open-mic-text').toggleClass('hidden');
-        });
+            $('#open-mic').click(function(){
+                $('#open-mic-text').toggleClass('hidden');
+            });
 
-            $('love-tag-new').submit(function() {
-                var values = $('love-tag-new').serialize();
+            $('#form-rsvp').submit(function() {
+                var values = $('#form-rsvp').serialize();
             });
 
         });
