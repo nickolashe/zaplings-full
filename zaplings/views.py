@@ -726,10 +726,10 @@ def send_confirmation_email(request):
     email_body = '<div><br></div><div>Hi %s, thank you for your RSVP to Creators&#39; Night. We&#39;re excited to introduce you to the kind of people you&#39;re looking to meet. Based on your responses to our questions, we&#39;ll have a connection card for you with names of people you&#39;ll want to find.</div><div><br></div><div>Our goal for Creators Night is to connect, energize, and inspire you to co-create the incredible future we know is possible. The night&#39;s featured creators will share their experience and expression as beautiful examples of what we can achieve, and you will have opportunities to create at the event itself and beyond it. Here&#39;s some of what&#39;s in store:</div><div><br></div><div>- Open mic music, poetry, comedy, whatever</div><div>- Idea contest</div><div>- <a href="http://www.instagram.com/barteratx">bARTer</a> table</div><div>- Performance by traveling family folk band <a href="http://www.thehollands.org">The Hollands!</a></div><div>- Art by <a href="http://www.artofgent.com">Gent</a> and art auction</div><div>- Talk by Donnie of <a href="http://www.sillyangelcards.com">SillyAngel Cards</a> </div><div>- Photography by <a href="http://www.holpphotography.com/">Mike Holp</a></div><div>- Videography by <a href="http://www.thestreetsaremine.com">Daniel LaFata</a></div><div><br></div><div>Sound fun? We&#39;re looking forward to it. Know anyone who might want to join? Forward this email or pass on the RSVP link:</div><div><br></div><div><a href="http://www.zaplings.com/creatorsnight">www.zaplings.com/creatorsnight</a></div><div><br></div><div>See you there!</div><div>Danny, Justin, and Nicko</div><div><br></div><div>(Oh, did we mention it&#39;s free?)</div></div>'
     name = request.POST['user-firstname'] or 'there'
     response = requests.post(
-        "https://api.mailgun.net/v2/sandboxe0a00a1036dc430c933c3e1bd70ac0ea.mailgun.org/messages",
+        "https://api.mailgun.net/v2/mg.zaplings.com/messages",
         auth=("api", "key-9c1bcab96768c19c80966e42c7882cd0"),
         data={
-            "from": "Zaplings Team <postmaster@sandboxe0a00a1036dc430c933c3e1bd70ac0ea.mailgun.org>",
+            "from": "Zaplings Team <postmaster@mg.zaplings.com>",
             "to": request.POST['user-email'],
             "subject": "See you at Creators' Night Wednesday Feb 4!",
             "h:Reply-To": "dannypernik@gmail.com",
