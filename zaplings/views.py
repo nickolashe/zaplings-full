@@ -41,10 +41,13 @@ class LovesView(generic.ListView):
         # display first n tags
         top_loves = sorted(loves_freq, key=len, reverse=True)[:12]
         suggested_loves = Love.objects.filter(
-            id__in=[loveid[0] for loveid in top_loves])
+            id__in=[loveid[0] for loveid in top_loves if loveid])
         logger.info(
             "top loves: %s",
-            [(Love.objects.get(pk=ids[0]), len(ids)) for ids in top_loves])
+            [(Love.objects.get(pk=ids[0]), len(ids)) 
+             for ids in top_loves
+             if ids]
+        )
         return suggested_loves
 
 
@@ -65,10 +68,13 @@ class OffersView(generic.ListView):
         # display first n tags
         top_offers = sorted(offers_freq, key=len, reverse=True)[:12]
         suggested_offers = Offer.objects.filter(
-            id__in=[offerid[0] for offerid in top_offers])
+            id__in=[offerid[0] for offerid in top_offers if offerid])
         logger.info(
             "top offers: %s",
-            [(Offer.objects.get(pk=ids[0]), len(ids)) for ids in top_offers])
+            [(Offer.objects.get(pk=ids[0]), len(ids))
+             for ids in top_offers
+             if ids]
+        )
         return suggested_offers
 
 
@@ -88,10 +94,13 @@ class NeedsView(generic.ListView):
         # display first n tags
         top_needs = sorted(needs_freq, key=len, reverse=True)[:12]
         suggested_needs = Need.objects.filter(
-            id__in=[needid[0] for needid in top_needs])
+            id__in=[needid[0] for needid in top_needs if needid])
         logger.info(
             "top needs: %s",
-            [(Need.objects.get(pk=ids[0]), len(ids)) for ids in top_needs])
+            [(Need.objects.get(pk=ids[0]), len(ids)) 
+             for ids in top_needs
+             if ids]
+        )
         return suggested_needs
 
 
