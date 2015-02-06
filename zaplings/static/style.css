@@ -7609,6 +7609,59 @@ input:hover:checked + label {
   font-size: 0.875rem;
   color: #05325b; }
 
+#profile-name {
+  text-align: center;
+  margin-top: 3.5rem;
+  margin-bottom: 0; }
+
+.profile-pic {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 88px;
+  width: 88px;
+  border-radius: 50px;
+  border: 2px solid #c2d1df;
+  margin-left: -44px;
+  margin-top: -44px;
+  z-index: 2; }
+
+.edit-profile {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  margin-top: -60vh;
+  z-index: 100; }
+
+.reposition-info {
+  position: absolute;
+  display: inline-block;
+  background-color: black;
+  opacity: 0.6;
+  border-radius: 4px;
+  color: white;
+  left: 50%;
+  margin-left: -75px;
+  bottom: 29vh;
+  z-index: 3;
+  padding: 10px; }
+
+.edit-user-info {
+  position: absolute;
+  top: 3.75rem;
+  right: 2rem; }
+
+.relative-container {
+  position: relative; }
+
+.next {
+  color: #fff;
+  border: 3px solid white; }
+
+.prev {
+  color: #fff;
+  border: 3px solid white; }
+
 .description-text {
   position: absolute;
   top: 35%;
@@ -8165,6 +8218,9 @@ main {
 .content-title {
   margin-top: 3rem;
   text-align: center; }
+
+.profile-header-img {
+  height: 66vh; }
 
 /* AddThisEvent (add to your existing CSS) */
 .addthisevent-drop {
