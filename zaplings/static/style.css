@@ -3567,10 +3567,11 @@ blockquote p {
   width: 100%;
   background: black;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 99;
+  z-index: 200;
   display: none;
   top: 0;
-  left: 0; }
+  left: 0;
+  border-radius: 4px; }
 
 dialog, .reveal-modal {
   visibility: hidden;
@@ -7217,7 +7218,8 @@ th.hide-for-touch {
 
 .header {
   background-color: #05325b;
-  position: relative; }
+  position: relative;
+  height: 50px; }
 
 .row.full-width {
   width: 100% !important;
@@ -7626,11 +7628,11 @@ input:hover:checked + label {
   margin-top: -44px;
   z-index: 2; }
 
-.edit-profile {
+.choose-images {
   position: absolute;
   top: 0;
   right: 2rem;
-  margin-top: -60vh;
+  margin-top: -55vh;
   z-index: 100; }
 
 .reposition-info {
@@ -8220,7 +8222,7 @@ main {
   text-align: center; }
 
 .profile-header-img {
-  height: 66vh; }
+  height: 60vh; }
 
 /* AddThisEvent (add to your existing CSS) */
 .addthisevent-drop {
