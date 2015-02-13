@@ -56,9 +56,23 @@
 			<h3 id="profile-name">Jet</h3>
 			<p class="centerText half-margin-bottom">Inspiring love and human goodness through art</p>
 			<div class="centerText">
-				<a href="#"><button class="button round success small">Connect</button></a>
+				<button data-reveal-id="connect-reveal" class="button round success small">Connect</button>
 			</div>
 
+			<div id="connect-reveal" class="reveal-modal" data-reveal>
+			<form id="form-connect">
+				<p><strong>Invite first_name to connect</strong>
+				<textarea rows="2" placeholder="Say hello (optional)"></textarea>
+				<input id="user-connect" class="vis-hidden" type="checkbox" name="user-connect" value="connect">
+				<label class="button small light round" for="user-connect">connect</label></p>
+
+				<p><strong>Follow first_name's projects</strong></p>
+				
+
+
+
+			</form>
+			</div>
 		
 			<div class="push"></div>
 		</div>
