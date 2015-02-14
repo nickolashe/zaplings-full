@@ -707,14 +707,16 @@ def record_new_email(request):
         else:
             try:
                 newuser = User.objects.create_user(email)
-                newuser.first_name = request.POST['user-firstname']
-                newuser.last_name = request.POST['user-lastname']
+                if 'user-firstname' in request.POST:
+                    newuser.first_name = request.POST['user-firstname']
+                if 'user-lastname' in request.POST:
+                    newuser.last_name = request.POST['user-lastname']
                 newuser.set_password('')
                 newuser.save()
                 status = 'SUCCESS'
                 logger.info('Created user [%s]', email)
             except IntegrityError:
-                logger.error('User [%s] already exists.', email)
+                logger.warning('User [%s] already exists.', email)
                 status = 'EXISTS'
 
         # login user

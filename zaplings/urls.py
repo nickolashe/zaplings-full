@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # user tags
     url(r'^loves/$', views.LovesView.as_view(), name='loves'),
     url(r'^offers/$', views.OffersView.as_view(), name='offers'),
+    url(r'^needs/$', views.NeedsView.as_view(), name='needs'),
     url(r'^creatorsnight/$', views.RsvpView.as_view(), name='creatorsnight'),
     url(r'^rsvp-confirm/$', views.RsvpConfirmView.as_view(), name='rsvp-confirm'),
     url(r'^(?P<userid>\d+)/generate_user_tags/$', views.generate_user_tags, name='generate_user_tags'),
