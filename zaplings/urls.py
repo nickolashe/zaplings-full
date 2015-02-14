@@ -44,6 +44,8 @@ urlpatterns = patterns('',
     url(r'^editprofile/$', views.EditProfileView.as_view(), name='editprofile'),
     url(r'^share/$', views.ShareView.as_view(), name='share'),
     url(r'^thankyou/$', views.ThankYouView.as_view(), name='thankyou'),
-    url(r'^error/$', views.ErrorView.as_view(), name='error')
+    url(r'^error/$', views.ErrorView.as_view(), name='error'),
+    url(r'^jet/$', views.JetView.as_view(), name='jet'),
+    url(r'^jet-edit/$', views.JetEditView.as_view(), name='jet-edit')
     #url(r'^(?P<referrer>\w+)/$', views.referrer, name='referrer')
 )

@@ -3570,10 +3570,11 @@ blockquote p {
   width: 100%;
   background: black;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 99;
+  z-index: 200;
   display: none;
   top: 0;
-  left: 0; }
+  left: 0;
+  border-radius: 4px; }
 
 dialog, .reveal-modal {
   visibility: hidden;
@@ -7287,6 +7288,7 @@ th.hide-for-touch {
 .header {
   background-color: #05325b;
   position: relative;
+  height: 50px;
  }
 
 .row.full-width {
@@ -7800,6 +7802,67 @@ input:hover:checked + label {
 
 
 // User profile
+
+#profile-name {
+  text-align: center;
+  margin-top: 3.5rem;
+  margin-bottom: 0;
+}
+
+.profile-pic {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 88px;
+  width: 88px;
+  border-radius: 50px;
+  border: 2px solid #c2d1df;
+  margin-left: -44px;
+  margin-top: -44px;
+  z-index: 2;
+}
+
+.choose-images {
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  margin-top: -55vh;
+  z-index: 100;
+}
+
+.reposition-info {
+  position: absolute;
+  display: inline-block;
+  background-color: black;
+  opacity: 0.6;
+  border-radius: 4px;
+  color: white;
+  left: 50%;
+  margin-left: -75px;
+  bottom: 29vh;
+  z-index: 3;
+  padding: 10px;
+}
+
+.edit-user-info {
+  position: absolute;
+  top: 3.75rem;
+  right: 2rem;
+}
+
+.relative-container {
+  position: relative;
+}
+
+.next {
+  color: #fff;
+  border: 3px solid white;
+}
+
+.prev {
+  color: #fff;
+  border: 3px solid white;
+}
 
 .description-text {
 	position: absolute;
@@ -8468,6 +8531,10 @@ main {
 .content-title {
   margin-top: 3rem;
   text-align: center;
+}
+
+.profile-header-img {
+  height: 60vh;
 }
 
 /* AddThisEvent (add to your existing CSS) */
