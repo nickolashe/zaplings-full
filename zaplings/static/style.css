@@ -3577,7 +3577,7 @@ dialog, .reveal-modal {
   visibility: hidden;
   display: none;
   position: absolute;
-  z-index: 100;
+  z-index: 201;
   width: 100vw;
   top: 0;
   left: 0;
@@ -7123,6 +7123,9 @@ th.hide-for-touch {
 .half-margin-bottom {
   margin-bottom: 0.5rem; }
 
+.half-margin-top {
+  margin-top: 0.5rem; }
+
 .no-decoration {
   text-decoration: none; }
 
@@ -7403,18 +7406,18 @@ th.hide-for-touch {
 .push {
   height: 4em; }
 
-#outer {
+.outer {
   display: table;
   position: static;
   overflow: hidden;
   height: 81px; }
 
-#middle {
+.middle {
   display: table-cell;
   vertical-align: middle;
   width: 100%; }
 
-#inner {
+.inner {
   position: static; }
 
 ::-webkit-input-placeholder {
@@ -7767,6 +7770,16 @@ input:hover:checked + label {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
+
+.content-title {
+  margin-top: 3rem;
+  text-align: center; }
+
+.profile-header-img {
+  height: 60vh; }
+
+#follow-button {
+  margin-top: 0.125rem; }
 
 .idea-cover {
   position: relative;
@@ -8216,13 +8229,6 @@ main {
  */
 .invisible {
   visibility: hidden; }
-
-.content-title {
-  margin-top: 3rem;
-  text-align: center; }
-
-.profile-header-img {
-  height: 60vh; }
 
 /* AddThisEvent (add to your existing CSS) */
 .addthisevent-drop {
