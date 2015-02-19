@@ -253,7 +253,7 @@ def vote(request, poll_id):
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
-def record_loves(request):
+def record_loves(request, isRedirected=True):
     """
     process input from zaplings:loves
     create new love offer tags based on nltk stemmer match results
@@ -315,6 +315,10 @@ def record_loves(request):
                         love_id=love_id):
                         UserLove.objects.create(
                             user_id=request.user.pk, love_id=love_id)
+ 
+                # redirect to offers or not
+                if isRedirected:
+                    return redirect('zaplings:offers')
             else:
                 return redirect('zaplings:creatorsnight')
         else:
@@ -325,7 +329,7 @@ def record_loves(request):
         return redirect('zaplings:error')
 
 
-def record_offers(request):
+def record_offers(request, isRedirected=True):
     """
     process input from zaplings:offers
     create new offer tags based on nltk stemmer match results
@@ -388,6 +392,10 @@ def record_offers(request):
                         UserOffer.objects.create(
                             user_id=request.user.pk,
                             offer_id=offer_id)
+ 
+                # redirect to needs or not
+                if isRedirected:
+                    return redirect('zaplings:needs')
             else:
                 return redirect('zaplings:creatorsnight')
         else:
@@ -398,7 +406,7 @@ def record_offers(request):
         return redirect('zaplings:error')
 
 
-def record_needs(request):
+def record_needs(request, isRedirected=True):
     """
     process input from zaplings:needs
     create new need tags based on nltk stemmer match results
@@ -462,6 +470,14 @@ def record_needs(request):
                         UserNeed.objects.create(
                             user_id=request.user.pk,
                             need_id=need_id)
+
+                # redirect to profile
+                if isRedirected:
+                    # generate user tags and redirect to profile
+                    return HttpResponseRedirect(
+                        reverse('zaplings:generate_user_tags',
+                        args=(request.user.pk,)))
+
             else:
                 return redirect('zaplings:creatorsnight')
         else:
@@ -727,9 +743,9 @@ def record_new_email(request):
 
 def process_rsvp(request):
     record_new_email(request)
-    record_loves(request)
-    record_offers(request)
-    record_needs(request)
+    record_loves(request, isRedirected=False)
+    record_offers(request, isRedirected=False)
+    record_needs(request, isRedirected=False)
     record_text(request)
     send_confirmation_email(request)
 
