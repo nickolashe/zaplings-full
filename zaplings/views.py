@@ -136,6 +136,13 @@ class MyIdeasView(generic.ListView):
     model = User
     template_name = 'zaplings/myideas.html'
 
+class JetView(generic.ListView):
+    model = User
+    template_name = 'zaplings/jet.html'
+
+class JetEditView(generic.ListView):
+    model = User
+    template_name = 'zaplings/jet-edit.html'
 
 class NewIdeaView(generic.ListView):
     model = User
