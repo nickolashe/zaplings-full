@@ -15,15 +15,16 @@
 	<div class="wrapper">
 	  {% include "./zaplings/header-nomenu.html" %}
 	  
-		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds or more: What do you need?</h2>
+		<h2 class="three-margin-top centerText">What do you need?</h2>
+		<p class="min-tags centerText">Please add at least 3 tags to continue.</p>
 		<form id="need-tags" action="{% url "zaplings:record_needs" %}" method="post" >
 		    {% csrf_token %}
 	  		<div class="row">
 				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I need... (press return to add)"/>
-					<div class="continue-delay hidden">Nice job! Anything else you could use?
+					<div class="continue-delay hidden">Well done! Anything else you need?
 						<div class="continue-tags">
-							<button type="submit" class="button success round small">Next: Go to profile!</button>
+							<button id="next-profile" type="submit" class="button success round small">Next: Go to profile</button>
 						</div>
 					</div>
 				</div>
@@ -57,38 +58,30 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
-			$('body').one('click',function(){
-			
-			var count=30;
-			var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-
-			function timer()
-			{
-			  count=count-1;
-			  $('#timer').attr("style", "color: #70bf4f");
-			  if (count < 0)
-			  {
-			     clearInterval(counter);
-				 $('.continue-delay').removeClass('hidden');
-			     return;
-			  };
-
-			  document.getElementById("timer").innerHTML=count; // watch for spelling
-			};
-		});
 				
 			var num = 12;		
 			
+			$('.suggestion-box').change(function(){
+				if ($('input:checked').length > 2) {
+					$('.continue-delay').removeClass('hidden');
+				}
+      				$('#next-profile').attr('disabled', $('input:checked').length < 3);
+			});
+
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
 				if (e.which == 13 && text != '') {
 					num = num+1;
 					$('.input-tags').val('');						
 			  		$('.suggestion-box').prepend('<input id="need-suggest-'+num+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+num+'">'+text+'</label>');
-					return false;	
+					e.preventDefault();	
 					$(this).focus().select();
-				}
+
+					if ($('input:checked').length > 2) {
+						$('.continue-delay').removeClass('hidden');
+					}
+	      				$('#next-profile').attr('disabled', $('input:checked').length < 3);
+					}
 				else if (e.which == 13 && text == ''){
 					e.preventDefault();
 			        return false;
