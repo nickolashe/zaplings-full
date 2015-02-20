@@ -167,7 +167,7 @@
 					<div id="selected-loves">
 					{% for tag in user_lovetags %} 
 	                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}" checked>
-						<label class="tag button small light round selected" for="love-{{ tag }}">{{ tag }}</label>
+						<label class="tag button tiny light round selected" for="love-{{ tag }}">{{ tag }}</label>
 					{% endfor %}	
 					</div>	
 					<input id="input-loves" name="input-loves" type="text" placeholder="Add more... (press return to add)"/>
@@ -182,7 +182,7 @@
 					<div id="selected-offers">
         		{% for tag in user_offertags %} 
 	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}" checked>
-	                    <label class="tag button small light round selected" for="offer-{{ tag }}">{{ tag }}</label>
+	                    <label class="tag button tiny light round selected" for="offer-{{ tag }}">{{ tag }}</label>
 				{% endfor %}
 					</div>	
 					<input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
@@ -197,7 +197,7 @@
 					<div id="selected-needs">
 				{% for tag in user_needtags %} 
                         <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}" checked>
-                        <label class="tag button small light round selected" for="need-{{ tag }}">{{ tag }}</label>
+                        <label class="tag button small tiny round selected" for="need-{{ tag }}">{{ tag }}</label>
 				{% endfor %}
 					</div>
 					<input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
@@ -258,7 +258,7 @@
 				if (e.which == 13 && text != '') {
 					loveNum++;
 					$('#selected-loves').val('');						
-			  		$('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+			  		$('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
 					e.preventDefault();	
 					$(this).focus().select();
 				}
@@ -281,7 +281,7 @@
 				if (e.which == 13 && text != '') {
 					offerNum++;
 					$('#input-offers').val('');						
-			  		$('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
+			  		$('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
 					e.preventDefault();
 					$(this).focus().select();
 				}
@@ -303,7 +303,7 @@
 				if (e.which == 13 && text != '') {
 					needNum++;
 					$('#input-needs').val('');						
-			  		$('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button small light round" for="need-suggest-'+needNum+'">'+text+'</label>');
+			  		$('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="need-suggest-'+needNum+'">'+text+'</label>');
 			  		e.preventDefault();	
 					$(this).focus().select();
 				}
