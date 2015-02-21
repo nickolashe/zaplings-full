@@ -83,7 +83,7 @@
 			<div class="medium-10 medium-offset-1 columns">
 				<h3 class="centerText">Welcome to Zaplings!</h3>
 				<p>Start your profile with the questions below. Once the community grows, we will use these responses to make meaningful introductions for you.</p>
-				<div class="centerText"><button class="close-reveal-modal button round success">Got it!</button></div>
+				<div class="centerText"><button class="close-reveal-modal button round success">Got it</button></div>
 			</div>
 		</div>
 {% endif %}
@@ -111,7 +111,7 @@
 					<div id="start-signup-reveal" class="reveal-modal" data-reveal data-options="close_on_background_click:false">
 						<div class="row">
 							<div class="centerText medium-8 medium-offset-2 columns end">
-								<form id="form-signup" action="{% url 'zaplings:signup_user' %}" method="post"/>
+								<form id="form-signup" action="{% url 'zaplings:share' %}" method="post"/>
 						                        {% csrf_token %}  
 									<h3>Sign up</h3>
 										<input id="email" type="email" placeholder="Email" name="user-email" value="{{ user.username }}" tabindex="1" />

@@ -32,13 +32,17 @@
 	 	
 	 	{% include "./zaplings/header.html" %}
 
+        <div id="idea-preview-reveal" class="reveal-modal" data-reveal>
+
+        </div>
+
 		<h2 class="centerText three-margin-top">Be the Connector.</h2>
 		<div class="row">
 			<div class="medium-8 medium-offset-2 small-12 columns">
 				<div class="centerText">
-					<a href="#" data-reveal-id="learn-connector" title="Learn more about badges"><img src="{% static "./images/connector-gold.png" %}" height="70px" width="70px"/></a>
+					<img src="{% static "./images/connector-gold.png" %}" height="70px" width="70px"/>
 				</div>
-				<p class="add-margin-top">Earn this badge by inviting others to the community and making meaningful introductions for friends on Zaplings. You will be rewarded with introductions to other top Connectors to build your network further.</p>
+				<p class="add-margin-top">Earn this badge by inviting others to the community with your unique link below. Eventually, you can earn a Connector badge by making meaningful introductions for friends on Zaplings. In return, we will introduce you to other top Connectors to grow your network further.</p>
 			</div>
 		</div>
 		<div class="row">
@@ -49,7 +53,7 @@
 		</div>
 
 
-		<div class="row">
+<!--		<div class="row">
 			<div id="share-buttons" class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
 				<p>
 					Share with your social networks:
@@ -65,7 +69,7 @@
 			<div class="centerText small-6 small-offset-3 columns end">
 				<a href="{% url "zaplings:generate_profile" %}"><button class="button small light round">View profile</button></a>
 			</div>
-		</div>
+		</div>-->
 
 		<div id="learn-connector-reveal" class="reveal-modal" data-reveal>
 			<h3>Connector badges</h3>
@@ -93,6 +97,9 @@
     </script>
     <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#idea-preview-reveal').foundation('reveal', 'open');
+
     	$('#share-buttons').on('click', 'button', (function(){
 				$(this).blur();
 			}));
