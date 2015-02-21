@@ -3,97 +3,134 @@
 {% load static %}
 
 <html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Zaplings | Connect to create.</title>
-		<link rel="stylesheet" href="{% static "style.css" %}" />
-		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">
-		<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Zaplings | Connect to create.</title>
+        <link rel="stylesheet" href="{% static "style.css" %}" />
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">
+        <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
 
-		{% include "./zaplings/start-scripts.html" %}
-	
-	</head>
-	<body>
-	  
-		<div class="wrapper">
+        {% include "./zaplings/start-scripts.html" %}
+    
+    </head>
+    <body>
+      
+        <div class="wrapper">
 
-			{% include "./zaplings/header.html" %}
+            {% include "./zaplings/header.html" %}
 
-			<div class="profile-header-img">
-				<div id="slides">
-					<ul class="slides-container">
-					    <li>
-					    	<img src="{% static "images/jet1.jpg" %}">
-						</li>
-						<li>
-							<img src="{% static "images/jet2.jpg" %}">
-						</li>
-						<li>
-							<img src="{% static "images/jet3.jpg" %}">
-						</li>
-						<li>
-							<img src="{% static "images/jet4.jpg" %}">
-						</li>
-					</ul>
-					<nav class="slides-navigation">
-						<a href="#" class="next">
-						<i class="fa fa-chevron-right"></i>
-						</i>
-						</a>
-						<a href="#" class="prev">
-						<i class="fa fa-chevron-left"></i>
-						</i>
-						</a>
-					</nav>
-				</div>
-			</div>
-			<div class="relative-container">
-				<img class="profile-pic" src="{% static "./images/featured-idea-4.png" %}"/>
-			</div>
+            <div class="profile-header-img">
+                <div id="slides">
+                    <ul class="slides-container">
+                        <li>
+                            <img src="{% static "images/jet1.jpg" %}">
+                        </li>
+                        <li>
+                            <img src="{% static "images/jet2.jpg" %}">
+                        </li>
+                        <li>
+                            <img src="{% static "images/jet3.jpg" %}">
+                        </li>
+                        <li>
+                            <img src="{% static "images/jet4.jpg" %}">
+                        </li>
+                    </ul>
+                    <nav class="slides-navigation">
+                        <a href="#" class="next">
+                        <i class="fa fa-chevron-right"></i>
+                        </i>
+                        </a>
+                        <a href="#" class="prev">
+                        <i class="fa fa-chevron-left"></i>
+                        </i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <div class="relative-container">
+                <img class="profile-pic" src="{% static "./images/featured-idea-4.png" %}"/>
+            </div>
 
-			<h3 id="profile-name">Jet</h3>
-			<p class="centerText half-margin-bottom">Inspiring love and human goodness through art</p>
-			<div class="centerText">
-				<button data-reveal-id="connect-reveal" class="button round success small">Connect</button>
-			</div>
+            <h3 id="profile-name">Jet</h3>
+            <p class="centerText half-margin-bottom">Inspiring love and human goodness through art</p>
+            <div class="centerText">
+                <button data-reveal-id="connect-reveal" class="button round success small">connect</button>
+            </div>
 
-			<div id="connect-reveal" class="reveal-modal" data-reveal>
-			<form id="form-connect">
-				<p><strong>Invite first_name to connect</strong>
-				<textarea rows="2" placeholder="Say hello (optional)"></textarea>
-				<input id="user-connect" class="vis-hidden" type="checkbox" name="user-connect" value="connect">
-				<label class="button small light round" for="user-connect">connect</label></p>
+            <div id="connect-reveal" class="reveal-modal" data-reveal>
+            <form id="form-connect">
+                <h5 class="centerText">Invite first_name to connect</h5>
+                <div class="row">
+                    <div class="small-10 columns">
+                        <input id="hello-message" class="checkbox" name="hello-message" type="text" placeholder="Say hello (optional)">
+                    </div>
+                    <div class="rightText small-2 columns">
+                        <input id="user-connect" class="vis-hidden checkbox" type="checkbox" name="user-connect" value="connect">
+                        <label id="follow-label" class="button success round" data-text-swap="&#10003;" for="user-connect">+</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <h5 class="centerText">Follow first_name's projects</h5>
+                    <div class="small-3 medium-2 columns">
+                        <img src="{% static "./images/featured-idea-4.png" %}" height="50px" width="50px">
+                    </div>
+                    <div class="small-7 medium-8 columns">
+                        <p class="large add-margin-top">Art by Jet</p>
+                    </div>
+                    <div id="follow-button" class="rightText small-2 columns">
+                        <input id="idea-follow" class="vis-hidden checkbox" type="checkbox" name="idea-follow" value="connect">
+                        <label id="follow-label" class="button light round" data-text-swap="&#10003;" for="idea-follow">+</label>
+                    </div>
+                </div>
+                
 
-				<p><strong>Follow first_name's projects</strong></p>
-				
 
 
+            </form>
+            </div>
+        
+            <div class="push"></div>
+        </div>
 
-			</form>
-			</div>
-		
-			<div class="push"></div>
-		</div>
-		
-		{% include "./zaplings/footer.html" %}
-			
-	    <script src="{% static "js/foundation.min.js" %}"></script>	
-		<script type="text/javascript">
-	  		$(document).foundation();
-		</script>
-		
-		{% include "./zaplings/superslides-scripts.html" %}
+        {% include "./zaplings/footer.html" %}
+            
+        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        
+        {% include "./zaplings/superslides-scripts.html" %}
 
-		<script type="text/javascript">
-		$(document).ready(function(){
-			$('#slides').superslides({
-				inherit_height_from: '.profile-header-img'
-			});
-		});
-		</script>
-		
-		{% include "./zaplings/end-scripts.html" %}
-	</body>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#slides').superslides({
+                inherit_height_from: '.profile-header-img',
+                animation_speed: 1000,
+                animation: 'fade'
+            });
+
+            $(function(){
+                $('.checkbox').on('change',function(){
+                    $('#form-connect').submit();
+                        e.preventDefault();
+                        $.ajax({
+                            url : $(this).attr('action') || window.location.pathname,
+                            type: "GET",
+                            data: $(this).serialize(),
+                            success: function (data) {
+                                $("#form_output").html(data);
+                            },
+                            error: function (jXHR, textStatus, errorThrown) {
+                                alert(errorThrown);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+        
+        {% include "./zaplings/end-scripts.html" %}
+    </body>
 </html>

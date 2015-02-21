@@ -2,7 +2,8 @@
 	<div class="centerText medium-8 medium-offset-2 columns end">
 		<form id="form-signup" action="{% url 'zaplings:signup_user' %}" method="post"/>
                         {% csrf_token %}  
-			<h3>Sign up</h3>
+			<h3>Start your profile</h3>
+            <p class="aside centerText">Choose a username to save your responses.</p>
 				<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
 				<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
 				<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
