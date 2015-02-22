@@ -5,8 +5,8 @@
 			<h3>Start your profile</h3>
             <p class="aside centerText">Choose a username to save your responses.</p>
 				<input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
-				<input id="last-name" type="text" placeholder="Last name" name="user-lastname"/>
-				<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" /></div>
+				<input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}"/>
+				<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}"/></div>
 				<span class="fit-left">zaplings.com/</span>
 				<span class="input-sizer"><input id="username" name="user-username" type="text" placeholder="username"/></span>
 				<input id="verify" type="password" name="user-password" placeholder="Verify password">

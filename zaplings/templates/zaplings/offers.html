@@ -16,7 +16,7 @@
 	  {% include "./zaplings/header-nomenu.html" %}
 	  
 		<h2 class="three-margin-top centerText">What do you offer?</h2>
-		<p class="min-tags centerText">Please add at least 3 tags to continue.</p>
+		<p class="min-tags centerText accent">Please add at least 3 tags to continue.</p>
 		<form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
 		    {% csrf_token %}
 	  		<div class="row">
