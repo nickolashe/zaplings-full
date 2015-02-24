@@ -15,15 +15,16 @@
 	<div class="wrapper">
 	  {% include "./zaplings/header-nomenu.html" %}
 	  
-		<h2 class="titleCenter"><span id="timer" style="">30</span> seconds or more:<br>What do you offer?</h2>
+		<h2 class="three-margin-top centerText">What do you offer?</h2>
+		<p class="min-tags centerText">Please add at least 3 tags to continue.</p>
 		<form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
 		    {% csrf_token %}
 	  		<div class="row">
 				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
 					<input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
-					<div class="continue-delay hidden">Take as much time as you need!
+					<div class="continue-delay hidden">Take as much time as you like!
 						<div class="continue-tags">
-							<button type="submit" class="button success round small">Next: What do you need?</button>
+							<button id="next-need" type="submit" class="button success round small">Next: What do you need?</button>
 						</div>
 					</div>
 				</div>
@@ -57,28 +58,15 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
-			$('body').one('click',function(){
-			
-			var count=30;
-			var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
 
-			function timer()
-			{
-			  count=count-1;
-			  $('#timer').attr("style", "color: #70bf4f");
-			  if (count < 0)
-			  {
-			     clearInterval(counter);
-				 $('.continue-delay').removeClass('hidden');
-			     return;
-			  };
+			var num = 12;
 
-			  document.getElementById("timer").innerHTML=count; // watch for spelling
-			};
-		});
-				
-			var num = 12;		
+			$('.suggestion-box').change(function(){
+				if ($('input:checked').length > 2) {
+					$('.continue-delay').removeClass('hidden');
+				}
+      				$('#next-need').attr('disabled', $('input:checked').length < 3);
+			});
 			
 			$('.input-tags').keypress(function (e) {
 				var text = $(this).val();
@@ -86,8 +74,13 @@
 					num += 1;
 					$('.input-tags').val('');						
 			  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
-					return false;
+					e.preventDefault();
 					$(this).focus().select();
+
+					if ($('input:checked').length > 2) {
+						$('.continue-delay').removeClass('hidden');
+					}
+	      				$('#next-need').attr('disabled', $('input:checked').length < 3);
 				}
 				else if (e.which == 13 && text == ''){
 					e.preventDefault();
