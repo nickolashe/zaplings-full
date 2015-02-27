@@ -7644,6 +7644,12 @@ input:hover:checked + label {
   margin-top: -55vh;
   z-index: 100; }
 
+.cover-caption {
+  color: white;
+  position: absolute;
+  right: 29px;
+  bottom: 4px; }
+
 .reposition-info {
   position: absolute;
   display: inline-block;
