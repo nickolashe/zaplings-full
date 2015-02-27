@@ -10,7 +10,9 @@
         <link rel="stylesheet" href="{% static "style.css" %}" />
         <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
         {% include "./zaplings/start-scripts.html" %}
-    
+        
+        <link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">
+        <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
     </head>
     <body>
         <!-- facebook sdk -->
@@ -36,23 +38,47 @@
         <div class="wrapper">
 
             {% include "./zaplings/header.html" %}
-              
+            
+            <div class="profile-header-img">
+                <div id="slides">
+                    <ul class="slides-container">
+                        <li>
+                            <img src="{% static "images/creatorsnight-1.jpg" %}">
+                        </li>
+                        <li>
+                            <img src="{% static "images/creatorsnight-2.jpg" %}">
+                        </li>
+                    </ul>
+                    <nav class="slides-navigation">
+                        <a href="#" class="next">
+                        <i class="fa fa-chevron-right"></i>
+                        </i>
+                        </a>
+                        <a href="#" class="prev">
+                        <i class="fa fa-chevron-left"></i>
+                        </i>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="small-12 medium-10 medium-offset-1 columns">
-                    <h5 class="content-title">Zaplings presents</h5> <h3 class="centerText">Creators' Night</h3>
-                    <p class="centerText half-margin-bottom">Let's celebrate what we create!</p>
+                    <h5 class="centerText add-margin-top no-margin-bottom">Zaplings presents</h5><h3 class="centerText no-margin-top">Creators' Night</h3>
+                    <p class="centerText half-margin-bottom">Wednesday, March 4th, 2015 from 7:00 - 10:00pm <br>at Space12 (<a href="https://www.google.com/maps/place/Space12/@30.276354,-97.701532,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5de4f4ad4eb:0xe66e489d8e377c6a" target="_blank">3121 E 12th St, 78702</a>)<br>
+                    Free</p>
                 </div>
             </div>
             <p class="centerText">
                         <a href="http://www.zaplings.com/creatorsnight" title="Add to Calendar" class="addthisevent button small success round">
                         save the date
-                        <span class="_start">02-04-2015 19:00:00</span>
-                        <span class="_end">02-04-2015 21:30:00</span>
+                        <span class="_start">03-04-2015 19:00:00</span>
+                        <span class="_end">03-04-2015 22:00:00</span>
                         <span class="_zonecode">11</span>
                         <span class="_summary">Zaplings presents Creators' Night</span>
                         <span class="_description">Let's celebrate what we create!<br>
-                        Featuring... Music: The Hollands - Art: Gent - Startup: SillyAngel Cards - Photography: Mike Holp - YOU: Share your art with open mic, bARTer table, idea contest, and more!<br>
-                        RSVP at zaplings.com/creatorsnight and we'll introduce you to people who share your passion or offer what you need. Hope to see you there!</span>
+                        Featuring... Music: Hilary Kuhlmey - Art: Rex Hamilton - Nonprofit: JMOE - Startup:  - Photography: Daniel Davis - YOU: Share your art with open mic, bARTer table, idea brainstorm, and more!<br>
+                        RSVP at zaplings.com/creatorsnight and we'll introduce you to people who share your passion or offer what you need.</span>
                         <span class="_location">Space12, 3121 East 12th Street, Austin, TX 78702</span>
                         <span class="_organizer">Danny Pernik</span>
                         <span class="_organizer_email">dannypernik@gmail.com</span>
@@ -76,24 +102,19 @@
             -->
             <div class="row">
                 <div class="medium-6 medium-offset-3 end columns">
-                        <p class="aside"><strong>When:</strong> Wednesday, Feb 4th, 2015 at 7pm<br>
-                        <strong>Where:</strong> Space12 (<a href="https://www.google.com/maps/place/Space12/@30.276354,-97.701532,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5de4f4ad4eb:0xe66e489d8e377c6a" target="_blank">3121 East 12th Street, Austin, TX 78702</a>)<br>
-                        <strong>Cost: </strong>Free
-                        </p>
-        
-                        <p class="aside half-margin-bottom"><strong>Featuring...</strong></p>
-                        <p>
-                        Music: <a href="http://www.thehollands.org" target="_blank">The Hollands!</a> - 
-                        Art: <a href="http://www.artofgent.com" target="_blank">Gent</a> - 
-                        Startup: <a href="http://www.sillyangelcards.com" target="_blank">SillyAngel Cards</a> - 
-                        <!--Nonprofit: <a href="#" target="_blank">dunno yet</a> - 
+                    <p class="aside half-margin-bottom"><strong>Featuring...</strong></p>
+                    <p>
+                        Music: <a href="http://www.reverbnation.com/hilarykuhlmey" target="_blank">Hilary Kuhlmey</a> - 
+                        Art: <a href="http://www.rexhamiltonart.com/" target="_blank">Rex Hamilton</a> - 
+                        Nonprofit: <a href="http://www.artbyjet.com/history/" target="_blank">JMOE</a> - 
+                        <!--Startup: <a href="#" target="_blank">dunno yet</a> - 
                         Food: <a href="#" target="_blank">dunno yet</a> - 
                         Wine: <a href="#" target="_blank">dunno yet</a> - -->
-                        Photography: <a href="http://www.holpphotography.com/" target="_blank">Mike Holp</a> - Videography: <a href="http://thestreetsaremine.com/" target="_blank">Daniel LaFata</a>
+                        Photography: <a href="http://danieldavisphoto.com/" target="_blank">Daniel Davis</a> - Videography: <a href="http://thestreetsaremine.com/" target="_blank">Daniel LaFata</a>
                         <br>
-                        YOU: Share your art with open mic, <a href="http://www.instagram.com/barteratx" target="_blank">bARTer</a> table, idea contest, and more.</p>
+                        YOU: Share your art with open mic, <a href="http://www.instagram.com/barteratx" target="_blank">bARTer</a> table, idea brainstorm, and more.</p>
                         <p class="add-margin-top">
-                            
+                        
                         </p>
                     </div>
                 </div>
@@ -101,7 +122,8 @@
                 {% csrf_token %} 
                 <div class="row">
                     <div class="small-12 medium-6 medium-offset-3 columns">
-                        <p><strong>RSVP</strong> so we can suggest people for you to meet. You'll get a connection card at the door with names of people who share your passion or offer something you need.</p>
+                        <p><strong>RSVP</strong> so we can add you to the Creators' wall! We'll take your picture at the door and add your loves, offers, and needs from below to help you meet people who share your passion and have what you're looking for.</p>
+
                         <input id="last-name" type="text" placeholder="Last name" name="user-lastname"tabindex="2"/>
                         <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="1" /></div>
                         <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"tabindex="3"/>
@@ -110,7 +132,8 @@
 
                 <div class="row">
                         <h4 class="add-margin-top centerText">What do you love?</h4>
-                        <p class="aside centerText">At least 3. The more you add, the better we can connect you.</p>
+                        <p class="aside centerText">At least 3. The more you add, the better we can connect you.
+                        <br><a href="#" data-reveal-id="existing-rsvp-reveal">I've already answered these questions</a></p>
                         <div class="medium-6 medium-offset-3 columns"><input id="input-loves" class="centerText" name="input-loves" type="text" placeholder="New love tag (press enter to add)" tabindex="4"/>
                     </div>
                 </div>
@@ -167,10 +190,22 @@
                         <input type="checkbox" id="open-mic" class="add-margin-top add-margin-bottom" name="want-mic" tabindex="10">
                         <span>I want to participate in open mic.</span>
                         <textarea id="open-mic-text" name="open-mic-text" class="hidden" placeholder="What would you like to do for open mic? (5-7mins)"></textarea>
-                        <p class="centerText add-margin-top"><button type="submit" class="large round success" tabindex="11">rsvp</button></p>
+                        <p class="centerText add-margin-top"><button type="submit" class="large round success" tabindex="11">RSVP</button></p>
                     </div>
                 </div>
             </form>
+
+            <div id="existing-rsvp-reveal" class="reveal-modal" data-reveal>
+                <div class="row">
+                    <div class="medium-10 medium-centered columns">
+                        <p>If you've already answered these questions, they are still linked to your email address and you don't have to re-enter them. You can always add more though!</p>
+                        <div class="centerText">
+                            <button class="close-reveal-modal button round success">Got it</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="push"></div>
         </div>
         
@@ -192,8 +227,17 @@
                 facebook    : {show:true, text:"Facebook Calendar"}
             });
         </script>
+
+        {% include "./zaplings/superslides-scripts.html" %}
+
         <script type="text/javascript">
         $(document).ready(function(){
+
+            $('#slides').superslides({
+                inherit_height_from: '.profile-header-img',
+                animation_speed: 1000,
+                animation: 'fade'
+            });
 
             $('#start-profile-reveal').foundation('reveal', 'open');
             $('#start-signup-reveal').foundation('reveal', 'open');

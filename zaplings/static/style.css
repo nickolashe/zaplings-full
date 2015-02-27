@@ -3145,12 +3145,12 @@ td {
 
 /* Default Link Styles */
 a {
-  color: #05325b;
+  color: #0b6fcb;
   text-decoration: underline;
   line-height: inherit; }
 
 a:hover, a:focus {
-  color: #a4c3dd;
+  color: #56a9f6;
   transition: all 300ms ease-out; }
 
 a img {
@@ -7222,6 +7222,9 @@ th.hide-for-touch {
 .featured-description {
   margin-top: 0; }
 
+.accent {
+  color: #0c7add; }
+
 .header {
   background-color: #05325b;
   position: relative;
@@ -7617,7 +7620,7 @@ input:hover:checked + label {
   font-size: 0.875rem;
   color: #05325b; }
 
-#profile-name {
+.profile-name {
   text-align: center;
   margin-top: 3.5rem;
   margin-bottom: 0; }

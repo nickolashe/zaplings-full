@@ -53,11 +53,17 @@
                 <img class="profile-pic" src="{% static "./images/featured-idea-4.png" %}"/>
                 <a href=""><button class="choose-images button light small round">Choose images</button></a>
                 <div class="reposition-info">Drag to reposition</div>
-                <button class="edit-user-info button light small round">Edit user info</button>
             </div>
-
-            <h3 id="profile-name">Jet</h3>
-            <p class="centerText">Inspiring love and human goodness through art</p>
+            <div class="row">
+                <div class="profile-name medium-6 medium-centered columns">
+                    <div class="centerText add-margin-bottom"><button class="button small light round">Edit profile photo</button></div>
+                    <input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}"/>
+                    <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}"/></div>
+                
+                    <input id="user-mission" type="text" class="centerText" name="user-mission" placeholder="Your current mission" value="">
+                    <input id="user-website" type="text" class="centerText" name="user-email" placeholder="Your website (optional)">
+                </div>
+            </div>
 
         
             <div class="push"></div>
