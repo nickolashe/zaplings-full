@@ -7092,6 +7092,9 @@ th.hide-for-touch {
   margin-top: 3rem;
   text-align: center; }
 
+.inline-title {
+  display: inline-block; }
+
 .centerText {
   text-align: center !important; }
 
@@ -7114,6 +7117,9 @@ th.hide-for-touch {
 .no-margin-bottom {
   margin-bottom: 0; }
 
+.two-margin-top {
+  margin-top: 2rem; }
+
 .three-margin-top {
   margin-top: 3rem; }
 
@@ -7125,6 +7131,9 @@ th.hide-for-touch {
 
 .half-margin-top {
   margin-top: 0.5rem; }
+
+.three-halves-margin-top {
+  margin-top: 1.5rem; }
 
 .no-decoration {
   text-decoration: none; }
@@ -7306,6 +7315,53 @@ th.hide-for-touch {
 
 .social-button {
   height: 100%; }
+
+.blog-tabs input[type=radio] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px; }
+
+.blog-tabs {
+  float: none;
+  list-style: none;
+  position: relative;
+  padding: 0;
+  margin-bottom: 2rem; }
+
+.blog-tab {
+  display: inline-block;
+  margin: 0 0.5rem; }
+
+input[type='radio']:checked + label {
+  background-color: #70bf4f;
+  color: #fff; }
+
+.blog-slider {
+  height: 70vh;
+  white-space: nowrap;
+  margin-left: 0;
+  position: relative; }
+
+.slider-inner {
+  vertical-align: middle;
+  display: inline-block;
+  float: none !important; }
+
+.blog-img {
+  height: auto;
+  max-height: 70vh;
+  max-width: 100%;
+  margin: auto;
+  vertical-align: middle; }
+
+.blog-thumbs {
+  height: 80px; }
+
+.blog-thumb {
+  margin: auto;
+  height: 66px;
+  width: 66px;
+  border-radius: 100px; }
 
 #nav {
   /* container */ }
@@ -7581,16 +7637,16 @@ th.hide-for-touch {
   -moz-transition: background-color 300ms ease-out;
   transition: background-color 300ms ease-out; }
 
-input:checked + label {
+input[type='checkbox']:checked + label {
   background-color: #05325b;
   color: #fff; }
 
-input:hover + label {
+input[type='checkbox']:hover + label {
   background-color: #3a579e;
   color: #fff;
   outline: none; }
 
-input:hover:checked + label {
+input[type='checkbox']:hover:checked + label {
   background-color: #3a579e;
   color: #fff;
   outline: none; }

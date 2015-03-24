@@ -1,0 +1,112 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Zaplings | Connect to create.</title>
+        <link rel="stylesheet" href="{% static "style.css" %}" />
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
+        
+        {% include "./zaplings/start-scripts.html" %}
+        
+        <script src="{% static "jquery.bxslider/jquery.bxslider.js" %}"></script>
+        <link href="{% static "jquery.bxslider/jquery.bxslider.css" %}" rel="stylesheet" />
+    
+    </head>
+    <body>
+      
+        <div class="wrapper">
+
+            {% include "./zaplings/header.html" %}
+            
+            <div class="row centerText two-margin-top">
+                <h3 class="centerText add-margin-bottom">The Creators' Blog</h3>
+                
+                <div class="blog-tabs">
+
+                    <div class="blog-tab">
+                        <input type="radio" id="art-tab" name="tab-group-1">
+                        <label for="art-tab" class="button small round light">Art</label>
+                    </div>
+                    
+                    <div class="blog-tab">
+                        <input type="radio" id="music-tab" name="tab-group-1">
+                        <label for="music-tab" class="button small round light">Music</label>
+                    </div>
+                    
+                    <div class="blog-tab">
+                        <input type="radio" id="ideas-tab" name="tab-group-1">
+                        <label for="ideas-tab" class="button small round light">Ideas</label>
+                    </div>
+
+                    <div class="blog-tab">
+                        <input type="radio" id="all-tab" name="tab-group-1" checked>
+                        <label for="all-tab" class="button small round light">All</label>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row full-width">
+                <div class="medium-10 medium-centered columns">
+                    <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
+                    <p>I guess we should have an optional description here.</p>
+
+                    
+                    <div class="blog-slider">
+                        <div class="slider-inner">
+                            <img class="blog-img" src="{% static "images/jet1.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="blog-img" src="{% static "images/jet2.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="blog-img" src="{% static "images/jet3.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="blog-img" src="{% static "images/jet4.jpg" %}">
+                        </div>
+                    </div>
+                    
+                    <div class="centerText add-margin-top medium-8 medium-centered columns">
+                        <div id="bx-pager">
+                          <a data-slide-index="0" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet1.png" %}"/></a>
+                          <a data-slide-index="1" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet2.png" %}"/></a>
+                          <a data-slide-index="2" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet3.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+        
+            <div class="push"></div>
+        </div>
+        
+        {% include "./zaplings/footer.html" %}
+            
+        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        
+        {% include "./zaplings/end-scripts.html" %}
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.blog-slider').bxSlider({
+                    pagerCustom: '#bx-pager',
+                    maxSlides: 1,
+                    prevText: '',   
+                    nextText: '',
+                });
+            });  
+        </script>       
+    </body>
+</html>

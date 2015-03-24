@@ -25,6 +25,13 @@ class IndexView(generic.ListView):
         """Return the all features ideas."""
         return FeaturedIdea.objects.all()
 
+class IndexAltView(generic.ListView):
+    model = User
+    template_name = 'zaplings/index-alt.html'
+
+class BlogView(generic.ListView):
+    model = User
+    template_name = 'zaplings/blog.html'
 
 class LovesView(generic.ListView):
     template_name = 'zaplings/loves.html'
