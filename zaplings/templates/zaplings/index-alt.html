@@ -1,0 +1,47 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Zaplings - Let's create something.</title>
+		<link rel="stylesheet" href="{% static "style.css" %}" />
+		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		{% include "./zaplings/start-scripts.html" %}
+	
+	</head>
+	<body id="home">
+	  
+		<div class="wrapper">
+			<div class="centerText three-margin-top">
+				<img class="alt-home-logo" src="{% static "./images/header-logo.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/header-logo.png" %}'" alt="Zaplings logo" width="217px" height="100px"/>
+
+				<h3 class="add-margin-top">We are a community of creators.</h3>
+			</div>
+			<div class="medium-6 medium-centered columns">
+				<p class="lead three-halves-margin-top">Our mission: to help each other grow, create, and thrive.</p>
+				<p class="lead">Our first step towards reaching this goal is to grow a community with diverse passions and talents, so join us for Creators' Night on the last Wednesday of every month in Austin, Texas.</p>
+				<p class="lead">Let's celebrate what we create, inspire new creations, and meet people to create with.</p>
+			</div>
+
+			<div class="row centerText">
+				<button class="button success round">Check out Creators' Night</button>
+				<p class="add-margin-top"><button class="button small light round">Bring Zaplings to your city</button></p>
+			</div>
+			
+		
+			<div class="push"></div>
+		</div>
+		
+		{% include "./zaplings/footer.html" %}
+			
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		
+		{% include "./zaplings/end-scripts.html" %}
+	</body>
+</html>

@@ -4,6 +4,8 @@ from zaplings import views
 
 urlpatterns = patterns('',
     url(r'^/?$', views.IndexView.as_view(), name='index'),
+    url(r'^index-alt/?$', views.IndexAltView.as_view(), name='index-alt'),
+    url(r'^blog/?$', views.BlogView.as_view(), name='blog'),
     # user login/signup 
     url(r'^signup/$', views.SignupView.as_view(), name='signup'),
     url(r'^signup_user/$', views.signup_user, name='signup_user'),
