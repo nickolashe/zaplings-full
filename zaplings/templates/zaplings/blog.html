@@ -23,39 +23,45 @@
 
             {% include "./zaplings/header.html" %}
             
-            <div class="row centerText two-margin-top">
-                <h3 class="centerText add-margin-bottom">The Creators' Blog</h3>
-                
-                <div class="blog-tabs">
-
-                    <div class="blog-tab">
-                        <input type="radio" id="art-tab" name="tab-group-1">
-                        <label for="art-tab" class="button small round light">Art</label>
+            
+            <span id="post-0" class="anchor"></span>
+            <div class="row blog-page">
+                <div class="medium-offset-2 medium-8 columns">
+                    <h3 class="centerText two-margin-top">Creators' Blog</h3>    
+                    <p class="half-margin-bottom">Below you'll find a collection of creations from the Zaplings community. Share what you create by joining us for Creators' Night on the last Wednesday of every month. Each night features art, music, startup business, and nonprofit organization.</p>
+                    <p class="half-margin-bottom">
+                        Next Creators' Night is <strong>Wednesday, April 29th</strong> at <a href="http://www.wework.com/locations/austin" target="_blank">WeWork</a> (and free)
+                        <button id="blog-join" class="button round success">Rsvp</button>
+                    </p>
+                    
+                    <p class="half-margin-bottom">Thank you to <a href="http://www.danieldavisphoto.com/" target="_blank">Daniel Davis</a> for last month's photos:</p>
+                    
+                    <div id="blog-home-slider">
+                        <div class="slider-inner">
+                            <img class="blog-home-img" src="{% static "images/example-img.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="blog-home-img" src="{% static "images/jet2.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="blog-home-img" src="{% static "images/jet3.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="blog-home-img" src="{% static "images/jet4.jpg" %}">
+                        </div>
                     </div>
                     
-                    <div class="blog-tab">
-                        <input type="radio" id="music-tab" name="tab-group-1">
-                        <label for="music-tab" class="button small round light">Music</label>
-                    </div>
-                    
-                    <div class="blog-tab">
-                        <input type="radio" id="ideas-tab" name="tab-group-1">
-                        <label for="ideas-tab" class="button small round light">Ideas</label>
-                    </div>
-
-                    <div class="blog-tab">
-                        <input type="radio" id="all-tab" name="tab-group-1" checked>
-                        <label for="all-tab" class="button small round light">All</label>
-                    </div>
-                    
+                    <a href="#post-1" id="blog-next">
+                        <i class="blog-arrow fa fa-chevron-down"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="row full-width">
+            <span id="post-1" class="anchor"></span>
+            <div class="row blog-page">
                 <div class="medium-10 medium-centered columns">
                     <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
-                    <p>I guess we should have an optional description here.</p>
-
+                    <p class="aside no-margin-top half-margin-bottom">We should probably have an optional description here.</p>
                     
                     <div class="blog-slider">
                         <div class="slider-inner">
@@ -78,13 +84,33 @@
                           <a data-slide-index="1" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet2.png" %}"/></a>
                           <a data-slide-index="2" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet3.png" %}"/></a>
                           <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
+                          <a data-slide-index="3" href=""><img class="blog-thumb" src="{% static "images/thumbs/jet4.png" %}"/></a>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <span id="post-2" class="anchor"></span>
+            <div class="row blog-page">
+                <div class="medium-10 medium-centered columns">
+                    <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
+                    <p class="aside no-margin-top half-margin-bottom">We should probably have an optional description here.</p>
+                </div>
+            </div>
+            
+            <span id="post-3" class="anchor"></span>
+            <div class="row blog-page">
+                <div class="medium-10 medium-centered columns">
+                    <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
+                    <p class="aside no-margin-top half-margin-bottom">We should probably have an optional description here.</p>
+                </div>
+            </div>
 
-        
-        
         
             <div class="push"></div>
         </div>
@@ -98,15 +124,56 @@
         
         {% include "./zaplings/end-scripts.html" %}
         
+        
         <script type="text/javascript">
             $(document).ready(function(){
-                $('.blog-slider').bxSlider({
+                
+                $('a').click(function(){
+                    $('html, body').animate({
+                        scrollTop: $( $(this).attr('href') ).offset().top
+                    }, 500);
+                    return false;
+                });
+                
+                $('.blog-slider, #blog-home-slider').bxSlider({
                     pagerCustom: '#bx-pager',
                     maxSlides: 1,
                     prevText: '',   
                     nextText: '',
                 });
+                
+                $(function () {
+                    var nextHash = 0;
+                    $(document).scroll(function () {
+                        $('.anchor').each(function () {
+                            var top = window.scrollY;
+                            var distance = top - $(this).offset().top;
+                            var hash = parseInt($(this).attr('id').slice(5));
+
+                            if (distance < 30 && distance > -30 && nextHash != hash) {
+                                nextHash = hash + 1;
+                                document.getElementById('blog-next').setAttribute('href', '#post-' + nextHash);
+                            }
+                        });
+                    });
+                });
+
+                /*$(function () {
+                    var currentHash = 0;
+                    $(document).scroll(function () {
+                        $('.anchor').each(function () {
+                            var top = window.pageYOffset;
+                            var distance = top - $(this).offset().top;
+                            var hash = $(this).attr('id');
+
+                            if (distance < 30 && distance > -30 && currentHash != hash.slice(5)) {
+                                currentHash = parseInt(hash.slice(5), 10) + 1;
+                                document.getElementById('blog-next').setAttribute('href','#post-' + currentHash);
+                            }
+                        });
+                    });
+                });*/
             });  
-        </script>       
+        </script> 
     </body>
 </html>

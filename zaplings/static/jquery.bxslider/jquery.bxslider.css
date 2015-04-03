@@ -40,7 +40,6 @@
     	transform: translatez(0);
 }
 
-.bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
 	position: absolute;
 	bottom: -30px;
@@ -61,6 +60,12 @@
 }
 
 /* PAGER */
+
+.bx-pager {
+	position: absolute;
+	bottom: -30px;
+	width: calc(100% - 140px);
+}
 
 .bx-wrapper .bx-pager {
 	text-align: center;
@@ -218,15 +223,12 @@
 
 .bx-wrapper .bx-caption {
 	position: absolute;
-	bottom: 0;
-	left: 0;
-	background: #666\9;
-	background: rgba(80, 80, 80, 0.75);
+	bottom: -2rem;
+	text-align: center;
 	width: 100%;
 }
 
 .bx-wrapper .bx-caption span {
-	color: #fff;
 	font-family: Arial;
 	display: block;
 	font-size: .85em;
