@@ -20,15 +20,14 @@
     <body>
       
         <div class="wrapper">
-
-            {% include "./zaplings/header.html" %}
+            <span id="post-0" class="anchor waypoint"></span>
             
-            
-            <span id="post-0" class="anchor"></span>
+            {% include "./zaplings/header.html" %}    
+                
             <div class="row blog-page">
                 <div class="medium-offset-2 medium-8 columns">
                     <h3 class="centerText two-margin-top">Creators' Blog</h3>    
-                    <p class="half-margin-bottom">Below you'll find a collection of creations from the Zaplings community. Share what you create by joining us for Creators' Night on the last Wednesday of every month. Each night features art, music, startup business, and nonprofit organization.</p>
+                    <p class="half-margin-bottom">Below you'll find a collection of creations from the Zaplings community. Share what you create by joining us for Creators' Night on the last Wednesday of every month. Each night features an artist, musician, startup business, and nonprofit organization.</p>
                     <p class="half-margin-bottom">
                         Next Creators' Night is <strong>Wednesday, April 29th</strong> at <a href="http://www.wework.com/locations/austin" target="_blank">WeWork</a> (and free)
                         <button id="blog-join" class="button round success">Rsvp</button>
@@ -50,14 +49,18 @@
                             <img class="blog-home-img" src="{% static "images/jet4.jpg" %}">
                         </div>
                     </div>
-                    
-                    <a href="#post-1" id="blog-next">
-                        <i class="blog-arrow fa fa-chevron-down"></i>
-                    </a>
                 </div>
             </div>
+            
+            <a href="#post-1" id="blog-next">
+                <i class="blog-arrow fa fa-chevron-down"></i>
+            </a>
 
-            <span id="post-1" class="anchor"></span>
+            <a href="#post-0" id="blog-prev">
+                <i class="blog-arrow fa fa-chevron-up"></i>
+            </a>
+            
+            <span id="post-1" class="anchor waypoint"></span>
             <div class="row blog-page">
                 <div class="medium-10 medium-centered columns">
                     <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
@@ -95,7 +98,7 @@
                 </div>
             </div>
             
-            <span id="post-2" class="anchor"></span>
+            <span id="post-2" class="anchor waypoint"></span>
             <div class="row blog-page">
                 <div class="medium-10 medium-centered columns">
                     <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
@@ -103,7 +106,7 @@
                 </div>
             </div>
             
-            <span id="post-3" class="anchor"></span>
+            <span id="post-3" class="anchor waypoint"></span>
             <div class="row blog-page">
                 <div class="medium-10 medium-centered columns">
                     <h4 class="inline-title half-margin-right no-margin-bottom">Works of art</h4><span>by <a href="#">username</a></span>
@@ -124,9 +127,40 @@
         
         {% include "./zaplings/end-scripts.html" %}
         
+        <script src="{% static "waypoints/lib/noframework.waypoints.min.js" %}"></script>  
         
         <script type="text/javascript">
+            
             $(document).ready(function(){
+                
+                $('.anchor').each(function () {
+                    new Waypoint({
+                        element: this,
+                        handler: function(direction) {
+
+                            var previousWaypoint = this.previous();
+                            var nextWaypoint = this.next();
+
+                            if (this != this.group.last()){
+                                document.getElementById('blog-next').setAttribute('href','#' + nextWaypoint.element.id)
+                            }
+                            
+                            if (this != this.group.last()){
+                                $('#blog-next').show();
+                            } else {
+                                $('#blog-next').hide();
+                            }
+                        }
+                    })
+                })
+                        
+                $('.blog-slider, #blog-home-slider').bxSlider({
+                    pagerCustom: '#bx-pager',
+                    maxSlides: 1,
+                    prevText: '',   
+                    nextText: '',
+                });        
+                
                 
                 $('a').click(function(){
                     $('html, body').animate({
@@ -134,45 +168,6 @@
                     }, 500);
                     return false;
                 });
-                
-                $('.blog-slider, #blog-home-slider').bxSlider({
-                    pagerCustom: '#bx-pager',
-                    maxSlides: 1,
-                    prevText: '',   
-                    nextText: '',
-                });
-                
-                $(function () {
-                    var nextHash = 0;
-                    $(document).scroll(function () {
-                        $('.anchor').each(function () {
-                            var top = window.scrollY;
-                            var distance = top - $(this).offset().top;
-                            var hash = parseInt($(this).attr('id').slice(5));
-
-                            if (distance < 30 && distance > -30 && nextHash != hash) {
-                                nextHash = hash + 1;
-                                document.getElementById('blog-next').setAttribute('href', '#post-' + nextHash);
-                            }
-                        });
-                    });
-                });
-
-                /*$(function () {
-                    var currentHash = 0;
-                    $(document).scroll(function () {
-                        $('.anchor').each(function () {
-                            var top = window.pageYOffset;
-                            var distance = top - $(this).offset().top;
-                            var hash = $(this).attr('id');
-
-                            if (distance < 30 && distance > -30 && currentHash != hash.slice(5)) {
-                                currentHash = parseInt(hash.slice(5), 10) + 1;
-                                document.getElementById('blog-next').setAttribute('href','#post-' + currentHash);
-                            }
-                        });
-                    });
-                });*/
             });  
         </script> 
     </body>

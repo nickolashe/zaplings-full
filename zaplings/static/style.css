@@ -7358,9 +7358,10 @@ th.hide-for-touch {
   z-index: 1000; }
 
 #blog-prev {
-  position: absolute;
+  position: fixed;
   bottom: 0.5rem;
-  left: 1rem; }
+  left: 5vw;
+  z-index: 1000; }
 
 .blog-tabs input[type=radio] {
   position: absolute;
@@ -7902,7 +7903,7 @@ input[type='checkbox']:hover:checked + label {
   text-align: center; }
 
 .profile-header-img {
-  height: calc(100vh - 14.3125rem); }
+  height: calc(100vh - 15.5rem); }
 
 #follow-button {
   margin-top: 0.125rem; }
