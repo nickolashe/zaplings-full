@@ -46,15 +46,15 @@
                     <ul class="slides-container">
                         <li>
                             <img src="{% static "images/creatorsnight-1.jpg" %}">
-                            <span class="cover-caption">Rex Hamilton</span>
+                            <span class="cover-caption">Shane Cooley &amp; The Lucky Kings</span>
                         </li>
                         <li>
                             <img src="{% static "images/creatorsnight-2.jpg" %}">
-                            <span class="cover-caption">Hilary Kuhlmey</span>
+                            <span class="cover-caption">Rex Hamilton</span>
                         </li>
                         <li>
                             <img src="{% static "images/creatorsnight-3.jpg" %}">
-                            <span class="cover-caption">Daniel Davis</span>
+                            <span class="cover-caption">Kat Goins</span>
                         </li>
                     </ul>
                     <nav class="slides-navigation">
@@ -73,17 +73,15 @@
             <div class="row">
                 <div class="centerText small-12 medium-10 medium-offset-1 columns">
                     <h5 class="inline-title add-margin-top"></h5><h4 class="inline-title add-margin-top">Zaplings presents Creators' Night</h4>
-                    <p class="half-margin-bottom">Wednesday, March 4th, 2015 from 7:00 - 10:00pm <br>at Space12 (<a href="https://www.google.com/maps/place/Space12/@30.276354,-97.701532,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b5de4f4ad4eb:0xe66e489d8e377c6a" target="_blank">3121 E 12th St, 78702</a>)<br>
-                    Free</p>
+                    <p class="half-margin-bottom">Wednesday, April 29th, 2015 from 6:30 to 9:30pm <br>at <a href="https://www.wework.com/locations/austin/congress" target="_blank">WeWork</a> (14th floor of <a href="https://www.google.com/maps/place/WeWork/@30.268573,-97.742994,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b509c0706f9d:0xb5c171e36a8626a6" target="_blank">600 N Congress</a>)
+                    </p>
+                    <p class="no-margin-top">
+                    Free - <button data-reveal-id="rsvp-reveal" class="half-margin-right button round small success">Rsvp required</button><button class="button round small light">Past events</button>
+                    </p>
                 </div>
             </div>
-            <p class="centerText">
-                <button class="button round small success">RSVP</button>
-                <button class="button round small light">Learn more</button>
-                <button class="button round small light">Past events</button>
-            </p>
-                        
-            <!--
+
+    <!--
             <div class="row">
                 <div class="medium-6 medium-offset-3 end columns">
                     <div
@@ -97,27 +95,62 @@
             </div>
             -->
             <div class="row">
-                <div class="medium-6 medium-offset-3 end columns">
-                    <p class="aside half-margin-bottom"><strong>Featuring...</strong></p>
+                <div class="medium-5 medium-centered end columns">
+                    <h5>Featuring...</h5>
                     <p>
-                        Music: <a href="http://www.reverbnation.com/hilarykuhlmey" target="_blank">Hilary Kuhlmey</a> - 
-                        Art: <a href="http://www.rexhamiltonart.com/" target="_blank">Rex Hamilton</a> - 
-                        Nonprofit: <a href="http://www.artbyjet.com/history/" target="_blank">JMOE</a> - 
-                        <!--Startup: <a href="#" target="_blank">dunno yet</a> - 
-                        Food: <a href="#" target="_blank">dunno yet</a> - 
+                        Music: <a href="" target="_blank">Shane Cooley &amp; The Lucky Kings</a><br>
+                        Art: <a href="http://www.rexhamiltonart.com/" target="_blank">Rex Hamilton</a><br>
+                        <!--Nonprofit: <a href="" target="_blank"></a><br>-->
+                        Startup: <a href="#" target="_blank">Peepsqueeze</a><br>
+                        <!--Food: <a href="#" target="_blank">dunno yet</a> - 
                         Wine: <a href="#" target="_blank">dunno yet</a> - -->
-                        Photography: <a href="http://danieldavisphoto.com/" target="_blank">Daniel Davis</a> - Videography: <a href="http://thestreetsaremine.com/" target="_blank">Daniel LaFata</a>
-                        <br>
-                        YOU: Share your art with open mic, <a href="http://www.instagram.com/barteratx" target="_blank">bARTer</a> table, idea brainstorm, and more.</p>
-                        <p class="add-margin-top">
-                            Entrepreneurs - share your perspective at the idea table. Write an index card supporting a current idea or start a new one. After the event we'll connect you to the others who contributed to that concept.
-                        </p>
-                        <p class="add-margin-top">
-                            Artists - bring artwork for the auction. Set your minimum bid and take home 85% if it sells. 15% goes to Space12. Please arrive before 7pm.
-                        </p>
+                        Photography: <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a><br>
+                        <!--Videography: <a href="" target="_blank"></a><br>-->
+                        YOU: Share what you create with 5-minute stage time, art table, idea brainstorm, and more.
+                    </p>
+                    <p class="add-margin-top">
+                        Entrepreneurs - brainstorm at the idea table. Write an index card supporting a current idea or start a new one. After the event we'll connect you to the others who contributed to that concept.
+                    </p>
+                    <p class="add-margin-top">
+                        Artists - bring a work of art for the auction. Set your minimum bid and take home 100% if it sells.
+                    </p>
+                    <div class="centerText row">
+                        <button data-reveal-id="rsvp-reveal" class="half-margin-right button round small success">Rsvp required</button>
                     </div>
                 </div>
-            <form id="form-rsvp" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
+            </div>
+
+            
+            <div id="rsvp-reveal" class="reveal-modal" data-reveal>
+                <form id="rsvp-basic" name="rsvp-basic">
+                    <div class="row full-width">
+                        <div class="medium-9 medium-centered columns">
+                            <h4 class="centerText add-margin-bottom">Rsvp to Creators' Night</h4>
+                            <input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}"/>
+                            <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}"/></div>
+                            <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
+                            
+                            <p class="no-margin-bottom">
+                                <input type="checkbox" id="open-mic" name="want-mic">
+                                <span>I want to be considered for 5-minute stage time.</span></p>
+                            <p class="no-margin-bottom">
+                                <input type="checkbox" id="open-mic" name="want-mic">
+                                <span>I want to bring a work of art to sell in the auction.</span></p>
+                            <p class="add-margin-bottom">
+                                <input type="checkbox" id="want-featured" name="want-featured">
+                                <span>I want to be a featured creator at a future event.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="centerText row">
+                        <h5>Please arrive by 6:45 to ensure entry.</h5>
+                        <button class="button round success">RSVP</button>
+                    </div>
+                </form>
+            </div>
+            
+            
+<!--            <form id="form-rsvp" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
                 {% csrf_token %} 
                 <div class="row">
                     <div class="small-12 medium-6 medium-offset-3 columns">
@@ -203,30 +236,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div id="rsvp-reveal-1">
-                <form id="rsvp-basic" name="rsvp-basic">
-                    <h5>Please arrive by 7:15 to ensure entry.</h5>
-                </form>
-            </div>
-            
-            <div id="rsvp-reveal-2" class="reveal-modal" data-reveal>
-                <a href="http://www.zaplings.com/creatorsnight" title="Add to Calendar" class="addthisevent button small success round">
-                save the date
-                    <span class="_start">04-29-2015 19:00:00</span>
-                    <span class="_end">04-29-2015 22:00:00</span>
-                    <span class="_zonecode">11</span>
-                    <span class="_summary">Zaplings presents Creators' Night</span>
-                    <span class="_description">                        Featuring... <br>Music: Shane Cooley and The Lucky Kings - Art: Rex Hamilton - Nonprofit:  - Startup:  - Photography: Kat Goins - YOU: Share your art with open mic, bARTer table, idea brainstorm, and more.</span>
-                    <span class="_location">WeWork, 600 Congress Ave. 14th floor</span>
-                    <span class="_organizer">Danny Pernik</span>
-                    <span class="_organizer_email">dannypernik@gmail.com</span>
-                    <span class="_facebook_event"></span>
-                    <span class="_all_day_event">false</span>
-                    <span class="_date_format">MM/DD/YYYY</span>
-                </a>
-            </div>
+            </div>-->
 
             <div class="push"></div>
         </div>
