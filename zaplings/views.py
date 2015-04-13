@@ -25,13 +25,16 @@ class IndexView(generic.ListView):
         """Return the all features ideas."""
         return FeaturedIdea.objects.all()
 
+
 class IndexAltView(generic.ListView):
     model = User
     template_name = 'zaplings/index-alt.html'
 
+
 class BlogView(generic.ListView):
     model = User
     template_name = 'zaplings/blog.html'
+
 
 class LovesView(generic.ListView):
     template_name = 'zaplings/loves.html'
@@ -143,13 +146,16 @@ class MyIdeasView(generic.ListView):
     model = User
     template_name = 'zaplings/myideas.html'
 
+
 class JetView(generic.ListView):
     model = User
     template_name = 'zaplings/jet.html'
 
+
 class JetEditView(generic.ListView):
     model = User
     template_name = 'zaplings/jet-edit.html'
+
 
 class NewIdeaView(generic.ListView):
     model = User
@@ -246,25 +252,6 @@ def referrer(request, referrer):
     request_obj = {'featured_ideas': FeaturedIdea.objects.all()}
     # return back to index for the time-being
     return render(request, 'zaplings/index.html', request_obj)
-
-
-def vote(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
-    try:
-        selected_choice = p.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the poll voting form.
-        return render(request, 'polls/detail.html', {
-            'poll': p,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
 def record_loves(request, isRedirected=True):
@@ -512,35 +499,46 @@ def record_text(request):
         userid = request.user.pk
 
         if userid:
-            # wamt-to-meet
-            love_text = request.POST['want-to-meet'] \
-                if 'want-to-meet' in request.POST else ''
-            logger.info('want-to-meet text: %s', love_text)
-            if love_text:
+            # user-want-mic
+            user_want_mic = request.POST['user-want-mic'] \
+                if 'user-want-mic' in request.POST else ''
+            logger.info('user-want-mic text: %s', user_want_mic)
+            if user_want_mic:
                 try:
-                    LoveText.objects.create(user_id=userid, text=love_text)
+                    LoveText.objects.create(user_id=userid, text=user_want_mic)
                 except IntegrityError:
-                    lovetext = LoveText.objects.get(user_id=userid)
-                    lovetext.text = love_text
-                    lovetext.save()
+                    user_want_mic_new = LoveText.objects.get(user_id=userid)
+                    user_want_mic_new.text = user_want_mic
+                    user_want_mic_new.save()
 
-            # mic-text
-            offer_text = request.POST['open-mic-text'] \
-                if 'open-mic-text' in request.POST else ''
-            logger.info('open-mic text: %s', offer_text)
-            if offer_text:
+            # user-want-art
+            user_want_art = request.POST['user_want_art'] \
+                if 'user_want_art' in request.POST else ''
+            logger.info('user_want_art text: %s', user_want_art)
+            if user_want_art:
                 try:
-                    OfferText.objects.create(user_id=userid, text=offer_text)
+                    LoveText.objects.create(user_id=userid, text=user_want_art)
                 except IntegrityError:
-                    offertext = OfferText.objects.get(user_id=userid)
-                    offertext.text = offer_text
-                    offertext.save()
+                    user_want_art_new = LoveText.objects.get(user_id=userid)
+                    user_want_art_new.text = user_want_art
+                    user_want_art_new.save()
+
+            # user-want-featured
+            user_want_featured = request.POST['user-want-featured'] \
+                if 'user-want-featured' in request.POST else ''
+            logger.info('user-want-featured text: %s', user_want_featured)
+            if user_want_featured:
+                try:
+                    LoveText.objects.create(user_id=userid, text=user_want_featured)
+                except IntegrityError:
+                    user_want_featured_new = LoveText.objects.get(user_id=userid)
+                    user_want_featured_new.text = user_want_featured
+                    user_want_featured_new.save()
         else:
             return redirect('zaplings:creatorsnight')
 
     except Exception as e:
-        logger.error("Error in record_text: %s (%s)",
-                      e.message, str(type(e)))
+        logger.error("Error in record_text: %s (%s)", e.message, type(e))
         return redirect('zaplings:error')
 
 
@@ -756,17 +754,21 @@ def record_new_email(request):
 
 
 def process_rsvp(request):
-    record_new_email(request)
-    record_loves(request, isRedirected=False)
-    record_offers(request, isRedirected=False)
-    record_needs(request, isRedirected=False)
-    record_text(request)
-    send_confirmation_email(request)
-
-    new_rsvp = UserRsvp.objects.create(user_id=request.user.pk)
-    logger.info("New rsvp: %s", unicode(new_rsvp))
-
-    return redirect('zaplings:rsvp-confirm')
+    try:
+        record_new_email(request)
+        #record_loves(request, isRedirected=False)
+        #record_offers(request, isRedirected=False)
+        #record_needs(request, isRedirected=False)
+        record_text(request)
+        send_confirmation_email(request)
+    
+        new_rsvp = UserRsvp.objects.create(user_id=request.user.pk)
+        logger.info("New rsvp: %s", unicode(new_rsvp))
+    
+        return redirect('zaplings:rsvp-confirm')
+    except Exception as e:
+        logger.error("Error in record_loves: %s (%s)", e.message, type(e))
+        return redirect('zaplings:error')
 
 
 def send_confirmation_email(request):
