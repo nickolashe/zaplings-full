@@ -1,0 +1,50 @@
+{
+  "name": "waypoints",
+  "version": "3.1.1",
+  "author": {
+    "name": "Caleb Troughton",
+    "email": "caleb@imakewebthings.com",
+    "url": "http://imakewebthings.com"
+  },
+  "description": "Easily execute a function when you scroll to an element",
+  "scripts": {
+    "build": "gulp build",
+    "start": "gulp",
+    "test": "testem ci",
+    "tdd": "testem",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imakewebthings/waypoints.git"
+  },
+  "keywords": [
+    "scroll"
+  ],
+  "devDependencies": {
+    "eslint": "^0.6.2",
+    "gulp": "^3.6.2",
+    "gulp-concat": "^2.2.0",
+    "gulp-eslint": "^0.1.7",
+    "gulp-footer": "^1.0.5",
+    "gulp-header": "^1.0.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-tap": "^0.1.1",
+    "gulp-uglify": "^0.3.1",
+    "merge-stream": "^0.1.1",
+    "testem": "^0.6.24"
+  },
+  "license": "MIT",
+  "readme": "# Waypoints\r\n\r\nWaypoints is a library that makes it easy to execute a function whenever you scroll to an element. ![Build Status](https://travis-ci.org/imakewebthings/waypoints.svg)\r\n\r\n```js\r\nvar waypoint = new Waypoint({\r\n  element: document.getElementById('thing'),\r\n  handler: function(direction) {\r\n    alert('You have scrolled to a thing')\r\n  }\r\n})\r\n```\r\n\r\nIf you're new to Waypoints, check out the [Getting Started](http://imakewebthings.com/waypoints/guides/getting-started) guide.\r\n\r\n[Read the full documentation](http://imakewebthings.com/waypoints/api/waypoint) for more details on usage and customization.\r\n\r\n## Shortcuts\r\n\r\nIn addition to the normal Waypoints script, extensions exist to make common UI patterns just a little easier to implement:\r\n\r\n- [Infinite Scrolling](http://imakewebthings.com/waypoints/shortcuts/infinite-scroll)\r\n- [Sticky Elements](http://imakewebthings.com/waypoints/shortcuts/sticky-elements)\r\n- [Inview Detection](http://imakewebthings.com/waypoints/shortcuts/inview)\r\n\r\n\r\n## Contributing\r\n\r\nIf you want to report a Waypoints bug or contribute code to the library, please read the [Contributing Guidelines](https://github.com/imakewebthings/waypoints/blob/master/CONTRIBUTING.md). If you need help *using* Waypoints, please do not open an issue. Instead, ask the question on [Stack Overflow](http://stackoverflow.com) and tag it with <code>#jquery-waypoints</code>. Be sure to follow the guidelines for [asking a good question](http://stackoverflow.com/help/how-to-ask).\r\n\r\n## License\r\n\r\nCopyright (c) 2011-2014 Caleb Troughton. Licensed under the [MIT license](https://github.com/imakewebthings/waypoints/blob/master/licenses.txt).\r\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/imakewebthings/waypoints/issues"
+  },
+  "homepage": "https://github.com/imakewebthings/waypoints",
+  "_id": "waypoints@3.1.1",
+  "dist": {
+    "shasum": "e7fda9e7146997651648878e6e834e95bd0440a0"
+  },
+  "_from": "waypoints@",
+  "_resolved": "https://registry.npmjs.org/waypoints/-/waypoints-3.1.1.tgz"
+}
