@@ -76,7 +76,8 @@
                     <p class="half-margin-bottom">Wednesday, April 29th, 2015 from 6:30 to 9:30pm <br>at <a href="https://www.wework.com/locations/austin/congress" target="_blank">WeWork</a> (14th floor of <a href="https://www.google.com/maps/place/WeWork/@30.268573,-97.742994,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b509c0706f9d:0xb5c171e36a8626a6" target="_blank">600 N Congress</a>)
                     </p>
                     <p class="no-margin-top">
-                    Free - <button data-reveal-id="rsvp-reveal" class="half-margin-right button round small success">Rsvp required</button><button class="button round small light">Past events</button>
+                    Free - <button data-reveal-id="rsvp-reveal" class="half-margin-right button round small success">Rsvp required</button>
+                    <!--<button class="button round small light">Past events</button>-->
                     </p>
                 </div>
             </div>
@@ -106,7 +107,7 @@
                         Wine: <a href="#" target="_blank">dunno yet</a> - -->
                         Photography: <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a><br>
                         <!--Videography: <a href="" target="_blank"></a><br>-->
-                        YOU: Share what you create with 5-minute stage time, art table, idea brainstorm, and more.
+                        YOU: Share what you create with 5-minute mic time, art table, idea brainstorm, and more.
                     </p>
                     <p class="add-margin-top">
                         Entrepreneurs - brainstorm at the idea table. Write an index card supporting a current idea or start a new one. After the event we'll connect you to the others who contributed to that concept.
@@ -133,7 +134,7 @@
                             
                             <p class="no-margin-bottom">
                                 <input type="checkbox" id="open-mic" name="user-want-mic">
-                                <span>I want to be considered for 5-minute stage time.</span></p>
+                                <span>I want to be considered for 5-minute mic time.</span></p>
                             <p class="no-margin-bottom">
                                 <input type="checkbox" id="open-mic" name="user-want-art">
                                 <span>I want to bring a work of art to sell in the auction.</span></p>
@@ -145,7 +146,7 @@
                     </div>
                     <div class="centerText row">
                         <h5>Please arrive by 6:45 to ensure entry.</h5>
-                        <button class="button round success">RSVP</button>
+                        <a href="{% url "zaplings:rsvp-confirm" %}"><button type="submit" class="button round success">Rsvp</button></a>
                     </div>
                 </form>
             </div>

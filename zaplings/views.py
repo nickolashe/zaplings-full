@@ -502,7 +502,7 @@ def record_text(request):
             # user-want-mic
             user_want_mic = request.POST['user-want-mic'] \
                 if 'user-want-mic' in request.POST else ''
-            logger.info('user-want-mic text: %s', user_want_mic)
+            logger.info('user-want-mic: %s', user_want_mic)
             if user_want_mic:
                 try:
                     LoveText.objects.create(user_id=userid, text=user_want_mic)
@@ -512,26 +512,26 @@ def record_text(request):
                     user_want_mic_new.save()
 
             # user-want-art
-            user_want_art = request.POST['user_want_art'] \
-                if 'user_want_art' in request.POST else ''
-            logger.info('user_want_art text: %s', user_want_art)
+            user_want_art = request.POST['user-want-art'] \
+                if 'user-want-art' in request.POST else ''
+            logger.info('user-want-art: %s', user_want_art)
             if user_want_art:
                 try:
-                    LoveText.objects.create(user_id=userid, text=user_want_art)
+                    OfferText.objects.create(user_id=userid, text=user_want_art)
                 except IntegrityError:
-                    user_want_art_new = LoveText.objects.get(user_id=userid)
+                    user_want_art_new = OfferText.objects.get(user_id=userid)
                     user_want_art_new.text = user_want_art
                     user_want_art_new.save()
 
             # user-want-featured
             user_want_featured = request.POST['user-want-featured'] \
                 if 'user-want-featured' in request.POST else ''
-            logger.info('user-want-featured text: %s', user_want_featured)
+            logger.info('user-want-featured: %s', user_want_featured)
             if user_want_featured:
                 try:
-                    LoveText.objects.create(user_id=userid, text=user_want_featured)
+                    NeedText.objects.create(user_id=userid, text=user_want_featured)
                 except IntegrityError:
-                    user_want_featured_new = LoveText.objects.get(user_id=userid)
+                    user_want_featured_new = NeedText.objects.get(user_id=userid)
                     user_want_featured_new.text = user_want_featured
                     user_want_featured_new.save()
         else:
