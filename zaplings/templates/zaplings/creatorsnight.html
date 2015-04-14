@@ -123,7 +123,8 @@
 
             
             <div id="rsvp-reveal" class="reveal-modal" data-reveal>
-                <form id="rsvp-basic" name="rsvp-basic">
+                <form id="rsvp-basic" action="{% url 'zaplings:process-rsvp' %}" method="post" name="rsvp-basic">
+                    {% csrf_token %} 
                     <div class="row full-width">
                         <div class="medium-9 medium-centered columns">
                             <h4 class="centerText add-margin-bottom">Rsvp to Creators' Night</h4>
@@ -132,13 +133,13 @@
                             <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
                             
                             <p class="no-margin-bottom">
-                                <input type="checkbox" id="open-mic" name="want-mic">
+                                <input type="checkbox" id="open-mic" name="user-want-mic">
                                 <span>I want to be considered for 5-minute mic time.</span></p>
                             <p class="no-margin-bottom">
-                                <input type="checkbox" id="open-mic" name="want-mic">
+                                <input type="checkbox" id="open-mic" name="user-want-art">
                                 <span>I want to bring a work of art to sell in the auction.</span></p>
                             <p class="add-margin-bottom">
-                                <input type="checkbox" id="want-featured" name="want-featured">
+                                <input type="checkbox" id="want-featured" name="user-want-featured">
                                 <span>I want to be a featured creator at a future event.</span>
                             </p>
                         </div>
