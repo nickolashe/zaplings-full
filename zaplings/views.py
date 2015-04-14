@@ -764,7 +764,7 @@ def process_rsvp(request):
         #record_offers(request, isRedirected=False)
         #record_needs(request, isRedirected=False)
         record_text(request)
-        send_confirmation_email(request)
+        #send_confirmation_email(request)
     
         new_rsvp = UserRsvp.objects.create(user_id=request.user.pk)
         logger.info("New rsvp: %s", unicode(new_rsvp))
