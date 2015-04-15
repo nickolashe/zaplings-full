@@ -56,6 +56,10 @@
                             <img src="{% static "images/creatorsnight-3.jpg" %}">
                             <span class="cover-caption">Kat Goins</span>
                         </li>
+                        <li>
+                            <img src="{% static "images/creatorsnight-4.jpg" %}">
+                            <span class="cover-caption">Peepsqueeze</span>
+                        </li>
                     </ul>
                     <nav class="slides-navigation">
                         <a href="#" class="next">
@@ -76,7 +80,7 @@
                     <p class="half-margin-bottom">Wednesday, April 29th, 2015 from 6:30 to 9:30pm <br>at <a href="https://www.wework.com/locations/austin/congress" target="_blank">WeWork</a> (14th floor of <a href="https://www.google.com/maps/place/WeWork/@30.268573,-97.742994,17z/data=!3m1!4b1!4m2!3m1!1s0x8644b509c0706f9d:0xb5c171e36a8626a6" target="_blank">600 N Congress</a>)
                     </p>
                     <p class="no-margin-top">
-                    Free - <button data-reveal-id="rsvp-reveal" class="half-margin-right button round small success">Rsvp required</button>
+                    Free - <a href="#rsvp-basic"><button class="half-margin-right button round small success">Rsvp required</button></a>
                     <!--<button class="button round small light">Past events</button>-->
                     </p>
                 </div>
@@ -97,58 +101,58 @@
             -->
             <div class="row">
                 <div class="medium-5 medium-centered end columns">
-                    <h5>Featuring...</h5>
-                    <p>
-                        Music: <a href="" target="_blank">Shane Cooley &amp; The Lucky Kings</a><br>
-                        Art: <a href="http://www.rexhamiltonart.com/" target="_blank">Rex Hamilton</a><br>
-                        <!--Nonprofit: <a href="" target="_blank"></a><br>-->
-                        Startup: <a href="#" target="_blank">Peepsqueeze</a><br>
-                        <!--Food: <a href="#" target="_blank">dunno yet</a> - 
-                        Wine: <a href="#" target="_blank">dunno yet</a> - -->
-                        Photography: <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a><br>
-                        <!--Videography: <a href="" target="_blank"></a><br>-->
-                        YOU: Share what you create with 5-minute mic time, art table, idea brainstorm, and more.
-                    </p>
-                    <p class="add-margin-top">
-                        Entrepreneurs - brainstorm at the idea table. Write an index card supporting a current idea or start a new one. After the event we'll connect you to the others who contributed to that concept.
-                    </p>
-                    <p class="add-margin-top">
-                        Artists - bring a work of art for the auction. Set your minimum bid and take home 100% if it sells.
-                    </p>
-                    <div class="centerText row">
-                        <button data-reveal-id="rsvp-reveal" class="half-margin-right button round small success">Rsvp required</button>
-                    </div>
+                    <h5>This month's featured creators...</h5>
+                    <ul>
+                        <li>Music by <a href="https://shanecooley.bandcamp.com/" target="_blank">Shane Cooley &amp; The Lucky Kings</a></li>
+                        <li>Art by <a href="http://www.rexhamiltonart.com" target="_blank">Rex Hamilton</a></li>
+                        <li>Startup founder of <a href="http://www.peepsqueeze.com" target="_blank">Peepsqueeze</a></li>
+                        <li>Photography by <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a></li>
+                    </ul>
+                    <h5>Opportunities for you to create</h5>
+                    <ul>
+                        <li>Express yourself with 5-minute mic time</li>
+                        <li>Brainstorm at the idea table</li>
+                        <li>Make art cards at the <a href="http://www.instagram.com/barteratx" target="_blank">bARTer table</a></li>
+                        <li>Grow friendships with connection cards</li>
+                        <li>Participate in the art auction</li>  
+                    </ul>
+
                 </div>
             </div>
 
-            
-            <div id="rsvp-reveal" class="reveal-modal" data-reveal>
-                <form id="rsvp-basic" name="rsvp-basic">
-                    <div class="row full-width">
-                        <div class="medium-9 medium-centered columns">
-                            <h4 class="centerText add-margin-bottom">Rsvp to Creators' Night</h4>
-                            <input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}"/>
-                            <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}"/></div>
-                            <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
-                            
-                            <p class="no-margin-bottom">
-                                <input type="checkbox" id="open-mic" name="want-mic">
-                                <span>I want to be considered for 5-minute mic time.</span></p>
-                            <p class="no-margin-bottom">
-                                <input type="checkbox" id="open-mic" name="want-mic">
-                                <span>I want to bring a work of art to sell in the auction.</span></p>
-                            <p class="add-margin-bottom">
-                                <input type="checkbox" id="want-featured" name="want-featured">
-                                <span>I want to be a featured creator at a future event.</span>
-                            </p>
-                        </div>
+            <form id="rsvp-basic" name="rsvp-basic">
+                <div class="row full-width two-margin-top">
+                    <div class="medium-6 medium-centered columns">
+                        <h4 class="centerText">Rsvp required</h4>
+                        <p class="no-margin-top add-margin-bottom centerText">Please arrive by 6:45 to ensure entry.</p>
+                        <input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}"/>
+                        <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}"/></div>
+                        <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
+                        
+                        <p class="no-margin-bottom">
+                            <input type="checkbox" id="want-art" name="want-art">
+                            <span>I want to bring a work of art to sell in the auction.</span>
+                        </p>
+                        <p class="no-margin-bottom">
+                            <input type="checkbox" id="want-mic" name="want-mic">
+                            <span>I want to be considered for 5-minute mic time.</span>                            
+                        </p>
+                        <textarea id="want-mic-text" name="want-mic-text" class="hidden" rows="3" placeholder="Describe specifically what you want to share."></textarea>
+                        <p>
+                            <input type="checkbox" id="want-featured" name="want-featured">
+                            <span>I want to be a featured creator at a future event.</span>
+                            <textarea id="want-featured-text" name="want-featured-text" class="hidden" rows="3" placeholder="Describe what you are creating. Include a link to website or related page."></textarea>
+                        </p>
+                        
                     </div>
-                    <div class="centerText row">
-                        <h5>Please arrive by 6:45 to ensure entry.</h5>
-                        <a href="{% url "zaplings:rsvp-confirm" %}"><button type="submit" class="button round success">Rsvp</button></a>
-                    </div>
-                </form>
-            </div>
+                </div>
+                
+                
+                <div class="centerText row">
+                    <button type="submit" class="button round success">Join</button>
+                </div>
+                
+            </form>
             
             
 <!--            <form id="form-rsvp" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
@@ -273,7 +277,7 @@
                 play: 5000
             });
 
-            $('#start-profile-reveal').foundation('reveal', 'open');
+        /*    $('#start-profile-reveal').foundation('reveal', 'open');
             $('#start-signup-reveal').foundation('reveal', 'open');
 
             var loveNum = $('#selected-loves .tag').length;
@@ -335,13 +339,26 @@
             $('#selected-needs').on('click', 'label', (function(){
                 $(this).toggleClass('selected').blur();
             }));
+            
+*/
         
-            $('#open-mic').click(function(){
-                $('#open-mic-text').toggleClass('hidden');
+            $('#want-mic').click(function(){
+                $('#want-mic-text').toggleClass('hidden');
+            });
+            
+            $('#want-featured').click(function(){
+                $('#want-featured-text').toggleClass('hidden');
             });
 
             $('#form-rsvp').submit(function() {
                 var values = $('#form-rsvp').serialize();
+            });
+            
+            $('a').click(function(){
+                $('html, body').animate({
+                    scrollTop: $( $(this).attr('href') ).offset().top
+                }, 500);
+                return false;
             });
 
         });

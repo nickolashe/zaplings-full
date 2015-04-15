@@ -7286,7 +7286,8 @@ th.hide-for-touch {
   margin-right: 0.4rem; }
 
 .header-left {
-  display: inline-block; }
+  display: inline-block;
+  z-index: 999; }
 
 #header-left-small {
   padding: 0; }
