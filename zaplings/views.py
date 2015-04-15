@@ -774,15 +774,8 @@ def process_rsvp(request):
 
 
 def send_confirmation_email(request):
-    email_body = '<div><br></div><div>Hi %s, thank you for your RSVP to Creators&#39; Night. We&#39;re excited to introduce you to the kind of people you&#39;re looking to meet. Based on your responses to our questions, we&#39;ll have a connection card for you with names of people you&#39;ll want to find.</div><div><br></div><div>Our goal for Creators Night is to connect, energize, and inspire you to co-create the incredible future we know is possible. The night&#39;s featured creators will share their experience and expression as beautiful examples of what we can achieve, and you will have opportunities to create at the event itself and beyond it. Here&#39;s some of what&#39;s in store:</div><div><br></div><div>- Open mic music, poetry, comedy, whatever</div><div>- Idea contest</div><div>- <a href="http://www.instagram.com/barteratx">bARTer</a> table</div><div>- Performance by traveling family folk band <a href="http://www.thehollands.org">The Hollands!</a></div><div>- Art by <a href="http://www.artofgent.com">Gent</a> and art auction</div><div>- Talk by Donnie of <a href="http://www.sillyangelcards.com">SillyAngel Cards</a> </div><div>- Photography by <a href="http://www.holpphotography.com/">Mike Holp</a></div><div>- Videography by <a href="http://www.thestreetsaremine.com">Daniel LaFata</a></div><div><br></div><div>Sound fun? We&#39;re looking forward to it. Know anyone who might want to join? Forward this email or pass on the RSVP link:</div><div><br></div><div><a href="http://www.zaplings.com/creatorsnight">www.zaplings.com/creatorsnight</a></div><div><br></div><div>See you there!</div><div>Danny, Justin, and Nicko</div><div><br></div><div>(Oh, did we mention it&#39;s free?)</div></div>'
+    email_body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> <title>Zaplings - Creators&#39; Night confirmation</title> <style>@media only screen and (min-device-width: 641px){.content{width: 640px !important;}}</style></head> <body><!--[if (gte mso 9)|(IE)]> <table width="540" align="center" cellpadding="0" cellspacing="0" border="0"> <tr> <td><![endif]--> <table class="content" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; font-family: Arial;"> <tr bgcolor="#05325b" style="text-align: center;"> <td valign="bottom"> <a href="http://www.zaplings.com"><img src="/static/images/logo-email.png" alt="Zaplings" width="111px" height="50px"/></a> </td></tr><tr align="left" style="color: #05325b;"> <td style="padding: 48px;"> Hi %s,<br><br>We&#39;re excited that you will be joining us for the next Creators&#39; Night. Here&#39;s a reminder of what&#39;s in store:<br><br><strong>Featured creators</strong> <ul> <li>Music by <a href="https://shanecooley.bandcamp.com/" target="_blank">Shane Cooley &amp; The Lucky Kings</a></li><li>Art by <a href="http://www.rexhamiltonart.com" target="_blank">Rex Hamilton</a></li><li>Startup founder of <a href="http://www.peepsqueeze.com" target="_blank">Peepsqueeze</a></li><li>Photography by <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a></li></ul> <strong>Opportunities for you to create</strong> <ul> <li>Express yourself with 5-minute mic time</li><li>Brainstorm at the idea table</li><li>Make art at the bARTer table</li><li>Grow friendships with connection cards</li><li>Sell or bid in the art auction</li></ul> </td></tr></table><!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]--> </body></html>'
     name = request.POST['user-firstname'] or 'there'
-    p1 = p2 = p3 = ""
-    if request.POST['user-want-mic']:
-        p1 = ""
-    if request.POST['user-want-art']:
-        p2 = ""
-    if request.POST['user-want-featured']:
-        p3 = ""
     response = requests.post(
         "https://api.mailgun.net/v2/mg.zaplings.com/messages",
         auth=("api", "key-9c1bcab96768c19c80966e42c7882cd0"),
@@ -791,10 +784,7 @@ def send_confirmation_email(request):
             "to": request.POST['user-email'],
             "subject": "See you at Creators' Night!",
             "h:Reply-To": "danny@zaplings.com",
-            "html": email_body % (name, p1, p2, p3),
-            
-            
-            
+            "html": email_body % name    
         }
     )
 
