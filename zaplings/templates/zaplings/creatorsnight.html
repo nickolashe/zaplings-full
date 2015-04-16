@@ -15,6 +15,8 @@
         
         <link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">
         <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
+        <script src="{% static "jquery.bxslider/jquery.bxslider.js" %}"></script>
+        <link href="{% static "jquery.bxslider/jquery.bxslider.css" %}" rel="stylesheet" />
     </head>
     <body>
         <!-- facebook sdk -->
@@ -118,6 +120,44 @@
                         <li>Participate in the art auction</li>  
                     </ul>
 
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="medium-8 medium-centered columns">
+                    <p class="half-margin-bottom centerText">Thank you to <a href="http://www.danieldavisphoto.com/" target="_blank">Daniel Davis</a> for last month's photos:</p>
+                    <div id="rsvp-slider">
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/1.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/2.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/3.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/4.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/5.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/6.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/7.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/8.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/9.jpg" %}">
+                        </div>
+                        <div class="slider-inner">
+                            <img class="rsvp-img" src="{% static "images/ddavis/resize/10.jpg" %}">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -360,6 +400,13 @@
                 }, 500);
                 return false;
             });
+            
+            $('.blog-slider, #rsvp-slider').bxSlider({
+                maxSlides: 1,
+                prevText: '',
+                nextText: '',
+                pager: false,
+            }); 
 
         });
 

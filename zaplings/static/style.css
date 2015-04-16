@@ -7326,6 +7326,15 @@ th.hide-for-touch {
 .social-button {
   height: 100%; }
 
+#rsvp-slider {
+  height: 335px;
+  max-height: 100vh; }
+
+.rsvp-img {
+  height: auto;
+  margin: auto;
+  vertical-align: middle; }
+
 .blog-page {
   min-height: 100vh;
   position: relative; }
