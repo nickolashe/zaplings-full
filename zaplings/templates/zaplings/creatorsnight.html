@@ -123,7 +123,7 @@
             </div>
             
             <div class="row">
-                <div class="medium-8 medium-centered columns">
+                <div class="medium-10 medium-centered columns">
                     <p class="half-margin-bottom centerText">Thank you to <a href="http://www.danieldavisphoto.com/" target="_blank">Daniel Davis</a> for last month's photos:</p>
                     <div id="rsvp-slider">
                         <div class="slider-inner">
@@ -165,21 +165,21 @@
                     <div class="medium-6 medium-centered columns">
                         <h4 class="centerText">Rsvp required</h4>
                         <p class="no-margin-top add-margin-bottom centerText">Please arrive by 6:45 to ensure entry.</p>
-                        <input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}"/>
-                        <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}"/></div>
-                        <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}"/>
+                        <input id="last-name" type="text" placeholder="Last name" name="user-lastname" value="{{ user.last_name }}" tabindex="2" />
+                        <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" value="{{ user.first_name }}" tabindex="1" /></div>
+                        <input id="email" type="email" placeholder="Email" name="user-email" value="{{ email }}" tabindex="3" />
                         
                         <p class="no-margin-bottom">
-                            <input type="checkbox" id="want-art" name="want-art">
+                            <input type="checkbox" id="want-art" name="want-art" tabindex="4">
                             <span>I want to bring a work of art to sell in the auction.</span>
                         </p>
                         <p class="no-margin-bottom">
-                            <input type="checkbox" id="want-mic" name="want-mic">
+                            <input type="checkbox" id="want-mic" name="want-mic" tabindex="5">
                             <span>I want to be considered for 5-minute mic time.</span>                            
                         </p>
                         <textarea id="want-mic-text" name="want-mic-text" class="hidden" rows="3" placeholder="Describe specifically what you want to share."></textarea>
                         <p>
-                            <input type="checkbox" id="want-featured" name="want-featured">
+                            <input type="checkbox" id="want-featured" name="want-featured" tabindex="6">
                             <span>I want to be a featured creator at a future event.</span>
                             <textarea id="want-featured-text" name="want-featured-text" class="hidden" rows="3" placeholder="Describe what you are creating. Include a link to website or related page."></textarea>
                         </p>
