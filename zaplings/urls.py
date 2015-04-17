@@ -5,6 +5,7 @@ from zaplings import views
 urlpatterns = patterns('',
     url(r'^/?$', views.IndexView.as_view(), name='index'),
     url(r'^index-alt/?$', views.IndexAltView.as_view(), name='index-alt'),
+    url(r'^our-mission/?$', views.MissionView.as_view(), name='our-mission'),
     url(r'^rsvp-email/?$', views.RsvpEmail.as_view(), name='rsvp-email'),
     url(r'^blog/?$', views.BlogView.as_view(), name='blog'),
     # user login/signup 

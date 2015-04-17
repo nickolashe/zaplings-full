@@ -29,6 +29,10 @@ class IndexAltView(generic.ListView):
     model = User
     template_name = 'zaplings/index-alt.html'
     
+class MissionView(generic.ListView):
+    model = User
+    template_name = 'zaplings/our-mission.html'
+    
 class RsvpEmail(generic.ListView):
     model = User
     template_name = 'zaplings/rsvp-email.html'
