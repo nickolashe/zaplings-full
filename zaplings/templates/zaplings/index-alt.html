@@ -9,7 +9,10 @@
 		<title>Zaplings | The idea garden</title>
 		<link rel="stylesheet" href="{% static "style.css" %}" />
 		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		
 		{% include "./zaplings/start-scripts.html" %}
+		
+		<link rel="stylesheet" type="text/css" href="{% static "./slick/slick.css" %}"/>
 	
 	</head>
 	<body id="home">
@@ -33,9 +36,9 @@
 					</div>
 				</div>
 				<div class="row centerText">
-					<button class="button success  round">Check out Creators' Night</button>
+					<a href="{% url "zaplings:creatorsnight" %}"><button class="button success  round">Check out Creators' Night</button></a>
 					<p class="half-margin-top half-margin-bottom"><button class="button small light round">Bring Zaplings to your city</button></p>
-					<button class="button small light round">Our dream</button>
+					<button class="button small light round">Our mission</button>
 				</div>
 			</div>
 			
@@ -54,9 +57,9 @@
 					</div>
 				</div>
 				<div class="row add-margin-top centerText">
-					<button class="button success small round">Check out Creators' Night</button>
+					<a href="{% url "zaplings:creatorsnight" %}"><button class="button success small round">Check out Creators' Night</button></a>
 					<p class="half-margin-top half-margin-bottom"><button class="button tiny light round">Bring Zaplings to your city</button></p>
-					<button class="button tiny light round">Our dream</button>
+					<button class="button tiny light round">Our mission</button>
 				</div>
 			</div>
 			<div class="row">
@@ -85,6 +88,8 @@
 		<script type="text/javascript">
 	  		$(document).foundation();
 		</script>
+		<script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script> 
+		<script src="{% static "./js/home-slider.js" %}"></script>
 		
 		{% include "./zaplings/end-scripts.html" %}
 	</body>
