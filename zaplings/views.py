@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -25,21 +25,26 @@ class IndexView(generic.ListView):
         """Return the all features ideas."""
         return FeaturedIdea.objects.all()
 
+
 class IndexAltView(generic.ListView):
     model = User
     template_name = 'zaplings/index-alt.html'
+
     
 class MissionView(generic.ListView):
     model = User
     template_name = 'zaplings/our-mission.html'
+
     
 class RsvpEmail(generic.ListView):
     model = User
     template_name = 'zaplings/rsvp-email.html'
 
+
 class BlogView(generic.ListView):
     model = User
     template_name = 'zaplings/blog.html'
+
 
 class LovesView(generic.ListView):
     template_name = 'zaplings/loves.html'
@@ -151,13 +156,16 @@ class MyIdeasView(generic.ListView):
     model = User
     template_name = 'zaplings/myideas.html'
 
+
 class JetView(generic.ListView):
     model = User
     template_name = 'zaplings/jet.html'
 
+
 class JetEditView(generic.ListView):
     model = User
     template_name = 'zaplings/jet-edit.html'
+
 
 class NewIdeaView(generic.ListView):
     model = User
@@ -254,25 +262,6 @@ def referrer(request, referrer):
     request_obj = {'featured_ideas': FeaturedIdea.objects.all()}
     # return back to index for the time-being
     return render(request, 'zaplings/index.html', request_obj)
-
-
-def vote(request, poll_id):
-    p = get_object_or_404(Poll, pk=poll_id)
-    try:
-        selected_choice = p.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the poll voting form.
-        return render(request, 'polls/detail.html', {
-            'poll': p,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
 def record_loves(request, isRedirected=True):
@@ -518,31 +507,51 @@ def record_text(request):
     """
     try:
         userid = request.user.pk
+        want_default_text = '_on_'
 
         if userid:
-            # wamt-to-meet
-            love_text = request.POST['want-to-meet'] \
-                if 'want-to-meet' in request.POST else ''
-            logger.info('want-to-meet text: %s', love_text)
-            if love_text:
+            # user-want-mic
+            want_mic = request.POST['want-mic'] \
+                if 'want-mic' in request.POST else ''
+            logger.info('want-mic: %s', want_mic)
+            if want_mic:
+                want_mic_text = request.POST['want-mic-text']
+                if not want_mic_text:
+                    want_mic_text = want_default_text
                 try:
-                    LoveText.objects.create(user_id=userid, text=love_text)
+                    LoveText.objects.create(user_id=userid, text=want_mic_text)
                 except IntegrityError:
-                    lovetext = LoveText.objects.get(user_id=userid)
-                    lovetext.text = love_text
-                    lovetext.save()
+                    want_mic_new = LoveText.objects.get(user_id=userid)
+                    want_mic_new.text = want_mic_text
+                    want_mic_new.save()
 
-            # mic-text
-            offer_text = request.POST['open-mic-text'] \
-                if 'open-mic-text' in request.POST else ''
-            logger.info('open-mic text: %s', offer_text)
-            if offer_text:
+            # want-art
+            want_art = request.POST['want-art'] \
+                if 'want-art' in request.POST else ''
+            logger.info('want-art: %s', want_art)
+            if want_art:
+                want_art_text = want_default_text
                 try:
-                    OfferText.objects.create(user_id=userid, text=offer_text)
+                    OfferText.objects.create(user_id=userid, text=want_art_text)
                 except IntegrityError:
-                    offertext = OfferText.objects.get(user_id=userid)
-                    offertext.text = offer_text
-                    offertext.save()
+                    want_art_new = OfferText.objects.get(user_id=userid)
+                    want_art_new.text = want_art_text
+                    want_art_new.save()
+
+            # want-featured
+            want_featured = request.POST['want-featured'] \
+                if 'want-featured' in request.POST else ''
+            logger.info('want-featured: %s', want_featured)
+            if want_featured:
+                want_featured_text = request.POST['want-featured-text']
+                if not want_featured_text:
+                    want_featured_text = want_default_text
+                try:
+                    NeedText.objects.create(user_id=userid, text=want_featured_text)
+                except IntegrityError:
+                    want_featured_new = NeedText.objects.get(user_id=userid)
+                    want_featured_new.text = want_featured_text
+                    want_featured_new.save()
         else:
             return redirect('zaplings:creatorsnight')
 
@@ -714,7 +723,7 @@ def record_new_email(request):
     try:
         email = request.POST['user-email']
         status_message = {
-            'REENTER': 'Please enter your email.',
+            'REENTER': 'Please enter your name and email',
             'EXISTS': 'You are already part of Zaplings! Thanks!',
             'SUCCESS': 'Thank you for joining Zaplings!'}
 
@@ -723,11 +732,10 @@ def record_new_email(request):
             status = 'REENTER'
             logger.info('Empty email submitted')
             request_obj = {
-                'featured_ideas': FeaturedIdea.objects.all(),
                 'status_message': status_message[status]
             }
             # return back to index for the time-being
-            return render(request, 'zaplings/index.html', request_obj)
+            return render(request, 'zaplings/creatorsnight.html', request_obj)
 
         # EXISTING EMAIL
         elif User.objects.filter(username=email):
@@ -742,6 +750,14 @@ def record_new_email(request):
                     newuser.first_name = request.POST['user-firstname']
                 if 'user-lastname' in request.POST:
                     newuser.last_name = request.POST['user-lastname']
+                if not (newuser.first_name and newuser.last_name): 
+                    status = 'REENTER'
+                    logger.info('User first or last name missing')
+                    request_obj = {
+                        'status_message': status_message[status]
+                    }
+                    # return back to index for the time-being
+                    return render(request, 'zaplings/creatorsnight.html', request_obj)
                 newuser.set_password('')
                 newuser.save()
                 status = 'SUCCESS'
@@ -754,9 +770,9 @@ def record_new_email(request):
         login_email(request, email)
 
         # generate user tags and redirect to profile
-        return HttpResponseRedirect(
-            reverse('zaplings:generate_user_tags',
-            args=(request.user.pk,)))
+        # return HttpResponseRedirect(
+        #     reverse('zaplings:generate_user_tags',
+        #     args=(request.user.pk,)))
     except Exception as e:
         logger.error(
             "Error in record_new_email: %s (%s)", e.message, str(type(e)))
@@ -765,9 +781,9 @@ def record_new_email(request):
 
 def process_rsvp(request):
     record_new_email(request)
-    record_loves(request, isRedirected=False)
-    record_offers(request, isRedirected=False)
-    record_needs(request, isRedirected=False)
+    # record_loves(request, isRedirected=False)
+    # record_offers(request, isRedirected=False)
+    # record_needs(request, isRedirected=False)
     record_text(request)
     send_confirmation_email(request)
 
@@ -778,30 +794,42 @@ def process_rsvp(request):
 
 
 def send_confirmation_email(request):
-    email_body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> <title>Zaplings - Creators&#39; Night confirmation</title> <style>@media only screen and (min-device-width: 641px){.content{width: 640px !important;}}</style></head> <body><!--[if (gte mso 9)|(IE)]> <table width="540" align="center" cellpadding="0" cellspacing="0" border="0"> <tr> <td><![endif]--> <table class="content" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; font-family: Arial;"> <tr bgcolor="#05325b" style="text-align: center;"> <td valign="bottom"> <a href="http://www.zaplings.com"><img src="/static/images/logo-email.png" alt="Zaplings" width="111px" height="50px"/></a> </td></tr><tr align="left" style="color: #05325b;"> <td style="padding: 48px;"> Hi %s,<br><br>We&#39;re excited that you will be joining us for the next Creators&#39; Night. Here&#39;s a reminder of what&#39;s in store:<br><br><strong>Featured creators</strong> <ul> <li>Music by <a href="https://shanecooley.bandcamp.com/" target="_blank">Shane Cooley &amp; The Lucky Kings</a></li><li>Art by <a href="http://www.rexhamiltonart.com" target="_blank">Rex Hamilton</a></li><li>Startup founder of <a href="http://www.peepsqueeze.com" target="_blank">Peepsqueeze</a></li><li>Photography by <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a></li></ul> <strong>Opportunities for you to create</strong> <ul> <li>Express yourself with 5-minute mic time</li><li>Brainstorm at the idea table</li><li>Make art at the bARTer table</li><li>Grow friendships with connection cards</li><li>Sell or bid in the art auction</li></ul> <p>Thank you for your help in growing this community of creators. Forward this email to friends who might be interested. Remind them to Rsvp at <a href="http://www.zaplings.com/creatorsnight" target="_blank">zaplings.com/creatorsnight</a> and arrive by 6:45pm to ensure entry.</p><p>Create on!<br>The Zaplings Team</p></td></tr></table><!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]--> </body></html>'
-    name = request.POST['user-firstname'] or 'there'
-    response = requests.post(
-        "https://api.mailgun.net/v2/mg.zaplings.com/messages",
-        auth=("api", "key-9c1bcab96768c19c80966e42c7882cd0"),
-        data={
-            "from": "Zaplings Team <postmaster@mg.zaplings.com>",
-            "to": request.POST['user-email'],
-            "subject": "See you at Creators' Night!",
-            "h:Reply-To": "danny@zaplings.com",
-            "html": email_body % name    
-        }
-    )
+    email_body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> <title>Zaplings - Creators&#39; Night confirmation</title> <style>@media only screen and (min-device-width: 641px){.content{width: 640px !important;}}</style></head> <body><!--[if (gte mso 9)|(IE)]> <table width="540" align="center" cellpadding="0" cellspacing="0" border="0"> <tr> <td><![endif]--> <table class="content" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 100%%; max-width: 640px; font-family: Arial;"> <tr bgcolor="#05325b" style="text-align: center;"> <td valign="bottom"> <a href="http://www.zaplings.com"><img src="/static/images/logo-email.png" alt="Zaplings" width="111px" height="50px"/></a> </td></tr><tr align="left" style="color: #05325b;"> <td style="padding: 48px;"> Hi %s,<br><br>We&#39;re excited that you will be joining us for the next Creators&#39; Night. Here&#39;s a reminder of what&#39;s in store:<br><br><strong>Featured creators</strong> <ul> <li>Music by <a href="https://shanecooley.bandcamp.com/" target="_blank">Shane Cooley &amp; The Lucky Kings</a></li><li>Art by <a href="http://www.rexhamiltonart.com" target="_blank">Rex Hamilton</a></li><li>Startup founder of <a href="http://www.peepsqueeze.com" target="_blank">Peepsqueeze</a></li><li>Photography by <a href="http://www.mynameiskat.com" target="_blank">Kat Goins</a></li></ul> <strong>Opportunities for you to create</strong> <ul> <li>Express yourself with 5-minute mic time</li><li>Brainstorm at the idea table</li><li>Make art at the bARTer table</li><li>Grow friendships with connection cards</li><li>Sell or bid in the art auction</li></ul> <p>Thank you for your help in growing this community of creators. Forward this email to friends who might be interested. Remind them to Rsvp at <a href="http://www.zaplings.com/creatorsnight" target="_blank">zaplings.com/creatorsnight</a> and arrive by 6:45pm to ensure entry.</p><p>Create on!<br>The Zaplings Team</p></td></tr></table><!--[if (gte mso 9)|(IE)]> </td></tr></table><![endif]--> </body></html>'
+    
+    zaplings_emails = [
+        'nicko.shestopalov@gmail.com',
+        'danny@zaplings.com',
+        'dannypernik@gmail.com',
+        'drpernik@gmail.com',
+        'justin.cole1981@gmail.com',
+    ]
 
-    if response.status_code == 200:
-        logger.info("Email sent to:%s", request.POST['user-email'])
-        return True
-    else:
-        logger.error(
-            "MailGun returned %s: %s. For email: %s",
-            response.status_code,
-            response.text,
-            request.POST['user-email'])
-        return False
+    user_email = request.POST['user-email']
+    if user_email in zaplings_emails:
+        name = request.POST['user-firstname'] or 'there'
+        response = requests.post(
+            "https://api.mailgun.net/v2/mg.zaplings.com/messages",
+            auth=("api", "key-9c1bcab96768c19c80966e42c7882cd0"),
+            data={
+                "from": "Zaplings Team <postmaster@mg.zaplings.com>",
+                "to": user_email,
+                "subject": "See you at Creators' Night!",
+                "h:Reply-To": "danny@zaplings.com",
+                "html": email_body % name    
+            }
+        )
+
+        if response.status_code == 200:
+            logger.info("Email sent to:%s", user_email)
+            return True
+        else:
+            logger.error(
+                "MailGun returned %s: %s. For email: %s",
+                response.status_code,
+                response.text,
+                user_email
+            )
+            return False
 
 
 def signup_user(request):
