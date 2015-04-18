@@ -160,7 +160,8 @@
                 </div>
             </div>
 
-            <form id="rsvp-basic" name="rsvp-basic">
+           <form id="rsvp-basic" name="rsvp-basic" action="{% url 'zaplings:process-rsvp' %}" method="post"/>
+                {% csrf_token %} 
                 <div class="row full-width two-margin-top">
                     <div class="medium-6 medium-centered columns">
                         <h4 class="centerText">Rsvp required</h4>
