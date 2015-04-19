@@ -817,7 +817,6 @@ def send_confirmation_email(request):
                 "html": email_body % name    
             }
         )
->>>>>>> master
 
         if response.status_code == 200:
             logger.info("Email sent to:%s", user_email)
