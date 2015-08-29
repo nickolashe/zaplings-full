@@ -1,157 +1,154 @@
 <!doctype html>
-{% load staticfiles %}
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="{% static "./style.css" %}"/>
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "js/vendor/modernizr.js" %}"></script>
-    <script src="{% static "js/vendor/jquery.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "slick/slick.css" %}"/>
-    <script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        <link rel="stylesheet" type="text/css" href="{% static "slick/slick.css" %}"/>
+        <script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script>
   </head>
   <body>
-	 <div class="wrapper">
+     <div class="wrapper">
 
-	 	{% include "./zaplings/header.html" %}
-	 
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-			</div>
+        {% include "./zaplings/header.html" %}
+     
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns">
+                <img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+            </div>
 
-			<!-- display "edit profile" button if visitor = user -->
-			<div class="rightText medium-3 columns end">
-				<button id="edit-profile" class="button small round light">Edit profile</button>		
-			</div>
-		</div>
-		
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<h3 class="centerText">Danny Pernik</h3>
-			</div>
-		</div>
-		
-		<div class="row show-for-small-only">
-			<div class="small-12 columns">
-				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">Danny Pernik</h3>		
-			</div>
-		</div>	
-		
-		<!-- display "edit profile" button if visitor = user -->
-		<div class="row show-for-small-only">
-			<div class="small-12 centerText columns">
-				<div><button class="button small light round">Edit profile</button></div>
-			</div>	
-		</div>
-		<div class="centerText row">
-			<img src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold-small.png" %}'" alt="Gold Connector" title="Gold Connector" width="40px" height="40px"/>
-			<img src="{% static "./images/connector-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver-small.png" %}'" alt="Silver Connector" title="Silver Connector" width="40px" height="40px"/>
-			<img src="{% static "./images/connector-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-bronze-small.png" %}'" alt="Bronze Connector" title="Bronze Connector" width="40px" height="40px"/>
-			<img src="{% static "./images/ideator-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-gold-small.png" %}'" alt="Gold Creator" title="Gold Creator" width="40px" height="40px"/>
-			<img src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-silver-small.png" %}'" alt="Silver Creator" title="Silver Creator" width="40px" height="40px"/>
-			<img src="{% static "./images/ideator-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-bronze-small.png" %}'" alt="Bronze Creator" title="Bronze Creator" width="40px" height="40px"/>
-		</div>
-		<form>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">My ideas</h4>
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 medium-offset-2 small-10 small-offset-1 columns">
-					<div id="idea-slider" class="single-item">
-							<div>
-								<a class="hide-for-small-only" href="#">
-									<img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
-								</a>
-								<div class="overflow-div">
-	              					<a class="no-decoration idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
-	             					<p class="idea-feed-description">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></a>
-								</div>
-							</div>
-							<div>
-								<a class="hide-for-small-only" href="#">
-									<img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
-								</a>
-								<div class="overflow-div">
-	              					<a class="no-decoration idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
-	             					<p class="idea-feed-description">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></a>
-								</div>
-							</div>	
-												
-					</div>
-				</div>
-			</div>
+            <!-- display "edit profile" button if visitor = user -->
+            <div class="rightText medium-3 columns end">
+                <button id="edit-profile" class="button small round light">Edit profile</button>        
+            </div>
+        </div>
+        
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns">
+                <h3 class="centerText">Danny Pernik</h3>
+            </div>
+        </div>
+        
+        <div class="row show-for-small-only">
+            <div class="small-12 columns">
+                <img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+                <h3 class="centerText">Danny Pernik</h3>        
+            </div>
+        </div>  
+        
+        <!-- display "edit profile" button if visitor = user -->
+        <div class="row show-for-small-only">
+            <div class="small-12 centerText columns">
+                <div><button class="button small light round">Edit profile</button></div>
+            </div>  
+        </div>
+        <div class="centerText row">
+            <img src="{% static "./images/connector-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-gold-small.png" %}'" alt="Gold Connector" title="Gold Connector" width="40px" height="40px"/>
+            <img src="{% static "./images/connector-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-silver-small.png" %}'" alt="Silver Connector" title="Silver Connector" width="40px" height="40px"/>
+            <img src="{% static "./images/connector-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-bronze-small.png" %}'" alt="Bronze Connector" title="Bronze Connector" width="40px" height="40px"/>
+            <img src="{% static "./images/ideator-gold.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-gold-small.png" %}'" alt="Gold Creator" title="Gold Creator" width="40px" height="40px"/>
+            <img src="{% static "./images/ideator-silver.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-silver-small.png" %}'" alt="Silver Creator" title="Silver Creator" width="40px" height="40px"/>
+            <img src="{% static "./images/ideator-bronze.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-bronze-small.png" %}'" alt="Bronze Creator" title="Bronze Creator" width="40px" height="40px"/>
+        </div>
+        <form>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">My ideas</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 medium-offset-2 small-10 small-offset-1 columns">
+                    <div id="idea-slider" class="single-item">
+                            <div>
+                                <a class="hide-for-small-only" href="#">
+                                    <img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
+                                </a>
+                                <div class="overflow-div">
+                                    <a class="no-decoration idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
+                                    <p class="idea-feed-description">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></a>
+                                </div>
+                            </div>
+                            <div>
+                                <a class="hide-for-small-only" href="#">
+                                    <img class="idea-feed-img" src="{% static "./images/leaf-circle.png" %}" height="88px" width="88px">
+                                </a>
+                                <div class="overflow-div">
+                                    <a class="no-decoration idea-feed-text" href="#"><h5 class="idea-feed-title">Bam's Brussel Sprouts 25ch</h5>
+                                    <p class="idea-feed-description">A short sweet slogan goes here. (50 character max) A short sweet slogan goes here (50 character max)</p></a>
+                                </div>
+                            </div>  
+                                                
+                    </div>
+                </div>
+            </div>
 
-						<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I love</h4>
-					<!-- user.love-text -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
-		
-				
-					<input id="love-" class="vis-hidden" type="checkbox" name="love-tag[]" value="{{ love }}">
-						<label class="tag button small round" for="love-">{{ love }}</label>
-						
-	
-				
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I offer</h4>
-					<!-- user.offer_text -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
-					
- 		
-				
- 					<input id="offer-" class="vis-hidden" type="checkbox" name="offer-tag[]" value="{{ offer }}">
- 						<label class="tag button small round" for="offer-">{{ offer }}</label>
-						
+                        <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I love</h4>
+                    <!-- user.love-text -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns"> 
+        
+                
+                    <input id="love-" class="vis-hidden" type="checkbox" name="love-tag[]" value="{{ love }}">
+                        <label class="tag button small round" for="love-">{{ love }}</label>
+                        
+    
+                
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I offer</h4>
+                    <!-- user.offer_text -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns"> 
+                    
+        
+                
+                    <input id="offer-" class="vis-hidden" type="checkbox" name="offer-tag[]" value="{{ offer }}">
+                        <label class="tag button small round" for="offer-">{{ offer }}</label>
+                        
 
 
-				</div>		
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I need</h4>
-					<!-- user.need_text -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
-					
-			
-				
-						<input id="need-" class="vis-hidden" type="checkbox" name="need-tag[]" value="{{ need }}">
-							<label class="tag button small round" for="need-">{{ need }}</label>
-						
+                </div>      
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I need</h4>
+                    <!-- user.need_text -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns"> 
+                    
+            
+                
+                        <input id="need-" class="vis-hidden" type="checkbox" name="need-tag[]" value="{{ need }}">
+                            <label class="tag button small round" for="need-">{{ need }}</label>
+                        
 
-					
-				</div>		
-			</div>
-		</form>	
-				<div class="push"></div>
-			</div>
+                    
+                </div>      
+            </div>
+        </form> 
+                <div class="push"></div>
+            </div>
 
-			{% include "./zaplings/footer.html" %}
+            {% include "./zaplings/footer.html" %}
 
-		<script src="{% static "js/foundation.min.js" %}"></script>		
-		<script type="text/javascript">
-	  		$(document).foundation();
-		</script>
-		<script src="{% static "./js/profile-slider.js" %}"></script>
-				
+        <script src="{% static "js/foundation.min.js" %}"></script>     
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        <script src="{% static "./js/profile-slider.js" %}"></script>
+                
   </body>
-			
+            

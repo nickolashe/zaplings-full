@@ -1,0 +1,45 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+    
+    </head>
+    <body>
+      
+        <div class="wrapper">
+
+            {% include "./zaplings/header.html" %}
+            
+            <h2 class="titleCenter">Our dream</h2>
+            <div class="row">
+                <div class="small-11 medium-8 small-centered columns">
+                    <p class="lead">At Zaplings, we have a dream to help anyone in the world create something great. If you have an idea for something you want to pursue, the Zaplings community will help you bring it to life. If not, we will help you find ideas that inspire you.</p>
+
+                    <p>One day, we will be able to help any idea move forward every step of the way, from inspiration to impact creation. That includes ideas for business, social impact, and any kind of art, whether it's sung or painted or written or performed.</p>
+                    
+                    <p>For the moment, we are focused on the first two stages of our creation process: Inspiration and validation. As we grow (and progress through the stages ourselves), we will begin to assist you through the steps of transformation, team formation, collaboration, implementation, and impact creation.</p>
+                    
+                    <p>We are currently preparing for our beta launch. Add your email below to be among the first users of our service, or learn more about each stage through which ideas will grow and thrive on Zaplings.
+                    </p>
+                    <p class="centerText"><a href="{% url 'zaplings:signup' %}"><button class="button round success half-margin-right">Join Zaplings</button></a><a href="{% url 'zaplings:creation-process' %}"><button class="button small light round">Our creation process</button></a></p>
+                    
+                </div>
+            </div>
+            
+            <div class="push"></div>
+        </div>
+        
+        {% include "./zaplings/footer.html" %}
+            
+        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        
+        {% include "./zaplings/end-scripts.html" %}
+    </body>
+</html>

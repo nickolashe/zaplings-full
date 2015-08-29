@@ -1,0 +1,42 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+	<head>	
+	
+		{% include "./zaplings/head.html" %}
+		
+	</head>
+	<body>
+		<div class="wrapper">
+			{% include "./zaplings/header.html" %}
+	  		
+			<h2 class="titleCenter">Welcome!</h2>
+			<div class="row">
+				<div class="medium-8 medium-offset-2 small-12 columns">
+					<p>We're happy to have you with us. Our team is working hard to prepare for beta launch. In the meantime, you can learn more about our vision for the future or start making introductions toward your Connector badge.</p>
+					<p class="centerText"><button class="half-margin-right button round success">The Connector badge</button></p>
+					<p class="centerText">
+					<button class="button round small light half-margin-right">Our dream</button></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="centerText add-margin-top medium-8 medium-offset-2 small-12 columns">
+					
+				</div>
+			</div>	
+		
+			<div class="push"></div>
+		</div>
+
+		{% include "./zaplings/footer.html" %}
+
+	    <script src="{% static "js/foundation.min.js" %}"></script>	
+		<script type="text/javascript">
+	  		$(document).foundation();
+		</script>
+		
+		{% include "./zaplings/end-scripts.html" %}
+	</body>
+</html>

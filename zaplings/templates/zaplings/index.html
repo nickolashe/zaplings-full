@@ -1,19 +1,19 @@
 <!doctype html>
-{% load staticfiles %}
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="Create something with Zaplings"/>
-	<meta property="og:image" content="{% static "logo-large.png" %}"/>
-	<meta property="og:description" content="Share ideas, get feedback, and build your team. Zaplings introduces you to ideas you&#39;ll love and people you&#39;re looking for."/>
-    <title>Zaplings | Connect to create.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}"/>
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="{% static "./slick/slick.css" %}"/>
 
-    {% include "./zaplings/start-scripts.html" %}
+{% load static %}
+
+<html class="no-js" lang="en">
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        
+        <meta property="og:title" content="Create something with Zaplings"/>
+    	<meta property="og:image" content="{% static "logo-large.png" %}"/>
+    	<meta property="og:description" content="Share ideas, get feedback, and build your team. Zaplings introduces you to ideas you&#39;ll love and people you&#39;re looking for."/>
+
+    	<link rel="stylesheet" type="text/css" href="{% static "./slick/slick.css" %}"/>
   </head>
+  
   <body id="home">
     
 	<header id="home-header" class="row">
@@ -34,9 +34,9 @@
 	  </header>
 	  		<div class="row">
 				<div id="intro" class="titleMargin large-5 large-offset-1 medium-8 medium-offset-2 small-12 columns">
-					<h2 id="homeTitle">Connect to create.</h2>
-					<p class="lead">Share ideas, get feedback, and build your team. Zaplings suggests ideas you'll love and people who can help you.</p>
-					<h3 id="create-something">Let's grow together.</h3>
+					<h2 id="homeTitle">The idea garden</h2>
+					<p class="lead">Share ideas, get feedback, and build your team. Zaplings suggests ideas you'll love and people who can help.</p>
+					<h3 id="create-something">Let's create something.</h3>
 					<!-- Form moved to jQuery -->
 
 						<div id="start-options">

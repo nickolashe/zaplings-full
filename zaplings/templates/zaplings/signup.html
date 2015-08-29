@@ -1,20 +1,18 @@
 <!doctype html>
-{% load staticfiles %}
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Connect to create.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}" />
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "./js/jquery.placeholder.js" %}"></script>
-    {% include "./zaplings/start-scripts.html" %}
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        
   </head>
   <body>
 	 <div class="wrapper">
 	 	{% include "./zaplings/header.html" %}
 	  		<div class="row">
-				<div id="signup" class="medium-5 small-12 columns">
+				<div id="signup" class="medium-5 medium-offset-1 small-12 columns">
 					<h3 class="titleCenter">Sign up</h3>
 					<form id="form-signup" action="{% url 'zaplings:signup_user' %}" method="post">
                         {% csrf_token %}
@@ -25,17 +23,25 @@
 						<span class="input-sizer"><input id="username" type="text" placeholder="username" name="user-username" tabindex="4" /></span>
 						<input id="verify" type="password" placeholder="Verify password" name="user-password-verify" tabindex="6">
 						<div class="overflow-div"><input id="password" type="password" name="user-password" placeholder="Password" tabindex="5" /></div>
+						<span class="fit-left">Referred by:</span>
+						<span class="input-sizer"><input id="username" type="text" placeholder="Friend's username (optional)" name="user-username" tabindex="6" /></span>
 						
 						<div class="centerText">	
-							<button type="submit" class="button success round" tabindex="7">Create profile</button>
+							<button type="submit" class="button success round" tabindex="7">Create account</button>
 							{% if signup_status_message %}
 	                            <p id="status_message"> {{ signup_status_message }}</p>
 	                        {% endif %}
 	                    </div>
 					</form>
 				</div>
+				<div class="two-margin-top medium-5 medium-offset-1 small-12 columns end">
+					<div class="hide-for-small-only five-margin-top"></div>
+					<div class="flex-video">
+						<iframe src="https://www.youtube.com/embed/OFzXaFbxDcM?iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
 				
-				<div class="vert-rule hide-for-small-only medium-1 columns">
+				<!--<div class="vert-rule hide-for-small-only medium-1 columns">
 				</div>
 				
 				<div id="login" class="medium-5 medium-offset-1 small-12 columns end">
@@ -51,7 +57,7 @@
 	                        <p id="status_message"> {{ login_status_message }}</p>
 	                    {% endif %}
 	                    </div>
-				</div>	
+				</div>	-->
 			</div>
 
 			<div class="push"></div>

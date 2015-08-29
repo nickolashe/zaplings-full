@@ -1,328 +1,324 @@
 <!doctype html>
-{% load staticfiles %}
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Connect to create.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}" />
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
 
-	{% include "./zaplings/start-scripts.html" %}
-
-	<script src="{% static "./js/jquery-ui-1.11.0.custom/jquery-ui.min.js" %}"></script>
-	<script src="{% static "./js/jquery.ui.touch-punch.min.js" %}"></script>
-	</head>
+        <script src="{% static "./js/jquery.ui.touch-punch.min.js" %}"></script>
+    </head>
   <body>
-	  
-	<div class="wrapper">
-	
-	  	{% include "./zaplings/header.html" %}
-	 
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-			</div>
-			<div class="rightText medium-3 columns end">
-				{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
-				<a href="#" data-reveal-id="change-image-reveal"><button class="change-image button small round light">Change image</button></a>
-				{% endif %}
-			</div>
-		</div>
-		
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<!-- if user has created username -->
-				{% if user.first_name %}
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
-				{% else %}
-				<h3 class="centerText">{{ user.username }}</h3>
-				{% endif %}
-			</div>
-			<div class="rightText medium-3 columns end">
-				{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
-				
-				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>
-				{% endif %}
-			</div>
-		</div>
-		
-		<div class="row show-for-small-only">
-			<div class="small-12 columns">
-				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<!-- if user has created username -->
-				{% if user.first_name  %}
-				<h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>
-				{% else %}
-				<h3 class="centerText">{{ user.username }}</h3>	
-				{% endif %}	
-			</div>
-		</div>	
-		
-		<!-- display if username created and all questions answered -->
-		{% if user.first_name and user_lovetags and user_offertags and user_needtags %}
-		<div class="row">
-			<div class="small-12 centerText columns">
-				<div>
-					<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
-					<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
-				</div>
-				<div>
-					<button data-reveal-id="badges-reveal" class="button round success add-margin-top">Earn badges</button>
-				</div>
-					<!--<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-					<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>-->
-			</div>	
-		</div>	
-		{% endif %}
+      
+    <div class="wrapper">
+    
+        {% include "./zaplings/header.html" %}
+     
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns">
+                <img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+            </div>
+            <div class="rightText medium-3 columns end">
+                {% if user.first_name and user_lovetags and user_offertags and user_needtags %}
+                <a href="#" data-reveal-id="change-image-reveal"><button class="change-image button small round light">Change image</button></a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns">
+                <!-- if user has created username -->
+                {% if user.first_name %}
+                <h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }}</h3>
+                {% else %}
+                <h3 class="centerText">{{ user.username }}</h3>
+                {% endif %}
+            </div>
+            <div class="rightText medium-3 columns end">
+                {% if user.first_name and user_lovetags and user_offertags and user_needtags %}
+                
+                <a href="#" data-reveal-id="edit-user-details-reveal"><button id="change-name" class="button small round light">Edit details</button></a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="row show-for-small-only">
+            <div class="small-12 columns">
+                <img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+                <!-- if user has created username -->
+                {% if user.first_name  %}
+                <h3 id="full-name" class="centerText">{{ user.first_name }} {{ user.last_name }} </h3>
+                {% else %}
+                <h3 class="centerText">{{ user.username }}</h3> 
+                {% endif %} 
+            </div>
+        </div>  
+        
+        <!-- display if username created and all questions answered -->
+        {% if user.first_name and user_lovetags and user_offertags and user_needtags %}
+        <div class="row">
+            <div class="small-12 centerText columns">
+                <div>
+                    <a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
+                    <a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}" onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
+                </div>
+                <div>
+                    <button data-reveal-id="badges-reveal" class="button round success add-margin-top">Earn badges</button>
+                </div>
+                    <!--<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
+                    <a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>-->
+            </div>  
+        </div>  
+        {% endif %}
 
-		
-		<!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
+        
+        <!-- If a question has been answered, remove its button, and for the next question, change class "small disabled" to "large success" (including Save profile) -->
 {% if not user_lovetags or not user_offertags or not user_needtags %}
-		<div id="start-profile-reveal" class="reveal-modal" data-reveal>
-			<div class="medium-10 medium-offset-1 columns">
-				<h3 class="centerText">Welcome to Zaplings!</h3>
-				<p>Start your profile with the questions below. Once the community grows, we will use these responses to make meaningful introductions for you.</p>
-				<div class="centerText"><button class="close-reveal-modal button round success">Got it</button></div>
-			</div>
-		</div>
+        <div id="start-profile-reveal" class="reveal-modal" data-reveal>
+            <div class="medium-10 medium-offset-1 columns">
+                <h3 class="centerText">Welcome to Zaplings!</h3>
+                <p>Start your profile with the questions below. Once the community grows, we will use these responses to make meaningful introductions for you.</p>
+                <div class="centerText"><button class="close-reveal-modal button round success">Got it</button></div>
+            </div>
+        </div>
 {% endif %}
 
-		<div class="row">
-			<div id="profile-info" class="medium-6 small-12 medium-offset-3 columns">
-				{% if not user_lovetags %}
-				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
-				<button class="intro-questions button round small disabled">What do you offer?</button>
-				<button class="intro-questions button round small disabled">What do you need?</button>
-				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
-			        {% elif not user_offertags %}
-				<a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
-				<button class="intro-questions button round small disabled">What do you need?</button>
-				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
-			        {% elif not user_needtags %}
-				<a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
-				<a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
-			        {% endif %}
-			</div>
-		</div>
-		<!-- if all questions answered -->
-		{% if user_lovetags and user_offertags and user_needtags %}
-				{% if not user.first_name %}
-					<div id="start-signup-reveal" class="reveal-modal" data-reveal data-options="close_on_background_click:false">
-						<div class="row">
-							<div class="centerText medium-8 medium-offset-2 columns end">
-								<form id="form-signup" action="{% url 'zaplings:share' %}" method="post"/>
-						                        {% csrf_token %}  
-									<h3>Sign up</h3>
-										<input id="email" type="email" placeholder="Email" name="user-email" value="{{ user.username }}" tabindex="1" />
-										<input id="last-name" type="text" placeholder="Last name" name="user-lastname" tabindex="3" />
-										<div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="2" /></div>
-										<span class="fit-left">zaplings.com/</span>
-										<span class="input-sizer"><input id="username" name="user-username" type="text" placeholder="username" tabindex="4" /></span>
-										<input id="verify" type="password" name="user-password" placeholder="Verify password" tabindex="6">
-										<div class="overflow-div"><input id="password" type="password" name="user-password-verify" placeholder="Password" tabindex="5" /></div>
-						                                {% if status_message %}
-						                                    <p id="status_message"> {{ status_message }}</p>
-						                                {% else %}
-										    <button type="submit" class="button success round" tabindex="7">Create profile</button>
-						                                {% endif %}
-								</form>
-							</div>
-						</div>
-					</div>
-				{% endif %}
-		<form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
-		    {% csrf_token %}
+        <div class="row">
+            <div id="profile-info" class="medium-6 small-12 medium-offset-3 columns">
+                {% if not user_lovetags %}
+                <a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
+                <button class="intro-questions button round small disabled">What do you offer?</button>
+                <button class="intro-questions button round small disabled">What do you need?</button>
+                <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
+                    {% elif not user_offertags %}
+                <a href="{% url 'zaplings:offers' %}"><button class="intro-questions button round large success">What do you offer?</button></a>
+                <button class="intro-questions button round small disabled">What do you need?</button>
+                <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
+                    {% elif not user_needtags %}
+                <a href="{% url 'zaplings:needs' %}"><button class="intro-questions button round large success">What do you need?</button></a>
+                <a href="{% url 'zaplings:signup' %}"><button class="intro-questions button small disabled round">Create username</button></a>
+                    {% endif %}
+            </div>
+        </div>
+        <!-- if all questions answered -->
+        {% if user_lovetags and user_offertags and user_needtags %}
+                {% if not user.first_name %}
+                    <div id="start-signup-reveal" class="reveal-modal" data-reveal data-options="close_on_background_click:false">
+                        <div class="row">
+                            <div class="centerText medium-8 medium-offset-2 columns end">
+                                <form id="form-signup" action="{% url 'zaplings:share' %}" method="post"/>
+                                                {% csrf_token %}  
+                                    <h3>Sign up</h3>
+                                        <input id="email" type="email" placeholder="Email" name="user-email" value="{{ user.username }}" tabindex="1" />
+                                        <input id="last-name" type="text" placeholder="Last name" name="user-lastname" tabindex="3" />
+                                        <div class="overflow-div"><input id="first-name" type="text" placeholder="First name" name="user-firstname" tabindex="2" /></div>
+                                        <span class="fit-left">zaplings.com/</span>
+                                        <span class="input-sizer"><input id="username" name="user-username" type="text" placeholder="username" tabindex="4" /></span>
+                                        <input id="verify" type="password" name="user-password" placeholder="Verify password" tabindex="6">
+                                        <div class="overflow-div"><input id="password" type="password" name="user-password-verify" placeholder="Password" tabindex="5" /></div>
+                                                        {% if status_message %}
+                                                            <p id="status_message"> {{ status_message }}</p>
+                                                        {% else %}
+                                            <button type="submit" class="button success round" tabindex="7">Create profile</button>
+                                                        {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+        <form id="form-join" action="{% url 'zaplings:record_text' %}" method="post">
+            {% csrf_token %}
 
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-				<textarea id="intro-text" name="intro-text" rows="3" placeholder="Introduce yourself" value="{{user.intro_text}}"></textarea>
-				</div>
-			</div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                <textarea id="intro-text" name="intro-text" rows="3" placeholder="Introduce yourself" value="{{user.intro_text}}"></textarea>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">			<h4 class="section-header">My public ideas</h4>
-				{% static "images/" as images %}
-					{% if myideas %}
-						<p>Drag and drop icons to set the display order of your ideas.</p>
-						 
-						<ul id="idea-sort-box">
-							{% for idea in myideas %}
-							<li>
-								<img src="{{images}}idea-{{idea.id}}.png" height="75px" width="75px"/>
-								<p class="aside sort-title">{{ idea.title }}</p>
-							</li>
-							{% endfor %}
-						</ul>
-						
-					{% else %}
-						<p>To display this section on your profile, make an idea public.</p>
-					{% endif %}
-				</div>
-			</div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">         <h4 class="section-header">My public ideas</h4>
+                {% static "images/" as images %}
+                    {% if myideas %}
+                        <p>Drag and drop icons to set the display order of your ideas.</p>
+                         
+                        <ul id="idea-sort-box">
+                            {% for idea in myideas %}
+                            <li>
+                                <img src="{{images}}idea-{{idea.id}}.png" height="75px" width="75px"/>
+                                <p class="aside sort-title">{{ idea.title }}</p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        
+                    {% else %}
+                        <p>To display this section on your profile, make an idea public.</p>
+                    {% endif %}
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="add-margin-bottom">What I love</h4>	
-					<div id="selected-loves">
-					{% for tag in user_lovetags %} 
-	                    <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}" checked>
-						<label class="tag button tiny light round selected" for="love-{{ tag }}">{{ tag }}</label>
-					{% endfor %}	
-					</div>	
-					<input id="input-loves" name="input-loves" type="text" placeholder="Add more... (press return to add)"/>
-					<!--<input id="input-needs" class="input-tags" type="text" placeholder="We need... (press return to add)"/>		
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="add-margin-bottom">What I love</h4>  
+                    <div id="selected-loves">
+                    {% for tag in user_lovetags %} 
+                        <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}" checked>
+                        <label class="tag button tiny light round selected" for="love-{{ tag }}">{{ tag }}</label>
+                    {% endfor %}    
+                    </div>  
+                    <input id="input-loves" name="input-loves" type="text" placeholder="Add more... (press return to add)"/>
+                    <!--<input id="input-needs" class="input-tags" type="text" placeholder="We need... (press return to add)"/>     
                                 <a class="add-more button small round" href="{% url "zaplings:loves" %}">Add more...</a>-->
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I offer</h4>
-					<div id="selected-offers">
-        		{% for tag in user_offertags %} 
-	                    <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}" checked>
-	                    <label class="tag button tiny light round selected" for="offer-{{ tag }}">{{ tag }}</label>
-				{% endfor %}
-					</div>	
-					<input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
-					
-				<!--<a class="add-more button small round" href="{% url "zaplings:offers" %}">Add more...</a>-->
-				</div>
-			</div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I offer</h4>
+                    <div id="selected-offers">
+                {% for tag in user_offertags %} 
+                        <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}" checked>
+                        <label class="tag button tiny light round selected" for="offer-{{ tag }}">{{ tag }}</label>
+                {% endfor %}
+                    </div>  
+                    <input id="input-offers" name="input-offers" type="text" placeholder="Add more... (press return to add)"/>
+                    
+                <!--<a class="add-more button small round" href="{% url "zaplings:offers" %}">Add more...</a>-->
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I need</h4>
-					<div id="selected-needs">
-				{% for tag in user_needtags %} 
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I need</h4>
+                    <div id="selected-needs">
+                {% for tag in user_needtags %} 
                         <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}" checked>
                         <label class="tag button small tiny round selected" for="need-{{ tag }}">{{ tag }}</label>
-				{% endfor %}
-					</div>
-					<input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
-				<!--<a class="add-more button small round" href="{% url "zaplings:needs" %}">Add more</a>-->
-				</div>
-			</div>
+                {% endfor %}
+                    </div>
+                    <input id="input-needs" name="input-needs" type="text" placeholder="Add more... (press return to add)"/>
+                <!--<a class="add-more button small round" href="{% url "zaplings:needs" %}">Add more</a>-->
+                </div>
+            </div>
 
-			<div class="centerText add-margin-top"><button type="submit" class="button success round">Save and share</button></div>
-		</form>
-		{% endif %}
+            <div class="centerText add-margin-top"><button type="submit" class="button success round">Save and share</button></div>
+        </form>
+        {% endif %}
 
 <!-- included for all -->
 
-		<div id="change-image-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/change-image-reveal.html" %}
-		</div>
+        <div id="change-image-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/change-image-reveal.html" %}
+        </div>
 
-		<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/user-details-reveal.html" %}
-		</div>	
+        <div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/user-details-reveal.html" %}
+        </div>  
 
-		<div id="badges-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/badges-reveal.html" %}
-		</div>
+        <div id="badges-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/badges-reveal.html" %}
+        </div>
 
-		<div class="push"></div>
-	</div>
+        <div class="push"></div>
+    </div>
 
-	{% include "./zaplings/footer.html" %}
-			
-				
-    <script src="{% static "./js/foundation.min.js" %}"></script>		
-	<script type="text/javascript">
-	  $(document).foundation();
-	</script>	
-	<script type="text/javascript">
-			$(document).ready(function(){
-				$('#idea-sort-box').sortable();
-				$('#idea-sort-box').disableSelection();
-				$('#form-profile').submit(function(){
-					var sorted = $( "#idea-sort-box" ).sortable( "serialize", { key: "sort" } );
-				});
-			});
-	</script>
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
+    {% include "./zaplings/footer.html" %}
+            
+                
+    <script src="{% static "./js/foundation.min.js" %}"></script>       
+    <script type="text/javascript">
+      $(document).foundation();
+    </script>   
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $('#idea-sort-box').sortable();
+                $('#idea-sort-box').disableSelection();
+                $('#form-profile').submit(function(){
+                    var sorted = $( "#idea-sort-box" ).sortable( "serialize", { key: "sort" } );
+                });
+            });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
 
-			$('#start-profile-reveal').foundation('reveal', 'open');
-			$('#start-signup-reveal').foundation('reveal', 'open');
+            $('#start-profile-reveal').foundation('reveal', 'open');
+            $('#start-signup-reveal').foundation('reveal', 'open');
 
-			var loveNum = $('#selected-loves .tag').length;
-			var offerNum = $('#selected-offers .tag').length;
-			var needNum = $('#selected-needs .tag').length;
+            var loveNum = $('#selected-loves .tag').length;
+            var offerNum = $('#selected-offers .tag').length;
+            var needNum = $('#selected-needs .tag').length;
 
-			$('#input-loves').keypress(function (e) {
-			var text = $(this).val();
-				if (e.which == 13 && text != '') {
-					loveNum++;
-					$('#selected-loves').val('');						
-			  		$('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
-					e.preventDefault();	
-					$(this).focus().select();
-				}
-				else if (e.which == 13 && text == ''){
-					e.preventDefault();
-			        return false;
-				};
-			});
-			
-			$('#selected-loves').on('click', 'label', (function(){
-				$(this).toggleClass('selected').blur();
-			}));
+            $('#input-loves').keypress(function (e) {
+            var text = $(this).val();
+                if (e.which == 13 && text != '') {
+                    loveNum++;
+                    $('#selected-loves').val('');                       
+                    $('#selected-loves').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+                    e.preventDefault(); 
+                    $(this).focus().select();
+                }
+                else if (e.which == 13 && text == ''){
+                    e.preventDefault();
+                    return false;
+                };
+            });
+            
+            $('#selected-loves').on('click', 'label', (function(){
+                $(this).toggleClass('selected').blur();
+            }));
 
-			$('#love-tags').submit(function() {
-				var values = $('#love-tags').serialize();
-			});		
-		
-			$('#input-offers').keypress(function (e) {
-				var text = $(this).val();
-				if (e.which == 13 && text != '') {
-					offerNum++;
-					$('#input-offers').val('');						
-			  		$('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
-					e.preventDefault();
-					$(this).focus().select();
-				}
-				else if (e.which == 13 && text == ''){
-					e.preventDefault();
-			        return false;
-				};
-			});	
-			$('#selected-offers').on('click', 'label', (function(){
-				$(this).toggleClass('selected').blur();
-			}));
+            $('#love-tags').submit(function() {
+                var values = $('#love-tags').serialize();
+            });     
+        
+            $('#input-offers').keypress(function (e) {
+                var text = $(this).val();
+                if (e.which == 13 && text != '') {
+                    offerNum++;
+                    $('#input-offers').val('');                     
+                    $('#selected-offers').prepend('<input id="offer-suggest-'+offerNum+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="offer-suggest-'+offerNum+'">'+text+'</label>');
+                    e.preventDefault();
+                    $(this).focus().select();
+                }
+                else if (e.which == 13 && text == ''){
+                    e.preventDefault();
+                    return false;
+                };
+            }); 
+            $('#selected-offers').on('click', 'label', (function(){
+                $(this).toggleClass('selected').blur();
+            }));
 
-			$('#offer-tags').submit(function() {
-				var values = $('#offer-tags').serialize();
-			});
+            $('#offer-tags').submit(function() {
+                var values = $('#offer-tags').serialize();
+            });
 
-			$('#input-needs').keypress(function (e) {
-				var text = $(this).val();
-				if (e.which == 13 && text != '') {
-					needNum++;
-					$('#input-needs').val('');						
-			  		$('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="need-suggest-'+needNum+'">'+text+'</label>');
-			  		e.preventDefault();	
-					$(this).focus().select();
-				}
-				else if (e.which == 13){
-					e.preventDefault();
-			        return false;
-				};
-			});	
+            $('#input-needs').keypress(function (e) {
+                var text = $(this).val();
+                if (e.which == 13 && text != '') {
+                    needNum++;
+                    $('#input-needs').val('');                      
+                    $('#selected-needs').prepend('<input id="need-suggest-'+needNum+'" class="vis-hidden" type="checkbox" name="need-tag-new" value="'+text+'" checked><label class="tag button tiny light round" for="need-suggest-'+needNum+'">'+text+'</label>');
+                    e.preventDefault(); 
+                    $(this).focus().select();
+                }
+                else if (e.which == 13){
+                    e.preventDefault();
+                    return false;
+                };
+            }); 
 
-			$('#selected-needs').on('click', 'label', (function(){
-				$(this).toggleClass('selected').blur();
-			}));
+            $('#selected-needs').on('click', 'label', (function(){
+                $(this).toggleClass('selected').blur();
+            }));
 
-			$('#form-signup').submit(function() {
-				var values = $('#form-signup').serialize();
-			});
-		});
-	</script>
+            $('#form-signup').submit(function() {
+                var values = $('#form-signup').serialize();
+            });
+        });
+    </script>
 
-	{% include "./zaplings/end-scripts.html" %}
+    {% include "./zaplings/end-scripts.html" %}
   </body>
-</html>	
+</html> 

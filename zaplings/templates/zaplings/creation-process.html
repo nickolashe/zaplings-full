@@ -1,0 +1,88 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        <link rel="stylesheet" href="{% static "./font-awesome/css/font-awesome.min.css" %}">
+    
+    </head>
+    <body>
+      
+        <div class="wrapper">
+
+            {% include "./zaplings/header.html" %}
+            
+                <div class="row add-margin-bottom">
+                    <div class="medium-8 medium-centered columns">   
+                    <h2 class="titleCenter half-margin-bottom">The creation process</h2> 
+                        <p class="aside centerText no-margin-top">The beta launch of Zaplings will focus on the first two creation stages. As the community grows, we will implement our ideas for the later steps. Click on an icon below to learn more.</p>
+                    </div>
+                </div>
+                <div class="row centerText">
+                    <a href="#"><div class="medium-2 medium-offset-3 columns">
+                        <i class="fa fa-bolt fa-4x"></i>
+                        <p class="half-margin-top">Inspiration</p>
+                    </div></a>
+                    <a href="#"><div class="medium-2 columns">
+                        <i class="fa fa-check fa-4x"></i>
+                        <p class="half-margin-top">Validation</p>
+                    </div></a>
+                    <a href="#"><div class="medium-2 columns end">
+                        <img class="fa" src="{% static './images/butterfly.png' %}" height="80px" width="80px">
+                        <p class="half-margin-top">Transformation</p>
+                    </div></a>
+                </div>
+                <div class="row centerText add-margin-top">
+                    <a href="#"><div class="medium-2 medium-offset-2 columns">
+                        <i class="fa fa-users fa-3x"></i>
+                        <p class="half-margin-top">Team formation</p>
+                    </div></a>
+                    <a href="#"><div class="medium-2 columns">
+                        <i class="fa fa-cogs fa-3x"></i>
+                        <p class="half-margin-top">Collaboration</p>
+                    </div></a>
+                    <a href="#"><div class="medium-2 columns">
+                        <i class="fa fa-paper-plane fa-3x"></i>
+                        <p class="half-margin-top">Implementation</p>
+                    </div></a>
+                    <a href="#"><div class="medium-2 columns end">
+                        <i class="fa fa-globe fa-4x"></i>
+                        <p class="half-margin-top">Impact creation</p>
+                    </div></a>
+                </div>
+            <div class="push"></div>
+        </div>
+        
+        {% include "./zaplings/footer.html" %}
+            
+        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        
+        {% include "./zaplings/end-scripts.html" %}
+        
+<!--        <script type="text/javascript">
+            $(document).ready(function (){
+                $('.process-icons').one('click',function(e) {
+                    
+                    var mid = ($(document).width() - $(this).width()) / 2 - 15;
+                    var hstart = $(this).offset().left;
+                    var vstart = $(this).offset().top;
+                    $('.process-icons').not(this).not($(this).next()).fadeOut({queue: false, duration: 777});
+                    $('p.aside').animate({opacity: 0}, 777);
+                    $(this).parent().animate({
+                        queue: false,
+                        left: (mid - hstart),
+                        top: '-=' + (vstart - 170)
+                    }, 777);
+
+                    e.preventDefault();
+                });
+            });
+        </script>-->
+    </body>
+</html>

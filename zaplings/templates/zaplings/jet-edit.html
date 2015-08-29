@@ -3,17 +3,24 @@
 {% load static %}
 
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Zaplings | Connect to create.</title>
-        <link rel="stylesheet" href="{% static "style.css" %}" />
-        <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
         <link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">
         <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
+        <script src="{% static "./js/jquery-ui-1.11.0.custom/jquery-ui.min.js" %}"></script>
 
-        {% include "./zaplings/start-scripts.html" %}
-    
+        <script type="text/javascript" src="{% static "./jq-image-drag/script/jquery.imagedrag.js" %}"></script>
+
+        <script type="text/javascript">
+            $(function(){
+               $('.header-parent').imagedrag({
+               input: '#output',
+               position: 'middle',
+               attribute: 'html'
+               }); 
+            });
+        </script>
     </head>
     <body>
       
@@ -21,38 +28,14 @@
 
             {% include "./zaplings/header.html" %}
 
-            <div class="profile-header-img">
-                <div id="slides">
-                    <ul class="slides-container">
-                        <li>
-                            <img src="{% static "images/jet1.jpg" %}">
-                        </li>
-                        <li>
-                            <img src="{% static "images/jet2.jpg" %}">
-                        </li>
-                        <li>
-                            <img src="{% static "images/jet3.jpg" %}">
-                        </li>
-                        <li>
-                            <img src="{% static "images/jet4.jpg" %}">
-                        </li>
-                    </ul>
-                    <nav class="slides-navigation">
-                        <a href="#" class="next">
-                        <i class="fa fa-chevron-right"></i>
-                        </i>
-                        </a>
-                        <a href="#" class="prev">
-                        <i class="fa fa-chevron-left"></i>
-                        </i>
-                        </a>
-                    </nav>
-                </div>
+            <div class="header-parent">
+                <img class="header-img" src="{% static "images/jet2.jpg" %}">
             </div>
+            
             <div class="relative-container">
                 <img class="profile-pic" src="{% static "./images/featured-idea-4.png" %}"/>
                 <a href=""><button class="choose-images button light small round">Choose images</button></a>
-                <div class="reposition-info">Drag to reposition</div>
+                <div class="reposition-info">Drag to reposition (<span id="output"></span></div>
             </div>
             <div class="row">
                 <div class="profile-name medium-6 medium-centered columns">
@@ -83,6 +66,22 @@
             $('#slides').superslides({
                 inherit_height_from: '.profile-header-img'
             });
+                       
+            $(".header-parent").each(function(){
+                // Uncomment the following if you need to make this dynamic
+                var refH = $(this).height();
+                var refW = $(this).width();
+                var refRatio = refW/refH;
+
+                var imgH = $(this).children("img").height();
+                var imgW = $(this).children("img").width();
+
+                if ( (imgW/imgH) < refRatio ) { 
+                    $(this).addClass("portrait");
+                } else {
+                    $(this).addClass("landscape");
+                }
+            });           
         });
         </script>
         

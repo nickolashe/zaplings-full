@@ -30,6 +30,17 @@ class IndexAltView(generic.ListView):
     model = User
     template_name = 'zaplings/index-alt.html'
 
+class DreamView(generic.ListView):
+    model = User
+    template_name = 'zaplings/our-dream.html'
+    
+class CreationProcessView(generic.ListView):
+    model = User
+    template_name = 'zaplings/creation-process.html'
+    
+class CreationStagesView(generic.ListView):
+    model = User
+    template_name = 'zaplings/creation-stages.html'
     
 class MissionView(generic.ListView):
     model = User
@@ -169,12 +180,12 @@ class JetEditView(generic.ListView):
 
 class NewIdeaView(generic.ListView):
     model = User
-    template_name = 'zaplings/newidea.html'
+    template_name = 'zaplings/new-idea.html'
 
 
-class ThankYouView(generic.ListView):
+class WelcomeView(generic.ListView):
     model = User
-    template_name = 'zaplings/thankyou.html'
+    template_name = 'zaplings/welcome.html'
 
 
 class ProfileView(generic.ListView):
