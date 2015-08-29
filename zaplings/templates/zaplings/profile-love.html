@@ -1,94 +1,91 @@
 <!doctype html>
-{% load staticfiles %}
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}" />
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "./js/vendor/modernizr.js" %}"></script>
-	<script src="{% static "./js/vendor/jquery.js" %}"></script>
-	
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+    
   </head>
   <body>
-	  
-	<div class="wrapper">
-	
-	  	{% include "./zaplings/header.html" %}
-	 
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns end">
-				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-			</div>
-		</div>
-		
-		<!-- If username is added, display <h3>firstName lastName</h3> in place of button -->
-		<div class="row hide-for-small-only">
-			<div class="centerText medium-6 medium-offset-3 columns end">
-				<a href="#" data-reveal-id="signup-reveal"><button class="button round">Create username</button></a>
-			</div>
-		</div>
-		
-		<div class="row show-for-small-only">
-			<div class="small-12 columns">
-				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>		
-			</div>
-		</div>	
-		
-		<!-- If username is added, display username in place of button -->
-		<div class="row show-for-small-only">
-			<div class="small-12 centerText columns">
-				<a href="#" data-reveal-id="signup-reveal"><button class="button round">Create username</button></a>
-			</div>	
-		</div>	
+      
+    <div class="wrapper">
+    
+        {% include "./zaplings/header.html" %}
+     
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns end">
+                <img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+            </div>
+        </div>
+        
+        <!-- If username is added, display <h3>firstName lastName</h3> in place of button -->
+        <div class="row hide-for-small-only">
+            <div class="centerText medium-6 medium-offset-3 columns end">
+                <a href="#" data-reveal-id="signup-reveal"><button class="button round">Create username</button></a>
+            </div>
+        </div>
+        
+        <div class="row show-for-small-only">
+            <div class="small-12 columns">
+                <img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>     
+            </div>
+        </div>  
+        
+        <!-- If username is added, display username in place of button -->
+        <div class="row show-for-small-only">
+            <div class="small-12 centerText columns">
+                <a href="#" data-reveal-id="signup-reveal"><button class="button round">Create username</button></a>
+            </div>  
+        </div>  
 
-		<div id="signup-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/signup-reveal.html" %}
-		</div>
-		
-		
-		<div class="row full-width">
-			<div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
-				<a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
-				<button class="intro-questions button round small disabled">What do you offer?</button>
-				<button class="intro-questions button round small disabled">What do you need?</button>
-			</div>	
-		</div>	
+        <div id="signup-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/signup-reveal.html" %}
+        </div>
+        
+        
+        <div class="row full-width">
+            <div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
+                <a href="{% url 'zaplings:loves' %}"><button class="intro-questions button success large round">What do you love?</button></a>
+                <button class="intro-questions button round small disabled">What do you offer?</button>
+                <button class="intro-questions button round small disabled">What do you need?</button>
+            </div>  
+        </div>  
 
-		<div class="footer row full-width">
-				<div class="social-media">
-					<a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
-					<a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
-					<a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
-				</div>	
-			</div>
-		
-	<div id="edit-name-reveal" class="reveal-modal" data-reveal>
-		<form id="full-name">
-			<div class="medium-8 small-12 columns end">
-				<h3>Edit name</h3>
-				<input id="last-name" type="text" placeholder="Last name" value="{{ lastName }}"/>
-				<div id="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstName }}"/></div>
-				<div>
-					<button type="submit" class="button round success">Save</button>
-					<button class="button round light">Cancel</button>
-				</div>	
-			</div>
-		</form>
-	</div>	
+        <div class="footer row full-width">
+                <div class="social-media">
+                    <a href="#"><img class="social-button" src="{% static "./images/facebook-icon.png" %}" alt="Facebook"></a>
+                    <a href="#"><img class="social-button" src="{% static "./images/twitter-icon.png" %}" alt="Twitter"></a>
+                    <a href="#"><img class="social-button" src="{% static "./images/linkedin-icon.png" %}" alt="LinkedIn"></a>
+                </div>  
+            </div>
+        
+    <div id="edit-name-reveal" class="reveal-modal" data-reveal>
+        <form id="full-name">
+            <div class="medium-8 small-12 columns end">
+                <h3>Edit name</h3>
+                <input id="last-name" type="text" placeholder="Last name" value="{{ lastName }}"/>
+                <div id="overflow-div"><input id="first-name" type="text" placeholder="First name" value="{{ firstName }}"/></div>
+                <div>
+                    <button type="submit" class="button round success">Save</button>
+                    <button class="button round light">Cancel</button>
+                </div>  
+            </div>
+        </form>
+    </div>  
 
-		<div class="push"></div>
-	</div>
+        <div class="push"></div>
+    </div>
 
-	{% include "./zaplings/footer.html" %}
-			
-				
-    <script src="{% static "./js/foundation.min.js" %}"></script>		
-	<script type="text/javascript">
-	  $(document).foundation();
-	</script>	
-	
+    {% include "./zaplings/footer.html" %}
+            
+                
+    <script src="{% static "./js/foundation.min.js" %}"></script>       
+    <script type="text/javascript">
+      $(document).foundation();
+    </script>   
+    
 
   </body>
-			
+            

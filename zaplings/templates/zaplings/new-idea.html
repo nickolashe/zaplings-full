@@ -1,0 +1,109 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+  <head>  
+  
+    {% include "./zaplings/head.html" %}
+    
+  </head>
+    <body>
+      <div class="wrapper">
+        
+        {% include "./zaplings/header.html" %}
+
+        <div class="row text-center">
+          <div class="medium-8 medium-offset-2 column">
+            <h3 class="three-margin-top add-margin-bottom">Grow an idea</h3>
+          </div>
+        </div>
+        
+
+
+        <form id="form-new-idea"> <!-- insert form action / submit.php / etc here ~MC -->       {% csrf_token %}  
+          <div class="row">
+              <div class="medium-8 medium-offset-2 columns">
+                <input type="text" id="idea-title" class="text-center" name="idea-title" value="{{ idea.title }}" placeholder="Idea name">
+              </div>
+<!--              <div class="medium-3 small-5 column end">
+                <select name="idea-type" id="idea-type">
+                  <option value="no-type-selected" disabled {% if not idea.type %}selected{% endif %}>Idea type</option>
+                {% for type in idea_types %}
+                  <option value="{{ type }}" {% if idea_type ==  type %}selected {% endif %}>{{ type }}</option>
+                {% endfor %}
+                </select>
+              </div>-->
+          </div>
+          <div class="row">
+            <div class="medium-8 medium-offset-2 columns end">
+              <textarea name="idea-description" id="idea-description" class="text-center" cols="30" rows="1" placeholder="A short sweet slogan goes here (100 characters max)" value="{{ idea.description }}" maxlength="100"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="medium-8 medium-centered columns">
+              <button class="enter-tag button round small">Enter</button>
+              <div class="input-sizer"><input id="input-loves" name="input-loves" class="input-loves text-center" type="text" placeholder="Add passion tags (press return to add)"/></div>
+            </div>
+          </div>
+          <div class="suggestion-box">
+          <div class="row">
+            <div class="medium-8 medium-centered columns">    
+              <textarea name="idea-notes" id="idea-notes" value="{{ idea.notes }}" {% if not idea.notes %} class="hidden" {% endif %} rows="3" placeholder="Notes"></textarea>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="medium-8 medium-offset-2 columns end">
+              <button class="half-margin-right button small round success" data-reveal-id="modal-share-now">Share now</button>
+              <a href="#"><button type="submit" class="half-margin-right button small round light">Save for later</button></a>
+              {% if not idea.notes %}
+                <a id="add-notes">Add notes</a>
+              {% endif %}
+
+            </div>
+          </div>
+      </form>
+  <div class="push"></div>
+</div>
+
+  {% include "./zaplings/footer.html" %}
+
+<script src="js/foundation.min.js"></script>
+<script type="text/javascript">$(document).foundation();</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#add-notes").click(function(){
+      $("#idea-notes").removeClass('hidden');
+      $(this).remove();
+        return false;
+    });
+
+    $('button').click(function(){
+      $(this).blur();
+    });
+    
+    var loveNum = 0;
+    
+    $('.input-tags').keypress(function (e) {
+      var text = $(this).val();
+        if (e.which == 13 && text != '') {
+          loveNum++;
+          $('.input-loves').val('');           
+            $('.suggestion-box').prepend('<input id="love-suggest-'+loveNum+'" class="vis-hidden" type="checkbox" name="love-tag-new" value="'+text+'" checked><label class="tag button small light round" for="love-suggest-'+loveNum+'">'+text+'</label>');
+          e.preventDefault(); 
+          $(this).focus().select();
+        }
+        else if (e.which == 13 && text == ''){
+            e.preventDefault();
+                return false;
+        };
+        
+        $('#love-tags').submit(function() {
+          var values = $('#love-tags').serialize();
+        });
+  });
+</script>
+
+{% include "./zaplings/end-scripts.html" %}
+</body>
+</html>

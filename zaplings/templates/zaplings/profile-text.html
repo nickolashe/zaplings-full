@@ -1,182 +1,179 @@
 <!doctype html>
-{% load staticfiles %}
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}"/>
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="{% static "./js/vendor/modernizr.js" %}"></script>
-	<script src="{% static "./js/vendor/jquery.js" %}"></script>
-	<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
   </head>
   <body>
-	<div class="wrapper">
-	 	{% include "./zaplings/header.html" %}
-	 
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-			</div>
-			<div class="rightText medium-3 columns end">
-				<button id="change-image" data-reveal-id="change-image-reveal" class="button small round light">Change image</button>		
-			</div>
-		</div>
-		
-		<div class="row hide-for-small-only">
-			<div class="medium-6 medium-offset-3 columns">
-				<h3 class="centerText"> {{user.username}}</h3>
-			</div>
-			<div class="rightText medium-3 columns end">
-				<a href="#" data-reveal-id="edit-user-details-reveal"><button id="edit-name" class="button small round light">Edit details</button></a>
-			</div>
-		</div>
-		
-		<div class="row show-for-small-only">
-			<div class="small-12 columns">
-				<img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">{{user.username}}</h3>		
-			</div>
-		</div>	
-		
-		<div class="row show-for-small-only">
-			<div class="add-margin-bottom small-12 centerText columns">
-				<a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
-				<a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
-			</div>	
-		</div>
+    <div class="wrapper">
+        {% include "./zaplings/header.html" %}
+     
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns">
+                <img class="profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+            </div>
+            <div class="rightText medium-3 columns end">
+                <button id="change-image" data-reveal-id="change-image-reveal" class="button small round light">Change image</button>       
+            </div>
+        </div>
+        
+        <div class="row hide-for-small-only">
+            <div class="medium-6 medium-offset-3 columns">
+                <h3 class="centerText"> {{user.username}}</h3>
+            </div>
+            <div class="rightText medium-3 columns end">
+                <a href="#" data-reveal-id="edit-user-details-reveal"><button id="edit-name" class="button small round light">Edit details</button></a>
+            </div>
+        </div>
+        
+        <div class="row show-for-small-only">
+            <div class="small-12 columns">
+                <img class="small-profile-image" src="{% static "./images/default-profile.png" %}" alt="Profile image" width="75px" height="75px"/>
+                <h3 class="centerText">{{user.username}}</h3>       
+            </div>
+        </div>  
+        
+        <div class="row show-for-small-only">
+            <div class="add-margin-bottom small-12 centerText columns">
+                <a href="#" data-reveal-id="change-image-reveal"><button class="button tiny round light">Change image</button></a>
+                <a href="#" data-reveal-id="edit-user-details-reveal"><button class="button tiny round light">Edit details</button></a>
+            </div>  
+        </div>
 
-		<div class="centerText row">
-			<div class="medium-6 medium-offset-3 columns">
-				<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
-				<a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
-			</div>
-			<div class="hide-for-small-only rightText medium-3 columns end">
-				<a href="#" data-reveal-id="badges-reveal"><button id="earn-badges" class="button small round light">Earn badges</button></a>
-			</div>
-		</div>
-		<div class="row centerText show-for-small-only">
-				<a href="#" data-reveal-id="badges-reveal"><button id="earn-badges" class="button tiny round light">Earn badges</button></a>
-		</div>
-		
-		
-		<div id="change-image-reveal" class="reveal-modal" data-reveal>
-			<h3>Change profile image</h3>
-			<input id="profile-image-upload" type="file"/>
-			<button type="submit" class="button round small success">Save</button>
-			<button class="close-reveal-modal button round small light">Cancel</button>
-		</div>
-		
-		<div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/user-details-reveal.html" %}
-		</div>
+        <div class="centerText row">
+            <div class="medium-6 medium-offset-3 columns">
+                <a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/connector-none-named.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/connector-none-named.png" %}'" alt="Connector badge" title="Connector badge" width="79px" height="60px"/></a>
+                <a href="#" data-reveal-id="badges-reveal"><img src="{% static "./images/ideator-none-named.svg" %}"onerror="this.onerror=null; this.src='{% static "./images/ideator-none-named.png" %}'" alt="Creator badge" title="Creator badge" width="79px" height="60px"/></a>
+            </div>
+            <div class="hide-for-small-only rightText medium-3 columns end">
+                <a href="#" data-reveal-id="badges-reveal"><button id="earn-badges" class="button small round light">Earn badges</button></a>
+            </div>
+        </div>
+        <div class="row centerText show-for-small-only">
+                <a href="#" data-reveal-id="badges-reveal"><button id="earn-badges" class="button tiny round light">Earn badges</button></a>
+        </div>
+        
+        
+        <div id="change-image-reveal" class="reveal-modal" data-reveal>
+            <h3>Change profile image</h3>
+            <input id="profile-image-upload" type="file"/>
+            <button type="submit" class="button round small success">Save</button>
+            <button class="close-reveal-modal button round small light">Cancel</button>
+        </div>
+        
+        <div id="edit-user-details-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/user-details-reveal.html" %}
+        </div>
 
-		<div id="badges-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/badges-reveal.html" %}
-		</div>
-		<!--<form id="form-profile">-->
+        <div id="badges-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/badges-reveal.html" %}
+        </div>
+        <!--<form id="form-profile">-->
 
-			
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">My public ideas</h4>
-					<!-- if user has no public ideas -->
-					<p>To display this section, make an idea public.</p>
+            
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">My public ideas</h4>
+                    <!-- if user has no public ideas -->
+                    <p>To display this section, make an idea public.</p>
 
-					<!-- if user has idea -->
-					<p>Drag and drop icons to set the display order of your ideas.</p>
-					<!-- for idea in user.ideas (add image and title variables) -->
-					<ul id="idea-sort-box">
-						<li>
-							<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
-							<p class="aside sort-title">Ideatitlecropped</p>
-						</li>
-						<li>
-							<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
-							<p class="aside sort-title">Idea title cropped</p>
-						</li>
-						<li>
-							<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
-							<p class="aside sort-title">Idea title cropped</p>
-						</li>
-						<li>
-							<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
-							<p class="aside sort-title">Idea title cropped</p>
-						</li>
-						<li>
-							<img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
-							<p class="aside sort-title">Idea title cropped</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I love</h4>
-					<textarea id="love-text" rows="2" placeholder="Share to your heart's content"/></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
+                    <!-- if user has idea -->
+                    <p>Drag and drop icons to set the display order of your ideas.</p>
+                    <!-- for idea in user.ideas (add image and title variables) -->
+                    <ul id="idea-sort-box">
+                        <li>
+                            <img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+                            <p class="aside sort-title">Ideatitlecropped</p>
+                        </li>
+                        <li>
+                            <img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+                            <p class="aside sort-title">Idea title cropped</p>
+                        </li>
+                        <li>
+                            <img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+                            <p class="aside sort-title">Idea title cropped</p>
+                        </li>
+                        <li>
+                            <img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+                            <p class="aside sort-title">Idea title cropped</p>
+                        </li>
+                        <li>
+                            <img src="{% static "./images/leaf-circle.png" %}" width="78px" height="78px"/>
+                            <p class="aside sort-title">Idea title cropped</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I love</h4>
+                    <textarea id="love-text" rows="2" placeholder="Share to your heart's content"/></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns"> 
 {% for tag in user_lovetags %} 
                     <input id="love-{{ tag }}" class="vis-hidden" type="checkbox" name="love-tag" value="{{ tag }}">
-		<label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
-{% endfor %}				
-					<a class="add-more" href="{% url 'zaplings:loves' %}"><button class="button small light round">Add more...</button></a>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I offer</h4>
-					<textarea id="offer-text" rows="2" placeholder="How can you help others create?"/></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
+        <label class="tag button small round" for="love-{{ tag }}">{{ tag }}</label>
+{% endfor %}                
+                    <a class="add-more" href="{% url 'zaplings:loves' %}"><button class="button small light round">Add more...</button></a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I offer</h4>
+                    <textarea id="offer-text" rows="2" placeholder="How can you help others create?"/></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns"> 
                                {% for tag in user_offertags %} 
                                     <input id="offer-{{ tag }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ tag }}">
                                     <label class="tag button small round" for="offer-{{ tag }}">{{ tag }}</label>
-                               {% endfor %}				
-					<a class="add-more" href="{% url 'zaplings:offers' %}"><button class="button small round light">Add more...</button></a>
-				</div>		
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">
-					<h4 class="section-header">What I need</h4>
-					<textarea id="need-text" rows="2" placeholder="How can others help you create?"/></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="medium-8 small-12 medium-offset-2 columns">	
+                               {% endfor %}             
+                    <a class="add-more" href="{% url 'zaplings:offers' %}"><button class="button small round light">Add more...</button></a>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns">
+                    <h4 class="section-header">What I need</h4>
+                    <textarea id="need-text" rows="2" placeholder="How can others help you create?"/></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="medium-8 small-12 medium-offset-2 columns"> 
                                {% for tag in user_needtags %} 
                                     <input id="need-{{ tag }}" class="vis-hidden" type="checkbox" name="need-tag" value="{{ tag }}">
                                     <label class="tag button small round" for="need-{{ tag }}">{{ tag }}</label>
-                               {% endfor %}				
-					<a class="add-more" href="{% url 'zaplings:needs' %}"><button class="button small round light">Add more...</button></a>
-				</div>		
-			</div>
-			<!--<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>-->
-		<!--</form>-->
-		<div class="push"></div>
-	</div>
-	
-	{% include "./zaplings/footer.html" %}
+                               {% endfor %}             
+                    <a class="add-more" href="{% url 'zaplings:needs' %}"><button class="button small round light">Add more...</button></a>
+                </div>      
+            </div>
+            <!--<div class="centerText add-margin-top"><button type="submit" class="button small success round">Save and view</button></div>-->
+        <!--</form>-->
+        <div class="push"></div>
+    </div>
+    
+    {% include "./zaplings/footer.html" %}
  
-		<script src="{% static "js/foundation.min.js" %}"></script>		
-		<script type="text/javascript">
-	  		$(document).foundation();
-		</script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('#idea-sort-box').sortable();
-				$('#idea-sort-box').disableSelection();
-				$('#form-profile').submit(function(){
-					var sorted = $( "#idea-sort-box" ).sortable( "serialize", { key: "sort" } );
-				});
-			});
-		</script>
-				
+        <script src="{% static "js/foundation.min.js" %}"></script>     
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#idea-sort-box').sortable();
+                $('#idea-sort-box').disableSelection();
+                $('#form-profile').submit(function(){
+                    var sorted = $( "#idea-sort-box" ).sortable( "serialize", { key: "sort" } );
+                });
+            });
+        </script>
+                
   </body>
-			
+            

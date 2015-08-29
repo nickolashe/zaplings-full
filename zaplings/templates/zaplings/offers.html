@@ -1,107 +1,105 @@
 <!doctype html>
-{% load staticfiles %}
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Connect to create.</title>
-    <link rel="stylesheet" href="{% static "style.css" %}" />
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-	{% include "./zaplings/start-scripts.html" %}
-	<script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        <script type="text/javascript" src="{% static "./js/check_browser_close.js" %}"></script>
   </head>
   <body>
-	  
-	<div class="wrapper">
-	  {% include "./zaplings/header-nomenu.html" %}
-	  
-		<h2 class="three-margin-top centerText">What do you offer?</h2>
-		<p class="min-tags centerText accent">Please add at least 3 tags to continue.</p>
-		<form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
-		    {% csrf_token %}
-	  		<div class="row">
-				<div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
-					<input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
-					<div class="continue-delay hidden">Take as much time as you like!
-						<div class="continue-tags">
-							<button id="next-need" type="submit" class="button success round small">Next: What do you need?</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<div class="row">
-				<div class="large-8 medium-8 small-12 columns medium-offset-2">
-					<div class="suggestion-box">
-					{% for suggested_offer in suggested_offers %} 
-						<input id="offer-suggest-{{ suggested_offer.id }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ suggested_offer.id }}">
-							<label class="tag button small light round" for="offer-suggest-{{ suggested_offer.id }}"> {{ suggested_offer.tagname }} </label>
+      
+    <div class="wrapper">
+      {% include "./zaplings/header-nomenu.html" %}
+      
+        <h2 class="three-margin-top centerText">What do you offer?</h2>
+        <p class="min-tags centerText accent">Please add at least 3 tags to continue.</p>
+        <form id="offer-tags" action="{% url "zaplings:record_offers" %}" method="post" >
+            {% csrf_token %}
+            <div class="row">
+                <div class="centerText large-6 medium-6 small-12 medium-offset-3 columns">
+                    <input class="input-tags" type="text" placeholder="I offer... (press return to add)"/>
+                    <div class="continue-delay hidden">Take as much time as you like!
+                        <div class="continue-tags">
+                            <button id="next-need" type="submit" class="button success round small">Next: What do you need?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="large-8 medium-8 small-12 columns medium-offset-2">
+                    <div class="suggestion-box">
+                    {% for suggested_offer in suggested_offers %} 
+                        <input id="offer-suggest-{{ suggested_offer.id }}" class="vis-hidden" type="checkbox" name="offer-tag" value="{{ suggested_offer.id }}">
+                            <label class="tag button small light round" for="offer-suggest-{{ suggested_offer.id }}"> {{ suggested_offer.tagname }} </label>
                                         {% endfor %}
-					</div>
-				</div>
-			</div>
-		</form>	
+                    </div>
+                </div>
+            </div>
+        </form> 
 
-		<div id="signup-reveal" class="reveal-modal" data-reveal>
-			{% include "./zaplings/signup-reveal.html" %}
-		</div>
+        <div id="signup-reveal" class="reveal-modal" data-reveal>
+            {% include "./zaplings/signup-reveal.html" %}
+        </div>
 
-		<div class="push"></div>
-		</div>
+        <div class="push"></div>
+        </div>
 
-		{% include "./zaplings/footer.html" %}	   
+        {% include "./zaplings/footer.html" %}     
 
-    <script src="{% static "./js/foundation.min.js" %}"></script>			
-	<script type="text/javascript">
-  		$(document).foundation();
-	</script>
-	
-	<script type="text/javascript">
-		$(document).ready(function() {
+    <script src="{% static "./js/foundation.min.js" %}"></script>           
+    <script type="text/javascript">
+        $(document).foundation();
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-			var num = 12;
+            var num = 12;
 
-			$('.suggestion-box').change(function(){
-				if ($('input:checked').length > 2) {
-					$('.continue-delay').removeClass('hidden');
-				}
-      				$('#next-need').attr('disabled', $('input:checked').length < 3);
-			});
-			
-			$('.input-tags').keypress(function (e) {
-				var text = $(this).val();
-				if (e.which == 13 && text != '') {
-					num += 1;
-					$('.input-tags').val('');						
-			  		$('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
-					e.preventDefault();
-					$(this).focus().select();
+            $('.suggestion-box').change(function(){
+                if ($('input:checked').length > 2) {
+                    $('.continue-delay').removeClass('hidden');
+                }
+                    $('#next-need').attr('disabled', $('input:checked').length < 3);
+            });
+            
+            $('.input-tags').keypress(function (e) {
+                var text = $(this).val();
+                if (e.which == 13 && text != '') {
+                    num += 1;
+                    $('.input-tags').val('');                       
+                    $('.suggestion-box').prepend('<input id="offer-suggest-'+num+'" class="vis-hidden" type="checkbox" name="offer-tag-new" value="'+text+'" checked><label class="tag button small light round" for="offer-suggest-'+num+'">'+text+'</label>');
+                    e.preventDefault();
+                    $(this).focus().select();
 
-					if ($('input:checked').length > 2) {
-						$('.continue-delay').removeClass('hidden');
-					}
-	      				$('#next-need').attr('disabled', $('input:checked').length < 3);
-				}
-				else if (e.which == 13 && text == ''){
-					e.preventDefault();
-			        return false;
-				};
-			});	
-			$('.suggestion-box').on('click', 'label', (function(){
-				$(this).toggleClass('selected').blur();
-			}));
+                    if ($('input:checked').length > 2) {
+                        $('.continue-delay').removeClass('hidden');
+                    }
+                        $('#next-need').attr('disabled', $('input:checked').length < 3);
+                }
+                else if (e.which == 13 && text == ''){
+                    e.preventDefault();
+                    return false;
+                };
+            }); 
+            $('.suggestion-box').on('click', 'label', (function(){
+                $(this).toggleClass('selected').blur();
+            }));
 
-			$('#offer-tags').submit(function() {
-				var values = $('#offer-tags').serialize();
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		window.onbeforeunload = function(e) {
-		    return 'Your answers will not be saved until you click the "Next" button.';
-		};
-	</script>
-	
-	{% include "./zaplings/end-scripts.html" %}
+            $('#offer-tags').submit(function() {
+                var values = $('#offer-tags').serialize();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        window.onbeforeunload = function(e) {
+            return 'Your answers will not be saved until you click the "Next" button.';
+        };
+    </script>
+    
+    {% include "./zaplings/end-scripts.html" %}
   </body>
 </html>

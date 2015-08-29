@@ -3,20 +3,16 @@
 {% load static %}
 
 <html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Zaplings | Connect to create.</title>
-		<link rel="stylesheet" href="{% static "style.css" %}" />
-		<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<head>	
+	
+		{% include "./zaplings/head.html" %}
 
-		{% include "./zaplings/start-scripts.html" %}
 	</head>
 	<body>
 		<div class="wrapper">
 			{% include "./zaplings/header.html" %}
 	  		
-			<h2 class="titleCenter">10 reasons to join Zaplings</h2>
+			<h3 class="titleCenter">10 reasons to join Zaplings</h3>
 			<div class="row">
 				<div class="medium-8 medium-offset-2 small-12 columns">
 					<p>Our goal at Zaplings is to make it easier for you to create something new and succeed. Over the past three years, we have experienced the highs and lows of bringing an idea to life. From these challenges, a lesson has emerged: <em>Ideas must be shared to become real.</em> So many concepts have never left the minds of their inventors. If we are to change that, we need your help in building a diverse creative community. Here are 10 reasons to join:</p>

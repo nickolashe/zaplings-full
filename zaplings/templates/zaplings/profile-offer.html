@@ -1,85 +1,85 @@
 <!doctype html>
+
+{% load static %}
+
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaplings | Grow.</title>
-    <link rel="stylesheet" href="style.css" />
-	<link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
-    <script src="js/vendor/modernizr.js"></script>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        
   </head>
   <body>
-	  
-	<div class="wrapper">
-	  	{% include "./zaplings/header.html" %}
-	 
-		<div class="row hide-for-small-only">
-			<div class="medium-4 medium-offset-4 columns">
-				<img class="profile-image" src="./images/default-profile.png" alt="Profile image" width="75px" height="75px"/>
-			</div>
-			<div class="rightText medium-3 columns end">
-				<button id="change-image" class="button small round light">Change profile image</button>		
-			</div>
-		</div>
-		
-		<div class="row hide-for-small-only">
-			<div class="medium-4 medium-offset-4 columns">
-				<h3 class="centerText">dannyzaplings</h3>
-			</div>
-			<div class="rightText medium-3 columns end">
-				<button id="change-name" class="button small round light">Use your real name</button>		
-			</div>
-		</div>
-		
-		<div class="row show-for-small-only">
-			<div class="small-10 small-offset-1 columns">
-				<img class="small-profile-image" src="./images/default-profile.png" alt="Profile image" width="75px" height="75px"/>
-				<h3 class="centerText">dannyzaplings</h3>		
-			</div>
-		</div>	
-		
-		<div class="row show-for-small-only">
-			<div class="small-12 centerText columns">
-				<button class="button tiny round light">Change image</button>
-				<button class="button tiny round light">Use your real name</button>
-			</div>	
-		</div>	
-		
-		<div class="row full-width">
-			<div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
-				<div class="intro-questions"><a href="offers.html"><button class="button round large success">What do you offer?</button></a></div>
-				<button class="intro-questions button round small disabled">What do you need?</button>
-			</div>
-		</div>
-		<form>
-			<div class="row">
-				<div class="medium-5 small-6 medium-offset-1 large-offset-2 columns">
-					<h4 class="section-header">I love...</h4>
-				</div>
-			</div>
-			<div class="row full-width">
-				<div class="centerText medium-8 small-12 medium-offset-2 columns">	
-					<input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1"/>
-						<label class="tag button small light round" for="love-1">love tag 1</label>
-					<input id="love-2" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-2"/>
-						<label class="tag button small light round" for="love-2">love tag 2</label>
-					<input id="love-3" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-3"/>
-						<label class="tag button small light round" for="love-3">love tag 3</label>
-					<input id="love-4" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-4"/>
-						<label class="tag button small light round" for="love-4">love tag 4</label>
-					<a class="add-more" href="loves.html"><button class="button small round">Add more</button></a>
-				</div>
-			</div>
-		</form>	
-				<div class="push"></div>
-			</div>
-			
-			{% include "./zaplings/footer.html" %}			
+      
+    <div class="wrapper">
+        {% include "./zaplings/header.html" %}
+     
+        <div class="row hide-for-small-only">
+            <div class="medium-4 medium-offset-4 columns">
+                <img class="profile-image" src="./images/default-profile.png" alt="Profile image" width="75px" height="75px"/>
+            </div>
+            <div class="rightText medium-3 columns end">
+                <button id="change-image" class="button small round light">Change profile image</button>        
+            </div>
+        </div>
+        
+        <div class="row hide-for-small-only">
+            <div class="medium-4 medium-offset-4 columns">
+                <h3 class="centerText">dannyzaplings</h3>
+            </div>
+            <div class="rightText medium-3 columns end">
+                <button id="change-name" class="button small round light">Use your real name</button>       
+            </div>
+        </div>
+        
+        <div class="row show-for-small-only">
+            <div class="small-10 small-offset-1 columns">
+                <img class="small-profile-image" src="./images/default-profile.png" alt="Profile image" width="75px" height="75px"/>
+                <h3 class="centerText">dannyzaplings</h3>       
+            </div>
+        </div>  
+        
+        <div class="row show-for-small-only">
+            <div class="small-12 centerText columns">
+                <button class="button tiny round light">Change image</button>
+                <button class="button tiny round light">Use your real name</button>
+            </div>  
+        </div>  
+        
+        <div class="row full-width">
+            <div id="profile-info" class="medium-8 small-10 small-offset-1 medium-offset-2 columns">
+                <div class="intro-questions"><a href="offers.html"><button class="button round large success">What do you offer?</button></a></div>
+                <button class="intro-questions button round small disabled">What do you need?</button>
+            </div>
+        </div>
+        <form>
+            <div class="row">
+                <div class="medium-5 small-6 medium-offset-1 large-offset-2 columns">
+                    <h4 class="section-header">I love...</h4>
+                </div>
+            </div>
+            <div class="row full-width">
+                <div class="centerText medium-8 small-12 medium-offset-2 columns">  
+                    <input id="love-1" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-1"/>
+                        <label class="tag button small light round" for="love-1">love tag 1</label>
+                    <input id="love-2" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-2"/>
+                        <label class="tag button small light round" for="love-2">love tag 2</label>
+                    <input id="love-3" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-3"/>
+                        <label class="tag button small light round" for="love-3">love tag 3</label>
+                    <input id="love-4" class="vis-hidden" type="checkbox" name="love-tag[]" value="love-tag-4"/>
+                        <label class="tag button small light round" for="love-4">love tag 4</label>
+                    <a class="add-more" href="loves.html"><button class="button small round">Add more</button></a>
+                </div>
+            </div>
+        </form> 
+                <div class="push"></div>
+            </div>
+            
+            {% include "./zaplings/footer.html" %}          
  
-	<script src="js/foundation.min.js"></script>		
-	<script type="text/javascript">
-  		$(document).foundation();
-	</script>
+    <script src="js/foundation.min.js"></script>        
+    <script type="text/javascript">
+        $(document).foundation();
+    </script>
 
  </body>
-			
+            

@@ -1,0 +1,110 @@
+<!doctype html>
+
+{% load static %}
+
+<html class="no-js" lang="en">
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
+        <!--<link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">-->
+        <link rel="stylesheet" href="{% static "./font-awesome/css/font-awesome.min.css" %}">
+        
+        <link rel="stylesheet" type="text/css" href="{% static "./slick/slick.css" %}"/>
+    
+    </head>
+    <body>
+      
+        <div class="wrapper">
+
+            {% include "./zaplings/header.html" %}
+            
+            <div class="row no-margin-bottom">
+                <div class="no-select relative-container medium-8 medium-centered columns">
+                    <h2 class="centerText three-margin-top add-margin-bottom">The creation process</h2>
+                    <div class="centerText single-item">
+                        <div>
+                            <i class="fa fa-bolt fa-4x"></i>
+                            <p class="lead half-margin-top">Inspiration</p>
+                            <p class="leftText">It may strike at any moment. Keep all your ideas secure in one place with your private idea book. Share it instantly or start a project page privately.</p>
+                            <p class="leftText">Grow an idea from Inspiration to Validation by sharing it with your target audience to gain valuable perspective. If your fear of idea theft is so strong that it prevents you from getting started, we will help you file a provisional patent. But you must promise to get over this fear, because there are many actual risks you must face if your creation is to succeed.</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-check fa-4x"></i>
+                            <p class="lead half-margin-top">Validation</p>
+                            <p class="leftText">We usually like our own ideas best. However, success depends on whether others actually want or need your creation. The easiest way to find out is to ask.</p>
+                            <p class="leftText">Test your idea with an audience that shares your passion. Grow from Validation to Transformation by asking and answering questions, then refine the concept based on feedback. As your idea evolves, so will you.</p>
+                        </div>
+                        <div>
+                            <img class="fa centerImg" src="{% static './images/butterfly.png' %}" height="80px" width="80px">
+                            <p class="lead half-margin-top">Transformation</p>
+                            <p class="leftText">Maybe you've heard it before - ideas are cheap; execution is what matters. The lightbulb moment is only the beginning. It's so important to stay open to fresh perspectives - it makes the difference between thriving and just surviving.</p>
+                            <p class="leftText">This stage is about the evolution of the concept and of yourself. Your project page keeps a history of your idea's changes, to show how it has transformed over time. To demonstrate your own progress, share updates on what you've been working on to build a portfolio one day at a time.</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-users fa-3x"></i>
+                            <p class="lead half-margin-top">Team formation</p>
+                            <p class="leftText">As the Zaplings community grows, we will start introducing you to people who can help realize your dream. Based on your loves, offers, and needs, we will introduce you to people who share your passion and have the expertise you seek.</p>
+                            <p class="leftText no-margin-bottom">In the meantime, friends can make introductions for each other on Zaplings. No matching algorithm will ever be as valuable or trusted as personal recommendations. By inviting friends to meet up (or to join Zaplings), you earn points toward a Connector badge. We will introduce top Connectors to each other and quite possibly eliminate a degree of separation across the globe.</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-cogs fa-3x"></i>
+                            <p class="lead half-margin-top">Collaboration</p>
+                            <p class="leftText">To make the impact you desire, it's so important to have clear communication with your team. In time, Zaplings will provide a simple collaboration tool to help you organize your thoughts, tasks, and projects. </p>
+                            <p class="leftText">To move from Collaboration to Implementation phase, you must show the community that you are ready to accept funding to launch your product, service, or art. By working through these first five stages, your project earns points. Once you reach the required score, you will have the option to crowdfund your concept.</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-paper-plane fa-3x"></i>
+                            <p class="lead half-margin-top">Implementation</p>
+                            <p class="leftText">Once you've grown your concept, your team, and yourself, you are ready to take your project to the next level. Many ideas require some kind of funding to reach their full potential. We can help you find it.</p>
+                            <p class="leftText">Unlike some crowdfunding platforms, the Zaplings team will not be a gatekeeper who decides which ideas deserve funding and which do not. Instead, by working through the stages with the community, you will have co-created the concept with your audience, who will be all the more excited to help you reach your goal.</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-globe fa-4x"></i>
+                            <p class="lead half-margin-top">Impact creation</p>
+                            <p class="leftText">The launch of your project is not the finish line, but a new beginning. Now is your chance to help create the world you seek. What matters most to you and your organization? Of course, it is important to make money in order to sustain your creation. But what else? How can your activities have a powerful positive impact on the world around you?</p>
+                            <p class="leftText">Zaplings will suggest ways to integrate your ideals and practices so that no sacrifice needs to be made between profit and purpose. Your integrity will not be lost on your audience, who will be all the more loyal to your mission.</p>
+                        </div>
+                    </div>
+                    <div id="process-arrows">
+                        <div class="process-prev">
+                            <i class="fa fa-chevron-left"></i>
+                        </div>
+                        <div class="process-next">
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="centerText medium-8 medium-centered columns">
+                    <a href="{% url "zaplings:signup" %}"><button class="half-margin-right button round success">Join Zaplings</button></a><!--<a href=""><button class="button round small light">Earn badges</button></a>-->
+                </div>
+            </div>
+            
+            <div class="push"></div>
+        </div>
+        
+        {% include "./zaplings/footer.html" %}
+            
+        <script src="{% static "js/foundation.min.js" %}"></script> 
+        <script type="text/javascript">
+            $(document).foundation();
+        </script>
+        
+<!--        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#slides').superslides({
+                inherit_height_from: '#creation-stages-slider',
+                animation_speed: 1000,
+                animation: 'slide'
+            });
+        });
+        </script>
+        {% include "./zaplings/superslides-scripts.html" %}-->
+        
+        <script type="text/javascript" src="{% static "./slick/slick.min.js" %}"></script> 
+        <script src="{% static "./js/creation-process.js" %}"></script>
+        
+        {% include "./zaplings/end-scripts.html" %}
+    </body>
+</html>

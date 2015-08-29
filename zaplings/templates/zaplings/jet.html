@@ -3,16 +3,11 @@
 {% load static %}
 
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Zaplings | Connect to create.</title>
-        <link rel="stylesheet" href="{% static "style.css" %}" />
-        <link href='http://fonts.googleapis.com/css?family=Varela+Round|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <head>  
+    
+        {% include "./zaplings/head.html" %}
         <link rel="stylesheet" href="{% static "superslides/dist/stylesheets/superslides.css" %}">
         <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
-
-        {% include "./zaplings/start-scripts.html" %}
     
     </head>
     <body>

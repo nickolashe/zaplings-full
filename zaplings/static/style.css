@@ -3158,26 +3158,25 @@ a img {
 
 /* Default paragraph styles */
 p {
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 1.25rem;
   text-rendering: optimizeLegibility; }
 
 p.lead {
-  font-size: 1.21875rem;
-  line-height: 1.6;
-  font-weight: 300; }
+  font-size: 1.375rem;
+  line-height: 1.375; }
 
 p.aside {
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.35; }
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Varela Round", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-family: sans-serif;
+  font-weight: 300;
   font-style: normal;
   color: #05325b;
   text-rendering: optimizeLegibility;
@@ -7096,10 +7095,18 @@ th.hide-for-touch {
   text-align: center; }
 
 .inline-title {
-  display: inline-block; }
+  display: inline-block;
+  margin-right: 1rem; }
 
 .centerText {
   text-align: center !important; }
+
+.leftText {
+  text-align: left !important; }
+
+.centerImg {
+  display: block;
+  margin: auto; }
 
 .rightText {
   text-align: right !important; }
@@ -7114,6 +7121,9 @@ th.hide-for-touch {
 .add-margin-bottom {
   margin-bottom: 1rem; }
 
+.add-margin-left {
+  margin-left: 1rem; }
+
 .no-margin-top {
   margin-top: 0; }
 
@@ -7125,6 +7135,9 @@ th.hide-for-touch {
 
 .three-margin-top {
   margin-top: 3rem; }
+
+.five-margin-top {
+  margin-top: 5rem; }
 
 .three-margin-bottom {
   margin-bottom: 3rem; }
@@ -7144,6 +7157,14 @@ th.hide-for-touch {
 .no-decoration {
   text-decoration: none; }
 
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
 #home {
   background: #05325b; }
 
@@ -7155,6 +7176,14 @@ th.hide-for-touch {
   background-color: #05325b;
   height: 75px;
   margin-bottom: 3rem; }
+
+#home-banner {
+  margin: 0.75rem 0 1.25rem 0; }
+
+.home-intro {
+  display: block;
+  margin: auto;
+  width: 515px; }
 
 #homeLogo {
   display: block;
@@ -7199,6 +7228,14 @@ th.hide-for-touch {
   padding-right: 0.5rem;
   overflow: hidden; }
 
+.home-link {
+  color: white; }
+
+#home-input {
+  margin: auto;
+  padding-right: 0.5rem;
+  overflow: hidden; }
+
 #email-submit {
   float: right;
   margin-top: 0px; }
@@ -7236,6 +7273,23 @@ th.hide-for-touch {
 
 .featured-description {
   margin-top: 0; }
+
+#home-prev {
+  position: absolute;
+  top: 77px;
+  left: 30px;
+  cursor: pointer;
+  color: #ffffff; }
+
+#home-next {
+  position: absolute;
+  top: 77px;
+  right: 45px;
+  color: #ffffff;
+  cursor: pointer; }
+
+#home-idea {
+  margin-left: 2rem; }
 
 .accent {
   color: #0c7add; }
@@ -7290,7 +7344,8 @@ th.hide-for-touch {
   z-index: 999; }
 
 #header-left-small {
-  padding: 0; }
+  padding: 0;
+  margin-left: 1rem; }
 
 .new-idea {
   padding: 0.4rem 0.75rem 0.3rem 0.75rem !important;
@@ -7306,13 +7361,17 @@ th.hide-for-touch {
 .small-new-idea {
   padding: 0.4rem 0.25rem 0.3rem 0.25rem !important;
   position: absolute;
-  left: 6.5rem;
-  top: 0.5rem;
+  left: 7.5rem;
+  top: 0.8rem;
   background-color: #c2d1df;
   color: #05325b;
   font-weight: 300;
   transition: all 300ms ease-out;
   z-index: 1000; }
+
+#logo-small {
+  margin-left: 1rem;
+  margin-top: 0.2rem; }
 
 .new-idea:hover, .small-new-idea:hover {
   background-color: #70bf4f;
@@ -7529,15 +7588,16 @@ input[type='radio']:checked + label {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -3em;
+  margin: 0 auto -6em;
   position: relative; }
 
 .footer {
   height: 3em;
-  background: #05325b; }
+  background: #05325b;
+  margin-top: 3em; }
 
 .push {
-  height: 3em; }
+  height: 6em; }
 
 .outer {
   display: table;
@@ -7656,15 +7716,15 @@ input[type='radio']:checked + label {
 .fit-left {
   float: left;
   display: inline-block;
-  margin-top: 0.75rem; }
+  margin-top: 0.75rem;
+  padding-right: 10px; }
 
 #username {
   width: 100%; }
 
 .input-sizer {
   display: block;
-  overflow: hidden;
-  padding-left: 10px; }
+  overflow: hidden; }
 
 .how-box {
   text-align: center; }
@@ -7746,6 +7806,74 @@ input[type='checkbox']:hover:checked + label {
   position: relative;
   font-size: 0.875rem;
   color: #05325b; }
+
+.process-next {
+  position: absolute;
+  top: 120px;
+  right: 15px;
+  cursor: pointer; }
+
+.process-prev {
+  position: absolute;
+  top: 120px;
+  cursor: pointer; }
+
+.fa {
+  position: relative; }
+
+.fa-bolt {
+  height: 80px;
+  width: 80px;
+  padding: 3px;
+  color: #e3cf7a;
+  border: 4px solid #e3cf7a;
+  border-radius: 100px; }
+
+.fa-check {
+  height: 80px;
+  width: 80px;
+  padding: 6px 2px 0 0;
+  color: #6fa8dc;
+  border: 4px solid #6fa8dc;
+  border-radius: 100px; }
+
+.fa-users {
+  height: 80px;
+  width: 80px;
+  padding-top: 13px;
+  color: #05325b;
+  border: 4px solid #05325b;
+  border-radius: 100px; }
+
+.fa-cogs {
+  height: 80px;
+  width: 80px;
+  padding-top: 12px;
+  padding-right: 4px;
+  color: #9C7C43;
+  border: 4px solid #9C7C43;
+  border-radius: 100px; }
+
+.fa-paper-plane {
+  height: 80px;
+  width: 80px;
+  padding: 14px 6px 0 0;
+  color: #674ea7;
+  border: 4px solid #674ea7;
+  border-radius: 100px; }
+
+.fa-globe {
+  height: 80px;
+  width: 80px;
+  padding: 4px 0 0 0;
+  color: #45818e;
+  border: 4px solid #45818e;
+  border-radius: 100px; }
+
+.enter-tag {
+  float: right;
+  margin-left: 10px;
+  margin-top: 2px; }
 
 .profile-name {
   text-align: center;
@@ -7911,8 +8039,23 @@ input[type='checkbox']:hover:checked + label {
   margin-top: 3rem;
   text-align: center; }
 
-.profile-header-img {
-  height: calc(100vh - 15.5rem); }
+.header-parent {
+  position: relative;
+  overflow: hidden;
+  height: calc(100vh - 15.5rem);
+  width: 100%; }
+
+.header-img {
+  position: relative;
+  margin-left: 50%;
+  margin-top: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%); }
+
+.landscape img {
+  height: 100%; }
+
+.portrait img {
+  width: 100%; }
 
 #follow-button {
   margin-top: 0.125rem; }
